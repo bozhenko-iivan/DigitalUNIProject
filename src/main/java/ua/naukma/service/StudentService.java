@@ -6,6 +6,7 @@ import ua.naukma.repository.StudentRepository;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
+import java.util.Optional;
 
 public class StudentService {
     private final StudentRepository repository;
@@ -29,6 +30,10 @@ public class StudentService {
 
     public List<Student> getAllStudents() {
         return repository.findAll();
+    }
+
+    public Optional<Student> findById(Integer id) {
+        return repository.findById(id);
     }
 
     public List<Student> findByGroupName(String groupName) {

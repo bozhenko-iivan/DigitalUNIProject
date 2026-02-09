@@ -91,7 +91,7 @@ public class ConsoleMenu {
         System.out.println("Enter student ID: ");
         try {
             int id = Integer.parseInt(scanner.nextLine());
-            var student = studentService.getAllStudents().stream().filter(s -> s.getId() == id).findFirst();
+            var student = studentService.findById(id);
             if (student.isPresent()) {
                 System.out.println("Student found: " + student.get());
             } else  {
