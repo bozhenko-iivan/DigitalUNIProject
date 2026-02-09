@@ -3,7 +3,7 @@ package ua.naukma.repository;
 import ua.naukma.domain.Student;
 import java.util.*;
 
-public class InMemoryStudentRepository implements StudentRepository{
+public class InMemoryStudentRepository implements Repository<Student, Integer> {
     private Map<Integer, Student> storage = new HashMap<>();
 
     @Override
@@ -16,10 +16,11 @@ public class InMemoryStudentRepository implements StudentRepository{
     public Optional<Student> findById(Integer id) {
         return Optional.ofNullable(storage.get(id));
     }
-
     @Override
-    public List<Student> findAll() {
-        return new ArrayList<>(storage.values());
+    public void showAll(){
+        for (Student s : storage.values()) {
+            System.out.println(s);
+        }
     }
 
     @Override

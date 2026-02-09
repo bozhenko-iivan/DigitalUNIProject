@@ -1,17 +1,16 @@
 package ua.naukma.service;
 
 import ua.naukma.domain.Student;
-import ua.naukma.repository.StudentRepository;
+import ua.naukma.repository.Repository;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.List;
 import java.util.Optional;
 
 public class StudentService {
-    private final StudentRepository repository;
+    private final Repository<Student, Integer> repository;
 
-    public StudentService(StudentRepository repository) {
+    public StudentService(Repository<Student, Integer> repository) {
         this.repository = repository;
     }
 
@@ -24,20 +23,20 @@ public class StudentService {
             System.out.println("Student age is too young " + age + " years. Minimal age - 16");
             return;
         }
-        repository.save(student);
+
         System.out.println("Student is successfully added");
     }
 
-    public List<Student> getAllStudents() {
-        return repository.findAll();
-    }
+//    public List<Student> getAllStudents() {
+//        return repository.findAll();
+//    }
 
     public Optional<Student> findById(Integer id) {
         return repository.findById(id);
     }
 
-    public List<Student> findByGroupName(String groupName) {
-        return repository.findAll().stream()
-                .filter(student -> student.getGroupName().equals(groupName)).toList();
-    }
+//    public List<Student> findByGroupName(String groupName) {
+//        return repository.findAll().stream()
+//                .filter(student -> student.getGroupName().equals(groupName)).toList();
+//    }
 }

@@ -1,4 +1,5 @@
 package ua.naukma.ui;
+import ua.naukma.service.*;
 
 public class NewMenu{
     private enum menu_level{

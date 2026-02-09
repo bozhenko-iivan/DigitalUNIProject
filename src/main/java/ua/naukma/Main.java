@@ -12,7 +12,7 @@ import java.time.LocalDate;
 
 public class Main {
     static void main() {
-        StudentRepository repository = new InMemoryStudentRepository();
+        Repository<Student, Integer> repository = new InMemoryStudentRepository();
 
         StudentService service = new StudentService(repository);
 
