@@ -5,6 +5,7 @@ import ua.naukma.repository.Repository;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 import java.util.Optional;
 
 public class StudentService {
@@ -27,9 +28,9 @@ public class StudentService {
         System.out.println("Student is successfully added");
     }
 
-//    public List<Student> getAllStudents() {
-//        return repository.findAll();
-//    }
+    public void getAllStudents() {
+        repository.showAll();
+    }
 
     public Optional<Student> findById(Integer id) {
         return repository.findById(id);

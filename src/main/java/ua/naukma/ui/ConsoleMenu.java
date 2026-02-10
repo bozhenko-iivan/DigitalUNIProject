@@ -79,12 +79,12 @@ public class ConsoleMenu {
 
     private void showAllStudentsUI() {
         System.out.println("Student list");
-        var students = studentService.getAllStudents();
-        if (students.isEmpty()) {
-            System.out.println("No students found.");
-        } else {
-            students.forEach(System.out::println);
-        }
+        studentService.getAllStudents();
+//        if (students.isEmpty()) {
+//            System.out.println("No students found.");
+//        } else {
+//            for (Student student : students) System.out.println(student);
+//        }
     }
 
     private void findStudentByIdUI() {
@@ -100,5 +100,10 @@ public class ConsoleMenu {
         } catch (InputMismatchException e) {
             System.out.println("Error: Please enter a number.");
         }
+    }
+
+    private void removeStudentByIdUI() {
+        System.out.println("Enter student ID: ");
+
     }
 }
