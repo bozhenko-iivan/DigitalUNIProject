@@ -22,14 +22,14 @@ public class Department {
     public void setId(int id) { this.id = id; }
 
     public void setName(String name) {
-        if (name == null) {
+        if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("Invalid location.");
         }
         this.name = name;
     }
 
     public void setLocation(String location) {
-        if (location == null) {
+        if (location == null || location.isEmpty()) {
             throw new IllegalArgumentException("Invalid location.");
         }
         this.location = location;

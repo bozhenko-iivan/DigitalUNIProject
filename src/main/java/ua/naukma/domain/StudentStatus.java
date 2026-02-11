@@ -6,7 +6,7 @@ public enum StudentStatus {
     EXPELLED;
 
     public static StudentStatus fromString (String value) {
-        if (value != null) {
+        if (value != null || !value.isEmpty()) {
             for (StudentStatus status : StudentStatus.values()) {
                 if (status.name().equalsIgnoreCase(value)) {
                     return status;
@@ -15,5 +15,4 @@ public enum StudentStatus {
         }
         throw new IllegalArgumentException("Invalid study status value: " + value + ". Available: " + java.util.Arrays.toString(StudentStatus.values()));
     }
-
 }

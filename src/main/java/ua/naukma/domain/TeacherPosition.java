@@ -10,7 +10,7 @@ public enum TeacherPosition {
     DEAN;
 
     public static TeacherPosition fromString (String value) {
-        if (value != null) {
+        if (value != null || !value.isEmpty()) {
             for (TeacherPosition position : TeacherPosition.values()) {
                 if (position.name().equalsIgnoreCase(value)) {
                     return position;

@@ -20,6 +20,7 @@ public class Student extends Person {
         setAdmissionYear(admissionYear);
         setStudyForm(studyForm);
         setStatus(status);
+        setDepartment(department);
     }
 
     public int getCourse() { return course; }

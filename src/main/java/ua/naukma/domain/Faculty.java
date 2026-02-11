@@ -20,6 +20,20 @@ public class Faculty {
     public String getShortName() { return shortName; }
     public Teacher getDean() { return dean; }
 
+    public void setName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be empty.");
+        }
+        this.name = name;
+    }
+
+    public void setShortName(String shortName) {
+        if (shortName == null || shortName.isEmpty()) {
+            throw new IllegalArgumentException("shortname cannot be empty.");
+        }
+        this.shortName = shortName;
+    }
+
     @Override
     public String toString() {
         String deanName = (dean != null) ? dean.getLastName() : "Vacant";

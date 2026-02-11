@@ -7,7 +7,7 @@ public enum TeacherDegree {
 
 
     public static TeacherDegree fromString (String value) {
-        if (value != null) {
+        if (value != null || !value.isEmpty()) {
             for (TeacherDegree degree : TeacherDegree.values()) {
                 if (degree.name().equalsIgnoreCase(value)) {
                     return degree;
