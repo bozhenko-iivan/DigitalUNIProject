@@ -32,10 +32,26 @@ public class Student extends Person {
     public String getRecordBookNumber() { return recordBookNumber; }
 
 
-    public void setStatus(StudentStatus status) { this.status = status; }              // Перевірка у Enum, виклик перевірки у самому main
-    public void setStudyForm(StudyForm studyForm) { this.studyForm = studyForm; }      // Перевірка у Enum, виклик перевірки у самому main
-    public void setDepartment(Department department) { this.department = department; } // Перевірка у Enum, виклик перевірки у самому main
+    public void setStatus(StudentStatus status) {
+        if (status == null) {
+            throw new IllegalArgumentException("Student status cannot be null.");
+        }
+        this.status = status;
+    }
 
+    public void setStudyForm(StudyForm studyForm) {
+        if (studyForm == null) {
+            throw new IllegalArgumentException("Study form cannot be null.");
+        }
+        this.studyForm = studyForm;
+    }
+
+    public void setDepartment(Department department) {
+        if (department == null) {
+            throw new IllegalArgumentException("Department cannot be null.");
+        }
+        this.department = department;
+    }
     public void setAdmissionYear(int admissionYear) {
         if (admissionYear < 1991 || admissionYear > LocalDate.now().getYear() ) {
             throw new IllegalArgumentException("Invalid admission year.");
