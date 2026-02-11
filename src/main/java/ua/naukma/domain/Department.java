@@ -9,15 +9,31 @@ public class Department {
 
     public Department(int id, String name, Faculty faculty, Teacher head, String location) {
         this.id = id;
-        this.name = name;
+        setName(name);
         this.faculty = faculty;
         this.head = head;
-        this.location = location;
+        setLocation(location);
     }
 
     public int getId() { return id; }
     public String getName() { return name; }
     public Faculty getFaculty() { return faculty; }
+
+    public void setId(int id) { this.id = id; }
+
+    public void setName(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException("Invalid location.");
+        }
+        this.name = name;
+    }
+
+    public void setLocation(String location) {
+        if (location == null) {
+            throw new IllegalArgumentException("Invalid location.");
+        }
+        this.location = location;
+    }
 
     @Override
     public String toString() {
