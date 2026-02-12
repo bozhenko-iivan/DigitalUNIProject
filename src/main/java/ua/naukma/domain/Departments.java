@@ -10,7 +10,7 @@ public enum Departments {
     PHILOLOGY;
 
     public static Departments fromString (String value) {
-        if (value != null || !value.isEmpty()) {
+        if (value != null && !value.trim().isEmpty()) {
             for (Departments department : Departments.values()) {
                 if (department.name().equalsIgnoreCase(value)) {
                     return department;
