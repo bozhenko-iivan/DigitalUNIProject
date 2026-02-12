@@ -23,7 +23,7 @@ public class Department {
 
     public void setName(String name) {
         if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("Invalid location.");
+            throw new IllegalArgumentException("Invalid department name.");
         }
         this.name = name;
     }
