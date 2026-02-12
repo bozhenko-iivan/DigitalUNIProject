@@ -82,6 +82,7 @@ public abstract class Person {
         if (birthDate.isBefore(LocalDate.of(1900,1,1))) {
             throw new IllegalArgumentException("Can't be. Set a birth date not as old.");
         }
+        this.birthDate = birthDate;
     }
 
     @Override
