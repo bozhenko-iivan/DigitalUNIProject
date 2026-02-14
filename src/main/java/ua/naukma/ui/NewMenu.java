@@ -1,6 +1,9 @@
 package ua.naukma.ui;
 import ua.naukma.service.*;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class NewMenu{
     private enum menu_level{
         MON,
@@ -13,6 +16,7 @@ public class NewMenu{
         TEACHS,
         STUDS
     }
+    final private StudentService studentService = new StudentService();
     public void draw_greetings() {
         System.out.println("\n\t\t\t\tWelcome to the DigiUni!\n\n\n" +
                 "You can add, delete or view parts of the uni structure.\n" +
@@ -84,5 +88,36 @@ public class NewMenu{
                "4. Remove student\n" +
                "5. Find student\n");
    }
-
+    public void menu_test(){
+        for(;;) {
+        System.out.println("This is a test version just for the operations with students.\n" +
+                "The options are:\n" + "1. Add student.\n2. Find student." +
+                "\n3. Delete student.\n4. Show list of all students.\n5. Exit.");
+        Scanner scanner = new Scanner(System.in);
+            int choice = 0;
+            while (choice < 1 || choice > 5) {
+                try {
+                    choice = scanner.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            switch (choice) {
+                case 1:
+                    studentService.addStudent();
+                    break;
+                case 2:
+                    studentService.findStudent();
+                    break;
+                case 3:
+                    studentService.deleteStudent();
+                    break;
+                case 4:
+                    studentService.studentsShowList();
+                    break;
+                case 5:
+                    return;
+            }
+        }
+    }
 }

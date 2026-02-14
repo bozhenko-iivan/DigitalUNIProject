@@ -5,6 +5,7 @@ public class University {
     private String shortName;
     private String city;
     private String address;
+    private String rectorName;
 
     public University(String fullName, String shortName, String city, String address) {
         this.fullName = fullName;
