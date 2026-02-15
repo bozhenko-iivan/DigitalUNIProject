@@ -16,26 +16,77 @@ public class Student extends Person {
                    int admissionYear, StudyForm studyForm, StudentStatus status)
     {
         super(id, firstName, lastName, middleName, birthDate, email, phoneNumber);
-        this.recordBookNumber = recordBookNumber;
-        this.course = course;
-        this.groupName = groupName;
-        this.admissionYear = admissionYear;
-        this.studyForm = studyForm;
-        this.status = status;
+        setRecordBookNumber(recordBookNumber);
+        setCourse(course);
+        setGroupName(groupName);
+        setAdmissionYear(admissionYear);
+        setStudyForm(studyForm);
+        setStatus(status);
+        setDepartment(department);
     }
 
     public int getCourse() { return course; }
     public String getGroupName() { return groupName; }
     public Department getDepartment() { return department; }
-    public int getAdmissionYear() { return admissionYear; }
-    public StudyForm getStudyForm() { return studyForm; }
     public StudentStatus getStatus() { return status; }
+    public StudyForm getStudyForm() { return studyForm; }
+    public int getAdmissionYear() { return admissionYear; }
     public String getRecordBookNumber() { return recordBookNumber; }
 
 
-    public void setCourse(int course) { this.course = course; }
-    public void setGroupName(String groupName) { this.groupName = groupName; }
-    public void setDepartment(Department department) { this.department = department; }
+    public void setStatus(StudentStatus status) {
+        if (status == null) {
+            throw new IllegalArgumentException("Student status cannot be null.");
+        }
+        this.status = status;
+    }
+
+    public void setStudyForm(StudyForm studyForm) {
+        if (studyForm == null) {
+            throw new IllegalArgumentException("Study form cannot be null.");
+        }
+        this.studyForm = studyForm;
+    }
+
+    public void setDepartment(Department department) {
+        if (department == null) {
+            throw new IllegalArgumentException("Department cannot be null.");
+        }
+        this.department = department;
+    }
+    public void setAdmissionYear(int admissionYear) {
+        if (admissionYear < 1991 || admissionYear > LocalDate.now().getYear() ) {
+            throw new IllegalArgumentException("Invalid admission year.");
+        }
+        this.admissionYear = admissionYear;
+    }
+
+    public void setRecordBookNumber(String recordBookNumber) {
+        if (recordBookNumber != null && recordBookNumber.length() == 8) {
+            for (char c : recordBookNumber.toCharArray()) {
+                if (!Character.isDigit(c)) {
+                    throw new IllegalArgumentException("Record book number can only contain digits");
+                }
+            }
+        } else {
+            throw new IllegalArgumentException("Record Book Number must be 8 characters long");
+        }
+        this.recordBookNumber = recordBookNumber;
+    }
+
+    public void setCourse(int course) {
+        if (course < 1 || course > 6) {
+            throw new IllegalArgumentException("Invalid course number. Only 1-6 courses exist.");
+        }
+        this.course = course;
+    }
+
+    public void setGroupName(String groupName) {
+        if (groupName == null || groupName.isEmpty()){
+            throw new IllegalArgumentException("Enter group name.");
+        }
+        this.groupName = groupName;
+    }
 
     @Override
     public String toString() {
