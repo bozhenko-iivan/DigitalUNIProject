@@ -1,6 +1,5 @@
 package ua.naukma.repository;
 
-import ua.naukma.domain.Student;
 import ua.naukma.domain.Teacher;
 
 import java.util.*;
