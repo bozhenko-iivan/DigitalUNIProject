@@ -3,7 +3,7 @@ package ua.naukma.repository;
 import ua.naukma.domain.Student;
 import java.util.*;
 
-public class InMemoryStudentRepository implements Repository<Student, Integer> {
+public class InMemoryStudentRepository implements PersonRepository<Student, Integer> {
     final private Map<Integer, Student> storage = new HashMap<>();
 
     @Override
@@ -22,15 +22,16 @@ public class InMemoryStudentRepository implements Repository<Student, Integer> {
             System.out.println(s.toString());
         }
     }
-    public void findByPIB(String firstName, String lastName, String middleName) {
+    @Override
+    public Optional<Student> findByPIB(String firstName, String lastName, String middleName) {
         for (Student s : storage.values()) {
             if (s.getFirstName().equals(firstName) &&
                     s.getLastName().equals(lastName) &&
                     s.getMiddleName().equals(middleName)) {
-                System.out.println(s.toString());
+                return Optional.of(s);
             }
         }
-        System.out.println("Student with such PIB is not found");
+        return Optional.empty();
     }
     @Override
     public void deleteById(Integer id) {

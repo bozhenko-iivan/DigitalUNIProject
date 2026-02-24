@@ -6,13 +6,14 @@ public class Department {
     private Faculty faculty;
     private Teacher head;
     private String location;
-
-    public Department(int id, String name, Faculty faculty, Teacher head, String location) {
+    private String email;
+    public Department(int id, String name, Faculty faculty, Teacher head, String location,  String email) {
         this.id = id;
         setName(name);
         this.faculty = faculty;
         this.head = head;
         setLocation(location);
+        this.email = email;
     }
 
     public int getId() { return id; }

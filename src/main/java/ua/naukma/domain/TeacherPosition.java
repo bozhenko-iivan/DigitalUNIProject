@@ -4,10 +4,9 @@ public enum TeacherPosition {
     ASSISTANT,
     LECTURER,
     SENIOR_LECTURER,
-    DOCENT,
-    PROFESSOR,
     HEAD_OF_DEPARTMENT,
     DEAN;
+
 
     public static TeacherPosition fromString (String value) {
         if (value != null || !value.isEmpty()) {

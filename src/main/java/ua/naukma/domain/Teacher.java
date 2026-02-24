@@ -3,14 +3,14 @@ package ua.naukma.domain;
 import java.time.LocalDate;
 
 public class Teacher extends Person {
-    private String position;
-    private String degree;
-    private String rank;
+    private TeacherPosition  position;
+    private TeacherDegree  degree;
+    private TeacherRank  rank;
     private LocalDate hiringDate;
     private double load;
 
     public Teacher(int id, String firstName, String lastName, String middleName, LocalDate birthDate, String email, String phoneNumber,
-                   String position, String degree, String rank, LocalDate hiringDate, double load) {
+                   TeacherPosition position, TeacherDegree degree, TeacherRank rank, LocalDate hiringDate, double load) {
         super(id, firstName, lastName, middleName, birthDate, email, phoneNumber);
         this.position = position;
         this.degree = degree;
@@ -19,9 +19,9 @@ public class Teacher extends Person {
         this.load = load;
     }
 
-    public String getPosition() {return position;}
-    public String getDegree() {return degree;}
-    public String getRank() {return rank;}
+    public TeacherPosition getPosition() {return position;}
+    public TeacherDegree getDegree() {return degree;}
+    public TeacherRank getRank() {return rank;}
     public LocalDate getHiringDate() {return hiringDate;}
     public double getLoad() {return load;}
 

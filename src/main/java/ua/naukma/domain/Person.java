@@ -11,7 +11,7 @@ public abstract class Person {
     private String phoneNumber;
 
     public Person(int id, String firstName, String lastName, String middleName, LocalDate birthDate, String email, String phoneNumber) {
-        this.id = id;
+        setId(id);
         setFirstName(firstName);
         setLastName(lastName);
         setMiddleName(middleName);
@@ -19,7 +19,6 @@ public abstract class Person {
         setEmail(email);
         setPhoneNumber(phoneNumber);
     }
-
     public int getId() {return id;}
     public String getFirstName() {return firstName;}
     public String getLastName() {return lastName;}
@@ -28,6 +27,7 @@ public abstract class Person {
     public String getEmail() {return email;}
     public String getPhoneNumber() {return phoneNumber;}
 
+    public void setId(int id) {this.id = id;}
     public void setFirstName(String firstName) {
         if (firstName == null || firstName.isEmpty()) {
             throw new IllegalArgumentException("First name cannot be empty.");
