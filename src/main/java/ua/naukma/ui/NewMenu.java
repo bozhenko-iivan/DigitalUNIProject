@@ -16,7 +16,83 @@ public class NewMenu{
         TEACHS,
         STUDS
     }
-    final private StudentService studentService = new StudentService();
+
+    private final StudentService studentService;
+    private final Scanner scanner;
+    private menu_level currentLevel;
+
+    public NewMenu(StudentService studentService) {
+        this.studentService = studentService;
+        this.scanner = new Scanner(System.in);
+        this.currentLevel = menu_level.MON;
+    }
+
+    public void start() {
+        draw_greetings();
+
+        while (true) {
+            System.out.println("CURRENT DIRECTORY: " + currentLevel);
+
+            switch (currentLevel) {
+                case MON -> draw_MON();
+                case UNI -> draw_UNI();
+                case FAC -> draw_FAC();
+                case DEPS -> draw_DEP();
+                case DEPARTAMENT -> draw_DEPARTAMENT();
+                case GRPS -> draw_GRPS();
+                case GROUP -> draw_GROUP();
+                default -> System.out.println("Choose existing level");
+            }
+
+            System.out.print("\nEnter your choice (0 to Exit Program): ");
+            String choice = scanner.nextLine();
+
+            if (choice.equals("0")) {
+                System.out.println("Exiting DigiUni. Goodbye!");
+                return;
+            }
+
+            handleInput(choice);
+        }
+    }
+
+    private void handleInput(String choice) {
+        switch (currentLevel) {
+            case MON:
+                if (choice.equals("1")) System.out.println("University added!");
+                else if (choice.equals("4")) {
+                    System.out.println("Entering NaUKMA...");
+                    currentLevel = menu_level.UNI;
+                }
+                break;
+
+            case UNI:
+                if (choice.equals("1")) currentLevel = menu_level.MON;
+                else if (choice.equals("5")) {
+                    System.out.println("Entering Faculty of Informatics...");
+                    currentLevel = menu_level.FAC;
+                }
+                break;
+
+            case FAC:
+                if (choice.equals("1")) currentLevel = menu_level.UNI;
+                else if (choice.equals("3")) currentLevel = menu_level.GROUP;
+                break;
+
+            case GROUP:
+                if (choice.equals("1")) currentLevel = menu_level.FAC;
+                else if (choice.equals("2")) studentService.studentsShowList();
+                else if (choice.equals("3")) studentService.addStudent();
+                else if (choice.equals("4")) studentService.deleteStudent();
+                else if (choice.equals("5")) studentService.findStudent();
+                break;
+
+            default:
+                System.out.println("Choose existing option");
+                break;
+        }
+    }
+
     public void draw_greetings() {
         System.out.println("\n\t\t\t\tWelcome to the DigiUni!\n\n\n" +
                 "You can add, delete or view parts of the uni structure.\n" +

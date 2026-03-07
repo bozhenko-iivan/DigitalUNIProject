@@ -1,5 +1,6 @@
 package ua.naukma.repository;
 
+import ua.naukma.domain.Student;
 import ua.naukma.domain.Teacher;
 
 import java.util.*;
@@ -28,5 +29,9 @@ public class InMemoryTeacherRepository implements Repository<Teacher, Integer> {
     public void deleteById(Integer id) {
         storage.remove(id);
         System.out.println("Teacher deleted: " + id);
+    }
+    @Override
+    public List<Teacher> findAll() {
+        return new ArrayList<>(storage.values());
     }
 }

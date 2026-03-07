@@ -36,14 +36,14 @@ public abstract class Person {
     }
 
     public void setMiddleName(String middleName) {
-        if (middleName == null || middleName.isEmpty()) {
+        if (middleName == null || middleName.isBlank()) {
             throw new IllegalArgumentException("Middle name cannot be empty.");
         }
         this.middleName = middleName;
     }
 
     public void setLastName(String lastName) {
-        if (lastName == null || lastName.isEmpty()) {
+        if (lastName == null || lastName.isBlank()) {
             throw new IllegalArgumentException("Last name cannot be empty.");
         }
         this.lastName = lastName;
@@ -64,7 +64,7 @@ public abstract class Person {
     }
 
     public void setEmail(String email) {
-        if (email == null || !email.contains("@")) {
+        if (email == null || !email.contains("@") || email.isBlank()) {
             throw new IllegalArgumentException("Email cannot be empty and must contain '@'.");
         }
         this.email = email;

@@ -5,7 +5,7 @@ public enum StudyForm {
     CONTRACT;
 
     public static StudyForm fromString (String value) {
-        if (value != null || !value.isEmpty()) {
+        if (!value.isBlank() && value != null) {
             for (StudyForm form : StudyForm.values()) {
                 if (form.name().equalsIgnoreCase(value)) {
                     return form;

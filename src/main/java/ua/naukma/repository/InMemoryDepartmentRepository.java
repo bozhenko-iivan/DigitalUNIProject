@@ -3,9 +3,7 @@ package ua.naukma.repository;
 import ua.naukma.domain.Department;
 import ua.naukma.domain.Teacher;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class InMemoryDepartmentRepository implements Repository<Department, Integer> {
     private Map<Integer, Department> storage = new HashMap<>();
@@ -31,5 +29,9 @@ public class InMemoryDepartmentRepository implements Repository<Department, Inte
     public void deleteById(Integer id) {
         storage.remove(id);
         System.out.println("Department deleted: " + id);
+    }
+    @Override
+    public List<Department> findAll() {
+        return new ArrayList<>(storage.values());
     }
 }
