@@ -17,9 +17,14 @@ public class NewMenu{
         STUDS
     }
 
+    private enum Role {
+        ADMIN, USER
+    }
+
     private final StudentService studentService;
     private final Scanner scanner;
     private menu_level currentLevel;
+    private Role currentUserRole;
 
     public NewMenu(StudentService studentService) {
         this.studentService = studentService;
@@ -27,7 +32,25 @@ public class NewMenu{
         this.currentLevel = menu_level.MON;
     }
 
+    private void authenticate() {
+        System.out.println("\nDIGIUNI SYSTEM LOGIN\n");
+        System.out.println("Type 'admin' for full access or anything else for guest access.");
+        System.out.print("Username: ");
+        String username = scanner.nextLine();
+        System.out.print("Password: ");
+        String password = scanner.nextLine();
+
+        if ("admin".equals(username) && "admin".equals(password)) {
+            currentUserRole = Role.ADMIN;
+            System.out.println("Logged in as ADMIN. You have full access.");
+        } else {
+            currentUserRole = Role.USER;
+            System.out.println("Logged in as GUEST. You have VIEW-ONLY access.");
+        }
+    }
+
     public void start() {
+        authenticate();
         draw_greetings();
 
         while (true) {
@@ -59,7 +82,11 @@ public class NewMenu{
     private void handleInput(String choice) {
         switch (currentLevel) {
             case MON:
-                if (choice.equals("1")) System.out.println("University added!");
+                if (choice.equals("1")) {
+                    if (currentUserRole.equals(Role.ADMIN)) {
+                        System.out.println("University added!");
+                    } else System.out.println("\nAccess denied.\n");
+                }
                 else if (choice.equals("4")) {
                     System.out.println("Entering NaUKMA...");
                     currentLevel = menu_level.UNI;
@@ -82,8 +109,16 @@ public class NewMenu{
             case GROUP:
                 if (choice.equals("1")) currentLevel = menu_level.FAC;
                 else if (choice.equals("2")) studentService.studentsShowList();
-                else if (choice.equals("3")) studentService.addStudent();
-                else if (choice.equals("4")) studentService.deleteStudent();
+                else if (choice.equals("3")) {
+                    if (currentUserRole.equals(Role.ADMIN)) {
+                        studentService.addStudent();
+                    } else System.out.println("\nAccess denied.\n");
+                }
+                else if (choice.equals("4")) {
+                    if (currentUserRole.equals(Role.ADMIN)) {
+                        studentService.deleteStudent();
+                    } else System.out.println("\nAccess denied.\n");
+                }
                 else if (choice.equals("5")) studentService.findStudent();
                 break;
 
