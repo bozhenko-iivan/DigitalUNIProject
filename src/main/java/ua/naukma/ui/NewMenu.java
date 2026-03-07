@@ -16,7 +16,118 @@ public class NewMenu{
         TEACHS,
         STUDS
     }
-    final private StudentService studentService = new StudentService();
+
+    private enum Role {
+        ADMIN, USER
+    }
+
+    private final StudentService studentService;
+    private final Scanner scanner;
+    private menu_level currentLevel;
+    private Role currentUserRole;
+
+    public NewMenu(StudentService studentService) {
+        this.studentService = studentService;
+        this.scanner = new Scanner(System.in);
+        this.currentLevel = menu_level.MON;
+    }
+
+    private void authenticate() {
+        System.out.println("\nDIGIUNI SYSTEM LOGIN\n");
+        System.out.println("Type 'admin' for full access or anything else for guest access.");
+        System.out.print("Username: ");
+        String username = scanner.nextLine();
+        System.out.print("Password: ");
+        String password = scanner.nextLine();
+
+        if ("admin".equals(username) && "admin".equals(password)) {
+            currentUserRole = Role.ADMIN;
+            System.out.println("Logged in as ADMIN. You have full access.");
+        } else {
+            currentUserRole = Role.USER;
+            System.out.println("Logged in as GUEST. You have VIEW-ONLY access.");
+        }
+    }
+
+    public void start() {
+        authenticate();
+        draw_greetings();
+
+        while (true) {
+            System.out.println("CURRENT DIRECTORY: " + currentLevel);
+
+            switch (currentLevel) {
+                case MON -> draw_MON();
+                case UNI -> draw_UNI();
+                case FAC -> draw_FAC();
+                case DEPS -> draw_DEP();
+                case DEPARTAMENT -> draw_DEPARTAMENT();
+                case GRPS -> draw_GRPS();
+                case GROUP -> draw_GROUP();
+                default -> System.out.println("Choose existing level");
+            }
+
+            System.out.print("\nEnter your choice (0 to Exit Program): ");
+            String choice = scanner.nextLine();
+
+            if (choice.equals("0")) {
+                System.out.println("Exiting DigiUni. Goodbye!");
+                return;
+            }
+
+            handleInput(choice);
+        }
+    }
+
+    private void handleInput(String choice) {
+        switch (currentLevel) {
+            case MON:
+                if (choice.equals("1")) {
+                    if (currentUserRole.equals(Role.ADMIN)) {
+                        System.out.println("University added!");
+                    } else System.out.println("\nAccess denied.\n");
+                }
+                else if (choice.equals("4")) {
+                    System.out.println("Entering NaUKMA...");
+                    currentLevel = menu_level.UNI;
+                }
+                break;
+
+            case UNI:
+                if (choice.equals("1")) currentLevel = menu_level.MON;
+                else if (choice.equals("5")) {
+                    System.out.println("Entering Faculty of Informatics...");
+                    currentLevel = menu_level.FAC;
+                }
+                break;
+
+            case FAC:
+                if (choice.equals("1")) currentLevel = menu_level.UNI;
+                else if (choice.equals("3")) currentLevel = menu_level.GROUP;
+                break;
+
+            case GROUP:
+                if (choice.equals("1")) currentLevel = menu_level.FAC;
+                else if (choice.equals("2")) studentService.studentsShowList();
+                else if (choice.equals("3")) {
+                    if (currentUserRole.equals(Role.ADMIN)) {
+                        studentService.addStudent();
+                    } else System.out.println("\nAccess denied.\n");
+                }
+                else if (choice.equals("4")) {
+                    if (currentUserRole.equals(Role.ADMIN)) {
+                        studentService.deleteStudent();
+                    } else System.out.println("\nAccess denied.\n");
+                }
+                else if (choice.equals("5")) studentService.findStudent();
+                break;
+
+            default:
+                System.out.println("Choose existing option");
+                break;
+        }
+    }
+
     public void draw_greetings() {
         System.out.println("\n\t\t\t\tWelcome to the DigiUni!\n\n\n" +
                 "You can add, delete or view parts of the uni structure.\n" +
