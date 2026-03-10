@@ -22,7 +22,6 @@ public class Student extends Person {
         setAdmissionYear(admissionYear);
         setStudyForm(studyForm);
         setStatus(status);
-        setDepartment(department);
     }
 
     public int getCourse() { return course; }
@@ -62,15 +61,16 @@ public class Student extends Person {
     }
 
     public void setRecordBookNumber(String recordBookNumber) {
-        if (recordBookNumber != null && recordBookNumber.length() == 8) {
-            for (char c : recordBookNumber.toCharArray()) {
-                if (!Character.isDigit(c)) {
-                    throw new IllegalArgumentException("Record book number can only contain digits");
-                }
-            }
-        } else {
-            throw new IllegalArgumentException("Record Book Number must be 8 characters long");
-        }
+//        if (recordBookNumber == null) {
+//      if (recordBookNumber != null && recordBookNumber.length() == 8) {
+//            for (char c : recordBookNumber.toCharArray()) {
+//                if (!Character.isDigit(c)) {
+//                      throw new IllegalArgumentException("Record book number can only contain digits");
+//                }
+//            }
+//        } else {
+//            throw new IllegalArgumentException("Record Book Number must be 8 characters long");
+//        }
         this.recordBookNumber = recordBookNumber;
     }
 
@@ -82,7 +82,7 @@ public class Student extends Person {
     }
 
     public void setGroupName(String groupName) {
-        if (groupName == null || groupName.isEmpty()){
+        if (groupName == null || groupName.isBlank()){
             throw new IllegalArgumentException("Enter group name.");
         }
         this.groupName = groupName;

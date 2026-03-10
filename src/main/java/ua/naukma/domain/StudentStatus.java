@@ -6,7 +6,7 @@ public enum StudentStatus {
     EXPELLED;
 
     public static StudentStatus fromString (String value) {
-        if (value != null || !value.isEmpty()) {
+        if (value != null && !value.isBlank()) {
             for (StudentStatus status : StudentStatus.values()) {
                 if (status.name().equalsIgnoreCase(value)) {
                     return status;

@@ -18,10 +18,10 @@ import java.util.Scanner;
 
 public class StudentService {
     private final Repository<Student, Integer> repository;
-    public StudentService() {
-        this.repository = inMemoryS;
+    public StudentService(Repository<Student, Integer> repository) {
+        this.repository = repository;
     }
-    private InMemoryStudentRepository inMemoryS = new InMemoryStudentRepository();
+
     public void addStudent() {
         try {
             Scanner scanner = new Scanner(System.in);
@@ -47,12 +47,22 @@ public class StudentService {
                 System.out.println("Student with such id already exists.");
                 return;
             }
-            inMemoryS.save(new_s);
+            repository.save(new_s);
         }
         catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
     }
+
+    // А ЦЕ ДОДАЄМО ДЛЯ ТЕСТІВ ТА ЛОГІКИ:
+    public void addStudent(Student student) {
+        if (repository.findById(student.getId()).isPresent()) {
+            throw new IllegalStateException("Student already exists");
+        }
+        repository.save(student);
+    }
+
+
     public void deleteStudent() {
         try {
             Scanner scanner = new Scanner(System.in);
@@ -102,15 +112,30 @@ public class StudentService {
             System.out.println(e.getMessage());
         }
     }
-    private void service_findByPIB(){
+
+    private void service_findByPIB() {
         boolean is_name_english = ask_alphabet();
         String firstName = ask_name("first name", is_name_english);
-        String lastName = ask_name("last name",is_name_english);
+        String lastName = ask_name("last name", is_name_english);
         String middleName = ask_name("middle name", is_name_english);
-        inMemoryS.findByPIB(firstName, lastName, middleName);
+
+        //            ЛЯМБДИ
+        java.util.List<Student> foundStudents = repository.findAll().stream()
+                .filter(student -> student.getFirstName().equalsIgnoreCase(firstName))
+                .filter(student -> student.getLastName().equalsIgnoreCase(lastName))
+                .filter(student -> student.getMiddleName().equalsIgnoreCase(middleName))
+                .toList();
+
+        if (foundStudents.isEmpty()) {
+            System.out.println("Студентів з таким ПІБ не знайдено.");
+        } else {
+            System.out.println("Знайдено студентів:");
+            foundStudents.forEach(System.out::println);
+        }
     }
+
     public void studentsShowList(){
-        inMemoryS.showAll();
+        repository.showAll();
     }
     private boolean ask_alphabet() {
         Scanner scanner = new Scanner(System.in);

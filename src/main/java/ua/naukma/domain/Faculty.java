@@ -21,14 +21,14 @@ public class Faculty {
     public Teacher getDean() { return dean; }
 
     public void setName(String name) {
-        if (name == null || name.isEmpty()) {
+        if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Name cannot be empty.");
         }
         this.name = name;
     }
 
     public void setShortName(String shortName) {
-        if (shortName == null || shortName.isEmpty()) {
+        if (shortName == null || shortName.isBlank()) {
             throw new IllegalArgumentException("shortname cannot be empty.");
         }
         this.shortName = shortName;
