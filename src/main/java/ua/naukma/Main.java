@@ -1,17 +1,15 @@
 package ua.naukma;
 
-import ua.naukma.domain.Student;
-import ua.naukma.repository.InMemoryStudentRepository;
-import ua.naukma.repository.Repository;
-import ua.naukma.service.StudentService;
-import ua.naukma.ui.NewMenu; // Імпортуємо нове меню
+import ua.naukma.domain.;
+import ua.naukma.repository.;
+import ua.naukma.service.;
+import ua.naukma.ui.;
+
 
 public class Main {
-    public static void main(String[] args) {
-        Repository<Student, Integer> repository = new InMemoryStudentRepository();
-        StudentService service = new StudentService(repository);
 
-        NewMenu menu = new NewMenu(service);
-        menu.start();
+    static void main() {
+        NewMenu new_menu = new NewMenu();
+        new_menu.main_menu();
     }
 }

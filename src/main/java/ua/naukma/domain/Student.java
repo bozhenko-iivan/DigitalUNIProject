@@ -9,7 +9,10 @@ public class Student extends Person {
     private int admissionYear;
     private StudyForm studyForm;
     private StudentStatus status;
+
     private Department department;
+
+
     public Student(int id, String firstName, String lastName, String middleName,
                    LocalDate birthDate, String email, String phoneNumber,
                    String recordBookNumber, int course, String groupName,
@@ -23,7 +26,6 @@ public class Student extends Person {
         setStudyForm(studyForm);
         setStatus(status);
     }
-
     public int getCourse() { return course; }
     public String getGroupName() { return groupName; }
     public Department getDepartment() { return department; }

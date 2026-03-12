@@ -5,8 +5,8 @@ import ua.naukma.domain.Teacher;
 
 import java.util.*;
 
-public class InMemoryTeacherRepository implements Repository<Teacher, Integer> {
-    private Map<Integer, Teacher> storage = new HashMap<>();
+public class InMemoryTeacherRepository implements PersonRepository<Teacher, Integer> {
+    private final Map<Integer, Teacher> storage = new HashMap<>();
 
     @Override
     public void save(Teacher t) {
@@ -24,6 +24,17 @@ public class InMemoryTeacherRepository implements Repository<Teacher, Integer> {
         for (Teacher t : storage.values()) {
             System.out.println(t);
         }
+    }
+    @Override
+    public Optional<Teacher> findByPIB(String firstName, String lastName, String middleName){
+        for (Teacher t : storage.values()) {
+            if (t.getFirstName().equals(firstName) &&
+                    t.getLastName().equals(lastName) &&
+                    t.getMiddleName().equals(middleName)) {
+                return Optional.of(t);
+            }
+        }
+        return Optional.empty();
     }
     @Override
     public void deleteById(Integer id) {

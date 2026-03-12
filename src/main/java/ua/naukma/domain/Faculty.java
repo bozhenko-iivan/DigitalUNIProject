@@ -1,24 +1,50 @@
 package ua.naukma.domain;
 
+import ua.naukma.repository.InMemoryDepartmentRepository;
+import ua.naukma.repository.InMemoryStudentRepository;
+import ua.naukma.service.DepartmentService;
+import ua.naukma.service.StudentService;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Faculty {
     private int id;
     private String name;
     private String shortName;
     private Teacher dean;
-    private String contacts;
+    private String email;
+    private DepartmentService departmentService;
+    private StudentService studentService;
+    private InMemoryStudentRepository inMemoryStudentRepository;
+    private InMemoryDepartmentRepository inMemoryDepartmentRepository;
 
-    public Faculty(int id, String name, String shortName, Teacher dean, String contacts) {
+    public Faculty(int id, String name, String shortName, Teacher dean, String email) {
         this.id = id;
         this.name = name;
         this.shortName = shortName;
         this.dean = dean;
-        this.contacts = contacts;
+        this.email = email;
+        this.inMemoryStudentRepository = new InMemoryStudentRepository();
+        this.inMemoryDepartmentRepository = new InMemoryDepartmentRepository();
+        this.departmentService = new DepartmentService(this);
+        this.studentService = new StudentService(this);
     }
 
+    public DepartmentService getDepartmentService() {
+        return departmentService;
+    }
+    public StudentService getStudentService() {
+        return studentService;
+    }
     public int getId() { return id; }
     public String getName() { return name; }
     public String getShortName() { return shortName; }
     public Teacher getDean() { return dean; }
+    public String getEmail() { return email; }
+
 
     public void setName(String name) {
         if (name == null || name.isBlank()) {
@@ -36,7 +62,7 @@ public class Faculty {
 
     @Override
     public String toString() {
-        String deanName = (dean != null) ? dean.getLastName() : "Vacant";
-        return shortName + " (Dean: " + deanName + ")";
+        return "Faculty's ID: " + getId() + "\nFaculty's fullname: " + getName() + "\nShortName: " + getShortName()
+        + "\nFaculty's email: " + getEmail();
     }
 }
