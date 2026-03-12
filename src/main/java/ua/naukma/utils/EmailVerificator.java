@@ -10,7 +10,7 @@ public class EmailVerificator {
                 ivanLastivka@gmail.com
                 or   ivanLastivka@ukr.net
                 """;
-        Scanner scanner = try_init_scanner();
+        Scanner scanner = InitScanner.try_init_scanner();
         String email;
         do {
             System.out.println("Enter email: ");
@@ -73,16 +73,5 @@ public class EmailVerificator {
         }
 
         return false;
-    }
-    private static Scanner try_init_scanner() {
-        Scanner scanner = null;
-        while (scanner == null) {
-            try {
-                scanner = new Scanner(System.in);
-            } catch (RuntimeException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return scanner;
     }
 }

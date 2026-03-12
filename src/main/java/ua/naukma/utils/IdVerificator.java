@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class IdVerificator {
     public static int ask_id() {
-        Scanner scanner = try_init_scanner();
+        Scanner scanner = InitScanner.try_init_scanner();
         String error_message = "ID must be 7 digits long.";
         String id = null;
         while(id == null) {
@@ -22,16 +22,5 @@ public class IdVerificator {
         }
         if(id.length() != 7) return null;
         return id;
-    }
-    private static Scanner try_init_scanner() {
-        Scanner scanner = null;
-        while (scanner == null) {
-            try {
-                scanner = new Scanner(System.in);
-            } catch (RuntimeException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return scanner;
     }
 }

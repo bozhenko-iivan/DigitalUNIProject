@@ -1,6 +1,9 @@
 package ua.naukma.domain;
 
 import ua.naukma.repository.InMemoryDepartmentRepository;
+import ua.naukma.repository.InMemoryStudentRepository;
+import ua.naukma.service.DepartmentService;
+import ua.naukma.service.StudentService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,8 +16,10 @@ public class Faculty {
     private String shortName;
     private Teacher dean;
     private String email;
-
-    private InMemoryDepartmentRepository departments = new InMemoryDepartmentRepository();
+    private DepartmentService departmentService;
+    private StudentService studentService;
+    private InMemoryStudentRepository inMemoryStudentRepository;
+    private InMemoryDepartmentRepository inMemoryDepartmentRepository;
 
     public Faculty(int id, String name, String shortName, Teacher dean, String email) {
         this.id = id;
@@ -22,14 +27,24 @@ public class Faculty {
         this.shortName = shortName;
         this.dean = dean;
         this.email = email;
+        this.inMemoryStudentRepository = new InMemoryStudentRepository();
+        this.inMemoryDepartmentRepository = new InMemoryDepartmentRepository();
+        this.departmentService = new DepartmentService(this);
+        this.studentService = new StudentService(this);
     }
 
+    public DepartmentService getDepartmentService() {
+        return departmentService;
+    }
+    public StudentService getStudentService() {
+        return studentService;
+    }
     public int getId() { return id; }
     public String getName() { return name; }
     public String getShortName() { return shortName; }
     public Teacher getDean() { return dean; }
     public String getEmail() { return email; }
-    public InMemoryDepartmentRepository getDepartments() { return departments; }
+
 
     public void setName(String name) {
         if (name == null || name.isEmpty()) {
@@ -48,6 +63,6 @@ public class Faculty {
     @Override
     public String toString() {
         return "Faculty's ID: " + getId() + "\nFaculty's fullname: " + getName() + "\nShortName: " + getShortName()
-        + "\nFaculty's email: " + getEmail() + "\nDean's ID: " + getDean().getId();
+        + "\nFaculty's email: " + getEmail();
     }
 }

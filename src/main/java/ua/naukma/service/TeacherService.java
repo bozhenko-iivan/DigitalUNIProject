@@ -5,6 +5,7 @@ import ua.naukma.repository.InMemoryTeacherRepository;
 import ua.naukma.repository.PersonRepository;
 import ua.naukma.repository.Repository;
 import ua.naukma.utils.IdVerificator;
+import ua.naukma.utils.InitScanner;
 import ua.naukma.utils.PersonInfoVerificator;
 
 import java.time.LocalDate;
@@ -14,18 +15,23 @@ import java.util.InputMismatchException;
 import java.util.Optional;
 import java.util.Scanner;
 
-public class TeacherService {
+public class TeacherService implements Service <Teacher, Integer> {
     private final PersonRepository<Teacher, Integer> repository;
-    public TeacherService() {
-        this.repository = inMemoryT;
+    private Department department;
+    public TeacherService(Department department) {
+        this.department = department;
+        this.repository = new InMemoryTeacherRepository();
     }
-    private final InMemoryTeacherRepository inMemoryT = new InMemoryTeacherRepository();
-
-    public void addTeacher() {
+   public Department getDepartment() {
+        return department;
+   }
+    @Override
+    public void add() {
         Teacher tec = teacher_validate_all();
         try_addTeacher(tec);
     }
-    public void deleteTeacher() {
+    @Override
+    public void delete() {
         int id = IdVerificator.ask_id();
         Optional<Teacher> teacher = repository.findById(id);
         if (teacher.isPresent()) {
@@ -35,58 +41,62 @@ public class TeacherService {
             System.out.println("Teacher with such id doesn't exist.");
         }
     }
-    public void findTeacher() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Find by PIB or ID? (1/2): ");
-        int choice = 0;
-        while (choice != 1 && choice != 2) {
-            try {
-                choice = sc.nextInt();
-            }catch (InputMismatchException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        switch (choice) {
-            case 1:
-                teacher_findByPIB();
-                break;
-            case 2:
-                teacher_findById();
-                break;
-        }
-    }
-    private void teacher_findById(){
+//    public void findTeacher() {
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Find by PIB or ID? (1/2): ");
+//        int choice = 0;
+//        while (choice != 1 && choice != 2) {
+//            try {
+//                choice = sc.nextInt();
+//            }catch (InputMismatchException e) {
+//                System.out.println(e.getMessage());
+//            }
+//        }
+//        switch (choice) {
+//            case 1:
+//                teacher_findByPIB();
+//                break;
+//            case 2:
+//                teacher_findById();
+//                break;
+//        }
+//    }
+    @Override
+    public Teacher findById(){
         int id = IdVerificator.ask_id();
         Optional<Teacher> teacher = repository.findById(id);
         if (teacher.isPresent()){
-            System.out.println(teacher.get());
+            return teacher.get();
         }else{
             System.out.println("Teacher with such id doesn't exist.");
+            return null;
         }
     }
-    private void teacher_findByPIB(){
-        boolean is_name_english = PersonInfoVerificator.ask_alphabet();
-        String firstName = PersonInfoVerificator.ask_name("first name", is_name_english);
-        String lastName = PersonInfoVerificator.ask_name("last name",is_name_english);
-        String middleName = PersonInfoVerificator.ask_name("middle name", is_name_english);
-        Optional<Teacher> t = repository.findByPIB(firstName, lastName, middleName);
-        if (t.isPresent()){
-            System.out.println(t.get());
-        }
-        else{
-            System.out.println("Teacher with such PIB doesn't exist.");
-        }
-    }
-    public void teachersShowList(){
-        repository.showAll();
-    }
+//    private void teacher_findByPIB(){
+//        boolean is_name_english = PersonInfoVerificator.ask_alphabet();
+//        String firstName = PersonInfoVerificator.ask_name("first name", is_name_english);
+//        String lastName = PersonInfoVerificator.ask_name("last name",is_name_english);
+//        String middleName = PersonInfoVerificator.ask_name("middle name", is_name_english);
+//        Optional<Teacher> t = repository.findByPIB(firstName, lastName, middleName);
+//        if (t.isPresent()){
+//            System.out.println(t.get());
+//        }
+//        else{
+//            System.out.println("Teacher with such PIB doesn't exist.");
+//        }
+//    }
+
+    @Override
+    public void showAll() {repository.showAll();}
+
     private void try_addTeacher(Teacher t) {
         Optional<Teacher> teacher = repository.findById(t.getId());
         if (teacher.isPresent()) {
             System.out.println("Teacher with such id already exists.");
             return;
         }
-        inMemoryT.save(t);
+        repository.save(t);
+
     }
     private Teacher teacher_validate_all() {
         System.out.println("Add teacher");
@@ -103,7 +113,7 @@ public class TeacherService {
     }
 
     private double ask_load(){
-        Scanner scanner = try_init_scanner();
+        Scanner scanner = InitScanner.try_init_scanner();
         double load = 0;
         String error_message = "Invalid load: ";
         do{
@@ -119,7 +129,7 @@ public class TeacherService {
         return load;
     }
     private LocalDate ask_hiring_date() {
-        Scanner scanner = try_init_scanner();
+        Scanner scanner = InitScanner.try_init_scanner();
         LocalDate doh;
         String error_message = "Impossible hiring date: ";
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
@@ -141,7 +151,7 @@ public class TeacherService {
     }
     private TeacherPosition ask_position(){
         System.out.println("Enter teacher's position: ");
-        Scanner scanner = try_init_scanner();
+        Scanner scanner = InitScanner.try_init_scanner();
         TeacherPosition position;
         do {
             try {
@@ -156,7 +166,7 @@ public class TeacherService {
     }
     private TeacherDegree ask_degree(){
         System.out.println("Enter teacher's degree: ");
-        Scanner scanner = try_init_scanner();
+        Scanner scanner = InitScanner.try_init_scanner();
         TeacherDegree degree;
         do {
             try {
@@ -171,7 +181,7 @@ public class TeacherService {
     }
     private TeacherRank ask_rank(){
         System.out.println("Enter teacher's rank: ");
-        Scanner scanner = try_init_scanner();
+        Scanner scanner = InitScanner.try_init_scanner();
         TeacherRank rank;
         do {
             try {
@@ -183,16 +193,5 @@ public class TeacherService {
             }
         }while(rank == null);
         return rank;
-    }
-    private static Scanner try_init_scanner() {
-        Scanner scanner = null;
-        while (scanner == null) {
-            try {
-                scanner = new Scanner(System.in);
-            } catch (RuntimeException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return scanner;
     }
 }

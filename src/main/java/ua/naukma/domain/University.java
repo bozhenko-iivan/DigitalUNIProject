@@ -1,9 +1,12 @@
 package ua.naukma.domain;
 
-import ua.naukma.repository.InMemoryFacultyRepository;
 
-import java.util.HashMap;
-import java.util.Map;
+import ua.naukma.repository.InMemoryFacultyRepository;
+import ua.naukma.repository.InMemoryTeacherRepository;
+import ua.naukma.service.FacultyService;
+
+import java.util.List;
+import java.util.ArrayList;
 
 public class University {
     private String fullName;
@@ -11,21 +14,25 @@ public class University {
     private String city;
     private String address;
     private String rectorName;
-
-    private InMemoryFacultyRepository faculties = new InMemoryFacultyRepository();
+    private FacultyService facultyService;
+    private InMemoryFacultyRepository facultyRepository;
 
     public University(String fullName, String shortName, String city, String address) {
         this.fullName = fullName;
         this.shortName = shortName;
         this.city = city;
         this.address = address;
+        this.facultyService = new FacultyService(this);
+        this.facultyRepository = new InMemoryFacultyRepository();
     }
-
+    public FacultyService getFacultyService() {
+        return facultyService;
+    }
     public String getFullName() {return fullName;}
     public String getShortName() {return shortName;}
     public String getCity() {return city;}
     public String getAddress() {return address;}
-    public InMemoryFacultyRepository getFaculties() {return faculties;}
+
     @Override
     public String toString() {
         return fullName + " (" + city + ")";

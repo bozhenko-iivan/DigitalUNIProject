@@ -21,7 +21,7 @@ public class PersonInfoVerificator {
     public record PersonData(int id, String firstName, String lastName, String middleName,
                              LocalDate birthDate, String email, String phoneNumber) {}
     public static String ask_name(String smth, boolean is_english){
-        Scanner scanner = try_init_scanner();
+        Scanner scanner = InitScanner.try_init_scanner();
         String error_message = "Invalid input or no capital letter.";
         String name;
         do{
@@ -47,7 +47,7 @@ public class PersonInfoVerificator {
         return name;
     }
     public static boolean ask_alphabet() {
-        Scanner scanner = try_init_scanner();
+        Scanner scanner = InitScanner.try_init_scanner();
         String alphabet;
         String error_message = "Invalid alphabet.";
         do {
@@ -91,7 +91,7 @@ public class PersonInfoVerificator {
         return isalpha;
     }
     private static LocalDate ask_dob(){
-        Scanner scanner = try_init_scanner();
+        Scanner scanner = InitScanner.try_init_scanner();
         LocalDate dob;
         do{
             System.out.println("Enter date of birth (dd.MM.yyyy): ");
@@ -117,16 +117,5 @@ public class PersonInfoVerificator {
             return null;
         }
         return dob_date;
-    }
-    private static Scanner try_init_scanner() {
-        Scanner scanner = null;
-        while (scanner == null) {
-            try {
-                scanner = new Scanner(System.in);
-            } catch (RuntimeException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return scanner;
     }
 }

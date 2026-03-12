@@ -1,12 +1,9 @@
 package ua.naukma.service;
 
-import ua.naukma.domain.Person;
-import ua.naukma.domain.Student;
+import ua.naukma.domain.*;
 import ua.naukma.repository.InMemoryStudentRepository;
 import ua.naukma.repository.PersonRepository;
 import ua.naukma.repository.Repository;
-import ua.naukma.domain.StudyForm;
-import ua.naukma.domain.StudentStatus;
 import ua.naukma.utils.IdVerificator;
 import ua.naukma.utils.PersonInfoVerificator;
 
@@ -17,13 +14,16 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.Scanner;
 
-public class StudentService {
+public class StudentService implements Service<Student, Integer> {
     private final PersonRepository<Student, Integer> repository;
-    public StudentService() {
-        this.repository = inMemoryS;
+    private Faculty faculty;
+    public StudentService(Faculty faculty) {
+        this.repository = new InMemoryStudentRepository();
+        this.faculty = faculty;
     }
-    private InMemoryStudentRepository inMemoryS = new InMemoryStudentRepository();
-    public void addStudent() {
+
+    @Override
+    public void add() {
         Student s = student_validate_all();
         try_addStudent(s);
     }
@@ -48,7 +48,8 @@ public class StudentService {
         }
         repository.save(new_s);
     }
-    public void deleteStudent() {
+    @Override
+    public void delete() {
             int id = IdVerificator.ask_id();
             Optional<Student> student = repository.findById(id);
             if (student.isPresent()) {
@@ -58,49 +59,55 @@ public class StudentService {
                 System.out.println("Student with such id doesn't exist.");
             }
     }
-    public void findStudent() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Find by PIB or ID? (1/2): ");
-        int choice = 0;
-        while (choice != 1 && choice != 2) {
-            try {
-                choice = sc.nextInt();
-            }catch (InputMismatchException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        switch (choice) {
-            case 1:
-                student_findByPIB();
-                break;
-            case 2:
-                student_findById();
-                break;
-        }
-    }
-    private void student_findById(){
+//    public void findStudent() {
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Find by PIB or ID? (1/2): ");
+//        int choice = 0;
+//        while (choice != 1 && choice != 2) {
+//            try {
+//                choice = sc.nextInt();
+//            }catch (InputMismatchException e) {
+//                System.out.println(e.getMessage());
+//            }
+//        }
+//        switch (choice) {
+//            case 1:
+//                student_findByPIB();
+//                break;
+//            case 2:
+//                student_findById();
+//                break;
+//        }
+//    }
+    @Override
+    public Student findById(){
             int id = IdVerificator.ask_id();
             Optional<Student> student = repository.findById(id);
             if (student.isPresent()){
                 System.out.println(student.get());
+                return student.get();
             }else{
                 System.out.println("Student with such id doesn't exist.");
+                return null;
             }
     }
-    private void student_findByPIB(){
-        boolean is_name_english = PersonInfoVerificator.ask_alphabet();
-        String firstName = PersonInfoVerificator.ask_name("first name", is_name_english);
-        String lastName = PersonInfoVerificator.ask_name("last name",is_name_english);
-        String middleName = PersonInfoVerificator.ask_name("middle name", is_name_english);
-        Optional<Student> s = repository.findByPIB(firstName, lastName, middleName);
-        if (s.isPresent()){
-            System.out.println(s.get());
-        }
-        else{
-            System.out.println("Student with such PIB doesn't exist.");
-        }
-    }
-    public void studentsShowList(){
+
+//    private void student_findByPIB(){
+//        boolean is_name_english = PersonInfoVerificator.ask_alphabet();
+//        String firstName = PersonInfoVerificator.ask_name("first name", is_name_english);
+//        String lastName = PersonInfoVerificator.ask_name("last name",is_name_english);
+//        String middleName = PersonInfoVerificator.ask_name("middle name", is_name_english);
+//        Optional<Student> s = repository.findByPIB(firstName, lastName, middleName);
+//        if (s.isPresent()){
+//            System.out.println(s.get());
+//        }
+//        else{
+//            System.out.println("Student with such PIB doesn't exist.");
+//
+//        }
+//    }
+    @Override
+    public void showAll(){
         repository.showAll();
     }
 

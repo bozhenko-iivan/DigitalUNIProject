@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class FacilityNameVerificator {
     public static String ask_facility_name() {
         String error_message = "Name contains invalid characters or overall incorrect.";
-        Scanner scanner = try_init_scanner();
+        Scanner scanner = InitScanner.try_init_scanner();
         String name;
         do{
             System.out.println("Enter facility name: ");
@@ -60,27 +60,16 @@ public class FacilityNameVerificator {
             name = name.replace("  ", "");
             name = name.replace("\t", "");
         }
-        while(name.indexOf(' ') > 0 || name.indexOf('\t') > 0) {
+        while(name.indexOf("  ") > 0 || name.indexOf("\t") > 0) {
             name = name.replace("  ", " ");
             name = name.replace("\t", " ");
         }
-    }
-    private static Scanner try_init_scanner() {
-        Scanner scanner = null;
-        while (scanner == null) {
-            try {
-                scanner = new Scanner(System.in);
-            } catch (RuntimeException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return scanner;
     }
     public static String ask_short_name() {
         String error_message = """
                 Name contains invalid characters or
                 is more than 10 characters / less than 2 characters long.""";
-        Scanner scanner = try_init_scanner();
+        Scanner scanner = InitScanner.try_init_scanner();
         String name;
         do{
             System.out.println("Enter facility's shortname: ");

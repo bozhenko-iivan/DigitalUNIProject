@@ -10,7 +10,7 @@ public class PhoneNumberVerificator {
                 Example:
                 +380234567890
                 Should not contain any spaces.""";
-        Scanner scanner = try_init_scanner();
+        Scanner scanner = InitScanner.try_init_scanner();
         String phone_number;
         do{
             System.out.println("Enter person's phone number: ");
@@ -38,15 +38,5 @@ public class PhoneNumberVerificator {
         }
         return true;
     }
-    private static Scanner try_init_scanner() {
-        Scanner scanner = null;
-        while (scanner == null) {
-            try {
-                scanner = new Scanner(System.in);
-            } catch (RuntimeException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return scanner;
-    }
+
 }
