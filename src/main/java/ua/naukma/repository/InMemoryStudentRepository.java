@@ -38,4 +38,9 @@ public class InMemoryStudentRepository implements PersonRepository<Student, Inte
         storage.remove(id);
         System.out.println("Student deleted: " + id);
     }
+
+    @Override
+    public List<Student> findAll() {
+        return new ArrayList<>(storage.values());
+    }
 }

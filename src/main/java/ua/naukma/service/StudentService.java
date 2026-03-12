@@ -90,6 +90,69 @@ public class StudentService implements Service<Student, Integer> {
                 System.out.println("Student with such id doesn't exist.");
                 return null;
             }
+        }catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void service_findByPIB() {
+        boolean is_name_english = ask_alphabet();
+        String firstName = ask_name("first name", is_name_english);
+        String lastName = ask_name("last name", is_name_english);
+        String middleName = ask_name("middle name", is_name_english);
+
+        //            ЛЯМБДИ
+        java.util.List<Student> foundStudents = repository.findAll().stream()
+                .filter(student -> student.getFirstName().equalsIgnoreCase(firstName))
+                .filter(student -> student.getLastName().equalsIgnoreCase(lastName))
+                .filter(student -> student.getMiddleName().equalsIgnoreCase(middleName))
+                .toList();
+
+        if (foundStudents.isEmpty()) {
+            System.out.println("Студентів з таким ПІБ не знайдено.");
+        } else {
+            System.out.println("Знайдено студентів:");
+            foundStudents.forEach(System.out::println);
+        }
+    }
+
+    public void studentsShowList(){
+        repository.showAll();
+    }
+    private boolean ask_alphabet() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter alphabet in which you want to type student's name.\n" +
+                "Latin/Cyrillic: ");
+        String language = scanner.next();
+        switch (language) {
+            case "Latin": return true;
+            case "Cyrillic": return false;
+            default: {
+                System.out.println("Invalid language.");
+                return ask_alphabet();
+            }
+        }
+    }
+    private boolean isAlpha(String s, boolean is_english){
+        boolean isalpha = true;
+        if(is_english) {
+            for (char c : s.toCharArray()) {
+                if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
+                    isalpha = false;
+                    break;
+                }
+            }
+        }
+        else{
+            for (char c : s.toCharArray()) {
+                if ((c < 'А' || c > 'Я') && (c < 'а' || c > 'я')&&
+                        ( c != 'ї'&& c != 'Ї'&& c != 'І'&& c != 'і')) {
+                    isalpha = false;
+                    break;
+                }
+            }
+        }
+        return isalpha;
     }
 
 //    private void student_findByPIB(){
