@@ -9,7 +9,10 @@ import ua.naukma.ui.*;
 public class Main {
 
     static void main() {
-        NewMenu new_menu = new NewMenu();
-        new_menu.main_menu();
+        Repository<University, Integer> uniRepo = new InMemoryUniversityRepository();
+        UniversityService uniService = new UniversityService(uniRepo);
+
+        NewMenu menu = new NewMenu(uniService);
+        menu.main_menu();
     }
 }

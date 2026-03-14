@@ -10,14 +10,35 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuOptionsHandler{
-    University u = new University("NAUKMA", "KMA", "Kyiv", "Contractova district.");
+    //University u = new University(1,"NAUKMA", "KMA", "Kyiv", "Contractova district.");
     private MenuLevel current_level;
     private Faculty current_faculty;
     private Department current_department;
     private University current_university;
-    public MenuOptionsHandler(MenuLevel current_level) {
+    private UniversityService universityService;
+
+    public MenuOptionsHandler(MenuLevel current_level, UniversityService universityService) {
         this.current_level = current_level;
+        this.universityService = universityService;
     }
+
+    private void handle_MON() {
+        int choice = readInt();
+        switch (choice) {
+            case 1: System.out.println("Exiting.."); System.exit(0); break;
+            case 2: universityService.add(); break;
+            case 3: universityService.delete(); break;
+            case 4:
+            University found = universityService.findById();
+            if (found != null) {
+                current_university = found;
+                current_level = MenuLevel.UNI;
+            }
+            break;
+            case 5: universityService.showAll(); break;
+        }
+    }
+
     private void handle_UNI(University u) {
             int choice = readInt();
             switch (choice){
@@ -35,6 +56,7 @@ public class MenuOptionsHandler{
                 case 5: u.getFacultyService().showAll(); break;
             }
     }
+
     private   void handle_FAC(Faculty f) {
         /*System.out.println("Current operations:\n" +
                 "1. Go higher\n" +
@@ -93,8 +115,10 @@ public class MenuOptionsHandler{
         }
     }
     public MenuLevel handle(MenuLevel lvl){
-        current_university = u;
         switch (lvl){
+            case MON:
+                handle_MON();
+                break;
             case UNI:
                 handle_UNI(current_university);
                 break;

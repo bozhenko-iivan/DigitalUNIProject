@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class University {
+    private final int id;
     private String fullName;
     private String shortName;
     private String city;
@@ -17,7 +18,8 @@ public class University {
     private FacultyService facultyService;
     private InMemoryFacultyRepository facultyRepository;
 
-    public University(String fullName, String shortName, String city, String address) {
+    public University(int id, String fullName, String shortName, String city, String address) {
+        this.id = id;
         this.fullName = fullName;
         this.shortName = shortName;
         this.city = city;
@@ -32,6 +34,7 @@ public class University {
     public String getShortName() {return shortName;}
     public String getCity() {return city;}
     public String getAddress() {return address;}
+    public int getId() {return id;}
 
     @Override
     public String toString() {
