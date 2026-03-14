@@ -1,9 +1,9 @@
 package ua.naukma;
 
-import ua.naukma.domain.;
-import ua.naukma.repository.;
-import ua.naukma.service.;
-import ua.naukma.ui.;
+import ua.naukma.domain.*;
+import ua.naukma.repository.*;
+import ua.naukma.service.*;
+import ua.naukma.ui.*;
 
 
 public class Main {

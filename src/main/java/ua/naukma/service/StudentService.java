@@ -17,6 +17,7 @@ import java.util.Scanner;
 public class StudentService implements Service<Student, Integer> {
     private final PersonRepository<Student, Integer> repository;
     private Faculty faculty;
+
     public StudentService(Faculty faculty) {
         this.repository = new InMemoryStudentRepository();
         this.faculty = faculty;
@@ -27,7 +28,8 @@ public class StudentService implements Service<Student, Integer> {
         Student s = student_validate_all();
         try_addStudent(s);
     }
-    private Student student_validate_all(){
+
+    private Student student_validate_all() {
         System.out.println("Add student");
         PersonInfoVerificator.PersonData pd = PersonInfoVerificator.ask_common_info();
         int admissionYear = admission_year();
@@ -37,29 +39,31 @@ public class StudentService implements Service<Student, Integer> {
         String groupName = ask_groupname();
         String recordbookNum = generate_recordbook_num(pd.lastName(), pd.id(), admissionYear);
         Student new_s = new Student(pd.id(), pd.firstName(), pd.lastName(), pd.middleName(), pd.birthDate(), pd.email(),
-                pd.phoneNumber(), recordbookNum, course,groupName, admissionYear, studyForm, studentStatus);
+                pd.phoneNumber(), recordbookNum, course, groupName, admissionYear, studyForm, studentStatus);
         return new_s;
     }
+
     private void try_addStudent(Student new_s) {
-        Optional <Student> student = repository.findById(new_s.getId());
+        Optional<Student> student = repository.findById(new_s.getId());
         if (student.isPresent()) {
             System.out.println("Student with such id already exists.");
             return;
         }
         repository.save(new_s);
     }
+
     @Override
     public void delete() {
-            int id = IdVerificator.ask_id();
-            Optional<Student> student = repository.findById(id);
-            if (student.isPresent()) {
-                repository.deleteById(id);
-            }
-            else {
-                System.out.println("Student with such id doesn't exist.");
-            }
+        int id = IdVerificator.ask_id();
+        Optional<Student> student = repository.findById(id);
+        if (student.isPresent()) {
+            repository.deleteById(id);
+        } else {
+            System.out.println("Student with such id doesn't exist.");
+        }
     }
-//    public void findStudent() {
+
+    //    public void findStudent() {
 //        Scanner sc = new Scanner(System.in);
 //        System.out.println("Find by PIB or ID? (1/2): ");
 //        int choice = 0;
@@ -80,41 +84,39 @@ public class StudentService implements Service<Student, Integer> {
 //        }
 //    }
     @Override
-    public Student findById(){
-            int id = IdVerificator.ask_id();
-            Optional<Student> student = repository.findById(id);
-            if (student.isPresent()){
-                System.out.println(student.get());
-                return student.get();
-            }else{
-                System.out.println("Student with such id doesn't exist.");
-                return null;
-            }
-        }catch (RuntimeException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    private void service_findByPIB() {
-        boolean is_name_english = ask_alphabet();
-        String firstName = ask_name("first name", is_name_english);
-        String lastName = ask_name("last name", is_name_english);
-        String middleName = ask_name("middle name", is_name_english);
-
-        //            ЛЯМБДИ
-        java.util.List<Student> foundStudents = repository.findAll().stream()
-                .filter(student -> student.getFirstName().equalsIgnoreCase(firstName))
-                .filter(student -> student.getLastName().equalsIgnoreCase(lastName))
-                .filter(student -> student.getMiddleName().equalsIgnoreCase(middleName))
-                .toList();
-
-        if (foundStudents.isEmpty()) {
-            System.out.println("Студентів з таким ПІБ не знайдено.");
+    public Student findById() {
+        int id = IdVerificator.ask_id();
+        Optional<Student> student = repository.findById(id);
+        if (student.isPresent()) {
+            System.out.println(student.get());
+            return student.get();
         } else {
-            System.out.println("Знайдено студентів:");
-            foundStudents.forEach(System.out::println);
+            System.out.println("Student with such id doesn't exist.");
+            return null;
         }
     }
+
+
+//    private void service_findByPIB() {
+//        boolean is_name_english = ask_alphabet();
+////        String firstName = ask_name("first name", is_name_english);
+////        String lastName = ask_name("last name", is_name_english);
+////        String middleName = ask_name("middle name", is_name_english);
+////
+////        //            ЛЯМБДИ
+////        java.util.List<Student> foundStudents = repository.findAll().stream()
+////                .filter(student -> student.getFirstName().equalsIgnoreCase(firstName))
+////                .filter(student -> student.getLastName().equalsIgnoreCase(lastName))
+////                .filter(student -> student.getMiddleName().equalsIgnoreCase(middleName))
+////                .toList();
+//
+//        if (foundStudents.isEmpty()) {
+//            System.out.println("Студентів з таким ПІБ не знайдено.");
+//        } else {
+//            System.out.println("Знайдено студентів:");
+//            foundStudents.forEach(System.out::println);
+//        }
+//    }
 
     public void studentsShowList(){
         repository.showAll();
