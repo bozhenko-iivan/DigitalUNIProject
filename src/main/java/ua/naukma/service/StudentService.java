@@ -1,6 +1,7 @@
 package ua.naukma.service;
 
 import ua.naukma.domain.*;
+import ua.naukma.exception.DuplicateEntityException;
 import ua.naukma.repository.*;
 import ua.naukma.utils.IdVerificator;
 import ua.naukma.utils.PersonInfoVerificator;
@@ -47,13 +48,13 @@ public class StudentService implements Service<Student, Integer> {
         return new_s;
     }
 
-    private void try_addStudent(Student new_s) {
+    public void try_addStudent(Student new_s) throws DuplicateEntityException {
         Optional<Student> student = repository.findById(new_s.getId());
         if (student.isPresent()) {
-            System.out.println("Student with such id already exists.");
-            return;
+            throw new DuplicateEntityException("Student with id " + new_s.getId() + " already exists");
         }
         repository.save(new_s);
+        System.out.println("Student with id " + new_s.getId() + " has been added");
     }
 
     @Override

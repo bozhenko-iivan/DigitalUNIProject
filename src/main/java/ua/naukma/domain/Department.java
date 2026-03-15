@@ -12,11 +12,13 @@ public class Department {
     private Teacher head;
     private String location;
     private String email;
+
     private InMemoryTeacherRepository teachers = new InMemoryTeacherRepository();
-    private TeacherService teacherService = new TeacherService(this);
+    private TeacherService teacherService;
 
     private InMemoryGroupRepository inMemoryGroupRepository = new InMemoryGroupRepository();
     private GroupService groupService;
+
     public Department(int id, String name, Faculty faculty, Teacher head, String location,  String email) {
         this.id = id;
         setName(name);
@@ -25,6 +27,7 @@ public class Department {
         setLocation(location);
         this.email = email;
         this.groupService = new GroupService(inMemoryGroupRepository, this);
+        this.teacherService = new TeacherService(teachers, this);
     }
 
     public TeacherService getTeacherService() {

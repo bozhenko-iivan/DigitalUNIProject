@@ -12,7 +12,6 @@ public class Student extends Person {
 
     private Department department;
 
-
     public Student(int id, String firstName, String lastName, String middleName,
                    LocalDate birthDate, String email, String phoneNumber,
                    String recordBookNumber, int course, Group groupName,
