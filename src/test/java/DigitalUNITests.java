@@ -103,5 +103,6 @@ class DigitalUniTests {
             studentService.try_addStudent(student);
         });
         assertTrue(exception.getMessage().contains("already exists"));
+
     }
 }
