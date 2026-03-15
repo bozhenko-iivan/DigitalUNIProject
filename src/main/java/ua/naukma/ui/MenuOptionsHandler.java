@@ -2,6 +2,7 @@ package ua.naukma.ui;
 
 import ua.naukma.domain.Department;
 import ua.naukma.domain.Faculty;
+import ua.naukma.domain.Group;
 import ua.naukma.domain.University;
 import ua.naukma.service.*;
 import ua.naukma.utils.InitScanner;
@@ -15,6 +16,7 @@ public class MenuOptionsHandler{
     private Faculty current_faculty;
     private Department current_department;
     private University current_university;
+    private Group current_group;
     private UniversityService universityService;
 
     public MenuOptionsHandler(MenuLevel current_level, UniversityService universityService) {
@@ -57,17 +59,34 @@ public class MenuOptionsHandler{
             }
     }
 
+    private void handle_GRPS(Department d) {
+        int choice = readInt();
+        switch (choice){
+            case 1: current_level = MenuLevel.FAC; break;
+            case 2: d.getGroupService().add(); break;
+            case 3: d.getGroupService().delete(); break;
+            case 4: {
+                current_group = d.getGroupService().findById();
+                if (current_group != null){
+                    current_level = MenuLevel.GROUP;
+                }
+                break;
+            }
+            case 5: d.getGroupService().showAll(); break;
+        }
+    }
+
     private   void handle_FAC(Faculty f) {
-        /*System.out.println("Current operations:\n" +
-                "1. Go higher\n" +
-                "2. Go to departaments\n" +
-                "3. Go to groups\n" +
-                "4. Show faculty info\n");*/
+//        System.out.println("Current operations:\n" +
+//                "1. Go higher\n" +
+//                "2. Go to departaments\n" +
+//                //"3. Go to groups\n" +
+//                "4. Show faculty info\n");
         int choice = readInt();
             switch (choice){
                 case 1: current_level = MenuLevel.UNI; break;
                 case 2: current_level = MenuLevel.DEPS; break;
-                case 3: System.out.println("This method is currently deprecated."); break;
+                //case 3: current_level = MenuLevel.GRPS; break;
                 case 4: System.out.println("This method is currently deprecated."); break;
             }
 
@@ -98,6 +117,7 @@ public class MenuOptionsHandler{
                 case 3: d.getTeacherService().delete(); break;
                 case 4: d.getTeacherService().findById(); break;
                 case 5: d.getTeacherService().showAll(); break;
+                case 6: current_level = MenuLevel.GRPS; break;
             }
     }
     private static int readInt(){
@@ -131,6 +151,9 @@ public class MenuOptionsHandler{
             case DEPARTAMENT:
                 handle_DEPARTAMENT(current_department);
                 break;
+                case GRPS:
+                    handle_GRPS(current_department);
+                    break;
                 default: break;
         }
         return current_level;

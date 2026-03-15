@@ -5,10 +5,7 @@ import ua.naukma.domain.Teacher;
 import ua.naukma.domain.University;
 import ua.naukma.exception.DuplicateEntityException;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class InMemoryUniversityRepository implements Repository<University, Integer> {
     private Map<Integer, University> storage = new HashMap<>();
@@ -28,14 +25,12 @@ public class InMemoryUniversityRepository implements Repository<University, Inte
 
     @Override
     public List<University> findAll() {
-        return List.of();
+        return new ArrayList<>(storage.values());
     }
 
     @Override
     public void showAll() {
-        for (University u : storage.values()) {
-            System.out.println(u);
-        }
+        storage.values().forEach(System.out::println);
     }
 
     @Override

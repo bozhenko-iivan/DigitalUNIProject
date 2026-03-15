@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Student extends Person {
     private String recordBookNumber;
     private int course;
-    private String groupName;
+    private Group group;
     private int admissionYear;
     private StudyForm studyForm;
     private StudentStatus status;
@@ -15,7 +15,7 @@ public class Student extends Person {
 
     public Student(int id, String firstName, String lastName, String middleName,
                    LocalDate birthDate, String email, String phoneNumber,
-                   String recordBookNumber, int course, String groupName,
+                   String recordBookNumber, int course, Group groupName,
                    int admissionYear, StudyForm studyForm, StudentStatus status)
     {
         super(id, firstName, lastName, middleName, birthDate, email, phoneNumber);
@@ -27,7 +27,7 @@ public class Student extends Person {
         setStatus(status);
     }
     public int getCourse() { return course; }
-    public String getGroupName() { return groupName; }
+    public Group getGroup() { return group; }
     public Department getDepartment() { return department; }
     public StudentStatus getStatus() { return status; }
     public StudyForm getStudyForm() { return studyForm; }
@@ -83,11 +83,11 @@ public class Student extends Person {
         this.course = course;
     }
 
-    public void setGroupName(String groupName) {
-        if (groupName == null || groupName.isBlank()){
+    public void setGroupName(Group group) {
+        if (group == null){
             throw new IllegalArgumentException("Enter group name.");
         }
-        this.groupName = groupName;
+        this.group = group;
     }
 
     @Override
@@ -96,7 +96,7 @@ public class Student extends Person {
                 + "\nEmail: " + getEmail() + "\nPhone Number: " + getPhoneNumber() +
                 "\nRecord Book Number: " + getRecordBookNumber() + "\nID: " + getId() +
                 "\nAdmission year: " + getAdmissionYear() + "\nCourse: " + getCourse() +
-                "\nGroupName: " + getGroupName() + "\nStudy form: " + getStudyForm() +
+                "\nGroupName: " + getGroup() + "\nStudy form: " + getStudyForm() +
                 "\nStatus: " + getStatus();
     }
 }

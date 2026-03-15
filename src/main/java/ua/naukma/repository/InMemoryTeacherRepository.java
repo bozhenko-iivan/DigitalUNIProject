@@ -21,20 +21,12 @@ public class InMemoryTeacherRepository implements PersonRepository<Teacher, Inte
 
     @Override
     public void showAll(){
-        for (Teacher t : storage.values()) {
-            System.out.println(t);
-        }
+        storage.values().forEach(System.out::println);
     }
+
     @Override
     public Optional<Teacher> findByPIB(String firstName, String lastName, String middleName){
-        for (Teacher t : storage.values()) {
-            if (t.getFirstName().equals(firstName) &&
-                    t.getLastName().equals(lastName) &&
-                    t.getMiddleName().equals(middleName)) {
-                return Optional.of(t);
-            }
-        }
-        return Optional.empty();
+        return storage.values().stream().filter(t -> t.getMiddleName().equals(middleName)).findFirst();
     }
     @Override
     public void deleteById(Integer id) {

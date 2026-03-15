@@ -3,7 +3,6 @@ package ua.naukma.domain;
 import ua.naukma.repository.InMemoryDepartmentRepository;
 import ua.naukma.repository.InMemoryStudentRepository;
 import ua.naukma.service.DepartmentService;
-import ua.naukma.service.StudentService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,27 +16,24 @@ public class Faculty {
     private Teacher dean;
     private String email;
     private DepartmentService departmentService;
-    private StudentService studentService;
+
     private InMemoryStudentRepository inMemoryStudentRepository;
     private InMemoryDepartmentRepository inMemoryDepartmentRepository;
 
     public Faculty(int id, String name, String shortName, Teacher dean, String email) {
         this.id = id;
-        this.name = name;
-        this.shortName = shortName;
+        setName(name);
+        setShortName(shortName);
         this.dean = dean;
         this.email = email;
         this.inMemoryStudentRepository = new InMemoryStudentRepository();
         this.inMemoryDepartmentRepository = new InMemoryDepartmentRepository();
+
         this.departmentService = new DepartmentService(this);
-        this.studentService = new StudentService(this);
     }
 
     public DepartmentService getDepartmentService() {
         return departmentService;
-    }
-    public StudentService getStudentService() {
-        return studentService;
     }
     public int getId() { return id; }
     public String getName() { return name; }

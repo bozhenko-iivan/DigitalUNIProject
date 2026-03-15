@@ -12,6 +12,7 @@ public class Main {
         Repository<University, Integer> uniRepo = new InMemoryUniversityRepository();
         UniversityService uniService = new UniversityService(uniRepo);
 
+
         NewMenu menu = new NewMenu(uniService);
         menu.main_menu();
     }

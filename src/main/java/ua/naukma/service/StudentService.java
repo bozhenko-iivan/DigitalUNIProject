@@ -1,11 +1,10 @@
 package ua.naukma.service;
 
 import ua.naukma.domain.*;
-import ua.naukma.repository.InMemoryStudentRepository;
-import ua.naukma.repository.PersonRepository;
-import ua.naukma.repository.Repository;
+import ua.naukma.repository.*;
 import ua.naukma.utils.IdVerificator;
 import ua.naukma.utils.PersonInfoVerificator;
+import ua.naukma.repository.InMemoryStudentRepository;
 
 
 import java.time.LocalDate;
@@ -14,13 +13,18 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.Scanner;
 
+import static ua.naukma.utils.PersonInfoVerificator.ask_name;
+
 public class StudentService implements Service<Student, Integer> {
     private final PersonRepository<Student, Integer> repository;
+    private final Repository<Group, Integer> groupRepository;
     private Faculty faculty;
+    private Group group;
 
-    public StudentService(Faculty faculty) {
+    public StudentService(Faculty faculty, Repository<Group, Integer> groupRepository) {
         this.repository = new InMemoryStudentRepository();
         this.faculty = faculty;
+        this.groupRepository = groupRepository;
     }
 
     @Override
@@ -36,10 +40,10 @@ public class StudentService implements Service<Student, Integer> {
         int course = course();
         StudyForm studyForm = ask_study_form();
         StudentStatus studentStatus = ask_student_status();
-        String groupName = ask_groupname();
+        Group group = ask_group();
         String recordbookNum = generate_recordbook_num(pd.lastName(), pd.id(), admissionYear);
         Student new_s = new Student(pd.id(), pd.firstName(), pd.lastName(), pd.middleName(), pd.birthDate(), pd.email(),
-                pd.phoneNumber(), recordbookNum, course, groupName, admissionYear, studyForm, studentStatus);
+                pd.phoneNumber(), recordbookNum, course, group, admissionYear, studyForm, studentStatus);
         return new_s;
     }
 
@@ -97,26 +101,16 @@ public class StudentService implements Service<Student, Integer> {
     }
 
 
-//    private void service_findByPIB() {
-//        boolean is_name_english = ask_alphabet();
-////        String firstName = ask_name("first name", is_name_english);
-////        String lastName = ask_name("last name", is_name_english);
-////        String middleName = ask_name("middle name", is_name_english);
-////
-////        //            ЛЯМБДИ
-////        java.util.List<Student> foundStudents = repository.findAll().stream()
-////                .filter(student -> student.getFirstName().equalsIgnoreCase(firstName))
-////                .filter(student -> student.getLastName().equalsIgnoreCase(lastName))
-////                .filter(student -> student.getMiddleName().equalsIgnoreCase(middleName))
-////                .toList();
-//
-//        if (foundStudents.isEmpty()) {
-//            System.out.println("Студентів з таким ПІБ не знайдено.");
-//        } else {
-//            System.out.println("Знайдено студентів:");
-//            foundStudents.forEach(System.out::println);
-//        }
-//    }
+    private void service_findByPIB() {
+        boolean is_name_english = ask_alphabet();
+        String firstName = ask_name("first name", is_name_english);
+        String lastName = ask_name("last name", is_name_english);
+        String middleName = ask_name("middle name", is_name_english);
+        Optional<Student> s = repository.findByPIB(firstName, lastName, middleName);
+        s.ifPresentOrElse(
+                System.out::println, () -> System.out.println("Teacher with such PIB doesn't exist.")
+        );
+    }
 
     public void studentsShowList(){
         repository.showAll();
@@ -157,20 +151,17 @@ public class StudentService implements Service<Student, Integer> {
         return isalpha;
     }
 
-//    private void student_findByPIB(){
-//        boolean is_name_english = PersonInfoVerificator.ask_alphabet();
-//        String firstName = PersonInfoVerificator.ask_name("first name", is_name_english);
-//        String lastName = PersonInfoVerificator.ask_name("last name",is_name_english);
-//        String middleName = PersonInfoVerificator.ask_name("middle name", is_name_english);
-//        Optional<Student> s = repository.findByPIB(firstName, lastName, middleName);
-//        if (s.isPresent()){
-//            System.out.println(s.get());
-//        }
-//        else{
-//            System.out.println("Student with such PIB doesn't exist.");
-//
-//        }
-//    }
+    private void student_findByPIB(){
+        boolean is_name_english = PersonInfoVerificator.ask_alphabet();
+        String firstName = ask_name("first name", is_name_english);
+        String lastName = ask_name("last name",is_name_english);
+        String middleName = ask_name("middle name", is_name_english);
+        Optional<Student> s = repository.findByPIB(firstName, lastName, middleName);
+        s.ifPresentOrElse(
+                student -> System.out.println(student), () -> System.out.println("Student with such id doesn't exist.")
+        );
+    }
+
     @Override
     public void showAll(){
         repository.showAll();
@@ -190,7 +181,7 @@ public class StudentService implements Service<Student, Integer> {
         }while(year > LocalDate.now().getYear()|| year < 1994);
         return year;
     }
-    private  int course(){
+    private int course(){
         Scanner scanner = new Scanner(System.in);
         int course = 0;
         while(course > 6 || course < 1){
@@ -232,15 +223,24 @@ public class StudentService implements Service<Student, Integer> {
             }
         }
     }
-    private String ask_groupname(){
+    private Group ask_group(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter group name: ");
-        String s = scanner.nextLine();
-        while(s == null || s.isBlank()){
-            System.out.println("Invalid input.");
-            s = scanner.nextLine();
+        System.out.println("Available groups");
+        groupRepository.showAll();
+        while (true) {
+            System.out.println("Enter group name: (e.g IPZ-1): ");
+            String s = scanner.nextLine().trim();
+            if (s.isEmpty()) {
+                System.out.println("Invalid input.");
+                continue;
+            }
+            Optional<Group> group = ((InMemoryGroupRepository) groupRepository).findByName(s);
+            if (group.isPresent()) {
+                return group.get();
+            } else  {
+                System.out.println("Group not found.");
+            }
         }
-        return s;
     }
     private String generate_recordbook_num(String lastName, int id, int year){
         Random rand = new Random();

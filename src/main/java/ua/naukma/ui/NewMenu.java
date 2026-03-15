@@ -41,14 +41,16 @@ public class NewMenu{
    private  void draw_FAC(){
        System.out.println(
                "2. Go to departaments\n" +
-               "3. Go to groups\n" +
+               //"3. Go to groups\n" +
                "4. Show faculty info");
    }
    public  void draw_current(MenuLevel level){
-       System.out.println("Current operations: ");
+       System.out.println("Current level " + current_level);
+       System.out.println("Operations: ");
        if (level == MenuLevel.MON) {
            System.out.println("1. Exit system");
-       } else {
+       }
+       else {
            System.out.println("1. Go higher");
        }
        String s = "";
@@ -67,5 +69,8 @@ public class NewMenu{
                "\n3. Remove " + s +
                "\n4. " + action4 + s +
                "\n5. Show all " + s + "s");
+       if (level == MenuLevel.DEPARTAMENT) {
+           System.out.println("6. Go to groups");
+       }
    }
 }

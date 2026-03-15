@@ -1,6 +1,8 @@
 package ua.naukma.service;
 
 import ua.naukma.domain.*;
+import ua.naukma.exception.DuplicateEntityException;
+import ua.naukma.exception.EntityNotFoundException;
 import ua.naukma.repository.InMemoryTeacherRepository;
 import ua.naukma.repository.PersonRepository;
 import ua.naukma.repository.Repository;
@@ -18,9 +20,9 @@ import java.util.Scanner;
 public class TeacherService implements Service <Teacher, Integer> {
     private final PersonRepository<Teacher, Integer> repository;
     private Department department;
-    public TeacherService(Department department) {
+    public TeacherService(PersonRepository<Teacher, Integer> repository, Department department) {
         this.department = department;
-        this.repository = new InMemoryTeacherRepository();
+        this.repository = repository;
     }
    public Department getDepartment() {
         return department;
@@ -30,15 +32,26 @@ public class TeacherService implements Service <Teacher, Integer> {
         Teacher tec = teacher_validate_all();
         try_addTeacher(tec);
     }
+    private void try_addTeacher(Teacher t) throws DuplicateEntityException {
+        Optional<Teacher> teacher = repository.findById(t.getId());
+        if (teacher.isPresent()) {
+            throw new DuplicateEntityException("Teacher with id " + t.getId() + " already exists.");
+        }
+        repository.save(t);
+        System.out.println("Teacher with id " + t.getId() + " has been added.");
+    }
     @Override
     public void delete() {
         int id = IdVerificator.ask_id();
-        Optional<Teacher> teacher = repository.findById(id);
-        if (teacher.isPresent()) {
+        try {
+            Optional<Teacher> teacher = repository.findById(id);
+            if (teacher.isEmpty()) {
+                throw new EntityNotFoundException("Teacher with id " + id + " does not exist.");
+            }
             repository.deleteById(id);
-        }
-        else {
-            System.out.println("Teacher with such id doesn't exist.");
+            System.out.println("Teacher with id " + id + " has been deleted.");
+        } catch (EntityNotFoundException e) {
+            System.out.println(e.getMessage());
         }
     }
 //    public void findTeacher() {
@@ -64,40 +77,32 @@ public class TeacherService implements Service <Teacher, Integer> {
     @Override
     public Teacher findById(){
         int id = IdVerificator.ask_id();
-        Optional<Teacher> teacher = repository.findById(id);
-        if (teacher.isPresent()){
+        try {
+            Optional<Teacher> teacher = repository.findById(id);
+            if (teacher.isEmpty()) {
+                throw new EntityNotFoundException("Teacher with id " + id + " does not exist.");
+            }
+            System.out.println("Teacher found:\n" + teacher.get());
             return teacher.get();
-        }else{
-            System.out.println("Teacher with such id doesn't exist.");
+        } catch (EntityNotFoundException e) {
+            System.out.println(e.getMessage());
             return null;
         }
     }
-//    private void teacher_findByPIB(){
-//        boolean is_name_english = PersonInfoVerificator.ask_alphabet();
-//        String firstName = PersonInfoVerificator.ask_name("first name", is_name_english);
-//        String lastName = PersonInfoVerificator.ask_name("last name",is_name_english);
-//        String middleName = PersonInfoVerificator.ask_name("middle name", is_name_english);
-//        Optional<Teacher> t = repository.findByPIB(firstName, lastName, middleName);
-//        if (t.isPresent()){
-//            System.out.println(t.get());
-//        }
-//        else{
-//            System.out.println("Teacher with such PIB doesn't exist.");
-//        }
-//    }
+    private void teacher_findByPIB(){
+        boolean is_name_english = PersonInfoVerificator.ask_alphabet();
+        String firstName = PersonInfoVerificator.ask_name("first name", is_name_english);
+        String lastName = PersonInfoVerificator.ask_name("last name",is_name_english);
+        String middleName = PersonInfoVerificator.ask_name("middle name", is_name_english);
+        Optional<Teacher> t = repository.findByPIB(firstName, lastName, middleName);
+        t.ifPresentOrElse(
+                System.out::println, () -> System.out.println("Teacher with such PIB doesn't exist.")
+        );
+    }
 
     @Override
     public void showAll() {repository.showAll();}
 
-    private void try_addTeacher(Teacher t) {
-        Optional<Teacher> teacher = repository.findById(t.getId());
-        if (teacher.isPresent()) {
-            System.out.println("Teacher with such id already exists.");
-            return;
-        }
-        repository.save(t);
-
-    }
     private Teacher teacher_validate_all() {
         System.out.println("Add teacher");
         PersonInfoVerificator.PersonData pd = PersonInfoVerificator.ask_common_info();
@@ -115,83 +120,74 @@ public class TeacherService implements Service <Teacher, Integer> {
     private double ask_load(){
         Scanner scanner = InitScanner.try_init_scanner();
         double load = 0;
-        String error_message = "Invalid load: ";
-        do{
+        while (true) {
             try {
                 load = scanner.nextDouble();
-            }catch (InputMismatchException e){
-                System.out.println("Invalid input");
+                if (load > 1.8 && load < 4.5) {
+                    return load;
+                } else {
+                    System.out.println("Invalid load. Must be between 1.8 and 4.5.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.next();
             }
-            if(load < 1.8 || load > 4.5){
-                System.out.println(error_message + load);
-            }
-        }while(load < 1.8 || load > 4.5);
-        return load;
+        }
     }
     private LocalDate ask_hiring_date() {
         Scanner scanner = InitScanner.try_init_scanner();
-        LocalDate doh;
-        String error_message = "Impossible hiring date: ";
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        do{
+        while (true) {
             System.out.println("Enter hiring date (dd.MM.yyyy): ");
             String s = scanner.nextLine();
-            try{
-                doh = LocalDate.parse(s, dtf);
-                if(doh.isAfter(LocalDate.now())) {
-                    System.out.println(error_message + doh);
-                    doh = null;
+            try {
+                LocalDate doh = LocalDate.parse(s, dtf);
+                if (doh.isAfter(LocalDate.now())) {
+                    System.out.println("Impossible hiring date: " + doh);
+                } else {
+                    return doh;
                 }
-            }catch(DateTimeParseException ex){
+            } catch (DateTimeParseException ex) {
                 System.out.println("Illegal date format. " + s);
-                doh = null;
             }
-        }while(doh == null);
-        return doh;
+        }
     }
     private TeacherPosition ask_position(){
         System.out.println("Enter teacher's position: ");
         Scanner scanner = InitScanner.try_init_scanner();
         TeacherPosition position;
-        do {
+        while (true) {
             try {
                 String s = scanner.nextLine();
-                position = TeacherPosition.fromString(s);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                position = null;
+                position = TeacherPosition.valueOf(s);
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
             }
-        }while(position == null);
-        return position;
+        }
     }
     private TeacherDegree ask_degree(){
         System.out.println("Enter teacher's degree: ");
         Scanner scanner = InitScanner.try_init_scanner();
         TeacherDegree degree;
-        do {
+        while (true) {
             try {
                 String s = scanner.nextLine();
                 degree = TeacherDegree.fromString(s);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                degree = null;
             }
-        }while(degree == null);
-        return degree;
+        }
     }
     private TeacherRank ask_rank(){
         System.out.println("Enter teacher's rank: ");
         Scanner scanner = InitScanner.try_init_scanner();
-        TeacherRank rank;
-        do {
+        while (true) {
             try {
                 String s = scanner.nextLine();
-                rank = TeacherRank.fromString(s);
+                return TeacherRank.fromString(s);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                rank = null;
             }
-        }while(rank == null);
-        return rank;
+        }
     }
 }
