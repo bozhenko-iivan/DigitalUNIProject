@@ -7,8 +7,8 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class PersonInfoVerificator {
-    public static PersonData ask_common_info() {
-        int id = IdVerificator.ask_id();
+    public static PersonData ask_common_info(Integer id) {
+        //int id = IdVerificator.ask_id();
         boolean is_name_english = ask_alphabet();
         String firstName = ask_name("first name", is_name_english);
         String lastName = ask_name("last name",is_name_english);
@@ -33,6 +33,9 @@ public class PersonInfoVerificator {
         return name;
     }
     private static String validate_name(String name, boolean is_english){
+        if (name == null || name.isBlank()) {
+            return null;
+        }
         char c = name.charAt(0);
         if (!is_english && (c < 'А' || c > 'Я') && c != 'Ї' && c != 'І') {
             return null;

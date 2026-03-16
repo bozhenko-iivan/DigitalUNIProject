@@ -18,30 +18,41 @@ import static ua.naukma.utils.PersonInfoVerificator.ask_name;
 
 public class StudentService implements Service<Student, Integer> {
     private final PersonRepository<Student, Integer> repository;
-    private final Repository<Group, Integer> groupRepository;
-    private Faculty faculty;
+    //private final Repository<Group, Integer> groupRepository;
+    //private Faculty faculty;
     private Group group;
 
-    public StudentService(Faculty faculty, Repository<Group, Integer> groupRepository) {
-        this.repository = new InMemoryStudentRepository();
-        this.faculty = faculty;
-        this.groupRepository = groupRepository;
+    public StudentService(PersonRepository<Student, Integer> repository, Group group) {
+        this.repository = repository;
+        this.group = group;
     }
 
     @Override
     public void add() {
-        Student s = student_validate_all();
-        try_addStudent(s);
+        try {
+            Student s = student_validate_all();
+            if (s != null){
+                try_addStudent(s);
+            }
+        } catch (DuplicateEntityException e) {
+            System.out.println("Registration failed: " + e.getMessage());
+            System.out.println("Please try again.");
+        }
     }
 
     private Student student_validate_all() {
         System.out.println("Add student");
-        PersonInfoVerificator.PersonData pd = PersonInfoVerificator.ask_common_info();
+        int id = IdVerificator.ask_id();
+        Optional<Student> optional = repository.findById(id);
+        if (optional.isPresent()){
+            throw new DuplicateEntityException("Student with id " + id + " already exists.");
+        }
+        PersonInfoVerificator.PersonData pd = PersonInfoVerificator.ask_common_info(id);
         int admissionYear = admission_year();
         int course = course();
         StudyForm studyForm = ask_study_form();
         StudentStatus studentStatus = ask_student_status();
-        Group group = ask_group();
+        Group group = this.group;
         String recordbookNum = generate_recordbook_num(pd.lastName(), pd.id(), admissionYear);
         Student new_s = new Student(pd.id(), pd.firstName(), pd.lastName(), pd.middleName(), pd.birthDate(), pd.email(),
                 pd.phoneNumber(), recordbookNum, course, group, admissionYear, studyForm, studentStatus);
@@ -224,25 +235,25 @@ public class StudentService implements Service<Student, Integer> {
             }
         }
     }
-    private Group ask_group(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Available groups");
-        groupRepository.showAll();
-        while (true) {
-            System.out.println("Enter group name: (e.g IPZ-1): ");
-            String s = scanner.nextLine().trim();
-            if (s.isEmpty()) {
-                System.out.println("Invalid input.");
-                continue;
-            }
-            Optional<Group> group = ((InMemoryGroupRepository) groupRepository).findByName(s);
-            if (group.isPresent()) {
-                return group.get();
-            } else  {
-                System.out.println("Group not found.");
-            }
-        }
-    }
+//    private Group ask_group(){
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Available groups");
+//        groupRepository.showAll();
+//        while (true) {
+//            System.out.println("Enter group name: (e.g IPZ-1): ");
+//            String s = scanner.nextLine().trim();
+//            if (s.isEmpty()) {
+//                System.out.println("Invalid input.");
+//                continue;
+//            }
+//            Optional<Group> group = ((InMemoryGroupRepository) groupRepository).findByName(s);
+//            if (group.isPresent()) {
+//                return group.get();
+//            } else  {
+//                System.out.println("Group not found.");
+//            }
+//        }
+//    }
     private String generate_recordbook_num(String lastName, int id, int year){
         Random rand = new Random();
         String s = lastName.charAt(0) + "-" + (id % year) + lastName.charAt(1) + "-" + rand.nextInt(999);

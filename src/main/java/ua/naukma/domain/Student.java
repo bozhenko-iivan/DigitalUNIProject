@@ -98,4 +98,9 @@ public class Student extends Person {
                 "\nGroupName: " + getGroup() + "\nStudy form: " + getStudyForm() +
                 "\nStatus: " + getStatus();
     }
+
+    public String toStringShort() {
+        return "Student " + getFirstName() + " " + getLastName() + " " + getMiddleName() + "\nCourse: " + getCourse() +
+                "\nStudy form: "  + getStudyForm();
+    }
 }

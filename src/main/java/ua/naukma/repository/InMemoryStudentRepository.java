@@ -19,7 +19,7 @@ public class InMemoryStudentRepository implements PersonRepository<Student, Inte
 
     @Override
     public void showAll(){
-        storage.values().forEach(System.out::println);
+        storage.values().forEach(s -> System.out.println(s.toStringShort()));
     }
     @Override
     public Optional<Student> findByPIB(String firstName, String lastName, String middleName) {

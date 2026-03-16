@@ -18,6 +18,7 @@ public class MenuOptionsHandler{
     private University current_university;
     private Group current_group;
     private UniversityService universityService;
+    private StudentService studentService;
 
     public MenuOptionsHandler(MenuLevel current_level, UniversityService universityService) {
         this.current_level = current_level;
@@ -76,6 +77,16 @@ public class MenuOptionsHandler{
         }
     }
 
+    private void handle_GROUP(Group g) {
+        int choice = readInt();
+        switch (choice){
+            case 1: current_level = MenuLevel.GRPS; break;
+            case 2: g.getStudentService().add(); break;
+            case 3: g.getStudentService().delete(); break;
+            case 4: g.getStudentService().findById(); break;
+            case 5: g.getStudentService().showAll(); break;
+        }
+    }
     private   void handle_FAC(Faculty f) {
 //        System.out.println("Current operations:\n" +
 //                "1. Go higher\n" +
@@ -154,6 +165,9 @@ public class MenuOptionsHandler{
                 case GRPS:
                     handle_GRPS(current_department);
                     break;
+                    case GROUP:
+                        handle_GROUP(current_group);
+                        break;
                 default: break;
         }
         return current_level;

@@ -105,7 +105,12 @@ public class TeacherService implements Service <Teacher, Integer> {
 
     private Teacher teacher_validate_all() {
         System.out.println("Add teacher");
-        PersonInfoVerificator.PersonData pd = PersonInfoVerificator.ask_common_info();
+        int id = IdVerificator.ask_id();
+        Optional<Teacher> optional = repository.findById(id);
+        if (optional.isPresent()) {
+            throw new EntityNotFoundException("Teacher with id " + id + " does not exist.");
+        }
+        PersonInfoVerificator.PersonData pd = PersonInfoVerificator.ask_common_info(id);
         TeacherPosition teacherPosition = ask_position();
         TeacherDegree teacherDegree = ask_degree();
         TeacherRank teacherRank = ask_rank();

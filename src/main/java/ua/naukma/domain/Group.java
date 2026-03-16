@@ -1,6 +1,10 @@
 package ua.naukma.domain;
 
+import ua.naukma.repository.InMemoryStudentRepository;
+import ua.naukma.service.StudentService;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Group {
@@ -11,12 +15,18 @@ public class Group {
     private int admissionYear;
     private List<Student> students;
 
+    private InMemoryStudentRepository inMemoryStudentRepository;
+    private StudentService studentService;
+
     public Group(int id, String name, Department department, int course, int admissionYear) {
         setId(id);
         setName(name);
         setDepartment(department);
         setCourse(course);
         setAdmissionYear(admissionYear);
+
+        this.inMemoryStudentRepository = new InMemoryStudentRepository();
+        this.studentService = new StudentService(this.inMemoryStudentRepository, Group.this);
     }
 
     public int getId() {
@@ -40,7 +50,11 @@ public class Group {
     }
 
     public List<Student> getStudents() {
-        return List.of();
+        return inMemoryStudentRepository.findAll();
+    }
+
+    public StudentService getStudentService() {
+        return studentService;
     }
 
     private void setAdmissionYear(int admissionYear) {

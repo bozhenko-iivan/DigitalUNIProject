@@ -21,7 +21,7 @@ public class InMemoryTeacherRepository implements PersonRepository<Teacher, Inte
 
     @Override
     public void showAll(){
-        storage.values().forEach(System.out::println);
+        storage.values().forEach(t -> System.out.println(t.toString()));
     }
 
     @Override

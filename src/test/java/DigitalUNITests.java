@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DigitalUniTests {
 
-    private Repository<Group, Integer> groupRepository;
+    private PersonRepository<Student, Integer> studentRepository;
     private StudentService studentService;
 
     private Group testGroup;
@@ -23,10 +23,10 @@ class DigitalUniTests {
 
     @BeforeEach
     void setUp() {
-        groupRepository = new InMemoryGroupRepository();
+        studentRepository = new InMemoryStudentRepository();
         testDepartment = new Department(1111111, "TestDept", null, null, "TestLoc", "test@ukma.edu.ua");
         testGroup = new Group(1234567, "IPZ-2025", testDepartment, 1, 2025);
-        studentService = new StudentService(testFaculty, groupRepository);
+        studentService = new StudentService(studentRepository, testGroup);
     }
 
     @Test
