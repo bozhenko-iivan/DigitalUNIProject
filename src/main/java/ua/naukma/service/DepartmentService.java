@@ -88,6 +88,10 @@ public class DepartmentService implements Service<Department, Integer> {
         repository.findAll().forEach(System.out::println);
     }
 
+    public List<Department> getAllDepartments() {
+        return repository.findAll();
+    }
+
     private Department department_validate_all(){
         int id = IdVerificator.ask_id();
         String name = FacilityNameVerificator.ask_facility_name();

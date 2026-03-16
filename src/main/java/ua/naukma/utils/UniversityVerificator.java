@@ -1,7 +1,16 @@
 package ua.naukma.utils;
 
+import ua.naukma.domain.Student;
+import ua.naukma.exception.EntityNotFoundException;
 import ua.naukma.exception.IncorrectNameException;
+
+import java.util.Optional;
 import java.util.Scanner;
+
+import ua.naukma.repository.Repository;
+import ua.naukma.service.StudentService;
+import ua.naukma.utils.InitScanner;
+import ua.naukma.domain.University.*;
 
 public class UniversityVerificator {
     private static final String FULL_NAME_REGEX = "^[a-zA-Zа-яА-ЯіІїЇєЄґҐ\".,:()'\\-–/!?№@& ]+$";

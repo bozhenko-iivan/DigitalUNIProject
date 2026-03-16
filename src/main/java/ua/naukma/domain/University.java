@@ -1,11 +1,10 @@
 package ua.naukma.domain;
 
 
-import ua.naukma.repository.InMemoryFacultyRepository;
-import ua.naukma.repository.InMemoryStudentRepository;
-import ua.naukma.repository.InMemoryTeacherRepository;
-import ua.naukma.repository.PersonRepository;
+import ua.naukma.repository.*;
+import ua.naukma.service.DepartmentService;
 import ua.naukma.service.FacultyService;
+import ua.naukma.service.GroupService;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -35,9 +34,14 @@ public class University {
         return globalStudentRepository;
     }
 
+    public InMemoryFacultyRepository getFacultyRepository() {
+        return facultyRepository;
+    }
+
     public FacultyService getFacultyService() {
         return facultyService;
     }
+
     public String getFullName() {return fullName;}
     public String getShortName() {return shortName;}
     public String getCity() {return city;}

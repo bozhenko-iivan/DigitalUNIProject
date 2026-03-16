@@ -30,6 +30,10 @@ public class GroupService implements Service<Group, Integer> {
         try_add_group(gr);
     }
 
+    public List<Group> getAllGroups() {
+        return groupRepository.findAll();
+    }
+
     private Group group_validate_all() throws IllegalArgumentException {
         Scanner scanner = new Scanner(System.in);
         while (true) {

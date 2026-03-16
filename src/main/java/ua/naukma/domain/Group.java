@@ -1,5 +1,6 @@
 package ua.naukma.domain;
 
+import ua.naukma.exception.IncorrectDataException;
 import ua.naukma.repository.InMemoryStudentRepository;
 import ua.naukma.repository.PersonRepository;
 import ua.naukma.service.StudentService;
@@ -26,8 +27,7 @@ public class Group {
         setDepartment(department);
         setCourse(course);
         setAdmissionYear(admissionYear);
-
-        this.repository = globalRepository;
+        setGlobalStudentRepository(globalRepository);
         this.studentService = new StudentService(this.repository, this);
     }
 
@@ -93,6 +93,13 @@ public class Group {
             throw new IllegalArgumentException("Invalid id.");
         }
         this.id = id;
+    }
+
+    private void setGlobalStudentRepository(PersonRepository<Student, Integer> globalStudentRepository) {
+        if (globalStudentRepository == null) {
+            throw new IncorrectDataException("Global student repository cannot be null.");
+        }
+        this.repository = globalStudentRepository;
     }
 
     @Override

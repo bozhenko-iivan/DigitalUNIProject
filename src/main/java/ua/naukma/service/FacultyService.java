@@ -110,6 +110,10 @@ public class FacultyService implements Service<Faculty, Integer> {
         repository.findAll().forEach(System.out::println);
     }
 
+    public List<Faculty> getAllFaculties() {
+        return repository.findAll();
+    }
+
     private static int readInt(){
         Scanner scanner = InitScanner.try_init_scanner();
         for(;;) {

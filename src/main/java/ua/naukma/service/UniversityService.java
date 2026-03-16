@@ -1,7 +1,6 @@
 package ua.naukma.service;
 
-import ua.naukma.domain.Student;
-import ua.naukma.domain.University;
+import ua.naukma.domain.*;
 import ua.naukma.exception.DuplicateEntityException;
 import ua.naukma.exception.EntityNotFoundException;
 import ua.naukma.repository.Repository;
@@ -56,6 +55,47 @@ public class UniversityService implements Service<University, Integer> {
             System.out.println("University with id " + id + " not found!");
             return null;
         }
+    }
+
+    public void transferStudent(University currentUni,int studentID, String newGroupName) {
+        Optional<Student> optionalStudent = currentUni.getGlobalStudentRepository().findById(studentID);
+        if (optionalStudent.isPresent()) {
+            throw new EntityNotFoundException("Student with id " + studentID + " not found!");
+        }
+        Student studentToTransfer = optionalStudent.get();
+        Group currentGroup = studentToTransfer.getGroup();
+        Group targetGroup = findGroupByName(currentUni, newGroupName);
+        if (targetGroup == null) {
+            throw new EntityNotFoundException("Group with name " + newGroupName + " not found!");
+        }
+        if (currentGroup.equals(targetGroup)) {
+            throw new DuplicateEntityException("Student already studies in this group: " + currentGroup.getName());
+        }
+        Department currentDept = currentGroup.getDepartment();
+        Department targetDept = targetGroup.getDepartment();
+        if (currentDept.getId() == targetDept.getId()) {
+            System.out.println("Transferring student with id " + studentID + " to " + targetDept.getName());
+        } else if (currentDept.getFaculty().getId() == targetDept.getFaculty().getId()) {
+            System.out.println("Transferring student with id " + studentID + " to " + targetDept.getName());
+        } else {
+            System.out.println("Transfer to another faculty!");
+        }
+        studentToTransfer.setGroupName(targetGroup);
+        System.out.println("Student with id " + studentID + " " +
+                "has been transferred to " + targetGroup.getName() + " successfully!");
+    }
+
+    public Group findGroupByName(University currentUni,String newGroupName) {
+        for (Faculty faculty : currentUni.getFacultyRepository().findAll()) {
+            for (Department department : faculty.getDepartmentService().getAllDepartments()) {
+                for (Group group : department.getGroupService().getAllGroups()) {
+                    if (group.getName().equals(newGroupName)) {
+                        return group;
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     @Override
