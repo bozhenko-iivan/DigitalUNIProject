@@ -34,7 +34,7 @@ public class GroupService implements Service<Group, Integer> {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             try {
-                System.out.println("\nEntering new group data");
+                System.out.println("Entering new group data");
                 int id = IdVerificator.ask_id();
                 System.out.println("Enter group name (e.g. IPZ-1): ");
                 String name = scanner.nextLine().trim();
@@ -42,7 +42,6 @@ public class GroupService implements Service<Group, Integer> {
                     System.out.println("Name cannot be empty. Try again: ");
                     name = scanner.nextLine().trim();
                 }
-
                 int course = ask_course();
                 int admissionYear = ask_admission_year();
                 return new Group(id, name, department, course, admissionYear);

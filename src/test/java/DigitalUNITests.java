@@ -53,7 +53,7 @@ class DigitalUniTests {
                     StudyForm.BUDGET, StudentStatus.STUDYING);
         });
 
-        assertEquals("Phone number must contain 10 digits. Example: 0981231234", exception.getMessage());
+        assertEquals("Phone number must contain 13 digits. Example: +380981231234", exception.getMessage());
     }
 
     @Test
@@ -92,7 +92,7 @@ class DigitalUniTests {
     void testAddExistingStudentThrowsException() {
         Student student = new Student(5, "Максим", "Ткаченко", "Ігорович",
                 LocalDate.of(2005, 10, 10),
-                "max@ukma.edu.ua", "0981231234",
+                "max@ukma.edu.ua", "+380981231234",
                 "11112222", 1, testGroup, 2024,
                 StudyForm.BUDGET, StudentStatus.STUDYING);
         try {

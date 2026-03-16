@@ -1,6 +1,7 @@
 package ua.naukma.domain;
 
 import ua.naukma.repository.InMemoryStudentRepository;
+import ua.naukma.repository.PersonRepository;
 import ua.naukma.service.StudentService;
 
 import java.time.LocalDate;
