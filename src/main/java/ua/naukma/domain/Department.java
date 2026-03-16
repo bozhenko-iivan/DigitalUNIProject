@@ -1,11 +1,5 @@
 package ua.naukma.domain;
 
-import ua.naukma.repository.InMemoryGroupRepository;
-import ua.naukma.repository.InMemoryTeacherRepository;
-import ua.naukma.repository.PersonRepository;
-import ua.naukma.service.GroupService;
-import ua.naukma.service.TeacherService;
-
 public class Department {
     private int id;
     private String name;
@@ -14,28 +8,13 @@ public class Department {
     private String location;
     private String email;
 
-    private PersonRepository<Student, Integer> globalStudentRepository;
-    private InMemoryTeacherRepository teachers = new InMemoryTeacherRepository();
-    private TeacherService teacherService;
-
-    private InMemoryGroupRepository inMemoryGroupRepository = new InMemoryGroupRepository();
-    private GroupService groupService;
-
-    public Department(int id, String name, Faculty faculty, Teacher head, String location, String email, PersonRepository<Student, Integer> globalStudentRepository) {
+    public Department(int id, String name, Faculty faculty, Teacher head, String location, String email) {
         setId(id);
         setName(name);
         setFaculty(faculty);
         setHead(head);
         setLocation(location);
         setEmail(email);
-
-        if (globalStudentRepository == null) {
-            throw new IllegalArgumentException("Global student repository cannot be null.");
-        }
-        this.globalStudentRepository = globalStudentRepository;
-
-        this.groupService = new GroupService(inMemoryGroupRepository, this);
-        this.teacherService = new TeacherService(teachers, this);
     }
 
     public int getId() { return id; }
@@ -44,11 +23,6 @@ public class Department {
     public Teacher getHead() { return head; }
     public String getLocation() { return location; }
     public String getEmail() { return email; }
-
-    public PersonRepository<Student, Integer> getGlobalStudentRepository() { return globalStudentRepository; }
-    public TeacherService getTeacherService() { return teacherService; }
-    public GroupService getGroupService() { return groupService; }
-    public InMemoryTeacherRepository getTeachers() { return teachers; }
 
     private void setId(int id) {
         if (id <= 0) {

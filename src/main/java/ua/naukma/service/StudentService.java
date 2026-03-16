@@ -18,8 +18,8 @@ public class StudentService implements Service<Student, Integer> {
     //private Faculty faculty;
     private Group group;
 
-    public StudentService(PersonRepository<Student, Integer> repository, Group group) {
-        this.repository = repository;
+    public StudentService(University currUni, Group group) {
+        this.repository = currUni.getStudentRepository();
         this.group = group;
     }
 

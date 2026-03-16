@@ -1,13 +1,6 @@
 package ua.naukma.domain;
 
-import ua.naukma.exception.IncorrectDataException;
-import ua.naukma.repository.InMemoryStudentRepository;
-import ua.naukma.repository.PersonRepository;
-import ua.naukma.service.StudentService;
-
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Group {
     private int id;
@@ -15,56 +8,26 @@ public class Group {
     private Department department;
     private int course;
     private int admissionYear;
-    private List<Student> students;
-    private PersonRepository<Student, Integer> repository;
 
-    private InMemoryStudentRepository inMemoryStudentRepository;
-    private StudentService studentService;
-
-    public Group(int id, String name, Department department, int course, int admissionYear, PersonRepository<Student, Integer> globalRepository) {
+    public Group(int id, String name, Department department, int course, int admissionYear) {
         setId(id);
         setName(name);
         setDepartment(department);
         setCourse(course);
         setAdmissionYear(admissionYear);
-        setGlobalStudentRepository(globalRepository);
-        this.studentService = new StudentService(this.repository, this);
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public int getCourse() {
-        return course;
-    }
-
-    public int getAdmissionYear() {
-        return admissionYear;
-    }
-
-    public List<Student> getStudents() {
-        return inMemoryStudentRepository.findAll();
-    }
-
-    public StudentService getStudentService() {
-        return studentService;
-    }
+    public int getId() { return id; }
+    public String getName() { return name; }
+    public Department getDepartment() { return department; }
+    public int getCourse() { return course; }
+    public int getAdmissionYear() { return admissionYear; }
 
     private void setAdmissionYear(int admissionYear) {
         if (admissionYear < 1991 || admissionYear > LocalDate.now().getYear() ) {
             throw new IllegalArgumentException("Invalid admission year.");
         }
         this.admissionYear = admissionYear;
-
     }
 
     private void setCourse(int course) {
@@ -93,13 +56,6 @@ public class Group {
             throw new IllegalArgumentException("Invalid id.");
         }
         this.id = id;
-    }
-
-    private void setGlobalStudentRepository(PersonRepository<Student, Integer> globalStudentRepository) {
-        if (globalStudentRepository == null) {
-            throw new IncorrectDataException("Global student repository cannot be null.");
-        }
-        this.repository = globalStudentRepository;
     }
 
     @Override

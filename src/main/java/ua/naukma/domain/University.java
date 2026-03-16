@@ -17,8 +17,12 @@ public class University {
     private String address;
     private String rectorName;
     private FacultyService facultyService;
-    private InMemoryFacultyRepository facultyRepository;
-    private final PersonRepository<Student, Integer> globalStudentRepository = new InMemoryStudentRepository();
+
+    private final InMemoryFacultyRepository facultyRepository = new InMemoryFacultyRepository();
+    private final InMemoryDepartmentRepository departmentRepository = new InMemoryDepartmentRepository();
+    private final InMemoryGroupRepository groupRepository = new InMemoryGroupRepository();
+    private final InMemoryTeacherRepository teacherRepository = new InMemoryTeacherRepository();
+    private final PersonRepository<Student, Integer> studentRepository = new InMemoryStudentRepository();
 
     public University(int id, String fullName, String shortName, String city, String address) {
         this.id = id;
@@ -26,27 +30,19 @@ public class University {
         this.shortName = shortName;
         this.city = city;
         this.address = address;
-        this.facultyService = new FacultyService(this);
-        this.facultyRepository = new InMemoryFacultyRepository();
     }
 
-    public PersonRepository<Student, Integer> getGlobalStudentRepository() {
-        return globalStudentRepository;
-    }
+    public InMemoryFacultyRepository getFacultyRepository() { return facultyRepository; }
+    public InMemoryDepartmentRepository getDepartmentRepository() { return departmentRepository; }
+    public InMemoryGroupRepository getGroupRepository() { return groupRepository; }
+    public InMemoryTeacherRepository getTeacherRepository() { return teacherRepository; }
+    public PersonRepository<Student, Integer> getStudentRepository() { return studentRepository; }
 
-    public InMemoryFacultyRepository getFacultyRepository() {
-        return facultyRepository;
-    }
-
-    public FacultyService getFacultyService() {
-        return facultyService;
-    }
-
-    public String getFullName() {return fullName;}
-    public String getShortName() {return shortName;}
-    public String getCity() {return city;}
-    public String getAddress() {return address;}
-    public int getId() {return id;}
+    public int getId() { return id; }
+    public String getFullName() { return fullName; }
+    public String getShortName() { return shortName; }
+    public String getCity() { return city; }
+    public String getAddress() { return address; }
 
     @Override
     public String toString() {

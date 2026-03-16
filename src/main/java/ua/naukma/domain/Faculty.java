@@ -2,10 +2,6 @@ package ua.naukma.domain;
 
 import ua.naukma.exception.IncorrectDataException;
 import ua.naukma.repository.InMemoryDepartmentRepository;
-import ua.naukma.repository.InMemoryFacultyRepository;
-import ua.naukma.repository.InMemoryStudentRepository;
-import ua.naukma.repository.PersonRepository;
-import ua.naukma.service.DepartmentService;
 
 public class Faculty {
     private int id;
@@ -13,28 +9,13 @@ public class Faculty {
     private String shortName;
     private Teacher dean;
     private String email;
-    private DepartmentService departmentService;
-    private PersonRepository<Student, Integer> globalStudentRepository;
 
-    private InMemoryDepartmentRepository inMemoryDepartmentRepository;
-
-    public Faculty(int id, String name, String shortName, Teacher dean, String email, PersonRepository<Student, Integer> globalStudentRepository) {
+    public Faculty(int id, String name, String shortName, Teacher dean, String email) {
         setId(id);
         setName(name);
         setShortName(shortName);
         setDean(dean);
         setEmail(email);
-        this.inMemoryDepartmentRepository = new InMemoryDepartmentRepository();
-        setGlobalStudentRepository(globalStudentRepository);
-        this.departmentService = new DepartmentService(this);
-    }
-
-    public PersonRepository<Student, Integer> getGlobalStudentRepository() {
-        return globalStudentRepository;
-    }
-
-    public DepartmentService getDepartmentService() {
-        return departmentService;
     }
 
     public int getId() { return id; }
@@ -73,13 +54,6 @@ public class Faculty {
             throw new IncorrectDataException("Email cannot be empty.");
         }
         this.email = email;
-    }
-
-    private void setGlobalStudentRepository(PersonRepository<Student, Integer> globalStudentRepository) {
-        if (globalStudentRepository == null) {
-            throw new IncorrectDataException("Global student repository cannot be null.");
-        }
-        this.globalStudentRepository = globalStudentRepository;
     }
 
     @Override

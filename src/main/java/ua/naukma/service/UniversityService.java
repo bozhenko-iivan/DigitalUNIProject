@@ -58,7 +58,7 @@ public class UniversityService implements Service<University, Integer> {
     }
 
     public void transferStudent(University currentUni,int studentID, String newGroupName) {
-        Optional<Student> optionalStudent = currentUni.getGlobalStudentRepository().findById(studentID);
+        Optional<Student> optionalStudent = currentUni.getStudentRepository().findById(studentID);
         if (optionalStudent.isPresent()) {
             throw new EntityNotFoundException("Student with id " + studentID + " not found!");
         }
@@ -80,21 +80,17 @@ public class UniversityService implements Service<University, Integer> {
         } else {
             System.out.println("Transfer to another faculty!");
         }
-        studentToTransfer.setGroupName(targetGroup);
+        studentToTransfer.setGroup(targetGroup);
         System.out.println("Student with id " + studentID + " " +
                 "has been transferred to " + targetGroup.getName() + " successfully!");
     }
 
     public Group findGroupByName(University currentUni,String newGroupName) {
-        for (Faculty faculty : currentUni.getFacultyRepository().findAll()) {
-            for (Department department : faculty.getDepartmentService().getAllDepartments()) {
-                for (Group group : department.getGroupService().getAllGroups()) {
+        for (Group group : currentUni.getGroupRepository().findAll()) {
                     if (group.getName().equals(newGroupName)) {
                         return group;
                     }
                 }
-            }
-        }
         return null;
     }
 

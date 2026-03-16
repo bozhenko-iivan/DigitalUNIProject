@@ -17,8 +17,13 @@ public class MenuOptionsHandler{
     private Department current_department;
     private University current_university;
     private Group current_group;
+
     private UniversityService universityService;
     private StudentService studentService;
+    private FacultyService facultyService;
+    private DepartmentService departmentService;
+    private GroupService groupService;
+    private TeacherService teacherService;
 
     public MenuOptionsHandler(MenuLevel current_level, UniversityService universityService) {
         this.current_level = current_level;
@@ -36,6 +41,7 @@ public class MenuOptionsHandler{
             if (found != null) {
                 current_university = found;
                 current_level = MenuLevel.UNI;
+                facultyService = new FacultyService(current_university);
             }
             break;
             case 5: universityService.showAll(); break;
@@ -46,17 +52,19 @@ public class MenuOptionsHandler{
             int choice = readInt();
             switch (choice){
                 case 1: current_level = MenuLevel.MON; break;
-                case 2: u.getFacultyService().add(); break;
-                case 3: u.getFacultyService().delete(); break;
+                case 2: facultyService.add(); break;
+                case 3: facultyService.delete(); break;
                 case 4: {
-                    current_faculty = u.getFacultyService().workWithFaculty(current_level);
-                    current_level = MenuLevel.FAC;
-                    if(current_faculty == null){
+                    current_faculty = facultyService.workWithFaculty(current_level);
+                    if(current_faculty != null){
+                        current_level = MenuLevel.FAC;
+                        departmentService = new DepartmentService(current_university, current_faculty);
+                    } else {
                         current_level = MenuLevel.UNI;
                     }
                     break;
                 }
-                case 5: u.getFacultyService().showAll(); break;
+                case 5: facultyService.showAll(); break;
             }
     }
 
@@ -64,16 +72,17 @@ public class MenuOptionsHandler{
         int choice = readInt();
         switch (choice){
             case 1: current_level = MenuLevel.FAC; break;
-            case 2: d.getGroupService().add(); break;
-            case 3: d.getGroupService().delete(); break;
+            case 2: groupService.add(); break;
+            case 3: groupService.delete(); break;
             case 4: {
-                current_group = d.getGroupService().findById();
+                current_group = groupService.findById();
                 if (current_group != null){
                     current_level = MenuLevel.GROUP;
+                    studentService = new StudentService(current_university, current_group);
                 }
                 break;
             }
-            case 5: d.getGroupService().showAll(); break;
+            case 5: groupService.showAll(); break;
         }
     }
 
@@ -81,10 +90,10 @@ public class MenuOptionsHandler{
         int choice = readInt();
         switch (choice){
             case 1: current_level = MenuLevel.GRPS; break;
-            case 2: g.getStudentService().add(); break;
-            case 3: g.getStudentService().delete(); break;
-            case 4: g.getStudentService().findById(); break;
-            case 5: g.getStudentService().showAll(); break;
+            case 2: studentService.add(); break;
+            case 3: studentService.delete(); break;
+            case 4: studentService.findById(); break;
+            case 5: studentService.showAll(); break;
         }
     }
     private   void handle_FAC(Faculty f) {
@@ -102,21 +111,24 @@ public class MenuOptionsHandler{
             }
 
     }
-    private   void handle_DEPS(Faculty f) {
+    private void handle_DEPS(Faculty f) {
         int choice = readInt();
             switch (choice){
                 case 1: current_level = MenuLevel.FAC; break;
-                case 2: f.getDepartmentService().add(); break;
-                case 3: f.getDepartmentService().delete(); break;
+                case 2: departmentService.add(); break;
+                case 3: departmentService.delete(); break;
                 case 4: {
-                    current_department = f.getDepartmentService().findById();
-                    current_level = MenuLevel.DEPARTAMENT;
-                    if(current_department == null){
-                        current_level = MenuLevel.FAC;
+                    current_department = departmentService.findById();
+                    if(current_department != null){
+                        current_level = MenuLevel.DEPARTAMENT;
+                        groupService = new GroupService(current_university, current_department);
+                        teacherService = new TeacherService(current_university, current_department);
+                    } else {
+                        current_level = MenuLevel.DEPS;
                     }
                     break;
                 }
-                case 5: f.getDepartmentService().showAll(); break;
+                case 5: departmentService.showAll(); break;
             }
     }
 
@@ -124,10 +136,10 @@ public class MenuOptionsHandler{
         int choice = readInt();
             switch (choice){
                 case 1: current_level = MenuLevel.DEPS; break;
-                case 2: d.getTeacherService().add(); break;
-                case 3: d.getTeacherService().delete(); break;
-                case 4: d.getTeacherService().findById(); break;
-                case 5: d.getTeacherService().showAll(); break;
+                case 2: teacherService.add(); break;
+                case 3: teacherService.delete(); break;
+                case 4: teacherService.findById(); break;
+                case 5: teacherService.showAll(); break;
                 case 6: current_level = MenuLevel.GRPS; break;
             }
     }

@@ -12,33 +12,33 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
 public class TeacherService implements Service <Teacher, Integer> {
     private final PersonRepository<Teacher, Integer> repository;
     private Department department;
-    public TeacherService(PersonRepository<Teacher, Integer> repository, Department department) {
+
+    public TeacherService(University currUni, Department department) {
         this.department = department;
-        this.repository = repository;
+        this.repository = currUni.getTeacherRepository();
     }
-   public Department getDepartment() {
+
+    public Department getDepartment() {
         return department;
-   }
+    }
+
     @Override
     public void add() {
         Teacher tec = teacher_validate_all();
         try_addTeacher(tec);
     }
-    private void try_addTeacher(Teacher t) throws DuplicateEntityException {
-        Optional<Teacher> teacher = repository.findById(t.getId());
-        if (teacher.isPresent()) {
-            throw new DuplicateEntityException("Teacher with id " + t.getId() + " already exists.");
-        }
+
+    private void try_addTeacher(Teacher t) {
         repository.save(t);
         System.out.println("Teacher with id " + t.getId() + " has been added.");
     }
+
     @Override
     public void delete() {
         int id = IdVerificator.ask_id();
@@ -53,26 +53,7 @@ public class TeacherService implements Service <Teacher, Integer> {
             System.out.println(e.getMessage());
         }
     }
-//    public void findTeacher() {
-//        Scanner sc = new Scanner(System.in);
-//        System.out.println("Find by PIB or ID? (1/2): ");
-//        int choice = 0;
-//        while (choice != 1 && choice != 2) {
-//            try {
-//                choice = sc.nextInt();
-//            }catch (InputMismatchException e) {
-//                System.out.println(e.getMessage());
-//            }
-//        }
-//        switch (choice) {
-//            case 1:
-//                teacher_findByPIB();
-//                break;
-//            case 2:
-//                teacher_findById();
-//                break;
-//        }
-//    }
+
     @Override
     public Teacher findById(){
         int id = IdVerificator.ask_id();
@@ -88,6 +69,7 @@ public class TeacherService implements Service <Teacher, Integer> {
             return null;
         }
     }
+
     private void teacher_findByPIB(){
         boolean is_name_english = PersonInfoVerificator.ask_alphabet();
         String firstName = PersonInfoVerificator.ask_name("first name", is_name_english);
@@ -101,15 +83,23 @@ public class TeacherService implements Service <Teacher, Integer> {
 
     @Override
     public void showAll() {
-        repository.findAll().forEach(System.out::println);
+        System.out.println("Teachers in department " + department.getName() + ":");
+        repository.findAll().stream()
+                .filter(t -> t.getDepartment().getId() == department.getId())
+                .forEach(System.out::println);
     }
 
     private Teacher teacher_validate_all() {
         System.out.println("Add teacher");
-        int id = IdVerificator.ask_id();
-        Optional<Teacher> optional = repository.findById(id);
-        if (optional.isPresent()) {
-            throw new EntityNotFoundException("Teacher with id " + id + " does not exist.");
+        int id;
+        while (true) {
+            id = IdVerificator.ask_id();
+            Optional<Teacher> optional = repository.findById(id);
+            if (optional.isPresent()) {
+                System.out.println("Teacher with such id already exists. Please choose another id.");
+            } else {
+                break;
+            }
         }
         PersonInfoVerificator.PersonData pd = PersonInfoVerificator.ask_common_info(id);
         TeacherPosition teacherPosition = ask_position();
@@ -119,28 +109,32 @@ public class TeacherService implements Service <Teacher, Integer> {
         LocalDate hiring_date = ask_hiring_date();
         Teacher t = new Teacher(pd.id(), pd.firstName(), pd.lastName(), pd.middleName(),
                 pd.birthDate(), pd.email(), pd.phoneNumber(), teacherPosition,
-                teacherDegree, teacherRank, hiring_date, load);
+                teacherDegree, teacherRank, hiring_date, load, this.department);
         return t;
     }
 
     private double ask_load(){
+        System.out.println("Enter teacher's load (between 1.8 and 4.5): ");
         Scanner scanner = InitScanner.try_init_scanner();
         double load = 0;
         while (true) {
             try {
                 load = scanner.nextDouble();
                 if (load > 1.8 && load < 4.5) {
+                    scanner.nextLine();
                     return load;
                 } else {
                     System.out.println("Invalid load. Must be between 1.8 and 4.5.");
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a number.");
-                scanner.next();
+                scanner.nextLine();
             }
         }
     }
+
     private LocalDate ask_hiring_date() {
+        System.out.println("Available teacher's positions:");
         Scanner scanner = InitScanner.try_init_scanner();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         while (true) {
@@ -158,35 +152,47 @@ public class TeacherService implements Service <Teacher, Integer> {
             }
         }
     }
+
     private TeacherPosition ask_position(){
-        System.out.println("Enter teacher's position: ");
         Scanner scanner = InitScanner.try_init_scanner();
-        TeacherPosition position;
+        for (TeacherPosition tp : TeacherPosition.values()) {
+            System.out.println(tp.name());
+        }
+        System.out.println("Enter teacher's position: ");
         while (true) {
             try {
                 String s = scanner.nextLine();
-                position = TeacherPosition.valueOf(s);
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a number.");
+                return TeacherPosition.valueOf(s);
+            } catch (IllegalArgumentException | InputMismatchException e) {
+                System.out.println("Invalid input. Try again.");
             }
         }
     }
+
     private TeacherDegree ask_degree(){
-        System.out.println("Enter teacher's degree: ");
+        System.out.println("Available teacher's degrees:");
         Scanner scanner = InitScanner.try_init_scanner();
-        TeacherDegree degree;
+        for (TeacherDegree d : TeacherDegree.values()) {
+            System.out.println(d.name());
+        }
+        System.out.println("Enter teacher's degree: ");
         while (true) {
             try {
                 String s = scanner.nextLine();
-                degree = TeacherDegree.fromString(s);
+                return TeacherDegree.fromString(s);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
+
     private TeacherRank ask_rank(){
-        System.out.println("Enter teacher's rank: ");
+        System.out.println("Available teacher's rank:");
         Scanner scanner = InitScanner.try_init_scanner();
+        for (TeacherRank r : TeacherRank.values()) {
+            System.out.println(r.name());
+        }
+        System.out.println("Enter teacher's rank: ");
         while (true) {
             try {
                 String s = scanner.nextLine();

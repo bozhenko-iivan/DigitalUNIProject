@@ -20,7 +20,7 @@ public class FacultyService implements Service<Faculty, Integer> {
     private final Repository<Faculty, Integer> repository;
     private University university;
     public FacultyService(University u) {
-        this.repository = new InMemoryFacultyRepository();
+        this.repository = u.getFacultyRepository();
         this.university = u;
     }
     public University getUniversity(){
@@ -40,12 +40,20 @@ public class FacultyService implements Service<Faculty, Integer> {
             repository.save(f);
     }
     private Faculty faculty_validate_all(){
-        int id = IdVerificator.ask_id();
+        int id;
+        while (true) {
+            id = IdVerificator.ask_id();
+            Optional<Faculty> existingFaculty = repository.findById(id);
+            if (existingFaculty.isPresent()) {
+                System.out.println("Faculty with such id already exists. Please choose another id.");
+            } else {
+                break;
+            }
+        }
         String name = FacilityNameVerificator.ask_facility_name();
         String shortname = FacilityNameVerificator.ask_short_name();
         String email = EmailVerificator.ask_email();
-        PersonRepository<Student, Integer> globalRepo = university.getGlobalStudentRepository();
-        Faculty f = new Faculty(id, name, shortname,null, email, globalRepo);
+        Faculty f = new Faculty(id, name, shortname,null, email);
         return f;
     }
     @Override

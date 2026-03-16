@@ -18,8 +18,8 @@ import java.util.Scanner;
 public class DepartmentService implements Service<Department, Integer> {
     private final Repository<Department, Integer> repository;
     private Faculty faculty;
-    public DepartmentService(Faculty f) {
-        this.repository = new InMemoryDepartmentRepository();
+    public DepartmentService(University currUni,Faculty f) {
+        this.repository = currUni.getDepartmentRepository();
         this.faculty = f;
     }
     public Faculty getFaculty() { return faculty; }
@@ -30,12 +30,8 @@ public class DepartmentService implements Service<Department, Integer> {
         try_AddDepartment(newD);
     }
     private void try_AddDepartment(Department d) {
-        Optional<Department> dep = repository.findById(d.getId());
-        if (dep.isPresent()) {
-            System.out.println("Department with such id already exists.");
-            return;
-        }
         repository.save(d);
+        System.out.println("Department with such id successfully added.");
     }
     @Override
     public void delete() {
@@ -85,22 +81,27 @@ public class DepartmentService implements Service<Department, Integer> {
     }
     @Override
     public void showAll(){
-        repository.findAll().forEach(System.out::println);
-    }
-
-    public List<Department> getAllDepartments() {
-        return repository.findAll();
+        System.out.println("Finding all departments of " + faculty.getName());
+        repository.findAll().stream().filter(d -> d.getFaculty().getId() == faculty.getId()).forEach(System.out::println);
     }
 
     private Department department_validate_all(){
-        int id = IdVerificator.ask_id();
+        int id;
+        while (true) {
+            id = IdVerificator.ask_id();
+            Optional<Department> existingDep = repository.findById(id);
+            if (existingDep.isPresent()) {
+                System.out.println("Department with such id already exists. Please choose another id.");
+            } else {
+                break;
+            }
+        }
         String name = FacilityNameVerificator.ask_facility_name();
         String email = EmailVerificator.ask_email();
         Teacher tc = null;
         Faculty fac = getFaculty();
         String location = ask_location();
-        PersonRepository<Student, Integer> globalRepo = faculty.getGlobalStudentRepository();
-        Department d = new Department(id, name, fac, tc, location,  email, globalRepo);
+        Department d = new Department(id, name, fac, tc, location,  email);
         return d;
     }
     private String ask_location(){
