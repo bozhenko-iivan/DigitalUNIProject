@@ -1,10 +1,8 @@
 package ua.naukma.service;
 
-import ua.naukma.domain.Department;
-import ua.naukma.domain.Faculty;
-import ua.naukma.domain.Teacher;
-import ua.naukma.domain.University;
+import ua.naukma.domain.*;
 import ua.naukma.repository.InMemoryDepartmentRepository;
+import ua.naukma.repository.PersonRepository;
 import ua.naukma.repository.Repository;
 import ua.naukma.ui.MenuLevel;
 import ua.naukma.utils.EmailVerificator;
@@ -13,6 +11,7 @@ import ua.naukma.utils.IdVerificator;
 import ua.naukma.utils.InitScanner;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -24,7 +23,7 @@ public class DepartmentService implements Service<Department, Integer> {
         this.faculty = f;
     }
     public Faculty getFaculty() { return faculty; }
-    private InMemoryDepartmentRepository inMemoryD = new InMemoryDepartmentRepository();
+
     @Override
     public void add() {
         Department newD = department_validate_all();
@@ -86,7 +85,7 @@ public class DepartmentService implements Service<Department, Integer> {
     }
     @Override
     public void showAll(){
-        repository.showAll();
+        repository.findAll().forEach(System.out::println);
     }
 
     private Department department_validate_all(){
@@ -96,7 +95,8 @@ public class DepartmentService implements Service<Department, Integer> {
         Teacher tc = null;
         Faculty fac = getFaculty();
         String location = ask_location();
-        Department d = new Department(id, name, fac, tc, location,  email);
+        PersonRepository<Student, Integer> globalRepo = faculty.getGlobalStudentRepository();
+        Department d = new Department(id, name, fac, tc, location,  email, globalRepo);
         return d;
     }
     private String ask_location(){

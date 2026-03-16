@@ -2,6 +2,7 @@ package ua.naukma.domain;
 
 import ua.naukma.repository.InMemoryDepartmentRepository;
 import ua.naukma.repository.InMemoryStudentRepository;
+import ua.naukma.repository.PersonRepository;
 import ua.naukma.service.DepartmentService;
 
 import java.util.ArrayList;
@@ -16,20 +17,24 @@ public class Faculty {
     private Teacher dean;
     private String email;
     private DepartmentService departmentService;
+    private PersonRepository<Student, Integer> globalStudentRepository;
 
     private InMemoryStudentRepository inMemoryStudentRepository;
     private InMemoryDepartmentRepository inMemoryDepartmentRepository;
 
-    public Faculty(int id, String name, String shortName, Teacher dean, String email) {
+    public Faculty(int id, String name, String shortName, Teacher dean, String email, PersonRepository<Student, Integer> globalStudentRepository) {
         this.id = id;
         setName(name);
         setShortName(shortName);
         this.dean = dean;
         this.email = email;
-        this.inMemoryStudentRepository = new InMemoryStudentRepository();
         this.inMemoryDepartmentRepository = new InMemoryDepartmentRepository();
-
+        this.globalStudentRepository = globalStudentRepository;
         this.departmentService = new DepartmentService(this);
+    }
+
+    public PersonRepository<Student, Integer> getGlobalStudentRepository() {
+        return globalStudentRepository;
     }
 
     public DepartmentService getDepartmentService() {

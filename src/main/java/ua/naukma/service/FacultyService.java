@@ -2,7 +2,7 @@ package ua.naukma.service;
 
 import ua.naukma.domain.*;
 import ua.naukma.repository.InMemoryFacultyRepository;
-import ua.naukma.repository.InMemoryStudentRepository;
+import ua.naukma.repository.PersonRepository;
 import ua.naukma.repository.Repository;
 import ua.naukma.ui.MenuLevel;
 import ua.naukma.utils.EmailVerificator;
@@ -11,6 +11,7 @@ import ua.naukma.utils.IdVerificator;
 import ua.naukma.utils.InitScanner;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -43,7 +44,8 @@ public class FacultyService implements Service<Faculty, Integer> {
         String name = FacilityNameVerificator.ask_facility_name();
         String shortname = FacilityNameVerificator.ask_short_name();
         String email = EmailVerificator.ask_email();
-        Faculty f = new Faculty(id, name, shortname,null, email);
+        PersonRepository<Student, Integer> globalRepo = university.getGlobalStudentRepository();
+        Faculty f = new Faculty(id, name, shortname,null, email, globalRepo);
         return f;
     }
     @Override
@@ -105,7 +107,7 @@ public class FacultyService implements Service<Faculty, Integer> {
     }
     @Override
     public void showAll(){
-        repository.showAll();
+        repository.findAll().forEach(System.out::println);
     }
 
     private static int readInt(){

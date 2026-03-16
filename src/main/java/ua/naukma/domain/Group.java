@@ -15,19 +15,20 @@ public class Group {
     private int course;
     private int admissionYear;
     private List<Student> students;
+    private PersonRepository<Student, Integer> repository;
 
     private InMemoryStudentRepository inMemoryStudentRepository;
     private StudentService studentService;
 
-    public Group(int id, String name, Department department, int course, int admissionYear) {
+    public Group(int id, String name, Department department, int course, int admissionYear, PersonRepository<Student, Integer> globalRepository) {
         setId(id);
         setName(name);
         setDepartment(department);
         setCourse(course);
         setAdmissionYear(admissionYear);
 
-        this.inMemoryStudentRepository = new InMemoryStudentRepository();
-        this.studentService = new StudentService(this.inMemoryStudentRepository, Group.this);
+        this.repository = globalRepository;
+        this.studentService = new StudentService(this.repository, this);
     }
 
     public int getId() {

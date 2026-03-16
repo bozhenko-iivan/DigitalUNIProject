@@ -2,6 +2,7 @@ package ua.naukma.domain;
 
 import ua.naukma.repository.InMemoryGroupRepository;
 import ua.naukma.repository.InMemoryTeacherRepository;
+import ua.naukma.repository.PersonRepository;
 import ua.naukma.service.GroupService;
 import ua.naukma.service.TeacherService;
 
@@ -13,21 +14,27 @@ public class Department {
     private String location;
     private String email;
 
+    private PersonRepository<Student, Integer> globalStudentRepository;
     private InMemoryTeacherRepository teachers = new InMemoryTeacherRepository();
     private TeacherService teacherService;
 
     private InMemoryGroupRepository inMemoryGroupRepository = new InMemoryGroupRepository();
     private GroupService groupService;
 
-    public Department(int id, String name, Faculty faculty, Teacher head, String location,  String email) {
+    public Department(int id, String name, Faculty faculty, Teacher head, String location,  String email, PersonRepository<Student, Integer> globalStudentRepository) {
         this.id = id;
         setName(name);
         this.faculty = faculty;
         this.head = head;
         setLocation(location);
         this.email = email;
+        this.globalStudentRepository = globalStudentRepository;
         this.groupService = new GroupService(inMemoryGroupRepository, this);
         this.teacherService = new TeacherService(teachers, this);
+    }
+
+    public PersonRepository<Student, Integer> getGlobalStudentRepository() {
+        return globalStudentRepository;
     }
 
     public TeacherService getTeacherService() {

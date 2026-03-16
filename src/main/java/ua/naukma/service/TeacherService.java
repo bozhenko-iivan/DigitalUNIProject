@@ -3,9 +3,7 @@ package ua.naukma.service;
 import ua.naukma.domain.*;
 import ua.naukma.exception.DuplicateEntityException;
 import ua.naukma.exception.EntityNotFoundException;
-import ua.naukma.repository.InMemoryTeacherRepository;
 import ua.naukma.repository.PersonRepository;
-import ua.naukma.repository.Repository;
 import ua.naukma.utils.IdVerificator;
 import ua.naukma.utils.InitScanner;
 import ua.naukma.utils.PersonInfoVerificator;
@@ -14,6 +12,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -101,7 +100,9 @@ public class TeacherService implements Service <Teacher, Integer> {
     }
 
     @Override
-    public void showAll() {repository.showAll();}
+    public void showAll() {
+        repository.findAll().forEach(System.out::println);
+    }
 
     private Teacher teacher_validate_all() {
         System.out.println("Add teacher");

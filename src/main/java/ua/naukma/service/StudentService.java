@@ -5,14 +5,10 @@ import ua.naukma.exception.DuplicateEntityException;
 import ua.naukma.repository.*;
 import ua.naukma.utils.IdVerificator;
 import ua.naukma.utils.PersonInfoVerificator;
-import ua.naukma.repository.InMemoryStudentRepository;
 
 
 import java.time.LocalDate;
-import java.util.InputMismatchException;
-import java.util.Optional;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 import static ua.naukma.utils.PersonInfoVerificator.ask_name;
 
@@ -76,6 +72,14 @@ public class StudentService implements Service<Student, Integer> {
             repository.deleteById(id);
         } else {
             System.out.println("Student with such id doesn't exist.");
+        }
+    }
+
+    public void changeGrade(Student new_s) {
+        int id = IdVerificator.ask_id();
+        Optional<Student> student = repository.findById(id);
+        if (student.isPresent()) {
+
         }
     }
 
@@ -176,7 +180,10 @@ public class StudentService implements Service<Student, Integer> {
 
     @Override
     public void showAll(){
-        repository.showAll();
+        System.out.println("Students in group " + this.group.getName() + ":");
+        repository.findAll().stream()
+                .filter(s -> s.getGroup().equals(this.group))
+                .forEach(System.out::println);
     }
 
     private int admission_year(){

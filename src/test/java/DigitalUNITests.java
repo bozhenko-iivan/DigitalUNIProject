@@ -24,8 +24,8 @@ class DigitalUniTests {
     @BeforeEach
     void setUp() {
         studentRepository = new InMemoryStudentRepository();
-        testDepartment = new Department(1111111, "TestDept", null, null, "TestLoc", "test@ukma.edu.ua");
-        testGroup = new Group(1234567, "IPZ-2025", testDepartment, 1, 2025);
+        testDepartment = new Department(1111111, "TestDept", null, null, "TestLoc", "test@ukma.edu.ua",studentRepository);
+        testGroup = new Group(1234567, "IPZ-2025", testDepartment, 1, 2025, studentRepository);
         studentService = new StudentService(studentRepository, testGroup);
     }
 
@@ -34,7 +34,7 @@ class DigitalUniTests {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             new Student(1, "Іван", "Іваненко", "Іванович",
                     LocalDate.now().plusDays(5),
-                    "test@ukma.edu.ua", "0981231234",
+                    "test@ukma.edu.ua", "+380981231234",
                     "12345678", 1, testGroup, 2024,
                     StudyForm.BUDGET, StudentStatus.STUDYING);
         });
@@ -62,7 +62,7 @@ class DigitalUniTests {
             new Student(3, "Олег", "Сидоренко", "Іванович",
                     LocalDate.of(2004, 3, 3),
                     "oleg_ukma.edu.ua", // Відсутня собачка '@'
-                    "0981231234",
+                    "+380981231234",
                     "87654321", 1, testGroup, 2024,
                     StudyForm.CONTRACT, StudentStatus.STUDYING);
         });
@@ -73,7 +73,7 @@ class DigitalUniTests {
     @Test
     void testInvalidAdmissionYearThrowsException() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Group(1234567, "IPZ-2025", testDepartment, 1, 1990);
+            new Group(1234567, "IPZ-2025", testDepartment, 1, 1990, studentRepository);
         });
 
         assertEquals("Invalid admission year.", exception.getMessage());
@@ -82,7 +82,7 @@ class DigitalUniTests {
     @Test
     void testInvalidCourseNumberThrowsException() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Group(1234567, "IPZ-2025", testDepartment, 7, 2024);
+            new Group(1234567, "IPZ-2025", testDepartment, 7, 2024, studentRepository);
         });
 
         assertEquals("Invalid course.", exception.getMessage());

@@ -2,13 +2,13 @@ package ua.naukma.service;
 
 import ua.naukma.domain.Department;
 import ua.naukma.domain.Group;
+import ua.naukma.domain.Student;
 import ua.naukma.exception.DuplicateEntityException;
 import ua.naukma.exception.EntityNotFoundException;
-import ua.naukma.exception.IncorrectNameException;
 import ua.naukma.repository.Repository;
-import ua.naukma.utils.AcademicInfoVerificator;
-import ua.naukma.utils.FacilityNameVerificator;
 import ua.naukma.utils.IdVerificator;
+
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -44,7 +44,7 @@ public class GroupService implements Service<Group, Integer> {
                 }
                 int course = ask_course();
                 int admissionYear = ask_admission_year();
-                return new Group(id, name, department, course, admissionYear);
+                return new Group(id, name, department, course, admissionYear, department.getGlobalStudentRepository());
 
             } catch (IllegalArgumentException e) {
                 System.out.println("Error creating group: " + e.getMessage());
@@ -99,6 +99,6 @@ public class GroupService implements Service<Group, Integer> {
     @Override
     public void showAll() {
         System.out.println("Groups of " + department.getName() + ": ");
-        groupRepository.showAll();
+        groupRepository.findAll().forEach(System.out::println);
     }
 }

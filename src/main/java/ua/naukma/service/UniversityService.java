@@ -1,5 +1,6 @@
 package ua.naukma.service;
 
+import ua.naukma.domain.Student;
 import ua.naukma.domain.University;
 import ua.naukma.exception.DuplicateEntityException;
 import ua.naukma.exception.EntityNotFoundException;
@@ -7,6 +8,7 @@ import ua.naukma.repository.Repository;
 import ua.naukma.utils.IdVerificator;
 import ua.naukma.utils.UniversityVerificator;
 
+import java.util.List;
 import java.util.Optional;
 
 public class UniversityService implements Service<University, Integer> {
@@ -59,7 +61,7 @@ public class UniversityService implements Service<University, Integer> {
     @Override
     public void showAll() {
         System.out.println("All universities");
-        repository.showAll();
+        repository.findAll().forEach(System.out::println);
     }
 
     private University university_validate_all() {
