@@ -162,7 +162,7 @@ public class TeacherService implements Service <Teacher, Integer> {
         while (true) {
             try {
                 String s = scanner.nextLine();
-                return TeacherPosition.valueOf(s);
+                return TeacherPosition.valueOf(s.toUpperCase());
             } catch (IllegalArgumentException | InputMismatchException e) {
                 System.out.println("Invalid input. Try again.");
             }
@@ -179,7 +179,7 @@ public class TeacherService implements Service <Teacher, Integer> {
         while (true) {
             try {
                 String s = scanner.nextLine();
-                return TeacherDegree.fromString(s);
+                return TeacherDegree.fromString(s.toUpperCase());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -196,7 +196,7 @@ public class TeacherService implements Service <Teacher, Integer> {
         while (true) {
             try {
                 String s = scanner.nextLine();
-                return TeacherRank.fromString(s);
+                return TeacherRank.fromString(s.toUpperCase());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
