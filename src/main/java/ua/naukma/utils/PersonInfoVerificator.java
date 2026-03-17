@@ -25,7 +25,7 @@ public class PersonInfoVerificator {
         String error_message = "Invalid input or no capital letter.";
         String name;
         do{
-            System.out.println("Enter student's " + smth + ": ");
+            System.out.println("Enter person's " + smth + ": ");
             name = scanner.nextLine();
             name = validate_name(name, is_english);
             if(name == null) System.out.println(error_message);
@@ -54,7 +54,7 @@ public class PersonInfoVerificator {
         String alphabet;
         String error_message = "Invalid alphabet.";
         do {
-            System.out.println("Enter alphabet in which you want to type student's name.\n" +
+            System.out.println("Enter alphabet in which you want to type person's name.\n" +
                     "Latin/Cyrillic: ");
             alphabet = scanner.nextLine();
             alphabet = validate_alphabet(alphabet);
@@ -93,14 +93,14 @@ public class PersonInfoVerificator {
         }
         return isalpha;
     }
-    private static LocalDate ask_dob(){
+    public static LocalDate ask_dob(){
         Scanner scanner = InitScanner.try_init_scanner();
         LocalDate dob;
         do{
             System.out.println("Enter date of birth (dd.MM.yyyy): ");
             String s = scanner.nextLine();
             dob = validate_dob(s);
-            if(dob == null) System.out.println("Student is too young.");
+            if(dob == null) System.out.println("Personhttps://github.com/bozhenko-iivan/practice-9.git is too young.");
         }while(dob == null);
         return dob;
     }
@@ -116,7 +116,7 @@ public class PersonInfoVerificator {
         }
         years = Period.between(dob_date, LocalDate.now()).getYears();
         if(years < 17){
-            System.out.println("Student is too young.");
+            System.out.println("Person is too young.");
             return null;
         }
         return dob_date;

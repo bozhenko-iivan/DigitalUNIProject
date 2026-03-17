@@ -5,7 +5,6 @@ public enum TeacherDegree {
     PHD,
     DOCTOR_OF_SCIENCES;
 
-
     public static TeacherDegree fromString (String value) {
         if (value != null && !value.isBlank()) {
             for (TeacherDegree degree : TeacherDegree.values()) {

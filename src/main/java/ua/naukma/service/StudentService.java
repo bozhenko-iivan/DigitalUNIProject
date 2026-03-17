@@ -44,8 +44,8 @@ public class StudentService implements Service<Student, Integer> {
             throw new DuplicateEntityException("Student with id " + id + " already exists.");
         }
         PersonInfoVerificator.PersonData pd = PersonInfoVerificator.ask_common_info(id);
-        int admissionYear = admission_year();
-        int course = course();
+        int admissionYear = group.getAdmissionYear();
+        int course = group.getCourse();
         StudyForm studyForm = ask_study_form();
         StudentStatus studentStatus = ask_student_status();
         Group group = this.group;

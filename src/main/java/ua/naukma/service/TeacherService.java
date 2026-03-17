@@ -102,11 +102,11 @@ public class TeacherService implements Service <Teacher, Integer> {
             }
         }
         PersonInfoVerificator.PersonData pd = PersonInfoVerificator.ask_common_info(id);
-        TeacherPosition teacherPosition = ask_position();
         TeacherDegree teacherDegree = ask_degree();
+        TeacherPosition teacherPosition = ask_position();
         TeacherRank teacherRank = ask_rank();
         double load = ask_load();
-        LocalDate hiring_date = ask_hiring_date();
+        LocalDate hiring_date = ask_hiring_date(pd.birthDate());
         Teacher t = new Teacher(pd.id(), pd.firstName(), pd.lastName(), pd.middleName(),
                 pd.birthDate(), pd.email(), pd.phoneNumber(), teacherPosition,
                 teacherDegree, teacherRank, hiring_date, load, this.department);
@@ -133,8 +133,7 @@ public class TeacherService implements Service <Teacher, Integer> {
         }
     }
 
-    private LocalDate ask_hiring_date() {
-        System.out.println("Available teacher's positions:");
+    private LocalDate ask_hiring_date(LocalDate birthDate) {
         Scanner scanner = InitScanner.try_init_scanner();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         while (true) {
@@ -144,7 +143,10 @@ public class TeacherService implements Service <Teacher, Integer> {
                 LocalDate doh = LocalDate.parse(s, dtf);
                 if (doh.isAfter(LocalDate.now())) {
                     System.out.println("Impossible hiring date: " + doh);
-                } else {
+                }
+                else if (doh.minusYears(21).isBefore(birthDate)) {
+                    System.out.println("Invalid hiring date. Teacher must be at least 21 years old at the time of hiring.");
+                }else {
                     return doh;
                 }
             } catch (DateTimeParseException ex) {
@@ -154,6 +156,7 @@ public class TeacherService implements Service <Teacher, Integer> {
     }
 
     private TeacherPosition ask_position(){
+        System.out.println("Available teacher's positions:");
         Scanner scanner = InitScanner.try_init_scanner();
         for (TeacherPosition tp : TeacherPosition.values()) {
             System.out.println(tp.name());
@@ -170,7 +173,7 @@ public class TeacherService implements Service <Teacher, Integer> {
     }
 
     private TeacherDegree ask_degree(){
-        System.out.println("Available teacher's degrees:");
+        System.out.println("Available teacher's degrees");
         Scanner scanner = InitScanner.try_init_scanner();
         for (TeacherDegree d : TeacherDegree.values()) {
             System.out.println(d.name());

@@ -23,12 +23,12 @@ public class Student extends Person {
         setStudyForm(studyForm);
         setStatus(status);
     }
-    public int getCourse() { return course; }
+    public int getCourse() { return group.getCourse(); }
     public Group getGroup() { return group; }
     public Department getDepartment() { return group.getDepartment(); }
     public StudentStatus getStatus() { return status; }
     public StudyForm getStudyForm() { return studyForm; }
-    public int getAdmissionYear() { return admissionYear; }
+    public int getAdmissionYear() { return group.getAdmissionYear(); }
     public String getRecordBookNumber() { return recordBookNumber; }
 
 
