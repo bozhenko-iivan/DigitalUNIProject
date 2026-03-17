@@ -71,14 +71,16 @@ public class UniversityService implements Service<University, Integer> {
         if (currentGroup.equals(targetGroup)) {
             throw new DuplicateEntityException("Student already studies in this group: " + currentGroup.getName());
         }
-        Department currentDept = currentGroup.getDepartment();
-        Department targetDept = targetGroup.getDepartment();
-        if (currentDept.getId() == targetDept.getId()) {
-            System.out.println("Transferring student with id " + studentID + " to " + targetDept.getName());
-        } else if (currentDept.getFaculty().getId() == targetDept.getFaculty().getId()) {
-            System.out.println("Transferring student with id " + studentID + " to " + targetDept.getName());
+        Faculty currentFaculty = currentGroup.getFaculty();
+        Faculty targetFaculty = targetGroup.getFaculty();
+//        Department currentDept = currentGroup.getDepartment();
+//        Department targetDept = targetGroup.getDepartment();
+//        if (currentDept.getId() == targetDept.getId()) {
+//            System.out.println("Transferring student with id " + studentID + " to " + targetDept.getName());}
+         if (currentFaculty.getId() != targetFaculty.getId()) {
+            System.out.println("Transferring student with id " + studentID + " to " + targetFaculty.getName());
         } else {
-            System.out.println("Transfer to another faculty!");
+            //System.out.println("Transfer to another faculty!");
         }
         studentToTransfer.setGroup(targetGroup);
         System.out.println("Student with id " + studentID + " " +
@@ -102,8 +104,8 @@ public class UniversityService implements Service<University, Integer> {
 
     private University university_validate_all() {
         int id = IdVerificator.ask_id();
-        String fullName = UniversityVerificator.ask_full_name();
-        String shortName = UniversityVerificator.ask_short_name();
+        String fullName = UniversityVerificator.ask_full_name("fullName");
+        String shortName = UniversityVerificator.ask_short_name("shortName");
         String city = UniversityVerificator.ask_city();
         String address = UniversityVerificator.ask_address();
         University u = new University(id, fullName, shortName, city, address);

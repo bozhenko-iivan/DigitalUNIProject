@@ -5,23 +5,24 @@ import java.time.LocalDate;
 public class Group {
     private int id;
     private String name;
-    private Department department;
     private int course;
     private int admissionYear;
+    private Group group;
+    private Faculty faculty;
 
-    public Group(int id, String name, Department department, int course, int admissionYear) {
+    public Group(int id, String name, Faculty faculty, int course, int admissionYear) {
         setId(id);
         setName(name);
-        setDepartment(department);
+        setFaculty(faculty);
         setCourse(course);
         setAdmissionYear(admissionYear);
     }
 
     public int getId() { return id; }
     public String getName() { return name; }
-    public Department getDepartment() { return department; }
     public int getCourse() { return course; }
     public int getAdmissionYear() { return admissionYear; }
+    public Faculty getFaculty() { return faculty; }
 
     private void setAdmissionYear(int admissionYear) {
         if (admissionYear < 1991 || admissionYear > LocalDate.now().getYear() ) {
@@ -37,11 +38,11 @@ public class Group {
         this.course = course;
     }
 
-    private void setDepartment(Department department) {
-        if (department == null) {
-            throw new IllegalArgumentException("Department cannot be null.");
+    private void setFaculty(Faculty faculty) {
+        if (faculty == null) {
+            throw new IllegalArgumentException("Faculty cannot be null.");
         }
-        this.department = department;
+        this.faculty = faculty;
     }
 
     private void setName(String name) {
@@ -60,10 +61,10 @@ public class Group {
 
     @Override
     public String toString() {
-        String deptName = (department != null) ? department.getName() : "Unknown";
+        String facultyName = (faculty != null) ? faculty.getName() : "Unknown";
         return "Group: " + name + " (ID: " + id + ")"
                 + "\nCourse: " + course
                 + "\nAdmission year: " + admissionYear
-                + "\nDepartment: " + deptName;
+                + "\nFaculty: " + facultyName;
     }
 }

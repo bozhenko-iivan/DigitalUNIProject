@@ -25,7 +25,7 @@ public class Student extends Person {
     }
     public int getCourse() { return group.getCourse(); }
     public Group getGroup() { return group; }
-    public Department getDepartment() { return group.getDepartment(); }
+    //public Department getDepartment() { return group.getDepartment(); }
     public StudentStatus getStatus() { return status; }
     public StudyForm getStudyForm() { return studyForm; }
     public int getAdmissionYear() { return group.getAdmissionYear(); }

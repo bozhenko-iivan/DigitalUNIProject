@@ -1,9 +1,6 @@
 package ua.naukma.service;
 
-import ua.naukma.domain.Department;
-import ua.naukma.domain.Group;
-import ua.naukma.domain.Student;
-import ua.naukma.domain.University;
+import ua.naukma.domain.*;
 import ua.naukma.exception.DuplicateEntityException;
 import ua.naukma.exception.EntityNotFoundException;
 import ua.naukma.repository.Repository;
@@ -18,11 +15,12 @@ import static ua.naukma.utils.AcademicInfoVerificator.ask_course;
 
 public class GroupService implements Service<Group, Integer> {
     private final Repository<Group, Integer> groupRepository;
-    private Department department;
+    //private Department department;
+    private Faculty faculty;
 
-    public GroupService(University currUni, Department department) {
+    public GroupService(University currUni, Faculty currFaculty) {
         this.groupRepository = currUni.getGroupRepository();
-        this.department = department;
+        this.faculty = currFaculty;
     }
 
     @Override
@@ -58,7 +56,7 @@ public class GroupService implements Service<Group, Integer> {
                 }
                 int course = ask_course();
                 int admissionYear = ask_admission_year();
-                return new Group(id, name, department, course, admissionYear);
+                return new Group(id, name, faculty, course, admissionYear);
 
             } catch (IllegalArgumentException e) {
                 System.out.println("Error creating group: " + e.getMessage());
@@ -104,7 +102,7 @@ public class GroupService implements Service<Group, Integer> {
 
     @Override
     public void showAll() {
-        System.out.println("Groups of " + department.getName() + ": ");
-        groupRepository.findAll().stream().filter(g -> g.getDepartment().getId() == department.getId()).forEach(System.out::println);
+        System.out.println("Groups of " + faculty.getName() + ": ");
+        groupRepository.findAll().stream().filter(g -> g.getFaculty().getId() == faculty.getId()).forEach(System.out::println);
     }
 }

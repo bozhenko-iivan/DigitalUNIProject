@@ -68,7 +68,7 @@ public class MenuOptionsHandler{
             }
     }
 
-    private void handle_GRPS(Department d) {
+    private void handle_GRPS(Faculty f) {
         int choice = readInt();
         switch (choice){
             case 1: current_level = MenuLevel.FAC; break;
@@ -106,7 +106,10 @@ public class MenuOptionsHandler{
             switch (choice){
                 case 1: current_level = MenuLevel.UNI; break;
                 case 2: current_level = MenuLevel.DEPS; break;
-                //case 3: current_level = MenuLevel.GRPS; break;
+                case 3: {
+                    current_level = MenuLevel.GRPS;
+                    groupService = new GroupService(current_university, current_faculty);
+                }break;
                 case 4: System.out.println("This method is currently deprecated."); break;
             }
 
@@ -121,8 +124,8 @@ public class MenuOptionsHandler{
                     current_department = departmentService.findById();
                     if(current_department != null){
                         current_level = MenuLevel.DEPARTAMENT;
-                        groupService = new GroupService(current_university, current_department);
                         teacherService = new TeacherService(current_university, current_department);
+                        //groupService = new GroupService(current_university, current_department);
                     } else {
                         current_level = MenuLevel.DEPS;
                     }
@@ -140,7 +143,7 @@ public class MenuOptionsHandler{
                 case 3: teacherService.delete(); break;
                 case 4: teacherService.findById(); break;
                 case 5: teacherService.showAll(); break;
-                case 6: current_level = MenuLevel.GRPS; break;
+                //case 6: current_level = MenuLevel.GRPS; break;
             }
     }
     private static int readInt(){
@@ -175,7 +178,7 @@ public class MenuOptionsHandler{
                 handle_DEPARTAMENT(current_department);
                 break;
                 case GRPS:
-                    handle_GRPS(current_department);
+                    handle_GRPS(current_faculty);
                     break;
                     case GROUP:
                         handle_GROUP(current_group);

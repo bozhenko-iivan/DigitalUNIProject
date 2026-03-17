@@ -16,20 +16,25 @@ public class UniversityVerificator {
     private static final String FULL_NAME_REGEX = "^[a-zA-Zа-яА-ЯіІїЇєЄґҐ\".,:()'\\-–/!?№@& ]+$";
     private static final String SHORT_NAME_REGEX = "^[a-zA-Zа-яА-ЯіІїЇєЄґҐ]+$";
 
-    public static String ask_full_name() {
-        return getString(FULL_NAME_REGEX);
+    public static String ask_full_name(String fullName) {
+        return getString(FULL_NAME_REGEX, fullName);
     }
 
-    public static String ask_short_name() {
-        return getString(SHORT_NAME_REGEX);
+    public static String ask_short_name(String shortName) {
+        return getString(SHORT_NAME_REGEX, shortName);
     }
 
-    private static String getString(String Regex) {
+    private static String getString(String Regex, String state) {
         Scanner scanner = InitScanner.try_init_scanner();
         String name;
         while (true) {
             try {
-                System.out.println("Enter full name: ");
+                if (state.equals("shortName")) {
+                    System.out.println("Enter short name: ");
+                }
+                else if (state.equals("fullName")) {
+                    System.out.println("Enter full name: ");
+                }
                 name = scanner.next();
                 if (name != null) {
                     name = name.trim().replaceAll("\\s+", " ");

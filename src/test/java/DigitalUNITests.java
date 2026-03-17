@@ -20,13 +20,14 @@ class DigitalUniTests {
     private Group testGroup;
     private Department testDepartment;
     private Faculty testFaculty;
+    private University testUniversity;
 
     @BeforeEach
     void setUp() {
         studentRepository = new InMemoryStudentRepository();
-        testDepartment = new Department(1111111, "TestDept", null, null, "TestLoc", "test@ukma.edu.ua",studentRepository);
-        testGroup = new Group(1234567, "IPZ-2025", testDepartment, 1, 2025, studentRepository);
-        studentService = new StudentService(studentRepository, testGroup);
+        testDepartment = new Department(1111111, "TestDept", null, null, "TestLoc", "test@ukma.edu.ua");
+        testGroup = new Group(1234567, "IPZ-2025", testFaculty, 1, 2025);
+        studentService = new StudentService(testUniversity, testGroup);
     }
 
     @Test
@@ -73,7 +74,7 @@ class DigitalUniTests {
     @Test
     void testInvalidAdmissionYearThrowsException() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Group(1234567, "IPZ-2025", testDepartment, 1, 1990, studentRepository);
+            new Group(1234567, "IPZ-2025", testFaculty, 1, 1990);
         });
 
         assertEquals("Invalid admission year.", exception.getMessage());
@@ -82,7 +83,7 @@ class DigitalUniTests {
     @Test
     void testInvalidCourseNumberThrowsException() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Group(1234567, "IPZ-2025", testDepartment, 7, 2024, studentRepository);
+            new Group(1234567, "IPZ-2025", testFaculty, 7, 2024);
         });
 
         assertEquals("Invalid course.", exception.getMessage());
