@@ -18,9 +18,14 @@ import java.util.Scanner;
 public class DepartmentService implements Service<Department, Integer> {
     private final Repository<Department, Integer> repository;
     private Faculty faculty;
-    public DepartmentService(University currUni,Faculty f) {
+    private UniversityService universityService;
+    private University currUni;
+
+    public DepartmentService(University currUni,Faculty f,UniversityService universityService) {
         this.repository = currUni.getDepartmentRepository();
         this.faculty = f;
+        this.currUni = currUni;
+        this.universityService = universityService;
     }
     public Faculty getFaculty() { return faculty; }
 
@@ -28,6 +33,7 @@ public class DepartmentService implements Service<Department, Integer> {
     public void add() {
         Department newD = department_validate_all();
         try_AddDepartment(newD);
+        universityService.update(currUni);
     }
     private void try_AddDepartment(Department d) {
         repository.save(d);
@@ -39,6 +45,7 @@ public class DepartmentService implements Service<Department, Integer> {
         Optional<Department> d = repository.findById(id);
         if (d.isPresent()) {
             repository.deleteById(id);
+            universityService.update(currUni);
         }
         else {
             System.out.println("Department with such id doesn't exist.");

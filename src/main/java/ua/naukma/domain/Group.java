@@ -1,13 +1,13 @@
 package ua.naukma.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Group {
+public class Group implements Serializable {
     private int id;
     private String name;
     private int course;
     private int admissionYear;
-    private Group group;
     private Faculty faculty;
 
     public Group(int id, String name, Faculty faculty, int course, int admissionYear) {

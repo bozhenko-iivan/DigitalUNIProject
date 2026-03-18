@@ -1,8 +1,9 @@
 package ua.naukma.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Student extends Person {
+public class Student extends Person implements Serializable {
     private String recordBookNumber;
     private int course;
     private Group group;
@@ -87,8 +88,8 @@ public class Student extends Person {
                 + "\nEmail: " + getEmail() + "\nPhone Number: " + getPhoneNumber() +
                 "\nRecord Book Number: " + getRecordBookNumber() + "\nID: " + getId() +
                 "\nAdmission year: " + getAdmissionYear() + "\nCourse: " + getCourse() +
-                "\nGroupName: " + getGroup() + "\nStudy form: " + getStudyForm() +
-                "\nStatus: " + getStatus();
+                "\nGroupName: " + group.getName() + "\nStudy form: " + getStudyForm() +
+                "\nStatus: " + getStatus() + "\nFaculty " + group.getFaculty();
     }
 
     public String toStringShort() {

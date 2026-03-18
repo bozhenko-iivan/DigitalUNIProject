@@ -1,6 +1,8 @@
 package ua.naukma.domain;
 
-public class Department {
+import java.io.Serializable;
+
+public class Department implements Serializable {
     private int id;
     private String name;
     private Faculty faculty;

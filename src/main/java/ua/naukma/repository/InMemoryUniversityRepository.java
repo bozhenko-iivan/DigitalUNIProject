@@ -5,9 +5,10 @@ import ua.naukma.domain.Teacher;
 import ua.naukma.domain.University;
 import ua.naukma.exception.DuplicateEntityException;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class InMemoryUniversityRepository implements Repository<University, Integer> {
+public class InMemoryUniversityRepository implements Repository<University, Integer>, Serializable {
     private Map<Integer, University> storage = new HashMap<>();
     @Override
     public void save(University u) {

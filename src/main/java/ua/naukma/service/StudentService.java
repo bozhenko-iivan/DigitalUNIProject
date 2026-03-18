@@ -7,6 +7,7 @@ import ua.naukma.utils.IdVerificator;
 import ua.naukma.utils.PersonInfoVerificator;
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -17,22 +18,27 @@ public class StudentService implements Service<Student, Integer> {
     //private final Repository<Group, Integer> groupRepository;
     //private Faculty faculty;
     private Group group;
+    private University university;
+    private UniversityService universityService;
 
-    public StudentService(University currUni, Group group) {
-        this.repository = currUni.getStudentRepository();
+    public StudentService(University university, Group group, UniversityService universityService) {
+        this.repository = university.getStudentRepository();
         this.group = group;
+        this.university = university;
+        this.universityService = universityService;
     }
 
     @Override
     public void add() {
-        try {
-            Student s = student_validate_all();
-            if (s != null){
+        while (true) {
+            try {
+                Student s = student_validate_all();
                 try_addStudent(s);
+                universityService.update(university);
+                return;
+            } catch (DuplicateEntityException e) {
+                System.out.println(e.getMessage() + " Please try again with different data.");
             }
-        } catch (DuplicateEntityException e) {
-            System.out.println("Registration failed: " + e.getMessage());
-            System.out.println("Please try again.");
         }
     }
 
@@ -70,6 +76,7 @@ public class StudentService implements Service<Student, Integer> {
         Optional<Student> student = repository.findById(id);
         if (student.isPresent()) {
             repository.deleteById(id);
+            universityService.update(university);
         } else {
             System.out.println("Student with such id doesn't exist.");
         }

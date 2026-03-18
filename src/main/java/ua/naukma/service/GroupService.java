@@ -17,16 +17,21 @@ public class GroupService implements Service<Group, Integer> {
     private final Repository<Group, Integer> groupRepository;
     //private Department department;
     private Faculty faculty;
+    private University university;
+    private UniversityService universityService;
 
-    public GroupService(University currUni, Faculty currFaculty) {
-        this.groupRepository = currUni.getGroupRepository();
+    public GroupService(University university, Faculty currFaculty, UniversityService universityService) {
+        this.groupRepository = university.getGroupRepository();
         this.faculty = currFaculty;
+        this.university = university;
+        this.universityService = universityService;
     }
 
     @Override
     public void add() {
         Group gr = group_validate_all();
         try_add_group(gr);
+        universityService.update(university);
     }
 
     public List<Group> getAllGroups() {
@@ -78,6 +83,7 @@ public class GroupService implements Service<Group, Integer> {
                 throw new EntityNotFoundException("Group with id " + id + " does not exist.");
             }
             groupRepository.deleteById(id);
+            universityService.update(university);
             System.out.println("Group with id " + id + " has been deleted.");
         } catch (EntityNotFoundException e) {
             System.out.println(e.getMessage());

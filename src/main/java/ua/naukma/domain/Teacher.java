@@ -2,10 +2,11 @@ package ua.naukma.domain;
 
 import ua.naukma.exception.IncorrectDataException;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.IllegalFormatCodePointException;
 
-public class Teacher extends Person {
+public class Teacher extends Person implements Serializable {
     private TeacherPosition  position;
     private TeacherDegree  degree;
     private TeacherRank  rank;

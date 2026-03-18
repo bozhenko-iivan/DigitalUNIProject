@@ -1,9 +1,7 @@
 package ua.naukma.ui;
 
-import ua.naukma.domain.Department;
-import ua.naukma.domain.Faculty;
-import ua.naukma.domain.Group;
-import ua.naukma.domain.University;
+import ua.naukma.domain.*;
+import ua.naukma.security.Permissions;
 import ua.naukma.service.*;
 import ua.naukma.utils.InitScanner;
 
@@ -17,6 +15,7 @@ public class MenuOptionsHandler{
     private Department current_department;
     private University current_university;
     private Group current_group;
+    private SystemUser current_user;
 
     private UniversityService universityService;
     private StudentService studentService;
@@ -24,27 +23,54 @@ public class MenuOptionsHandler{
     private DepartmentService departmentService;
     private GroupService groupService;
     private TeacherService teacherService;
+    private UserService userService;
 
-    public MenuOptionsHandler(MenuLevel current_level, UniversityService universityService) {
+    public MenuOptionsHandler(MenuLevel current_level, UniversityService universityService, UserService userService, SystemUser user) {
         this.current_level = current_level;
         this.universityService = universityService;
+        this.userService = userService;
+        this.current_user = user;
     }
 
     private void handle_MON() {
         int choice = readInt();
         switch (choice) {
             case 1: System.out.println("Exiting.."); System.exit(0); break;
-            case 2: universityService.add(); break;
-            case 3: universityService.delete(); break;
+            case 2 :
+                if (current_user.hasPermission(Permissions.ADD_UNIVERSITY)) {
+                universityService.add();
+            } else {
+                System.out.println("Access Denied: You cannot add universities.");
+            }
+            break;
+            case 3: {
+                if (current_user.hasPermission(Permissions.DELETE_UNIVERSITY)) {
+                    universityService.delete();
+                } else {
+                    System.out.println("Access Denied: You cannot delete universities.");
+                }
+                break;
+            }
             case 4:
             University found = universityService.findById();
             if (found != null) {
                 current_university = found;
                 current_level = MenuLevel.UNI;
-                facultyService = new FacultyService(current_university);
+                facultyService = new FacultyService(current_university, universityService);
             }
             break;
             case 5: universityService.showAll(); break;
+            case 6:
+                if ((current_user.hasPermission(Permissions.MANAGE_USERS))) {
+                    current_level = MenuLevel.ADMIN_PANEL;
+                } else {
+                    System.out.println("You do not have permissions to do this");
+                }
+                break;
+            case 7:
+                System.out.println("Logging out...");
+                this.current_user = userService.login();
+                break;
         }
     }
 
@@ -52,13 +78,15 @@ public class MenuOptionsHandler{
             int choice = readInt();
             switch (choice){
                 case 1: current_level = MenuLevel.MON; break;
-                case 2: facultyService.add(); break;
+                case 2:
+                    facultyService.add();
+                    break;
                 case 3: facultyService.delete(); break;
                 case 4: {
                     current_faculty = facultyService.workWithFaculty(current_level);
                     if(current_faculty != null){
                         current_level = MenuLevel.FAC;
-                        departmentService = new DepartmentService(current_university, current_faculty);
+                        departmentService = new DepartmentService(current_university, current_faculty, universityService);
                     } else {
                         current_level = MenuLevel.UNI;
                     }
@@ -78,7 +106,7 @@ public class MenuOptionsHandler{
                 current_group = groupService.findById();
                 if (current_group != null){
                     current_level = MenuLevel.GROUP;
-                    studentService = new StudentService(current_university, current_group);
+                    studentService = new StudentService(current_university, current_group,  universityService);
                 }
                 break;
             }
@@ -90,8 +118,18 @@ public class MenuOptionsHandler{
         int choice = readInt();
         switch (choice){
             case 1: current_level = MenuLevel.GRPS; break;
-            case 2: studentService.add(); break;
-            case 3: studentService.delete(); break;
+            case 2:
+                if (current_user.hasPermission(Permissions.MANAGE_USERS)) {
+                    studentService.add();
+                } else {
+                    System.out.println("Access Denied: You cannot add students.");
+                } break;
+            case 3:
+                if (current_user.hasPermission(Permissions.MANAGE_USERS)) {
+                    studentService.delete();
+                } else {
+                    System.out.println("Access Denied: You cannot delete students.");
+                } break;
             case 4: studentService.findById(); break;
             case 5: studentService.showAll(); break;
         }
@@ -108,7 +146,7 @@ public class MenuOptionsHandler{
                 case 2: current_level = MenuLevel.DEPS; break;
                 case 3: {
                     current_level = MenuLevel.GRPS;
-                    groupService = new GroupService(current_university, current_faculty);
+                    groupService = new GroupService(current_university, current_faculty, universityService);
                 }break;
                 case 4: System.out.println("This method is currently deprecated."); break;
             }
@@ -124,7 +162,7 @@ public class MenuOptionsHandler{
                     current_department = departmentService.findById();
                     if(current_department != null){
                         current_level = MenuLevel.DEPARTAMENT;
-                        teacherService = new TeacherService(current_university, current_department);
+                        teacherService = new TeacherService(current_university, current_department,  universityService);
                         //groupService = new GroupService(current_university, current_department);
                     } else {
                         current_level = MenuLevel.DEPS;
@@ -146,6 +184,18 @@ public class MenuOptionsHandler{
                 //case 6: current_level = MenuLevel.GRPS; break;
             }
     }
+
+    private void handle_ADMIN_PANEL() {
+        int choice = readInt();
+        switch (choice){
+            case 1: current_level = MenuLevel.MON; break;
+            case 2: userService.add(); break;
+            case 3: userService.delete(); break;
+            case 4: userService.findById(); break;
+            case 5: userService.showAll(); break;
+        }
+    }
+
     private static int readInt(){
         Scanner scanner = InitScanner.try_init_scanner();
         for(;;) {
@@ -184,6 +234,8 @@ public class MenuOptionsHandler{
                         handle_GROUP(current_group);
                         break;
                 default: break;
+            case ADMIN_PANEL:
+                handle_ADMIN_PANEL(); break;
         }
         return current_level;
     }

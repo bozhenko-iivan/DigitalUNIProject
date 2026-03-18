@@ -7,6 +7,8 @@ import ua.naukma.repository.Repository;
 import ua.naukma.utils.IdVerificator;
 import ua.naukma.utils.UniversityVerificator;
 
+import javax.sql.rowset.serial.SerialArray;
+import javax.sql.rowset.serial.SerialJavaObject;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,6 +56,14 @@ public class UniversityService implements Service<University, Integer> {
         } else {
             System.out.println("University with id " + id + " not found!");
             return null;
+        }
+    }
+
+    public void update(University currentUni) {
+        try {
+            repository.save(currentUni);
+        } catch (Exception e) {
+            System.out.println("Error updating university: " + e.getMessage());
         }
     }
 

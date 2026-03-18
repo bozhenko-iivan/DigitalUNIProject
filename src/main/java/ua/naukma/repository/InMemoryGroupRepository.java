@@ -2,10 +2,12 @@ package ua.naukma.repository;
 
 import ua.naukma.domain.Faculty;
 import ua.naukma.domain.Group;
+import ua.naukma.service.Service;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class InMemoryGroupRepository implements Repository<Group, Integer> {
+public class InMemoryGroupRepository implements Repository<Group, Integer>, Serializable {
     private Map<Integer, Group> storage = new HashMap<>();
     @Override
     public void save(Group gr) {

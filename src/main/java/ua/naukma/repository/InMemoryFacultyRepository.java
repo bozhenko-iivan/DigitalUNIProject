@@ -4,9 +4,10 @@ import ua.naukma.domain.Faculty;
 import ua.naukma.domain.Student;
 import ua.naukma.domain.Teacher;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class InMemoryFacultyRepository implements Repository<Faculty, Integer> {
+public class InMemoryFacultyRepository implements Repository<Faculty, Integer>, Serializable {
     private Map<Integer, Faculty> storage = new HashMap<>();
 
     @Override
