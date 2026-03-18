@@ -1,6 +1,8 @@
 package ua.naukma.service;
 
-import java.util.Optional;
+import ua.naukma.domain.Student;
+
+import java.util.List;
 
 public interface Service <T, ID extends Integer> {
     void add();

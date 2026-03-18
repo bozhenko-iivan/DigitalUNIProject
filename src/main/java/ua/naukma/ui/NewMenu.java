@@ -3,13 +3,20 @@ import ua.naukma.service.*;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import ua.naukma.service.UniversityService;
 
 public class NewMenu{
-     public static MenuLevel current_level = MenuLevel.UNI;
-     MenuOptionsHandler menu_options_handler = new MenuOptionsHandler(current_level);
-    public void main_menu(){
+     public static MenuLevel current_level = MenuLevel.MON;
+
+    private MenuOptionsHandler menu_options_handler;
+
+    public NewMenu(UniversityService universityService) {
+        this.menu_options_handler = new MenuOptionsHandler(current_level, universityService);
+    }
+
+    public void main_menu() {
         draw_greetings();
-        while(current_level != MenuLevel.MON){
+        while (true) {
             draw_current(current_level);
             current_level = menu_options_handler.handle(current_level);
         }
@@ -38,9 +45,14 @@ public class NewMenu{
                "4. Show faculty info");
    }
    public  void draw_current(MenuLevel level){
-       System.out.println("Current operations: ");
-       if(level != MenuLevel.MON) System.out.println("1. Go higher");
-       else System.out.println("1. Exit.");
+       System.out.println("Current level " + current_level);
+       System.out.println("Operations: ");
+       if (level == MenuLevel.MON) {
+           System.out.println("1. Exit system");
+       }
+       else {
+           System.out.println("1. Go higher");
+       }
        String s = "";
        switch(level){
            case MON: s = "university"; break;
@@ -51,6 +63,14 @@ public class NewMenu{
            case GRPS: s = "group"; break;
            case FAC: draw_FAC(); return;
        }
-       System.out.println("2. Add " + s + "\n3. Remove " + s + "\n4. Find " + s + "\n5. Show all");
+       String action4 = (level == MenuLevel.MON) ? "Select " : "Find ";
+
+       System.out.println("2. Add " + s +
+               "\n3. Remove " + s +
+               "\n4. " + action4 + s +
+               "\n5. Show all " + s + "s");
+//       if (level == MenuLevel.DEPARTAMENT) {
+//           System.out.println("6. Go to groups");
+//       }
    }
 }

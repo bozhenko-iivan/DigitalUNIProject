@@ -2,7 +2,7 @@ package ua.naukma.service;
 
 import ua.naukma.domain.*;
 import ua.naukma.repository.InMemoryFacultyRepository;
-import ua.naukma.repository.InMemoryStudentRepository;
+import ua.naukma.repository.PersonRepository;
 import ua.naukma.repository.Repository;
 import ua.naukma.ui.MenuLevel;
 import ua.naukma.utils.EmailVerificator;
@@ -11,6 +11,7 @@ import ua.naukma.utils.IdVerificator;
 import ua.naukma.utils.InitScanner;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -19,7 +20,7 @@ public class FacultyService implements Service<Faculty, Integer> {
     private final Repository<Faculty, Integer> repository;
     private University university;
     public FacultyService(University u) {
-        this.repository = new InMemoryFacultyRepository();
+        this.repository = u.getFacultyRepository();
         this.university = u;
     }
     public University getUniversity(){
@@ -39,7 +40,16 @@ public class FacultyService implements Service<Faculty, Integer> {
             repository.save(f);
     }
     private Faculty faculty_validate_all(){
-        int id = IdVerificator.ask_id();
+        int id;
+        while (true) {
+            id = IdVerificator.ask_id();
+            Optional<Faculty> existingFaculty = repository.findById(id);
+            if (existingFaculty.isPresent()) {
+                System.out.println("Faculty with such id already exists. Please choose another id.");
+            } else {
+                break;
+            }
+        }
         String name = FacilityNameVerificator.ask_facility_name();
         String shortname = FacilityNameVerificator.ask_short_name();
         String email = EmailVerificator.ask_email();
@@ -105,7 +115,11 @@ public class FacultyService implements Service<Faculty, Integer> {
     }
     @Override
     public void showAll(){
-        repository.showAll();
+        repository.findAll().forEach(System.out::println);
+    }
+
+    public List<Faculty> getAllFaculties() {
+        return repository.findAll();
     }
 
     private static int readInt(){

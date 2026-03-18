@@ -5,33 +5,30 @@ import java.time.LocalDate;
 public class Student extends Person {
     private String recordBookNumber;
     private int course;
-    private String groupName;
+    private Group group;
     private int admissionYear;
     private StudyForm studyForm;
     private StudentStatus status;
 
-    private Department department;
-
-
     public Student(int id, String firstName, String lastName, String middleName,
                    LocalDate birthDate, String email, String phoneNumber,
-                   String recordBookNumber, int course, String groupName,
+                   String recordBookNumber, int course, Group groupName,
                    int admissionYear, StudyForm studyForm, StudentStatus status)
     {
         super(id, firstName, lastName, middleName, birthDate, email, phoneNumber);
         setRecordBookNumber(recordBookNumber);
         setCourse(course);
-        setGroupName(groupName);
+        setGroup(groupName);
         setAdmissionYear(admissionYear);
         setStudyForm(studyForm);
         setStatus(status);
     }
-    public int getCourse() { return course; }
-    public String getGroupName() { return groupName; }
-    public Department getDepartment() { return department; }
+    public int getCourse() { return group.getCourse(); }
+    public Group getGroup() { return group; }
+    //public Department getDepartment() { return group.getDepartment(); }
     public StudentStatus getStatus() { return status; }
     public StudyForm getStudyForm() { return studyForm; }
-    public int getAdmissionYear() { return admissionYear; }
+    public int getAdmissionYear() { return group.getAdmissionYear(); }
     public String getRecordBookNumber() { return recordBookNumber; }
 
 
@@ -49,12 +46,6 @@ public class Student extends Person {
         this.studyForm = studyForm;
     }
 
-    public void setDepartment(Department department) {
-        if (department == null) {
-            throw new IllegalArgumentException("Department cannot be null.");
-        }
-        this.department = department;
-    }
     public void setAdmissionYear(int admissionYear) {
         if (admissionYear < 1991 || admissionYear > LocalDate.now().getYear() ) {
             throw new IllegalArgumentException("Invalid admission year.");
@@ -83,11 +74,11 @@ public class Student extends Person {
         this.course = course;
     }
 
-    public void setGroupName(String groupName) {
-        if (groupName == null || groupName.isBlank()){
+    public void setGroup(Group group) {
+        if (group == null){
             throw new IllegalArgumentException("Enter group name.");
         }
-        this.groupName = groupName;
+        this.group = group;
     }
 
     @Override
@@ -96,7 +87,12 @@ public class Student extends Person {
                 + "\nEmail: " + getEmail() + "\nPhone Number: " + getPhoneNumber() +
                 "\nRecord Book Number: " + getRecordBookNumber() + "\nID: " + getId() +
                 "\nAdmission year: " + getAdmissionYear() + "\nCourse: " + getCourse() +
-                "\nGroupName: " + getGroupName() + "\nStudy form: " + getStudyForm() +
+                "\nGroupName: " + getGroup() + "\nStudy form: " + getStudyForm() +
                 "\nStatus: " + getStatus();
+    }
+
+    public String toStringShort() {
+        return "Student " + getFirstName() + " " + getLastName() + " " + getMiddleName() + "\nCourse: " + getCourse() +
+                "\nStudy form: "  + getStudyForm();
     }
 }

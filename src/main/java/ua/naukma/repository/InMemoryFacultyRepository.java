@@ -22,9 +22,7 @@ public class InMemoryFacultyRepository implements Repository<Faculty, Integer> {
 
     @Override
     public void showAll(){
-        for (Faculty f : storage.values()) {
-            System.out.println(f.getName());
-        }
+        storage.values().forEach(System.out::println);
     }
     @Override
     public void deleteById(Integer id) {

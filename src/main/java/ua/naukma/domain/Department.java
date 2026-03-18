@@ -1,8 +1,5 @@
 package ua.naukma.domain;
 
-import ua.naukma.repository.InMemoryTeacherRepository;
-import ua.naukma.service.TeacherService;
-
 public class Department {
     private int id;
     private String name;
@@ -10,38 +7,60 @@ public class Department {
     private Teacher head;
     private String location;
     private String email;
-    private InMemoryTeacherRepository teachers = new InMemoryTeacherRepository();
-    private TeacherService teacherService = new TeacherService(this);
-    public Department(int id, String name, Faculty faculty, Teacher head, String location,  String email) {
-        this.id = id;
+
+    public Department(int id, String name, Faculty faculty, Teacher head, String location, String email) {
+        setId(id);
         setName(name);
-        this.faculty = faculty;
-        this.head = head;
+        setFaculty(faculty);
+        setHead(head);
         setLocation(location);
-        this.email = email;
+        setEmail(email);
     }
 
-    public TeacherService getTeacherService() {
-        return teacherService;
-    }
     public int getId() { return id; }
     public String getName() { return name; }
     public Faculty getFaculty() { return faculty; }
-    public InMemoryTeacherRepository getTeachers() { return teachers; }
-    public void setId(int id) { this.id = id; }
+    public Teacher getHead() { return head; }
+    public String getLocation() { return location; }
+    public String getEmail() { return email; }
 
-    public void setName(String name) {
-        if (name == null || name.isEmpty()) {
+    private void setId(int id) {
+        if (id <= 0) {
+            throw new IllegalArgumentException("ID must be positive.");
+        }
+        this.id = id;
+    }
+
+    private void setName(String name) {
+        if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Invalid department name.");
         }
         this.name = name;
     }
 
+    private void setFaculty(Faculty faculty) {
+        if (faculty == null) {
+            throw new IllegalArgumentException("Faculty cannot be null.");
+        }
+        this.faculty = faculty;
+    }
+
+    public void setHead(Teacher head) {
+        this.head = head;
+    }
+
     public void setLocation(String location) {
-        if (location == null || location.isEmpty()) {
+        if (location == null || location.isBlank()) {
             throw new IllegalArgumentException("Invalid location.");
         }
         this.location = location;
+    }
+
+    public void setEmail(String email) {
+        if (email == null || !email.contains("@") || email.isBlank()) {
+            throw new IllegalArgumentException("Email cannot be empty and must contain '@'.");
+        }
+        this.email = email;
     }
 
     @Override

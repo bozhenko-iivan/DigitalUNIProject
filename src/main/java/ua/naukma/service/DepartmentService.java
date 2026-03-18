@@ -1,10 +1,8 @@
 package ua.naukma.service;
 
-import ua.naukma.domain.Department;
-import ua.naukma.domain.Faculty;
-import ua.naukma.domain.Teacher;
-import ua.naukma.domain.University;
+import ua.naukma.domain.*;
 import ua.naukma.repository.InMemoryDepartmentRepository;
+import ua.naukma.repository.PersonRepository;
 import ua.naukma.repository.Repository;
 import ua.naukma.ui.MenuLevel;
 import ua.naukma.utils.EmailVerificator;
@@ -13,30 +11,27 @@ import ua.naukma.utils.IdVerificator;
 import ua.naukma.utils.InitScanner;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
 public class DepartmentService implements Service<Department, Integer> {
     private final Repository<Department, Integer> repository;
     private Faculty faculty;
-    public DepartmentService(Faculty f) {
-        this.repository = new InMemoryDepartmentRepository();
+    public DepartmentService(University currUni,Faculty f) {
+        this.repository = currUni.getDepartmentRepository();
         this.faculty = f;
     }
     public Faculty getFaculty() { return faculty; }
-    private InMemoryDepartmentRepository inMemoryD = new InMemoryDepartmentRepository();
+
     @Override
     public void add() {
         Department newD = department_validate_all();
         try_AddDepartment(newD);
     }
     private void try_AddDepartment(Department d) {
-        Optional<Department> dep = repository.findById(d.getId());
-        if (dep.isPresent()) {
-            System.out.println("Department with such id already exists.");
-            return;
-        }
         repository.save(d);
+        System.out.println("Department with such id successfully added.");
     }
     @Override
     public void delete() {
@@ -86,11 +81,21 @@ public class DepartmentService implements Service<Department, Integer> {
     }
     @Override
     public void showAll(){
-        repository.showAll();
+        System.out.println("Finding all departments of " + faculty.getName());
+        repository.findAll().stream().filter(d -> d.getFaculty().getId() == faculty.getId()).forEach(System.out::println);
     }
 
     private Department department_validate_all(){
-        int id = IdVerificator.ask_id();
+        int id;
+        while (true) {
+            id = IdVerificator.ask_id();
+            Optional<Department> existingDep = repository.findById(id);
+            if (existingDep.isPresent()) {
+                System.out.println("Department with such id already exists. Please choose another id.");
+            } else {
+                break;
+            }
+        }
         String name = FacilityNameVerificator.ask_facility_name();
         String email = EmailVerificator.ask_email();
         Teacher tc = null;

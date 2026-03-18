@@ -21,9 +21,7 @@ public class InMemoryDepartmentRepository implements Repository<Department, Inte
 
     @Override
     public void showAll(){
-        for (Department d : storage.values()) {
-            System.out.println(d);
-        }
+        storage.values().forEach(System.out::println);
     }
     @Override
     public void deleteById(Integer id) {

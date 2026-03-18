@@ -50,17 +50,24 @@ public abstract class Person {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        if (phoneNumber != null && phoneNumber.length() == 10) {
-            for (int i=0; i<phoneNumber.length(); i++) {
-                if (!Character.isDigit(phoneNumber.charAt(i))) {
-                    throw new IllegalArgumentException("Only digits are allowed. Don't use space to separate numbers. Example: 0981231234");
-                }
-            }
-            this.phoneNumber = phoneNumber;
-
-        } else {
-            throw new IllegalArgumentException("Phone number must contain 10 digits. Example: 0981231234");
+//        if (phoneNumber != null && phoneNumber.length() == 10) {
+//            for (int i=0; i<phoneNumber.length(); i++) {
+//                if (!Character.isDigit(phoneNumber.charAt(i))) {
+//                    throw new IllegalArgumentException("Only digits are allowed. Don't use space to separate numbers. Example: 0981231234");
+//                }
+//            }
+//            this.phoneNumber = phoneNumber;
+//
+//        } else {
+//            throw new IllegalArgumentException("Phone number must contain 10 digits. Example: 0981231234");
+//        }
+        if (phoneNumber == null || phoneNumber.length() != 13) {
+            throw new IllegalArgumentException("Phone number must contain 13 digits. Example: +380981231234");
         }
+        if (!phoneNumber.matches("\\+380\\d{9}")) {
+            throw new IllegalArgumentException("Phone number must contain 13 digits.");
+        }
+        this.phoneNumber = phoneNumber;
     }
 
     public void setEmail(String email) {

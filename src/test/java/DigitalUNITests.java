@@ -1,7 +1,10 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ua.naukma.domain.*;
+import ua.naukma.exception.DuplicateEntityException;
+import ua.naukma.repository.InMemoryGroupRepository;
 import ua.naukma.repository.InMemoryStudentRepository;
+import ua.naukma.repository.PersonRepository;
 import ua.naukma.repository.Repository;
 import ua.naukma.service.StudentService;
 
@@ -11,22 +14,29 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DigitalUniTests {
 
-    private Repository<Student, Integer> repository;
+    private PersonRepository<Student, Integer> studentRepository;
     private StudentService studentService;
 
-//    @BeforeEach
-//    void setUp() {
-//        repository = new InMemoryStudentRepository();
-//        studentService = new StudentService(repository);
-//    }
+    private Group testGroup;
+    private Department testDepartment;
+    private Faculty testFaculty;
+    private University testUniversity;
+
+    @BeforeEach
+    void setUp() {
+        studentRepository = new InMemoryStudentRepository();
+        testDepartment = new Department(1111111, "TestDept", null, null, "TestLoc", "test@ukma.edu.ua");
+        testGroup = new Group(1234567, "IPZ-2025", testFaculty, 1, 2025);
+        studentService = new StudentService(testUniversity, testGroup);
+    }
 
     @Test
     void testBirthDateInFutureThrowsException() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             new Student(1, "Іван", "Іваненко", "Іванович",
-                    LocalDate.now().plusDays(5), // Дата з майбутнього
-                    "test@ukma.edu.ua", "0981231234",
-                    "12345678", 1, "IPZ-2025", 2024,
+                    LocalDate.now().plusDays(5),
+                    "test@ukma.edu.ua", "+380981231234",
+                    "12345678", 1, testGroup, 2024,
                     StudyForm.BUDGET, StudentStatus.STUDYING);
         });
 
@@ -40,11 +50,11 @@ class DigitalUniTests {
                     LocalDate.of(2005, 5, 5),
                     "test@ukma.edu.ua",
                     "12345", // Занадто короткий номер
-                    "12345678", 1, "IPZ-2025", 2024,
+                    "12345678", 1, testGroup, 2024,
                     StudyForm.BUDGET, StudentStatus.STUDYING);
         });
 
-        assertEquals("Phone number must contain 10 digits. Example: 0981231234", exception.getMessage());
+        assertEquals("Phone number must contain 13 digits. Example: +380981231234", exception.getMessage());
     }
 
     @Test
@@ -53,8 +63,8 @@ class DigitalUniTests {
             new Student(3, "Олег", "Сидоренко", "Іванович",
                     LocalDate.of(2004, 3, 3),
                     "oleg_ukma.edu.ua", // Відсутня собачка '@'
-                    "0981231234",
-                    "87654321", 1, "IPZ-2025", 2024,
+                    "+380981231234",
+                    "87654321", 1, testGroup, 2024,
                     StudyForm.CONTRACT, StudentStatus.STUDYING);
         });
 
@@ -64,12 +74,7 @@ class DigitalUniTests {
     @Test
     void testInvalidAdmissionYearThrowsException() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Student(4, "Олексій", "Іванов", "Петрович",
-                    LocalDate.of(2005, 1, 1),
-                    "oleksiy@ukma.edu.ua", "0981231234",
-                    "12345678", 1, "IPZ-2025",
-                    1990, // Некоректний рік (меньше 1991)
-                    StudyForm.BUDGET, StudentStatus.STUDYING);
+            new Group(1234567, "IPZ-2025", testFaculty, 1, 1990);
         });
 
         assertEquals("Invalid admission year.", exception.getMessage());
@@ -78,36 +83,27 @@ class DigitalUniTests {
     @Test
     void testInvalidCourseNumberThrowsException() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Student(5, "Олена", "Коваленко", "Сергіївна",
-                    LocalDate.of(2004, 2, 2),
-                    "olena@ukma.edu.ua", "0981231234",
-                    "12345678",
-                    7, // Некоректний курс (більше 6)
-                    "IPZ-2025", 2024,
-                    StudyForm.CONTRACT, StudentStatus.STUDYING);
+            new Group(1234567, "IPZ-2025", testFaculty, 7, 2024);
         });
 
-        assertEquals("Invalid course number. Only 1-6 courses exist.", exception.getMessage());
+        assertEquals("Invalid course.", exception.getMessage());
     }
 
     @Test
     void testAddExistingStudentThrowsException() {
-
-        repository = new InMemoryStudentRepository();
-        studentService = new StudentService(repository);
-
         Student student = new Student(5, "Максим", "Ткаченко", "Ігорович",
                 LocalDate.of(2005, 10, 10),
-                "max@ukma.edu.ua", "0981231234",
-                "11112222", 1, "IPZ-2025", 2024,
+                "max@ukma.edu.ua", "+380981231234",
+                "11112222", 1, testGroup, 2024,
                 StudyForm.BUDGET, StudentStatus.STUDYING);
+        try {
+            studentService.try_addStudent(student);
+        } catch (DuplicateEntityException ignored) {}
 
-        studentService.addStudent(student);
-
-        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
-            studentService.addStudent(student);
+        DuplicateEntityException exception = assertThrows(DuplicateEntityException.class, () -> {
+            studentService.try_addStudent(student);
         });
+        assertTrue(exception.getMessage().contains("already exists"));
 
-        assertEquals("Student already exists", exception.getMessage());
     }
 }

@@ -16,22 +16,22 @@ public class InMemoryStudentRepository implements PersonRepository<Student, Inte
     public Optional<Student> findById(Integer id) {
         return Optional.ofNullable(storage.get(id));
     }
+
     @Override
     public void showAll(){
-        for (Student s : storage.values()) {
-            System.out.println(s.toString());
-        }
+        storage.values().forEach(s -> System.out.println(s.toStringShort()));
     }
     @Override
     public Optional<Student> findByPIB(String firstName, String lastName, String middleName) {
-        for (Student s : storage.values()) {
-            if (s.getFirstName().equals(firstName) &&
-                    s.getLastName().equals(lastName) &&
-                    s.getMiddleName().equals(middleName)) {
-                return Optional.of(s);
-            }
-        }
-        return Optional.empty();
+//        for (Student s : storage.values()) {
+//            if (s.getFirstName().equals(firstName) &&
+//                    s.getLastName().equals(lastName) &&
+//                    s.getMiddleName().equals(middleName)) {
+//                return Optional.of(s);
+//            }
+//        }
+//        return Optional.empty();
+        return storage.values().stream().filter(s -> s.getMiddleName().equals(middleName)).findFirst();
     }
     @Override
     public void deleteById(Integer id) {
