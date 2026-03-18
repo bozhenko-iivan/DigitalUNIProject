@@ -10,6 +10,7 @@ import ua.naukma.utils.FacilityNameVerificator;
 import ua.naukma.utils.IdVerificator;
 import ua.naukma.utils.InitScanner;
 
+
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Optional;
@@ -18,10 +19,13 @@ import java.util.Scanner;
 
 public class FacultyService implements Service<Faculty, Integer> {
     private final Repository<Faculty, Integer> repository;
+    private final UniversityService uniService;
     private University university;
-    public FacultyService(University u) {
-        this.repository = u.getFacultyRepository();
-        this.university = u;
+
+    public FacultyService(University university, UniversityService uniService) {
+        this.repository = university.getFacultyRepository();
+        this.university = university;
+        this.uniService = uniService;
     }
     public University getUniversity(){
         return this.university;
@@ -30,6 +34,7 @@ public class FacultyService implements Service<Faculty, Integer> {
     public void add() {
         Faculty newF = faculty_validate_all();
         try_AddFaculty(newF);
+        uniService.update(university);
     }
     private void try_AddFaculty(Faculty f) {
             Optional<Faculty> faculty = repository.findById(f.getId());
@@ -62,6 +67,7 @@ public class FacultyService implements Service<Faculty, Integer> {
         Optional<Faculty> f = repository.findById(id);
         if (f.isPresent()) {
             repository.deleteById(id);
+            uniService.update(university);
         }
         else {
             System.out.println("Faculty with such id doesn't exist.");

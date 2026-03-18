@@ -3,7 +3,9 @@ package ua.naukma.domain;
 import ua.naukma.exception.IncorrectDataException;
 import ua.naukma.repository.InMemoryDepartmentRepository;
 
-public class Faculty {
+import java.io.Serializable;
+
+public class Faculty implements Serializable {
     private int id;
     private String name;
     private String shortName;

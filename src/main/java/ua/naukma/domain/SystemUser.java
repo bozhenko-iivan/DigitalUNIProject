@@ -3,9 +3,9 @@ package ua.naukma.domain;
 import ua.naukma.security.Permissions;
 import ua.naukma.service.UserService;
 
-import java.util.StringJoiner;
+import java.io.Serializable;
 
-public class SystemUser {
+public class SystemUser implements Serializable {
     private int id;
     private String login;
     private String password;

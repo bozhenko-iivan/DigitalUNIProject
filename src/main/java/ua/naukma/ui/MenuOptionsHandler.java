@@ -56,7 +56,7 @@ public class MenuOptionsHandler{
             if (found != null) {
                 current_university = found;
                 current_level = MenuLevel.UNI;
-                facultyService = new FacultyService(current_university);
+                facultyService = new FacultyService(current_university, universityService);
             }
             break;
             case 5: universityService.showAll(); break;
@@ -78,13 +78,15 @@ public class MenuOptionsHandler{
             int choice = readInt();
             switch (choice){
                 case 1: current_level = MenuLevel.MON; break;
-                case 2: facultyService.add(); break;
+                case 2:
+                    facultyService.add();
+                    break;
                 case 3: facultyService.delete(); break;
                 case 4: {
                     current_faculty = facultyService.workWithFaculty(current_level);
                     if(current_faculty != null){
                         current_level = MenuLevel.FAC;
-                        departmentService = new DepartmentService(current_university, current_faculty);
+                        departmentService = new DepartmentService(current_university, current_faculty, universityService);
                     } else {
                         current_level = MenuLevel.UNI;
                     }
@@ -104,7 +106,7 @@ public class MenuOptionsHandler{
                 current_group = groupService.findById();
                 if (current_group != null){
                     current_level = MenuLevel.GROUP;
-                    studentService = new StudentService(current_university, current_group);
+                    studentService = new StudentService(current_university, current_group,  universityService);
                 }
                 break;
             }
@@ -144,7 +146,7 @@ public class MenuOptionsHandler{
                 case 2: current_level = MenuLevel.DEPS; break;
                 case 3: {
                     current_level = MenuLevel.GRPS;
-                    groupService = new GroupService(current_university, current_faculty);
+                    groupService = new GroupService(current_university, current_faculty, universityService);
                 }break;
                 case 4: System.out.println("This method is currently deprecated."); break;
             }
@@ -160,7 +162,7 @@ public class MenuOptionsHandler{
                     current_department = departmentService.findById();
                     if(current_department != null){
                         current_level = MenuLevel.DEPARTAMENT;
-                        teacherService = new TeacherService(current_university, current_department);
+                        teacherService = new TeacherService(current_university, current_department,  universityService);
                         //groupService = new GroupService(current_university, current_department);
                     } else {
                         current_level = MenuLevel.DEPS;

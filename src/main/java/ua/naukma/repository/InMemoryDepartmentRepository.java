@@ -1,11 +1,12 @@
 package ua.naukma.repository;
 
 import ua.naukma.domain.Department;
-import ua.naukma.domain.Teacher;
+import ua.naukma.service.Service;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class InMemoryDepartmentRepository implements Repository<Department, Integer> {
+public class InMemoryDepartmentRepository implements Repository<Department, Integer>, Serializable {
     private Map<Integer, Department> storage = new HashMap<>();
 
     @Override

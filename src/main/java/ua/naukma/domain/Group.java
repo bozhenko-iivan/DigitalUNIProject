@@ -1,8 +1,9 @@
 package ua.naukma.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Group {
+public class Group implements Serializable {
     private int id;
     private String name;
     private int course;

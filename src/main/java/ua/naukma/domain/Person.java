@@ -1,7 +1,8 @@
 package ua.naukma.domain;
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public abstract class Person {
+public abstract class Person implements Serializable {
     private int id;
     private String firstName;
     private String lastName;

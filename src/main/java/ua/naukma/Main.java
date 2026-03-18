@@ -9,9 +9,10 @@ import ua.naukma.ui.*;
 public class Main {
 
     static void main() {
-        Repository<University, Integer> uniRepo = new InMemoryUniversityRepository();
+        //Repository<University, Integer> uniRepo = new InMemoryUniversityRepository();
+        Repository<University, Integer> uniRepo = new FileUniversityRepository();
         UniversityService uniService = new UniversityService(uniRepo);
-        UserRepository userRepository = new UserRepository();
+        Repository<SystemUser, Integer> userRepository = new FileUserRepository();
         UserService userService = new UserService(userRepository);
         userService.initUser();
         SystemUser loggedUser = userService.login();

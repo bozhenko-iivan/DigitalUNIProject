@@ -8,7 +8,7 @@ import ua.naukma.exception.DuplicateEntityException;
 import ua.naukma.exception.EntityNotFoundException;
 import ua.naukma.exception.IncorrectDataException;
 import ua.naukma.repository.Repository;
-import ua.naukma.repository.UserRepository;
+import ua.naukma.repository.InMemoryUserRepository;
 import ua.naukma.utils.IdVerificator;
 import ua.naukma.utils.InitScanner;
 import ua.naukma.utils.SystemUserVerificator;

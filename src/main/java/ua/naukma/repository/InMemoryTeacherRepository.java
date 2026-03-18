@@ -3,9 +3,10 @@ package ua.naukma.repository;
 import ua.naukma.domain.Student;
 import ua.naukma.domain.Teacher;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class InMemoryTeacherRepository implements PersonRepository<Teacher, Integer> {
+public class InMemoryTeacherRepository implements PersonRepository<Teacher, Integer>, Serializable {
     private final Map<Integer, Teacher> storage = new HashMap<>();
 
     @Override

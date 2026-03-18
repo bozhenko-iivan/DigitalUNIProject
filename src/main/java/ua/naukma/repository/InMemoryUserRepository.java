@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class UserRepository implements Repository<SystemUser, Integer> {
+public class InMemoryUserRepository implements Repository<SystemUser, Integer> {
     private final List<SystemUser> users = new ArrayList<>();
 
     @Override

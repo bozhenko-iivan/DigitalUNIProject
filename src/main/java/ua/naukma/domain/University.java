@@ -6,10 +6,11 @@ import ua.naukma.service.DepartmentService;
 import ua.naukma.service.FacultyService;
 import ua.naukma.service.GroupService;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 
-public class University {
+public class University implements Serializable {
     private final int id;
     private String fullName;
     private String shortName;

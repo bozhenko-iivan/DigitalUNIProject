@@ -18,10 +18,14 @@ import java.util.Scanner;
 public class TeacherService implements Service <Teacher, Integer> {
     private final PersonRepository<Teacher, Integer> repository;
     private Department department;
+    private University university;
+    private UniversityService universityService;
 
-    public TeacherService(University currUni, Department department) {
+    public TeacherService(University university, Department department, UniversityService universityService) {
         this.department = department;
-        this.repository = currUni.getTeacherRepository();
+        this.repository = university.getTeacherRepository();
+        this.university = university;
+        this.universityService = universityService;
     }
 
     public Department getDepartment() {
@@ -32,6 +36,7 @@ public class TeacherService implements Service <Teacher, Integer> {
     public void add() {
         Teacher tec = teacher_validate_all();
         try_addTeacher(tec);
+        universityService.update(university);
     }
 
     private void try_addTeacher(Teacher t) {
@@ -48,6 +53,7 @@ public class TeacherService implements Service <Teacher, Integer> {
                 throw new EntityNotFoundException("Teacher with id " + id + " does not exist.");
             }
             repository.deleteById(id);
+            universityService.update(university);
             System.out.println("Teacher with id " + id + " has been deleted.");
         } catch (EntityNotFoundException e) {
             System.out.println(e.getMessage());
