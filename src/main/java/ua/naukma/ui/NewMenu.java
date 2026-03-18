@@ -1,16 +1,19 @@
 package ua.naukma.ui;
 import ua.naukma.domain.SystemUser;
+import ua.naukma.security.Permissions;
 import ua.naukma.service.*;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import ua.naukma.service.*;
 
-public class NewMenu{
-     public static MenuLevel current_level = MenuLevel.MON;
+public class NewMenu {
+    public static MenuLevel current_level = MenuLevel.MON;
     private MenuOptionsHandler menu_options_handler;
+    private SystemUser loggedUser;
 
     public NewMenu(UniversityService universityService, UserService userService, SystemUser loggedUser) {
+        this.loggedUser = loggedUser;
         this.menu_options_handler = new MenuOptionsHandler(current_level, universityService, userService, loggedUser);
     }
 
@@ -21,7 +24,8 @@ public class NewMenu{
             current_level = menu_options_handler.handle(current_level);
         }
     }
-    private  void draw_greetings() {
+
+    private void draw_greetings() {
         System.out.println("\n\t\t\t\tWelcome to the DigiUni!\n\n\n" +
                 "You can add, delete or view parts of the uni structure.\n" +
                 "Available operations depend on the directory.\n" +
@@ -38,45 +42,90 @@ public class NewMenu{
                 "\t\t |\t\t\t Teachers\n" +
                 "\t  Students\n");
     }
-   private  void draw_FAC(){
-       System.out.println(
-               "2. Go to departaments\n" +
-               "3. Go to groups\n" +
-               "4. Show faculty info");
-   }
-   public  void draw_current(MenuLevel level){
-       System.out.println("Current level " + current_level);
-       System.out.println("Operations: ");
-       if (level == MenuLevel.MON) {
-           System.out.println("1. Exit system");
-       }
-       else {
-           System.out.println("1. Go higher");
-       }
-       String s = "";
-       switch(level){
-           case MON: s = "university"; break;
-           case UNI: s = "faculty"; break;
-           case DEPARTAMENT: s = "teacher"; break;
-           case DEPS: s = "department"; break;
-           case GROUP:  s = "student"; break;
-           case GRPS: s = "group"; break;
-           case FAC: draw_FAC(); return;
-           case ADMIN_PANEL: s = "user"; break;
-       }
-       String action4 = (level == MenuLevel.MON) ? "Select " : "Find ";
 
-       System.out.println("2. Add " + s +
-               "\n3. Remove " + s +
-               "\n4. " + action4 + s +
-               "\n5. Show all " + s + "s");
-//       if (level == MenuLevel.DEPARTAMENT) {
-//           System.out.println("6. Go to groups");
-//       }
+    private void draw_FAC() {
+        System.out.println(
+                "2. Go to departaments\n" +
+                        "3. Go to groups\n" +
+                        "4. Show faculty info");
+    }
 
-       if (level == MenuLevel.MON) {
-           System.out.println("6. Manage users (ADMIN only)");
-           System.out.println("7. Log out");
-       }
-   }
+    public void draw_current(MenuLevel level) {
+        System.out.println("Current level " + current_level);
+        System.out.println("Operations: ");
+        if (level == MenuLevel.MON) {
+            System.out.println("1. Exit system");
+        } else {
+            System.out.println("1. Go higher");
+        }
+
+        String s = "";
+        boolean canAdd = false;
+        boolean canRemove = false;
+
+        switch (level) {
+            case MON:
+                s = "university";
+                canAdd = loggedUser.hasPermission(Permissions.ADD_UNIVERSITY);
+                canRemove = loggedUser.hasPermission(Permissions.DELETE_UNIVERSITY);
+                break;
+            case UNI:
+                s = "faculty";
+                canAdd = loggedUser.hasPermission(Permissions.MANAGE_STRUCTURE);
+                canRemove = loggedUser.hasPermission(Permissions.MANAGE_STRUCTURE);
+                break;
+            case DEPARTAMENT:
+                s = "teacher";
+                canAdd = loggedUser.hasPermission(Permissions.MANAGE_USERS);
+                canRemove = loggedUser.hasPermission(Permissions.MANAGE_USERS);
+                break;
+            case DEPS:
+                s = "department";
+                canAdd = loggedUser.hasPermission(Permissions.MANAGE_STRUCTURE);
+                canRemove = loggedUser.hasPermission(Permissions.MANAGE_STRUCTURE);
+                break;
+            case GROUP:
+                s = "student";
+                canAdd = loggedUser.hasPermission(Permissions.MANAGE_STUDENTS);
+                canRemove = loggedUser.hasPermission(Permissions.MANAGE_STUDENTS);
+                break;
+            case GRPS:
+                s = "group";
+                canAdd = loggedUser.hasPermission(Permissions.MANAGE_STRUCTURE);
+                canRemove = loggedUser.hasPermission(Permissions.MANAGE_STRUCTURE);
+                break;
+            case FAC:
+                draw_FAC();
+                return;
+            case ADMIN_PANEL:
+                s = "user";
+                canAdd = loggedUser.hasPermission(Permissions.MANAGE_USERS);
+                canRemove = loggedUser.hasPermission(Permissions.MANAGE_USERS);
+                break;
+        }
+
+        String action4;
+        if (level == MenuLevel.MON || level == MenuLevel.UNI || level == MenuLevel.DEPS || level == MenuLevel.GRPS) {
+            action4 = "Select ";
+        } else {
+            action4 = "Find ";
+        }
+
+        if (canAdd) {
+            System.out.println("2. Add " + s);
+        }
+        if (canRemove) {
+            System.out.println("3. Remove " + s);
+        }
+
+        System.out.println("4. " + action4 + s);
+        System.out.println("5. Show all " + s + "s");
+
+        if (level == MenuLevel.MON) {
+            if (loggedUser.hasPermission(Permissions.MANAGE_USERS)) {
+                System.out.println("6. Manage users (ADMIN only)");
+            }
+            System.out.println("7. Log out");
+        }
+    }
 }
