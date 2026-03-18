@@ -1,17 +1,17 @@
 package ua.naukma.ui;
+import ua.naukma.domain.SystemUser;
 import ua.naukma.service.*;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import ua.naukma.service.UniversityService;
+import ua.naukma.service.*;
 
 public class NewMenu{
      public static MenuLevel current_level = MenuLevel.MON;
-
     private MenuOptionsHandler menu_options_handler;
 
-    public NewMenu(UniversityService universityService) {
-        this.menu_options_handler = new MenuOptionsHandler(current_level, universityService);
+    public NewMenu(UniversityService universityService, UserService userService, SystemUser loggedUser) {
+        this.menu_options_handler = new MenuOptionsHandler(current_level, universityService, userService, loggedUser);
     }
 
     public void main_menu() {
@@ -62,6 +62,7 @@ public class NewMenu{
            case GROUP:  s = "student"; break;
            case GRPS: s = "group"; break;
            case FAC: draw_FAC(); return;
+           case ADMIN_PANEL: s = "user"; break;
        }
        String action4 = (level == MenuLevel.MON) ? "Select " : "Find ";
 
@@ -72,5 +73,10 @@ public class NewMenu{
 //       if (level == MenuLevel.DEPARTAMENT) {
 //           System.out.println("6. Go to groups");
 //       }
+
+       if (level == MenuLevel.MON) {
+           System.out.println("6. Manage users (ADMIN only)");
+           System.out.println("7. Log out");
+       }
    }
 }

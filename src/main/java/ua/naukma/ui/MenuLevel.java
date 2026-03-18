@@ -8,4 +8,5 @@ public enum MenuLevel {
         GRPS,
         DEPARTAMENT,
         GROUP,
+        ADMIN_PANEL,
 }

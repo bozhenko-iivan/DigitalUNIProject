@@ -25,14 +25,14 @@ public class StudentService implements Service<Student, Integer> {
 
     @Override
     public void add() {
-        try {
-            Student s = student_validate_all();
-            if (s != null){
+        while (true) {
+            try {
+                Student s = student_validate_all();
                 try_addStudent(s);
+                return;
+            } catch (DuplicateEntityException e) {
+                System.out.println(e.getMessage() + " Please try again with different data.");
             }
-        } catch (DuplicateEntityException e) {
-            System.out.println("Registration failed: " + e.getMessage());
-            System.out.println("Please try again.");
         }
     }
 
