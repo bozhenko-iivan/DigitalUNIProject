@@ -123,7 +123,7 @@ public class NewMenu {
 
         if (level == MenuLevel.MON) {
             if (loggedUser.hasPermission(Permissions.MANAGE_USERS)) {
-                System.out.println("6. Manage users (ADMIN only)");
+                System.out.println("6. Manage users (ADMIN only): ");
             }
             System.out.println("7. Log out");
         }
