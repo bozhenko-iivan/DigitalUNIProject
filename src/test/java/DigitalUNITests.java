@@ -7,6 +7,7 @@ import ua.naukma.repository.InMemoryStudentRepository;
 import ua.naukma.repository.PersonRepository;
 import ua.naukma.repository.Repository;
 import ua.naukma.service.StudentService;
+import ua.naukma.service.UniversityService;
 
 import java.time.LocalDate;
 
@@ -21,13 +22,14 @@ class DigitalUniTests {
     private Department testDepartment;
     private Faculty testFaculty;
     private University testUniversity;
+    private UniversityService universityService;
 
     @BeforeEach
     void setUp() {
         studentRepository = new InMemoryStudentRepository();
         testDepartment = new Department(1111111, "TestDept", null, null, "TestLoc", "test@ukma.edu.ua");
         testGroup = new Group(1234567, "IPZ-2025", testFaculty, 1, 2025);
-        studentService = new StudentService(testUniversity, testGroup);
+        studentService = new StudentService(testUniversity, testGroup, universityService);
     }
 
     @Test
