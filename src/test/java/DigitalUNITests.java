@@ -2,12 +2,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ua.naukma.domain.*;
 import ua.naukma.exception.DuplicateEntityException;
-import ua.naukma.repository.InMemoryGroupRepository;
-import ua.naukma.repository.InMemoryStudentRepository;
-import ua.naukma.repository.PersonRepository;
-import ua.naukma.repository.Repository;
-import ua.naukma.service.StudentService;
-import ua.naukma.service.UniversityService;
+import ua.naukma.server.repository.InMemoryStudentRepository;
+import ua.naukma.server.repository.PersonRepository;
+import ua.naukma.server.service.StudentService;
+import ua.naukma.server.service.UniversityService;
 
 import java.time.LocalDate;
 
@@ -29,7 +27,7 @@ class DigitalUniTests {
         studentRepository = new InMemoryStudentRepository();
         testDepartment = new Department(1111111, "TestDept", null, null, "TestLoc", "test@ukma.edu.ua");
         testGroup = new Group(1234567, "IPZ-2025", testFaculty, 1, 2025);
-        studentService = new StudentService(testUniversity, testGroup, universityService);
+        studentService = new StudentService(studentRepository);
     }
 
     @Test
@@ -99,11 +97,11 @@ class DigitalUniTests {
                 "11112222", 1, testGroup, 2024,
                 StudyForm.BUDGET, StudentStatus.STUDYING);
         try {
-            studentService.try_addStudent(student);
+            studentService.addStudent(student);
         } catch (DuplicateEntityException ignored) {}
 
         DuplicateEntityException exception = assertThrows(DuplicateEntityException.class, () -> {
-            studentService.try_addStudent(student);
+            studentService.addStudent(student);
         });
         assertTrue(exception.getMessage().contains("already exists"));
 

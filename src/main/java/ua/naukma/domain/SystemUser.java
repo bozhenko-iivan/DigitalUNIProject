@@ -1,7 +1,6 @@
 package ua.naukma.domain;
 
 import ua.naukma.security.Permissions;
-import ua.naukma.service.UserService;
 
 import java.io.Serializable;
 

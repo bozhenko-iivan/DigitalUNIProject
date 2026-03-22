@@ -1,14 +1,11 @@
 package ua.naukma.domain;
 
 
-import ua.naukma.repository.*;
-import ua.naukma.service.DepartmentService;
-import ua.naukma.service.FacultyService;
-import ua.naukma.service.GroupService;
+import ua.naukma.server.repository.*;
+import ua.naukma.server.service.FacultyService;
 
+import java.io.Serial;
 import java.io.Serializable;
-import java.util.List;
-import java.util.ArrayList;
 
 public class University implements Serializable {
     private final int id;
@@ -24,6 +21,9 @@ public class University implements Serializable {
     private final InMemoryGroupRepository groupRepository = new InMemoryGroupRepository();
     private final InMemoryTeacherRepository teacherRepository = new InMemoryTeacherRepository();
     private final PersonRepository<Student, Integer> studentRepository = new InMemoryStudentRepository();
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     public University(int id, String fullName, String shortName, String city, String address) {
         this.id = id;

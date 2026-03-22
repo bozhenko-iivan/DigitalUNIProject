@@ -40,6 +40,14 @@ public class Student extends Person implements Serializable {
         this.status = status;
     }
 
+    public String getRecordbookNumber() {
+        return recordBookNumber;
+    }
+
+    public void setRecordbookNumber(String recordbookNum) {
+        this.recordBookNumber = recordbookNum;
+    }
+
     public void setStudyForm(StudyForm studyForm) {
         if (studyForm == null) {
             throw new IllegalArgumentException("Study form cannot be null.");

@@ -1,8 +1,8 @@
 package ua.naukma.domain;
 
 import ua.naukma.exception.IncorrectDataException;
-import ua.naukma.repository.InMemoryDepartmentRepository;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class Faculty implements Serializable {
@@ -11,13 +11,18 @@ public class Faculty implements Serializable {
     private String shortName;
     private Teacher dean;
     private String email;
+    private University university;
 
-    public Faculty(int id, String name, String shortName, Teacher dean, String email) {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    public Faculty(int id, String name, String shortName, Teacher dean, String email, University university) {
         setId(id);
         setName(name);
         setShortName(shortName);
         setDean(dean);
         setEmail(email);
+        setUniversity(university);
     }
 
     public int getId() { return id; }
@@ -25,6 +30,13 @@ public class Faculty implements Serializable {
     public String getShortName() { return shortName; }
     public Teacher getDean() { return dean; }
     public String getEmail() { return email; }
+    public University getUniversity() {
+        return university;
+    }
+
+    public void setUniversity(University university) {
+        this.university = university;
+    }
 
     private void setName(String name) {
         if (name == null || name.isBlank()) {
