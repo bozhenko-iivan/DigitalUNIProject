@@ -13,7 +13,7 @@ public class EmailVerificator {
         Scanner scanner = InitScanner.try_init_scanner();
         while (true) {
             String email;
-            System.out.println("Enter email: ");
+            System.out.print("Enter email: ");
             email = scanner.nextLine();
             if (email.matches("^[a-zA-Z0-9.-]+@(gmail\\.com|ukr\\.net)$")) {
                 return email;

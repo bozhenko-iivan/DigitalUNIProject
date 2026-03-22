@@ -513,6 +513,24 @@ public class ServerMain {
                                 oos.writeObject(response);
                                 oos.flush();
                             }
+                            case GET_STUDENTS_COUNT -> {
+                                int groupId = (Integer) request.getData();
+                                System.out.println("Received request to get students count");
+                                Response response;
+                                try {
+                                    int studentsCount = (int) studentService.getStudentsCount(groupId);
+                                    response = new Response(Response.ResponseStatus.SUCCESS,
+                                            studentsCount,
+                                            "Student count was successfully found");
+                                } catch (EntityNotFoundException e) {
+                                    response = new Response(
+                                            Response.ResponseStatus.FAILURE,
+                                            "Not found: " + e.getMessage()
+                                    );
+                                }
+                                oos.writeObject(response);
+                                oos.flush();
+                            }
                             case null, default -> {
                                 System.out.println("Received default request");
                             }

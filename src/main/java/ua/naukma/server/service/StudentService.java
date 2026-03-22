@@ -1,5 +1,6 @@
 package ua.naukma.server.service;
 
+import ua.naukma.domain.Group;
 import ua.naukma.domain.Student;
 import ua.naukma.exception.DuplicateEntityException;
 import ua.naukma.exception.EntityNotFoundException;
@@ -76,5 +77,9 @@ public class StudentService {
         int safeYear = (year > 0) ? year : LocalDate.now().getYear();
 
         return firstChar + "-" + (id % safeYear) + secondChar + "-" + rand.nextInt(999);
+    }
+
+    public long getStudentsCount(int groupId) throws EntityNotFoundException {
+        return repository.findAll().stream().filter(s -> s.getGroup() != null && s.getGroup().getId() == groupId).count();
     }
 }

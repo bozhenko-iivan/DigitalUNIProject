@@ -10,6 +10,7 @@ import ua.naukma.server.service.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -48,6 +49,7 @@ public class MenuOptionsHandler{
     }
 
     private void handle_MON() {
+        System.out.print("⏩ Enter your choice: ");
         int choice = readInt();
         switch (choice) {
             case 1:
@@ -162,6 +164,7 @@ public class MenuOptionsHandler{
     }
 
     private void handle_UNI(University u) {
+        System.out.print("⏩ Enter your choice: ");
             int choice = readInt();
             switch (choice){
                 case 1 -> {
@@ -262,6 +265,7 @@ public class MenuOptionsHandler{
     }
 
     private void handle_GRPS(Faculty f) {
+        System.out.print("⏩ Enter your choice: ");
         int choice = readInt();
         switch (choice){
             case 1 -> {
@@ -360,6 +364,7 @@ public class MenuOptionsHandler{
     }
 
     private void handle_GROUP(Group g) {
+        System.out.print("⏩ Enter your choice: ");
         int choice = readInt();
         switch (choice){
             case 1 -> {
@@ -465,6 +470,7 @@ public class MenuOptionsHandler{
         }
     }
     private   void handle_FAC(Faculty f) {
+        System.out.print("⏩ Enter your choice: ");
 //        show all faculties
         int choice = readInt();
             switch (choice){
@@ -489,11 +495,11 @@ public class MenuOptionsHandler{
 
     }
     private void handle_DEPS(Faculty f) {
+        System.out.print("⏩ Enter your choice: ");
         int choice = readInt();
             switch (choice){
                 case 1 -> {
                     current_level = MenuLevel.FAC;
-                    current_faculty = null;
                     break;
                 }
                 case 2 -> {
@@ -590,6 +596,7 @@ public class MenuOptionsHandler{
     }
 
     private   void handle_DEPARTAMENT(Department d) {
+        System.out.print("⏩ Enter your choice: ");
         int choice = readInt();
             switch (choice){
                 case  1 -> {
@@ -698,6 +705,7 @@ public class MenuOptionsHandler{
     }
 
     private void handle_ADMIN_PANEL() {
+        System.out.print("⏩ Enter your choice: ");
         int choice = readInt();
         switch (choice){
             case  1 -> {
@@ -799,6 +807,87 @@ public class MenuOptionsHandler{
         }
     }
 
+    public String handleUiDrawing() {
+        StringBuilder path = new StringBuilder("MON");
+        MenuLevel level = current_level;
+        switch (level) {
+            case MON -> {
+               break;
+            }
+            case UNI -> {
+                path.append(" > ").append(current_university.getShortName());
+            }
+            case FAC ->  {
+                path.append(" > ").append(current_university.getShortName())
+                        .append(" > ").append(current_faculty.getShortName());
+            }
+            case DEPS -> {
+                path.append(" > ").append(current_university.getShortName())
+                        .append(" > ").append(current_faculty.getShortName())
+                        .append(" > [DEPS]");
+            }
+
+            case DEPARTAMENT -> {
+                path.append(" > ").append(current_university.getShortName())
+                        .append(" > ").append(current_faculty.getShortName())
+                        .append(" > ").append(current_department.getName());
+            }
+            case GRPS -> {
+                path.append(" > ").append(current_university.getShortName())
+                        .append(" > ").append(current_faculty.getShortName())
+                        .append(" > [GRPS]");
+            }
+            case GROUP -> {
+                path.append(" > ").append(current_university.getShortName())
+                        .append(" > ").append(current_faculty.getShortName())
+                        .append(" > ").append(current_department.getName())
+                        .append(" > ").append(current_group.getName());
+            }
+            case ADMIN_PANEL -> {
+                path.append(" > [Admin Panel]");
+            }
+        }
+        return path.toString();
+    }
+
+    public String handleInfoAboutEntityDrawing() {
+        if (current_level == MenuLevel.DEPS
+                || current_level == MenuLevel.GRPS || current_level == MenuLevel.ADMIN_PANEL) {
+            return "";
+        }
+
+        String content = "";
+
+        switch (current_level) {
+            case MON -> content = DashboardBuilder.buildMONPanel();
+            case UNI -> content = DashboardBuilder.buildUniversityPanel(current_university);
+            case FAC -> content = DashboardBuilder.buildFacultyPanel(current_faculty);
+            case DEPARTAMENT -> content = DashboardBuilder.buildDepartmentPanel(current_department);
+            case GROUP -> {
+                int studentsCount = fetchStudentsCountFromServer(current_group.getId());
+                content = DashboardBuilder.buildGroupPanel(current_group, studentsCount);
+            }
+        }
+
+        return content;
+    }
+
+    private int fetchStudentsCountFromServer(int groupId) {
+        try {
+            Request req = new Request(Request.RequestType.GET_STUDENTS_COUNT, groupId);
+            oos.writeObject(req);
+            oos.flush();
+
+            Response res = (Response) ois.readObject();
+            if (res.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                return ((Number) res.getPayload()).intValue();
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Error fetching students count: " + e.getMessage());
+        }
+        return 0;
+    }
+
     private static int readInt(){
         Scanner scanner = InitScanner.try_init_scanner();
         for(;;) {
@@ -836,9 +925,9 @@ public class MenuOptionsHandler{
                     case GROUP:
                         handle_GROUP(current_group);
                         break;
-                default: break;
             case ADMIN_PANEL:
                 handle_ADMIN_PANEL(); break;
+                default: break;
         }
         return current_level;
     }

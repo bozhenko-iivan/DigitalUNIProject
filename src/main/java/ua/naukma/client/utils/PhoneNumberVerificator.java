@@ -13,7 +13,7 @@ public class PhoneNumberVerificator {
                 Should not contain any spaces.""";
         Scanner scanner = InitScanner.try_init_scanner();
         while (true) {
-            System.out.println("Enter person's phone number: ");
+            System.out.print("Enter person's phone number: ");
             String phone_number = scanner.nextLine().trim();
             try {
                 if (!phone_number.matches("\\+380\\d{9}")) {

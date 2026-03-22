@@ -8,7 +8,7 @@ public class IdVerificator {
         String error_message = "ID must be 7 digits long.";
         String id = null;
         while(id == null) {
-            System.out.println("Enter ID (7 digits long): ");
+            System.out.print("Enter ID (7 digits long): ");
             id = scanner.nextLine();
             id = validate_id(id);
             if(id == null) System.out.println(error_message);

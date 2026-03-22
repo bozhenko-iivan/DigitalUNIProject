@@ -25,7 +25,7 @@ public class PersonInfoVerificator {
         String error_message = "Invalid input or no capital letter.";
         String name;
         do{
-            System.out.println("Enter person's " + smth + ": ");
+            System.out.print("Enter person's " + smth + ": ");
             name = scanner.nextLine();
             name = validate_name(name, is_english);
             if(name == null) System.out.println(error_message);
@@ -54,7 +54,7 @@ public class PersonInfoVerificator {
         String alphabet;
         String error_message = "Invalid alphabet.";
         do {
-            System.out.println("Enter alphabet in which you want to type person's name.\n" +
+            System.out.print("Enter alphabet in which you want to type person's name.\n" +
                     "Latin/Cyrillic: ");
             alphabet = scanner.nextLine();
             alphabet = validate_alphabet(alphabet);
@@ -97,7 +97,7 @@ public class PersonInfoVerificator {
         Scanner scanner = InitScanner.try_init_scanner();
         LocalDate dob;
         do{
-            System.out.println("Enter date of birth (dd.MM.yyyy): ");
+            System.out.print("Enter date of birth (dd.MM.yyyy): ");
             String s = scanner.nextLine();
             dob = validate_dob(s);
             if(dob == null) System.out.println("Person is too young.");

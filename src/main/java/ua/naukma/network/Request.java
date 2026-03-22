@@ -50,6 +50,8 @@ public class Request implements Serializable {
         FIND_DEPARTMENT_BY_ID,
         FIND_GROUP_BY_ID,
         FIND_TEACHER_BY_ID,
+
+        GET_STUDENTS_COUNT,
     }
 
     public Request(RequestType type, Object data) {

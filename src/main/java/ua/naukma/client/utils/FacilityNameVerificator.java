@@ -8,7 +8,7 @@ public class FacilityNameVerificator {
         Scanner scanner = InitScanner.try_init_scanner();
         String name;
         do{
-            System.out.println("Enter facility name: ");
+            System.out.print("Enter facility name: ");
             name = scanner.nextLine();
             name = validate_facility_name(name);
             if(name == null) System.out.println(error_message);

@@ -13,7 +13,7 @@ public class SystemUserVerificator {
     public static String askLogin() {
         Scanner scanner = InitScanner.try_init_scanner();
         while (true) {
-            System.out.println("Please enter your login: ");
+            System.out.print("Please enter your login: ");
             String login = scanner.nextLine().trim();
             try {
                 if (!login.matches(loginRegex)) {
@@ -31,7 +31,7 @@ public class SystemUserVerificator {
     public static String askPassword() {
         Scanner scanner = InitScanner.try_init_scanner();
         while (true) {
-            System.out.println("Please enter your password: ");
+            System.out.print("Please enter your password: ");
             String password = scanner.nextLine().trim();
             try {
                 if (!password.matches(passwordRegex)) {
@@ -58,7 +58,7 @@ public class SystemUserVerificator {
     public static SystemUserRoles askRole() {
         Scanner scanner = InitScanner.try_init_scanner();
         while (true) {
-            System.out.println("Please enter your role: ");
+            System.out.print("Please enter your role: ");
             System.out.println(Arrays.toString(SystemUserRoles.values()));
             String role = scanner.nextLine().trim();
             try {

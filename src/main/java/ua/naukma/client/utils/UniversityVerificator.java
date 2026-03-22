@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class UniversityVerificator {
     private static final String FULL_NAME_REGEX = "^[a-zA-Zа-яА-ЯіІїЇєЄґҐ\".,:()'\\-–/!?№@& ]+$";
     private static final String SHORT_NAME_REGEX = "^[a-zA-Zа-яА-ЯіІїЇєЄґҐ]+$";
+    private static final String ADDRESS_REGEX = "^[a-zA-Z\\s\\-]+?,\\s*\\d+[a-zA-Z\\-]*$";
 
     public static String ask_full_name(String fullName) {
         return getString(FULL_NAME_REGEX, fullName);
@@ -65,9 +66,9 @@ public class UniversityVerificator {
         while (true) {
             try {
                 System.out.println("Enter address: ");
-                address = scanner.next();
+                address = scanner.nextLine();
                 if (address != null) {
-                    if (isValidName(address, SHORT_NAME_REGEX)) {
+                    if (isValidName(address, ADDRESS_REGEX)) {
                         return address;
                     }
                 }
