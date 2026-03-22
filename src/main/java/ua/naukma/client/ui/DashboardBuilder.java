@@ -48,4 +48,8 @@ public class DashboardBuilder {
                         "🧑‍🎓 Students count: %d",
                 g.getName(), g.getId(), studentsCount);
     }
+
+    public static String buildGRPSPanel(Faculty f) {
+        return "";
+    }
 }

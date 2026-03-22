@@ -23,10 +23,10 @@ public class UniversityVerificator {
         while (true) {
             try {
                 if (state.equals("shortName")) {
-                    System.out.println("Enter short name: ");
+                    System.out.print("Enter short name: ");
                 }
                 else if (state.equals("fullName")) {
-                    System.out.println("Enter full name: ");
+                    System.out.print("Enter full name: ");
                 }
                 name = scanner.next();
                 if (name != null) {
@@ -46,7 +46,7 @@ public class UniversityVerificator {
         String city_name;
         while (true) {
             try {
-                System.out.println("Enter city name: ");
+                System.out.print("Enter city name: ");
                 city_name = scanner.nextLine();
                 if (city_name != null) {
                     city_name = city_name.trim().replaceAll("\\s+", " ");
@@ -65,7 +65,7 @@ public class UniversityVerificator {
         String address;
         while (true) {
             try {
-                System.out.println("Enter address: ");
+                System.out.print("Enter address: ");
                 address = scanner.nextLine();
                 if (address != null) {
                     if (isValidName(address, ADDRESS_REGEX)) {

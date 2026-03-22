@@ -282,7 +282,7 @@ public class MenuOptionsHandler{
                             break;
                         }
 
-                        String groupName = FacilityNameVerificator.ask_facility_name();
+                        String groupName = FacilityNameVerificator.ask_group_name();
                         Faculty faculty = f;
                         int admissionYear = AcademicInfoVerificator.ask_admission_year();
                         int course = AcademicInfoVerificator.ask_course();
@@ -601,7 +601,7 @@ public class MenuOptionsHandler{
             switch (choice){
                 case  1 -> {
                     current_level = MenuLevel.DEPS;
-                    current_department = null;
+                    //current_department = null;
                     break;
                 }
                 case 2 -> {
@@ -840,7 +840,6 @@ public class MenuOptionsHandler{
             case GROUP -> {
                 path.append(" > ").append(current_university.getShortName())
                         .append(" > ").append(current_faculty.getShortName())
-                        .append(" > ").append(current_department.getName())
                         .append(" > ").append(current_group.getName());
             }
             case ADMIN_PANEL -> {
@@ -851,8 +850,7 @@ public class MenuOptionsHandler{
     }
 
     public String handleInfoAboutEntityDrawing() {
-        if (current_level == MenuLevel.DEPS
-                || current_level == MenuLevel.GRPS || current_level == MenuLevel.ADMIN_PANEL) {
+        if (current_level == MenuLevel.ADMIN_PANEL) {
             return "";
         }
 
@@ -862,7 +860,9 @@ public class MenuOptionsHandler{
             case MON -> content = DashboardBuilder.buildMONPanel();
             case UNI -> content = DashboardBuilder.buildUniversityPanel(current_university);
             case FAC -> content = DashboardBuilder.buildFacultyPanel(current_faculty);
+            case GRPS -> content = DashboardBuilder.buildFacultyPanel(current_faculty);
             case DEPARTAMENT -> content = DashboardBuilder.buildDepartmentPanel(current_department);
+            case DEPS -> content = DashboardBuilder.buildFacultyPanel(current_faculty);
             case GROUP -> {
                 int studentsCount = fetchStudentsCountFromServer(current_group.getId());
                 content = DashboardBuilder.buildGroupPanel(current_group, studentsCount);

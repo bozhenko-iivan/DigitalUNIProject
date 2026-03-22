@@ -3,6 +3,7 @@ package ua.naukma.client.utils;
 import java.util.Scanner;
 
 public class FacilityNameVerificator {
+    public static final String GROUP_NAME_REGEX = "^[A-Z]+\\-[1-6]$";
     public static String ask_facility_name() {
         String error_message = "Name contains invalid characters or overall incorrect.";
         Scanner scanner = InitScanner.try_init_scanner();
@@ -30,6 +31,23 @@ public class FacilityNameVerificator {
         if(!is_parentheses_closed) return null;
         return name;
     }
+
+    public static String ask_group_name() {
+        String error_message = "Name contains invalid characters or overall incorrect.";
+        Scanner scanner = InitScanner.try_init_scanner();
+        String name;
+        while (true) {
+            System.out.print("Enter group name: (e.g: IPZ-1): ");
+            name = scanner.nextLine();
+            if (name != null && name.matches(GROUP_NAME_REGEX)) {
+                return name;
+            }
+            else {
+                System.out.println(error_message);
+            }
+        }
+    }
+
     private static boolean is_char_valid(char c, boolean is_english) {
         if (is_english) {
             return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')  ||

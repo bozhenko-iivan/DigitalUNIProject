@@ -46,30 +46,30 @@ public class UniversityService {
         repository.save(currentUni);
     }
 
-    public void transferStudent(University currentUni, int studentID, String newGroupName) throws EntityNotFoundException, DuplicateEntityException {
-        Optional<Student> optionalStudent = currentUni.getStudentRepository().findById(studentID);
-        if (optionalStudent.isEmpty()) {
-            throw new EntityNotFoundException("Student with id " + studentID + " not found!");
-        }
-        Student studentToTransfer = optionalStudent.get();
-        Group currentGroup = studentToTransfer.getGroup();
-        Group targetGroup = findGroupByName(currentUni, newGroupName);
-        if (targetGroup == null) {
-            throw new EntityNotFoundException("Group with name " + newGroupName + " not found!");
-        }
-        if (currentGroup != null && currentGroup.equals(targetGroup)) {
-            throw new DuplicateEntityException("Student already studies in this group: " + targetGroup.getName());
-        }
-        studentToTransfer.setGroup(targetGroup);
-        currentUni.getStudentRepository().save(studentToTransfer);
-    }
+//    public void transferStudent(University currentUni, int studentID, String newGroupName) throws EntityNotFoundException, DuplicateEntityException {
+//        Optional<Student> optionalStudent = currentUni.getStudentRepository().findById(studentID);
+//        if (optionalStudent.isEmpty()) {
+//            throw new EntityNotFoundException("Student with id " + studentID + " not found!");
+//        }
+//        Student studentToTransfer = optionalStudent.get();
+//        Group currentGroup = studentToTransfer.getGroup();
+//        Group targetGroup = findGroupByName(currentUni, newGroupName);
+//        if (targetGroup == null) {
+//            throw new EntityNotFoundException("Group with name " + newGroupName + " not found!");
+//        }
+//        if (currentGroup != null && currentGroup.equals(targetGroup)) {
+//            throw new DuplicateEntityException("Student already studies in this group: " + targetGroup.getName());
+//        }
+//        studentToTransfer.setGroup(targetGroup);
+//        currentUni.getStudentRepository().save(studentToTransfer);
+//    }
 
-    public Group findGroupByName(University currentUni, String newGroupName) {
-        for (Group group : currentUni.getGroupRepository().findAll()) {
-            if (group.getName().equals(newGroupName)) {
-                return group;
-            }
-        }
-        return null;
-    }
+//    public Group findGroupByName(University currentUni, String newGroupName) {
+//        for (Group group : currentUni.getGroupRepository().findAll()) {
+//            if (group.getName().equals(newGroupName)) {
+//                return group;
+//            }
+//        }
+//        return null;
+//    }
 }

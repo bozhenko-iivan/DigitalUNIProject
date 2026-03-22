@@ -14,7 +14,7 @@ public class AcademicInfoVerificator {
         Scanner scanner = InitScanner.try_init_scanner();
         int year = 0;
         while (true) {
-            System.out.println("Enter the year of admission: ");
+            System.out.print("Enter the year of admission: ");
             try {
                 year = scanner.nextInt();
                 if (year > LocalDate.now().getYear() || year < 1994) {
@@ -33,7 +33,7 @@ public class AcademicInfoVerificator {
         Scanner scanner = InitScanner.try_init_scanner();
         int course = 0;
         while (course > 6 || course < 1) {
-            System.out.println("Enter course (1-6): ");
+            System.out.print("Enter course (1-6): ");
             try {
                 course = scanner.nextInt();
             } catch (InputMismatchException e) {
@@ -47,7 +47,7 @@ public class AcademicInfoVerificator {
     public static StudyForm ask_study_form() {
         Scanner scanner = InitScanner.try_init_scanner();
         while (true) {
-            System.out.println("Enter study form (Бюджет/Контракт) або (1/2): ");
+            System.out.print("Enter study form (Бюджет/Контракт) або (1/2): ");
             String s = scanner.nextLine().trim();
             switch (s) {
                 case "Бюджет":
@@ -65,7 +65,7 @@ public class AcademicInfoVerificator {
     public static StudentStatus ask_student_status() {
         Scanner scanner = InitScanner.try_init_scanner();
         while (true) {
-            System.out.println("Enter student status: (Навчається/АкадемВідпустка/Вибус) або (1/2/3): ");
+            System.out.print("Enter student status: (Навчається/АкадемВідпустка/Вибус) або (1/2/3): ");
             String s = scanner.nextLine().trim();
             switch (s) {
                 case "Навчається":
@@ -74,7 +74,7 @@ public class AcademicInfoVerificator {
                 case "АкадемВідпустка":
                 case "2":
                     return StudentStatus.ACADEMIC_LEAVE;
-                case "Вибус":
+                case "Вибув":
                 case "3":
                     return StudentStatus.EXPELLED;
                 default:
@@ -86,7 +86,7 @@ public class AcademicInfoVerificator {
     public static TeacherPosition ask_teacher_position() {
         Scanner scanner = InitScanner.try_init_scanner();
         while (true) {
-            System.out.println("Enter teacher position: (1/2/3/4/5): ");
+            System.out.print("Enter teacher position: (1/2/3/4/5): ");
             System.out.println(Arrays.toString(TeacherPosition.values()));
             int teacherPosition = scanner.nextInt();
             switch (teacherPosition) {
@@ -103,7 +103,7 @@ public class AcademicInfoVerificator {
     public static TeacherDegree ask_teacher_degree() {
         Scanner scanner = InitScanner.try_init_scanner();
         while (true) {
-            System.out.println("Enter teacher degree: (1/2/3): ");
+            System.out.print("Enter teacher degree: (1/2/3): ");
             System.out.println(Arrays.toString(TeacherDegree.values()));
             int teacherDegree = scanner.nextInt();
             switch (teacherDegree) {
@@ -118,7 +118,7 @@ public class AcademicInfoVerificator {
     public static TeacherRank ask_teacher_rank() {
         Scanner scanner = InitScanner.try_init_scanner();
         while (true) {
-            System.out.println("Enter teacher rank: (1/2/3): ");
+            System.out.print("Enter teacher rank: (1/2/3): ");
             System.out.println(Arrays.toString(TeacherRank.values()));
             int teacherRank = scanner.nextInt();
             switch (teacherRank) {
@@ -134,7 +134,7 @@ public class AcademicInfoVerificator {
         Scanner scanner = InitScanner.try_init_scanner();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         while (true) {
-            System.out.println("Enter hire date (DD.MM.YYYY): ");
+            System.out.print("Enter hire date (DD.MM.YYYY): ");
             String s = scanner.nextLine().trim();
             try {
                 LocalDate hiringDate = LocalDate.parse(s, formatter);
@@ -156,7 +156,7 @@ public class AcademicInfoVerificator {
     public static double ask_load() {
         Scanner scanner = InitScanner.try_init_scanner();
         while (true) {
-            System.out.println("Please enter a load value: (0.8 || 4.5): ");
+            System.out.print("Please enter a load value: (0.8 || 4.5): ");
             double load = scanner.nextDouble();
             if (load < 0.8 || load > 4.5) {
                 System.out.println("Invalid input. Please enter a valid load value (0.8 || 4.5): ");
