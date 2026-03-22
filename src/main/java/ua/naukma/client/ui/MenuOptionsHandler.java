@@ -265,7 +265,7 @@ public class MenuOptionsHandler{
         int choice = readInt();
         switch (choice){
             case 1 -> {
-                current_level = MenuLevel.UNI;
+                current_level = MenuLevel.FAC;
                 break;
             }
             case 2 -> {
@@ -283,7 +283,7 @@ public class MenuOptionsHandler{
                         int admissionYear = AcademicInfoVerificator.ask_admission_year();
                         int course = AcademicInfoVerificator.ask_course();
 
-                        Group group = new Group(groupId, groupName, faculty, admissionYear, course);
+                        Group group = new Group(groupId, groupName, faculty, course, admissionYear);
 
                         Request addRequest = new Request(Request.RequestType.ADD_GROUP, group);
                         oos.writeObject(addRequest);

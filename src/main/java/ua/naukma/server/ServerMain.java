@@ -27,11 +27,11 @@ public class ServerMain {
 
             Repository<University, Integer> uniRepo = new FileUniversityRepository();
             Repository<SystemUser, Integer> userRepository = new FileUserRepository();
-            Repository<Faculty, Integer> facultyRepository = new InMemoryFacultyRepository();
-            Repository<Group, Integer> groupRepository = new InMemoryGroupRepository();
-            Repository<Department, Integer> departmentRepository = new InMemoryDepartmentRepository();
-            PersonRepository<Student, Integer> studentRepository = new InMemoryStudentRepository();
-            PersonRepository<Teacher, Integer> teacherRepository = new InMemoryTeacherRepository();
+            Repository<Faculty, Integer> facultyRepository = new FileFacultyRepository();
+            Repository<Group, Integer> groupRepository = new FileGroupRepository();
+            Repository<Department, Integer> departmentRepository = new FileDepartmentRepository();
+            PersonRepository<Student, Integer> studentRepository = new FileStudentRepository();
+            PersonRepository<Teacher, Integer> teacherRepository = new FileTeacherRepository();
 
             UniversityService uniService = new UniversityService(uniRepo);
             UserService userService = new UserService(userRepository);
