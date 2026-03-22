@@ -93,7 +93,7 @@ public class ServerMain {
                                 Response response;
                                 System.out.println("Received add user request");
                                 try {
-                                    userService.addUser(userToAdd);
+                                    userService.add(userToAdd);
                                     response = new Response(
                                             Response.ResponseStatus.SUCCESS,
                                             "Add user successful");
@@ -128,7 +128,7 @@ public class ServerMain {
                                 System.out.println("Received add group request");
                                 Response response;
                                 try {
-                                    groupService.addGroup(groupToAdd);
+                                    groupService.add(groupToAdd);
                                     response = new Response(
                                             Response.ResponseStatus.SUCCESS,
                                             "Add group successful");
@@ -162,7 +162,7 @@ public class ServerMain {
                                 System.out.println("Received add faculty request");
                                 Response response;
                                 try {
-                                    facultyService.addFaculty(facultyToAdd);
+                                    facultyService.add(facultyToAdd);
                                     response = new Response(
                                             Response.ResponseStatus.SUCCESS,
                                             "Faculty with id " + facultyToAdd.getId() + " was successfully added");
@@ -196,7 +196,7 @@ public class ServerMain {
                                 System.out.println("Received add student request");
                                 Response response;
                                 try {
-                                    studentService.addStudent(studentToAdd);
+                                    studentService.add(studentToAdd);
                                     response = new Response(Response.ResponseStatus.SUCCESS,
                                             "Student with id " + studentToAdd.getId() + " has been successfully added");
                                 } catch (DuplicateEntityException e) {
@@ -227,7 +227,7 @@ public class ServerMain {
                                 System.out.println("Received add department request");
                                 Response response;
                                 try {
-                                    departmentService.addDepartment(departmentToAdd);
+                                    departmentService.add(departmentToAdd);
                                     response = new Response(
                                             Response.ResponseStatus.SUCCESS,
                                             "Department with id " + departmentToAdd.getId() + " has been successfully added");
@@ -261,7 +261,7 @@ public class ServerMain {
                                 System.out.println("Received add teacher request");
                                 Response response;
                                 try {
-                                    teacherService.addTeacher(teacherToAdd);
+                                    teacherService.add(teacherToAdd);
                                     response = new Response(
                                             Response.ResponseStatus.SUCCESS,
                                             "Teacher with id " + teacherToAdd.getId() + " was successfully created");
@@ -295,7 +295,7 @@ public class ServerMain {
                                 University uniToAdd = (University) request.getData();
                                 Response response;
                                 try {
-                                    uniService.addUniversity(uniToAdd);
+                                    uniService.add(uniToAdd);
                                     response = new Response(
                                             Response.ResponseStatus.SUCCESS,
                                             "University " + uniToAdd.getFullName() + " has been added successfully");
@@ -315,7 +315,7 @@ public class ServerMain {
                                 oos.flush();
                             }
                             case GET_ALL_UNIVERSITIES -> {
-                                List<University> universities = uniService.getAllUniversities();
+                                List<University> universities = uniService.findAll();
                                 System.out.println("Received all university request");
                                 Response response = new Response(
                                         Response.ResponseStatus.SUCCESS,
@@ -385,7 +385,7 @@ public class ServerMain {
                                 oos.flush();
                             }
                             case GET_ALL_USERS -> {
-                                List<SystemUser> list = userService.getAllUsers();
+                                List<SystemUser> list = userService.findAll();
                                 System.out.println("Receive all users request");
                                 Response response = new Response(
                                         Response.ResponseStatus.SUCCESS,

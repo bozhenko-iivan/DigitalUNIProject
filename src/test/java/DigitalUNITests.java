@@ -2,7 +2,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ua.naukma.domain.*;
 import ua.naukma.exception.DuplicateEntityException;
-import ua.naukma.server.repository.InMemoryStudentRepository;
+import ua.naukma.server.repository.FileStudentRepository;
 import ua.naukma.server.repository.PersonRepository;
 import ua.naukma.server.service.StudentService;
 import ua.naukma.server.service.UniversityService;
@@ -24,7 +24,7 @@ class DigitalUniTests {
 
     @BeforeEach
     void setUp() {
-        studentRepository = new InMemoryStudentRepository();
+        studentRepository = new FileStudentRepository();
         testDepartment = new Department(1111111, "TestDept", null, null, "TestLoc", "test@ukma.edu.ua");
         testGroup = new Group(1234567, "IPZ-2025", testFaculty, 1, 2025);
         studentService = new StudentService(studentRepository);
@@ -97,11 +97,11 @@ class DigitalUniTests {
                 "11112222", 1, testGroup, 2024,
                 StudyForm.BUDGET, StudentStatus.STUDYING);
         try {
-            studentService.addStudent(student);
+            studentService.add(student);
         } catch (DuplicateEntityException ignored) {}
 
         DuplicateEntityException exception = assertThrows(DuplicateEntityException.class, () -> {
-            studentService.addStudent(student);
+            studentService.add(student);
         });
         assertTrue(exception.getMessage().contains("already exists"));
 

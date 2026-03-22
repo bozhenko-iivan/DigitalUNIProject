@@ -9,9 +9,9 @@ public class DashboardBuilder {
 
     public static String buildMONPanel() {
         return String.format(
-                "\uD83D\uDCF1 DigiUni: %s\n" +
+                "\uD83D\uDCF1 DigiUni:    %s\n" +
                         "📌 Created by: %s\n" +
-                        "🛡️ Version: %s",
+                        "🛡️ Version:    %s",
                 APP_NAME, APP_ALIAS, VERSION
         );
     }
