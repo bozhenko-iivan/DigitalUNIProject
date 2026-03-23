@@ -82,7 +82,7 @@ public class ServerMain {
                                             "Logout successful");
                                 } catch (EntityNotFoundException | IncorrectDataException e) {
                                     response = new Response(
-                                            Response.ResponseStatus.SUCCESS,
+                                            Response.ResponseStatus.FAILURE,
                                             "Logout failed: " + e.getMessage());
                                 }
                                 oos.writeObject(response);
@@ -318,7 +318,7 @@ public class ServerMain {
                                 List<University> universities = uniService.findAll();
                                 System.out.println("Received all university request");
                                 Response response = new Response(
-                                        Response.ResponseStatus.SUCCESS,
+                                        Response.ResponseStatus.FAILURE,
                                         universities, "University list has been successfully retrieved"
                                 );
                                 oos.writeObject(response);

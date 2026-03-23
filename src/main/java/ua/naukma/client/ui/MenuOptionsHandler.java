@@ -10,7 +10,6 @@ import ua.naukma.server.service.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.List;

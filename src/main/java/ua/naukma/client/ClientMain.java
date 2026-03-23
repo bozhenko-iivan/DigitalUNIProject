@@ -6,26 +6,13 @@ import ua.naukma.client.utils.SystemUserVerificator;
 import ua.naukma.domain.*;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
-import ua.naukma.server.repository.FileUniversityRepository;
-import ua.naukma.server.repository.FileUserRepository;
-import ua.naukma.server.repository.Repository;
-import ua.naukma.server.service.UniversityService;
-import ua.naukma.server.service.UserService;
 
 import java.io.*;
 import java.net.Socket;
-import java.sql.SQLOutput;
 
 
 public class ClientMain {
     public static void main(String[] args) {
-//        Repository<University, Integer> uniRepo = new InMemoryUniversityRepository();
-//        Repository<University, Integer> uniRepo = new FileUniversityRepository();
-//        UniversityService uniService = new UniversityService(uniRepo);
-//        Repository<SystemUser, Integer> userRepository = new FileUserRepository();
-//        UserService userService = new UserService(userRepository);
-//        SystemUser loggedUser = userService.login();
-//
 
         Socket socket = null;
         InputStream inputStream = null;
@@ -40,7 +27,6 @@ public class ClientMain {
 
             while (true) {
                 SystemUser loggedUser = null;
-
 
                 while (true) {
                     System.out.println("Login");

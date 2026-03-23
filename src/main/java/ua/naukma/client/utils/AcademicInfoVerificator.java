@@ -46,71 +46,79 @@ public class AcademicInfoVerificator {
 
     public static StudyForm ask_study_form() {
         Scanner scanner = InitScanner.try_init_scanner();
+        System.out.print("Enter study form (Бюджет/Контракт) або (1/2): ");
+        String s = scanner.nextLine().trim();
         while (true) {
-            System.out.print("Enter study form (Бюджет/Контракт) або (1/2): ");
-            String s = scanner.nextLine().trim();
-            switch (s) {
-                case "Бюджет":
-                case "1":
-                    return StudyForm.BUDGET;
-                case "Контракт":
-                case "2":
-                    return StudyForm.CONTRACT;
-                default:
-                    System.out.println("Invalid input. Please try again.");
+            try {
+                return switch (s) {
+                    case "Бюджет", "1" -> StudyForm.BUDGET;
+                    case "Контракт", "2" -> StudyForm.CONTRACT;
+                    default -> null;
+                };
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please a valid input.");
+                scanner.next();
             }
         }
     }
 
     public static StudentStatus ask_student_status() {
         Scanner scanner = InitScanner.try_init_scanner();
+        System.out.print("Enter student status: (Навчається/АкадемВідпустка/Вибув) або (1/2/3): ");
+        String s = scanner.nextLine().trim();
         while (true) {
-            System.out.print("Enter student status: (Навчається/АкадемВідпустка/Вибус) або (1/2/3): ");
-            String s = scanner.nextLine().trim();
-            switch (s) {
-                case "Навчається":
-                case "1":
-                    return StudentStatus.STUDYING;
-                case "АкадемВідпустка":
-                case "2":
-                    return StudentStatus.ACADEMIC_LEAVE;
-                case "Вибув":
-                case "3":
-                    return StudentStatus.EXPELLED;
-                default:
-                    System.out.println("Invalid input. Please try again.");
+            try {
+                return switch (s) {
+                    case "Навчається", "1" -> StudentStatus.STUDYING;
+                    case "АкадемВідпустка", "2" -> StudentStatus.ACADEMIC_LEAVE;
+                    case "Вибув", "3" -> StudentStatus.EXPELLED;
+                    default -> null;
+                };
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please a valid input.");
+                scanner.next();
             }
         }
     }
 
     public static TeacherPosition ask_teacher_position() {
         Scanner scanner = InitScanner.try_init_scanner();
+        System.out.print("Enter teacher position: (1/2/3/4/5): ");
+        System.out.println(Arrays.toString(TeacherPosition.values()));
         while (true) {
-            System.out.print("Enter teacher position: (1/2/3/4/5): ");
-            System.out.println(Arrays.toString(TeacherPosition.values()));
-            int teacherPosition = scanner.nextInt();
-            switch (teacherPosition) {
-                case 1: return TeacherPosition.ASSISTANT;
-                case 2: return TeacherPosition.LECTURER;
-                case 3: return TeacherPosition.SENIOR_LECTURER;
-                case 4: return TeacherPosition.HEAD_OF_DEPARTMENT;
-                case 5: return TeacherPosition.DEAN;
-                default: System.out.println("Invalid input. Please try again.");
+            try {
+                int teacherPosition = scanner.nextInt();
+                return switch (teacherPosition) {
+                    case 1 -> TeacherPosition.ASSISTANT;
+                    case 2 -> TeacherPosition.LECTURER;
+                    case 3 -> TeacherPosition.SENIOR_LECTURER;
+                    case 4 -> TeacherPosition.HEAD_OF_DEPARTMENT;
+                    case 5 -> TeacherPosition.DEAN;
+                    default -> null;
+                };
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please a valid input.");
+                scanner.next();
             }
         }
     }
 
     public static TeacherDegree ask_teacher_degree() {
         Scanner scanner = InitScanner.try_init_scanner();
+        System.out.print("Enter teacher degree: (1/2/3): ");
+        System.out.println(Arrays.toString(TeacherDegree.values()));
         while (true) {
-            System.out.print("Enter teacher degree: (1/2/3): ");
-            System.out.println(Arrays.toString(TeacherDegree.values()));
-            int teacherDegree = scanner.nextInt();
-            switch (teacherDegree) {
-                case 1: return TeacherDegree.NONE;
-                case 2: return TeacherDegree.PHD;
-                case 3: return TeacherDegree.DOCTOR_OF_SCIENCES;
-                default: System.out.println("Invalid input. Please try again.");
+            try {
+                int teacherDegree = scanner.nextInt();
+                return switch (teacherDegree) {
+                    case 1 -> TeacherDegree.NONE;
+                    case 2 -> TeacherDegree.PHD;
+                    case 3 -> TeacherDegree.DOCTOR_OF_SCIENCES;
+                    default -> null;
+                };
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please a valid input.");
+                scanner.next();
             }
         }
     }
@@ -120,12 +128,17 @@ public class AcademicInfoVerificator {
         while (true) {
             System.out.print("Enter teacher rank: (1/2/3): ");
             System.out.println(Arrays.toString(TeacherRank.values()));
-            int teacherRank = scanner.nextInt();
-            switch (teacherRank) {
-                case 1: return TeacherRank.DOCENT;
-                case 2: return TeacherRank.PROFESSOR;
-                case 3: return TeacherRank.SENIOR_RESEARCHER;
-                default: System.out.println("Invalid input. Please try again.");
+            try {
+                int teacherRank = scanner.nextInt();
+                return switch (teacherRank) {
+                    case 1 -> TeacherRank.DOCENT;
+                    case 2 -> TeacherRank.PROFESSOR;
+                    case 3 -> TeacherRank.SENIOR_RESEARCHER;
+                    default -> null;
+                };
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please a valid input.");
+                scanner.next();
             }
         }
     }
@@ -149,6 +162,7 @@ public class AcademicInfoVerificator {
                 return hiringDate;
             } catch (DateTimeParseException e) {
                 System.out.println("Invalid input. Please use format (DD.MM.YYYY)");
+                scanner.next();
             }
         }
     }

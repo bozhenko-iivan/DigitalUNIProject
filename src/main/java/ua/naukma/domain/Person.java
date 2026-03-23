@@ -30,66 +30,26 @@ public abstract class Person implements Serializable {
 
     public void setId(int id) {this.id = id;}
     public void setFirstName(String firstName) {
-        if (firstName == null || firstName.isEmpty()) {
-            throw new IllegalArgumentException("First name cannot be empty.");
-        }
-            this.firstName = firstName;
+        this.firstName = firstName;
     }
 
     public void setMiddleName(String middleName) {
-        if (middleName == null || middleName.isBlank()) {
-            throw new IllegalArgumentException("Middle name cannot be empty.");
-        }
         this.middleName = middleName;
     }
 
     public void setLastName(String lastName) {
-        if (lastName == null || lastName.isBlank()) {
-            throw new IllegalArgumentException("Last name cannot be empty.");
-        }
         this.lastName = lastName;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-//        if (phoneNumber != null && phoneNumber.length() == 10) {
-//            for (int i=0; i<phoneNumber.length(); i++) {
-//                if (!Character.isDigit(phoneNumber.charAt(i))) {
-//                    throw new IllegalArgumentException("Only digits are allowed. Don't use space to separate numbers. Example: 0981231234");
-//                }
-//            }
-//            this.phoneNumber = phoneNumber;
-//
-//        } else {
-//            throw new IllegalArgumentException("Phone number must contain 10 digits. Example: 0981231234");
-//        }
-        if (phoneNumber == null || phoneNumber.length() != 13) {
-            throw new IllegalArgumentException("Phone number must contain 13 digits. Example: +380981231234");
-        }
-        if (!phoneNumber.matches("\\+380\\d{9}")) {
-            throw new IllegalArgumentException("Phone number must contain 13 digits.");
-        }
         this.phoneNumber = phoneNumber;
     }
 
     public void setEmail(String email) {
-        if (email == null || !email.contains("@") || email.isBlank()) {
-            throw new IllegalArgumentException("Email cannot be empty and must contain '@'.");
-        }
         this.email = email;
     }
 
     public void setBirthDate (LocalDate birthDate) {
-        if (birthDate == null) {
-            throw new IllegalArgumentException("Birth date cannot be empty.");
-        }
-
-        if (birthDate.isAfter(LocalDate.now())){
-            throw new IllegalArgumentException("Future fiction? Future dates not allowed.");
-        }
-
-        if (birthDate.isBefore(LocalDate.of(1900,1,1))) {
-            throw new IllegalArgumentException("Can't be. Set a birth date not as old.");
-        }
         this.birthDate = birthDate;
     }
 

@@ -2,9 +2,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ua.naukma.domain.*;
 import ua.naukma.exception.DuplicateEntityException;
+import ua.naukma.exception.IncorrectDataException;
 import ua.naukma.server.repository.FileStudentRepository;
+import ua.naukma.server.repository.FileTeacherRepository;
 import ua.naukma.server.repository.PersonRepository;
 import ua.naukma.server.service.StudentService;
+import ua.naukma.server.service.TeacherService;
 import ua.naukma.server.service.UniversityService;
 
 import java.time.LocalDate;
@@ -16,6 +19,9 @@ class DigitalUniTests {
     private PersonRepository<Student, Integer> studentRepository;
     private StudentService studentService;
 
+    private TeacherService teacherService;
+    private PersonRepository<Teacher, Integer> teacherRepository;
+
     private Group testGroup;
     private Department testDepartment;
     private Faculty testFaculty;
@@ -25,9 +31,11 @@ class DigitalUniTests {
     @BeforeEach
     void setUp() {
         studentRepository = new FileStudentRepository();
+        teacherRepository = new FileTeacherRepository();
         testDepartment = new Department(1111111, "TestDept", null, null, "TestLoc", "test@ukma.edu.ua");
         testGroup = new Group(1234567, "IPZ-2025", testFaculty, 1, 2025);
         studentService = new StudentService(studentRepository);
+        teacherService = new TeacherService(teacherRepository);
     }
 
     @Test
@@ -105,5 +113,21 @@ class DigitalUniTests {
         });
         assertTrue(exception.getMessage().contains("already exists"));
 
+    }
+
+    @Test
+    void testDOB() {
+        Teacher t = new Teacher(1111111, "zov", "svo", "svin",
+                LocalDate.of(1488, 06, 12), "hryakmail@gmail.com",
+                "+380976607505", TeacherPosition.DEAN, TeacherDegree.DOCTOR_OF_SCIENCES, TeacherRank.DOCENT,
+                LocalDate.of(1580, 11, 23), 4, testDepartment);
+        try {
+            teacherService.add(t);
+        } catch (IncorrectDataException ignored) {}
+
+        IncorrectDataException exception = assertThrows(IncorrectDataException.class, () -> {
+            teacherService.add(t);
+        });
+        assertTrue(exception.getMessage().contains("too old"));
     }
 }
