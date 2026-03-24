@@ -33,17 +33,33 @@ public class MenuOptionsHandler{
         this.current_user = user;
     }
 
-    private boolean isIdAlreadyTaken(int id, Request.RequestType requestType) throws IOException {
+    private boolean isIdAlreadyTaken(int id, Request.RequestType requestType) {
+        Response response = sendRequest(requestType, id, true);
+        return response != null && response.getResponseStatus() == Response.ResponseStatus.SUCCESS;
+    }
+
+    private Response sendRequest(Request.RequestType requestType, Object payload, boolean silent) {
         try {
-            Request checkIfIdPresent = new Request(requestType, id);
-            oos.writeObject(checkIfIdPresent);
+            Request request = new Request(requestType, payload);
+            oos.writeObject(request);
             oos.flush();
 
-            Response idResponse = (Response) ois.readObject();
-            return idResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS;
+            Response response = (Response) ois.readObject();
+
+            if (response != null && !silent) {
+                System.out.println(response.getMsg());
+            }
+            return response;
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Error while trying to read response from server");
-            return true;
+            return new Response(Response.ResponseStatus.FAILURE, "Error while trying to read response from server");
+        }
+    }
+
+    private void requirePermission(int requiredPermission, Runnable action) {
+        if (current_user.hasPermission(requiredPermission)) {
+            action.run();
+        } else {
+            System.out.println("Access denied");
         }
     }
 
@@ -56,107 +72,55 @@ public class MenuOptionsHandler{
                 System.exit(0);
                 break;
             case 2:
-                if (current_user.hasPermission(Permissions.ADD_UNIVERSITY)) {
-                    try {
-                        int university_id = IdVerificator.ask_id();
+                requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
+                    int university_id = IdVerificator.ask_id();
 
-                        if (isIdAlreadyTaken(university_id, Request.RequestType.FIND_UNIVERSITY_BY_ID)) {
-                            System.out.println("This id is already taken. Please try choose another id");
-                            break;
-                        }
-
-                        String fullName = UniversityVerificator.ask_full_name("fullName");
-                        String shortName = UniversityVerificator.ask_short_name("shortName");
-                        String city = UniversityVerificator.ask_city();
-                        String address = UniversityVerificator.ask_address();
-
-                        University newUni = new University(university_id, fullName, shortName, city, address);
-
-                        Request addRequest = new Request(Request.RequestType.ADD_UNIVERSITY, newUni);
-                        oos.writeObject(addRequest);
-                        oos.flush();
-                        Response response = (Response) ois.readObject();
-                        System.out.println(response.getMsg());
-                    } catch (IOException | ClassNotFoundException e) {
-                        e.printStackTrace();
+                    if (isIdAlreadyTaken(university_id, Request.RequestType.FIND_UNIVERSITY_BY_ID)) {
+                        System.out.println("Id is already taken");
+                        return;
                     }
-                } else {
-                    System.out.println("Access Denied: You cannot add universities.");
-                }
+
+                    String fullName = UniversityVerificator.ask_full_name("fullName");
+                    String shortName = UniversityVerificator.ask_short_name("shortName");
+                    String city = UniversityVerificator.ask_city();
+                    String address = UniversityVerificator.ask_address();
+
+                    University newUni = new University(university_id, fullName, shortName, city, address);
+
+                    sendRequest(Request.RequestType.ADD_UNIVERSITY, newUni, false);
+                });
                 break;
             case 3:
-                if (current_user.hasPermission(Permissions.DELETE_UNIVERSITY)) {
-                    try {
-                        int idToDelete = IdVerificator.ask_id();
-                        Request req = new Request(Request.RequestType.REMOVE_UNIVERSITY, idToDelete);
-                        oos.writeObject(req);
-                        oos.flush();
+                requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
+                    int university_id = IdVerificator.ask_id();
 
-                        Response res = (Response) ois.readObject();
-                        System.out.println(res.getMsg());
-                    } catch (IOException | ClassNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    System.out.println("Access Denied: You cannot delete universities.");
-                }
+                    sendRequest(Request.RequestType.REMOVE_UNIVERSITY, university_id, false);
+                });
                 break;
             case 4:
-                try {
-                    int idToFind = IdVerificator.ask_id();
-                    Request req = new Request(Request.RequestType.FIND_UNIVERSITY_BY_ID, idToFind);
-                    oos.writeObject(req);
-                    oos.flush();
-
-                    Response res = (Response) ois.readObject();
-                    if (res.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
-                        current_university = (University) res.getPayload();
-                        current_level = MenuLevel.UNI;
-                        System.out.println(res.getMsg());
-                    } else {
-                        System.out.println(res.getMsg());
-                    }
-                } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
+                int university_id = IdVerificator.ask_id();
+                Response res = sendRequest(Request.RequestType.FIND_UNIVERSITY_BY_ID, university_id, false);
+                if (res != null && res.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                    current_university = (University) res.getPayload();
+                    current_level = MenuLevel.UNI;
                 }
                 break;
             case 5:
-                try {
-                    Request req = new Request(Request.RequestType.GET_ALL_UNIVERSITIES, null);
-                    oos.writeObject(req);
-                    oos.flush();
-
-                    Response res = (Response) ois.readObject();
-                    if (res.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
-                        java.util.List<University> list = (java.util.List<University>) res.getPayload();
-                        System.out.println("All universities found");
-                        list.forEach(System.out::println);
-                    } else {
-                        System.out.println(res.getMsg());
-                    }
-                } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
+                Response getAllRes = sendRequest(Request.RequestType.GET_ALL_UNIVERSITIES, null, false);
+                if (getAllRes != null && getAllRes.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                    List<University> universities = (List<University>) getAllRes.getPayload();
+                    universities.forEach(System.out::println);
                 }
                 break;
             case 6:
-                if ((current_user.hasPermission(Permissions.MANAGE_USERS))) {
-                    current_level = MenuLevel.ADMIN_PANEL;
-                } else {
-                    System.out.println("You do not have permissions to do this");
-                }
+                requirePermission(Permissions.MANAGE_USERS,
+                        () -> { current_level = MenuLevel.ADMIN_PANEL;
+                });
                 break;
             case 7:
-                try {
-                    Request logOutRequest = new Request(Request.RequestType.LOGOUT, null);
-                    oos.writeObject(logOutRequest);
-                    oos.flush();
-
-                    Response response = (Response) ois.readObject();
-                    System.out.println(response.getMsg());
-
-                    this.current_level = null;
-                } catch (IOException | ClassNotFoundException e) {
-                    System.out.println(e.getMessage());
+                Response logoutResponse = sendRequest(Request.RequestType.LOGOUT, null, false);
+                if (logoutResponse != null && logoutResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                    current_level = null;
                 }
                 break;
         }
@@ -172,93 +136,48 @@ public class MenuOptionsHandler{
                     break;
                 }
                 case 2 -> {
-                    if (current_user.hasPermission(Permissions.MANAGE_STRUCTURE)) {
-                        try {
-                            int facultyId =  IdVerificator.ask_id();
+                    requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
+                        int facultyId = IdVerificator.ask_id();
 
-                            if (isIdAlreadyTaken(facultyId, Request.RequestType.FIND_FACULTY_BY_ID)) {
-                                System.out.println("This id is already taken. Please try choose another id");
-                                break;
-                            }
-
-                            String facultyFullName = FacilityNameVerificator.ask_facility_name();
-                            String facultyShortName = FacilityNameVerificator.ask_short_name();
-                            String facultyEmail = EmailVerificator.ask_email();
-
-                            Faculty facultyToAdd = new Faculty(facultyId, facultyFullName, facultyShortName, null, facultyEmail, u);
-
-                            Request addRequest = new Request(Request.RequestType.ADD_FACULTY, facultyToAdd);
-                            oos.writeObject(addRequest);
-                            oos.flush();
-
-                            Response response = (Response) ois.readObject();
-                            System.out.println(response.getMsg());
-
-                        } catch (IOException | ClassNotFoundException e) {
-                            e.printStackTrace();
+                        if (isIdAlreadyTaken(facultyId, Request.RequestType.FIND_FACULTY_BY_ID)) {
+                            System.out.println("This id is already taken. Please try choose another id");
+                            return;
                         }
-                    } else {
-                        System.out.println("Access Denied: You cannot add faculty.");
-                    }
+
+                        String facultyFullName = FacilityNameVerificator.ask_facility_name();
+                        String facultyShortName = FacilityNameVerificator.ask_short_name();
+                        String facultyEmail = EmailVerificator.ask_email();
+
+                        Faculty facultyToAdd = new Faculty(facultyId, facultyFullName, facultyShortName, null, facultyEmail, u);
+
+                        sendRequest(Request.RequestType.ADD_FACULTY, facultyToAdd, false);
+                    });
                 }
                 case 3 -> {
-                    if (current_user.hasPermission(Permissions.MANAGE_STRUCTURE)) {
-                        try {
-                            int facultyId =  IdVerificator.ask_id();
+                    requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
+                        int facultyId = IdVerificator.ask_id();
 
-                            Request removeRequest = new Request(Request.RequestType.REMOVE_FACULTY, facultyId);
-                            oos.writeObject(removeRequest);
-                            oos.flush();
-
-                            Response response = (Response) ois.readObject();
-                            System.out.println(response.getMsg());
-                        } catch (IOException | ClassNotFoundException e) {
-                            e.printStackTrace();
-                        }
-                    } else  {
-                        System.out.println("Access Denied: You cannot remove faculty.");
-                    }
+                        sendRequest(Request.RequestType.REMOVE_FACULTY, facultyId, false);
+                    });
                 }
                 case 4 -> {
-                    try {
-                        int facultyId =  IdVerificator.ask_id();
+                    int facultyId = IdVerificator.ask_id();
 
-                        Request findRequest = new Request(Request.RequestType.FIND_FACULTY_BY_ID, facultyId);
-                        oos.writeObject(findRequest);
-                        oos.flush();
+                    Response findFacultyResponse = sendRequest(Request.RequestType.FIND_FACULTY_BY_ID, facultyId, false);
 
-                        Response response = (Response) ois.readObject();
-
-                        if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
-                            current_faculty = (Faculty) response.getPayload();
-                            current_level = MenuLevel.FAC;
-                            System.out.println(response.getMsg());
-                        } else  {
-                            System.out.println(response.getMsg());
-                        }
-
-                    } catch (IOException | ClassNotFoundException e) {
-                        e.printStackTrace();
+                    if (findFacultyResponse != null && findFacultyResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                        current_faculty = (Faculty) findFacultyResponse.getPayload();
+                        current_level = MenuLevel.FAC;
                     }
+                    break;
                 }
                 case 5 -> {
-                    try {
-                        Request showAllFacultiesRequest = new Request(Request.RequestType.GET_ALL_FACULTIES, u.getId());
-                        oos.writeObject(showAllFacultiesRequest);
-                        oos.flush();
-
-                        Response response = (Response) ois.readObject();
-
-                        if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
-                            System.out.println("All faculties found");
-                            List<Faculty> list = (List<Faculty>) response.getPayload();
-                            list.forEach(System.out::println);
-                        } else  {
-                            System.out.println(response.getMsg());
-                        }
-                    } catch (IOException | ClassNotFoundException e) {
-                        e.printStackTrace();
+                    Response getAllRes = sendRequest(Request.RequestType.GET_ALL_FACULTIES, null, false);
+                    if (getAllRes != null && getAllRes.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                        List<Faculty> faculties = (List<Faculty>) getAllRes.getPayload();
+                        faculties.forEach(System.out::println);
                     }
+                    break;
                 }
             }
     }
@@ -272,73 +191,40 @@ public class MenuOptionsHandler{
                 break;
             }
             case 2 -> {
-                if (current_user.hasPermission(Permissions.MANAGE_STRUCTURE)) {
-                    try {
-                        int groupId =  IdVerificator.ask_id();
+                requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
+                    int groupToAddId = IdVerificator.ask_id();
 
-                        if (isIdAlreadyTaken(groupId, Request.RequestType.FIND_GROUP_BY_ID)) {
-                            System.out.println("This id is already taken. Please try choose another id");
-                            break;
-                        }
-
-                        String groupName = FacilityNameVerificator.ask_group_name();
-                        Faculty faculty = f;
-                        int admissionYear = AcademicInfoVerificator.ask_admission_year();
-                        int course = AcademicInfoVerificator.ask_course();
-
-                        Group group = new Group(groupId, groupName, faculty, course, admissionYear);
-
-                        Request addRequest = new Request(Request.RequestType.ADD_GROUP, group);
-                        oos.writeObject(addRequest);
-                        oos.flush();
-
-                        Response response = (Response) ois.readObject();
-                        System.out.println(response.getMsg());
-                    } catch (IOException | ClassNotFoundException e) {
-                        e.printStackTrace();
+                    if (isIdAlreadyTaken(groupToAddId, Request.RequestType.FIND_STUDENT_BY_ID)) {
+                        System.out.println("This id is already taken. Please try choose another id");
+                        return;
                     }
-                } else  {
-                    System.out.println("Access Denied: You cannot add group.");
-                }
+
+                    String groupName = FacilityNameVerificator.ask_group_name();
+                    Faculty faculty = f;
+                    int admissionYear = AcademicInfoVerificator.ask_admission_year();
+                    int course = AcademicInfoVerificator.ask_course();
+
+                    Group group = new Group(groupToAddId, groupName, faculty, course, admissionYear);
+
+                    sendRequest(Request.RequestType.ADD_GROUP, group, false);
+                });
+                break;
             }
             case 3 -> {
-                if (current_user.hasPermission(Permissions.MANAGE_STRUCTURE)) {
-                    try {
-                        int groupId =  IdVerificator.ask_id();
-
-                        Request removeRequest = new Request(Request.RequestType.REMOVE_GROUP, groupId);
-                        oos.writeObject(removeRequest);
-                        oos.flush();
-
-                        Response response = (Response) ois.readObject();
-                        System.out.println(response.getMsg());
-                    } catch (IOException | ClassNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                } else   {
-                    System.out.println("Access Denied: You cannot remove group.");
-                }
+                requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
+                    int groupToRemoveId = IdVerificator.ask_id();
+                    sendRequest(Request.RequestType.REMOVE_GROUP, groupToRemoveId, false);
+                });
+                break;
             }
             case 4 -> {
-                try {
-                    int groupId =  IdVerificator.ask_id();
-
-                    Request findRequest = new Request(Request.RequestType.FIND_GROUP_BY_ID, groupId);
-                    oos.writeObject(findRequest);
-                    oos.flush();
-
-                    Response response = (Response) ois.readObject();
-
-                    if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
-                        System.out.println("Group found");
-                        current_group = (Group) response.getPayload();
-                        current_level = MenuLevel.GROUP;
-                    } else   {
-                        System.out.println(response.getMsg());
-                    }
-                } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
+                int groupId = IdVerificator.ask_id();
+                Response findGroupRes = sendRequest(Request.RequestType.FIND_GROUP_BY_ID, groupId, false);
+                if (findGroupRes != null && findGroupRes.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                    current_group = (Group) findGroupRes.getPayload();
+                    current_level = MenuLevel.GROUP;
                 }
+                break;
             }
             case 5 -> {
                 try {
@@ -372,99 +258,54 @@ public class MenuOptionsHandler{
                 break;
             }
             case 2 -> {
-                if (current_user.hasPermission(Permissions.MANAGE_STRUCTURE)) {
-                    try {
-                        int studentId =  IdVerificator.ask_id();
+                requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
+                    int studentId =  IdVerificator.ask_id();
 
-                        if (isIdAlreadyTaken(studentId, Request.RequestType.FIND_STUDENT_BY_ID)) {
-                            System.out.println("This id is already taken. Please try choose another id");
-                            break;
-                        }
-
-                        boolean alphabet = PersonInfoVerificator.ask_alphabet();
-                        String firstName = PersonInfoVerificator.ask_name("first name", alphabet);
-                        String lastName = PersonInfoVerificator.ask_name("last name", alphabet);
-                        String middleName = PersonInfoVerificator.ask_name("middle name", alphabet);
-                        LocalDate dob = PersonInfoVerificator.ask_dob();
-                        String email = EmailVerificator.ask_email();
-                        String phoneNumber = PhoneNumberVerificator.ask_phonenum();
-                        StudyForm studyForm = AcademicInfoVerificator.ask_study_form();
-                        StudentStatus status = AcademicInfoVerificator.ask_student_status();
-
-                        Student student = new Student(studentId, firstName, lastName, middleName,dob,
-                                email, phoneNumber, null
-                                ,g.getCourse(), g,g.getAdmissionYear(), studyForm, status);
-
-                        Request addRequest = new Request(Request.RequestType.ADD_STUDENT, student);
-                        oos.writeObject(addRequest);
-                        oos.flush();
-
-                        Response response = (Response) ois.readObject();
-                        System.out.println(response.getMsg());
-                    } catch (IOException | ClassNotFoundException e) {
-                        e.printStackTrace();
+                    if (isIdAlreadyTaken(studentId, Request.RequestType.FIND_STUDENT_BY_ID)) {
+                        System.out.println("This id is already taken. Please try choose another id");
+                        return;
                     }
-                } else   {
-                    System.out.println("Access Denied: You cannot add student.");
-                }
+
+                    boolean alphabet = PersonInfoVerificator.ask_alphabet();
+                    String firstName = PersonInfoVerificator.ask_name("first name", alphabet);
+                    String lastName = PersonInfoVerificator.ask_name("last name", alphabet);
+                    String middleName = PersonInfoVerificator.ask_name("middle name", alphabet);
+                    LocalDate dob = PersonInfoVerificator.ask_dob();
+                    String email = EmailVerificator.ask_email();
+                    String phoneNumber = PhoneNumberVerificator.ask_phonenum();
+                    StudyForm studyForm = AcademicInfoVerificator.ask_study_form();
+                    StudentStatus status = AcademicInfoVerificator.ask_student_status();
+
+                    Student student = new Student(studentId, firstName, lastName, middleName,dob,
+                            email, phoneNumber, null
+                            ,g.getCourse(), g,g.getAdmissionYear(), studyForm, status);
+
+                    sendRequest(Request.RequestType.ADD_STUDENT, student, false);
+                });
+                break;
             }
             case 3 -> {
-                if (current_user.hasPermission(Permissions.MANAGE_STRUCTURE)) {
-                    try {
-                        int studentId =  IdVerificator.ask_id();
-
-                        Request removeRequest = new Request(Request.RequestType.REMOVE_STUDENT, studentId);
-                        oos.writeObject(removeRequest);
-                        oos.flush();
-
-                        Response response = (Response) ois.readObject();
-                        System.out.println(response.getMsg());
-                    } catch (IOException | ClassNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                } else   {
-                    System.out.println("Access Denied: You cannot remove student.");
-                }
+                requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
+                    int studentId = IdVerificator.ask_id();
+                    sendRequest(Request.RequestType.FIND_STUDENT_BY_ID, studentId, false);
+                });
+                break;
             }
             case 4 -> {
-               try {
-                   int studentId =  IdVerificator.ask_id();
-
-                   Request findRequest = new Request(Request.RequestType.FIND_STUDENT_BY_ID, studentId);
-                   oos.writeObject(findRequest);
-                   oos.flush();
-
-                   Response response = (Response) ois.readObject();
-
-                   if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
-                       System.out.println("Student found");
-                       Student student = (Student) response.getPayload();
-                       System.out.println(student);
-                   } else  {
-                       System.out.println(response.getMsg());
-                   }
-               } catch (IOException | ClassNotFoundException e) {
-                   e.printStackTrace();
+                int studentId = IdVerificator.ask_id();
+               Response findStudentRes = sendRequest(Request.RequestType.FIND_STUDENT_BY_ID, studentId, false);
+               if (findStudentRes != null && findStudentRes.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                   System.out.println(findStudentRes.getPayload());
                }
+               break;
             }
             case 5 -> {
-                try {
-                    Request showAllStudentsRequest = new Request(Request.RequestType.GET_ALL_STUDENTS, g.getId());
-                    oos.writeObject(showAllStudentsRequest);
-                    oos.flush();
-
-                    Response response = (Response) ois.readObject();
-
-                    if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
-                        System.out.println("All students found");
-                        List<Student> list = (List<Student>) response.getPayload();
-                        list.forEach(System.out::println);
-                    } else  {
-                        System.out.println(response.getMsg());
-                    }
-                } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
+                Response getAll = sendRequest(Request.RequestType.GET_ALL_STUDENTS, null, false);
+                if (getAll.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                    List<Student> list = (List<Student>) getAll.getPayload();
+                    list.forEach(System.out::println);
                 }
+                break;
             }
         }
     }
@@ -502,34 +343,24 @@ public class MenuOptionsHandler{
                     break;
                 }
                 case 2 -> {
-                    if (current_user.hasPermission(Permissions.MANAGE_STRUCTURE)) {
-                        try {
-                            int departmentId = IdVerificator.ask_id();
+                    requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
+                        int departmentId = IdVerificator.ask_id();
 
-                            if (isIdAlreadyTaken(departmentId, Request.RequestType.FIND_DEPARTMENT_BY_ID)) {
-                                System.out.println("This id is already taken. Please try choose another id");
-                                break;
-                            }
-
-                            String departmentName = FacilityNameVerificator.ask_facility_name();
-                            String email = EmailVerificator.ask_email();
-                            String location = UniversityVerificator.ask_address();
-
-                            Department dep = new Department(departmentId, departmentName, f,
-                                    null, location, email);
-
-                            Request addRequest = new Request(Request.RequestType.ADD_DEPARTMENT, dep);
-                            oos.writeObject(addRequest);
-                            oos.flush();
-
-                            Response response = (Response) ois.readObject();
-                            System.out.println(response.getMsg());
-                        } catch (IOException | ClassNotFoundException e) {
-                            e.printStackTrace();
+                        if (isIdAlreadyTaken(departmentId, Request.RequestType.FIND_DEPARTMENT_BY_ID)) {
+                            System.out.println("This id is already taken. Please try choose another id");
+                            return;
                         }
-                    } else   {
-                        System.out.println("Access Denied: You cannot add department.");
-                    }
+
+                        String departmentName = FacilityNameVerificator.ask_facility_name();
+                        String email = EmailVerificator.ask_email();
+                        String location = UniversityVerificator.ask_address();
+
+                        Department dep = new Department(departmentId, departmentName, f,
+                                null, location, email);
+
+                        sendRequest(Request.RequestType.ADD_DEPARTMENT, dep, false);
+                    });
+                    break;
                 }
                 case 3 -> {
                     if (current_user.hasPermission(Permissions.MANAGE_STRUCTURE)) {
@@ -872,19 +703,11 @@ public class MenuOptionsHandler{
     }
 
     private int fetchStudentsCountFromServer(int groupId) {
-        try {
-            Request req = new Request(Request.RequestType.GET_STUDENTS_COUNT, groupId);
-            oos.writeObject(req);
-            oos.flush();
-
-            Response res = (Response) ois.readObject();
-            if (res.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
-                return ((Number) res.getPayload()).intValue();
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            System.err.println("Error fetching students count: " + e.getMessage());
+        Response res = sendRequest(Request.RequestType.GET_STUDENTS_COUNT, groupId, false);
+        if (res.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            return (int) res.getPayload();
         }
-        return 0;
+        return -1;
     }
 
     private static int readInt(){

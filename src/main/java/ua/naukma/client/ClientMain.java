@@ -8,6 +8,8 @@ import ua.naukma.network.Request;
 import ua.naukma.network.Response;
 
 import java.io.*;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 
 
@@ -19,7 +21,8 @@ public class ClientMain {
         OutputStream outputStream = null;
 
         try {
-            socket = new Socket("localhost", 8080);
+            socket = new Socket();
+            socket.connect(new InetSocketAddress("255.243.123.134", 8080), 5000);
 
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
@@ -33,7 +36,7 @@ public class ClientMain {
                     String login = SystemUserVerificator.askLogin();
                     String password = SystemUserVerificator.askPassword();
 
-                    SystemUser credentials = new SystemUser(0, login, password, null);
+                    SystemUser credentials = new SystemUser(-1, login, password, null);
 
                     Request loginRequest = new Request(Request.RequestType.LOGIN, credentials);
                     oos.writeObject(loginRequest);

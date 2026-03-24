@@ -1,18 +1,17 @@
 package ua.naukma.server;
 
 import ua.naukma.domain.*;
-import ua.naukma.exception.DuplicateEntityException;
-import ua.naukma.exception.EntityNotFoundException;
-import ua.naukma.exception.IncorrectDataException;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
+import ua.naukma.server.controller.*;
 import ua.naukma.server.repository.*;
 import ua.naukma.server.service.*;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ServerMain {
     public static void main(String[] args) {
@@ -41,505 +40,90 @@ public class ServerMain {
             TeacherService teacherService = new TeacherService(teacherRepository);
             DepartmentService departmentService = new DepartmentService(departmentRepository);
 
+            Map<Request.RequestType, RequestHandler> router = new HashMap<>();
+
+            UserController userController = new UserController(userService);
+            router.put(Request.RequestType.LOGIN, userController);
+            router.put(Request.RequestType.ADD_USER, userController);
+            router.put(Request.RequestType.REMOVE_USER, userController);
+            router.put(Request.RequestType.FIND_USER_BY_ID, userController);
+            router.put(Request.RequestType.LOGOUT, userController);
+            router.put(Request.RequestType.GET_ALL_USERS, userController);
+
+            UniversityController uniController = new UniversityController(uniService);
+            router.put(Request.RequestType.ADD_UNIVERSITY, uniController);
+            router.put(Request.RequestType.REMOVE_UNIVERSITY, uniController);
+            router.put(Request.RequestType.FIND_UNIVERSITY_BY_ID, uniController);
+            router.put(Request.RequestType.GET_ALL_UNIVERSITIES, uniController);
+
+            FacultyController facController = new FacultyController(facultyService);
+            router.put(Request.RequestType.ADD_FACULTY, facController);
+            router.put(Request.RequestType.REMOVE_FACULTY, facController);
+            router.put(Request.RequestType.FIND_FACULTY_BY_ID, facController);
+            router.put(Request.RequestType.GET_ALL_FACULTIES, facController);
+
+            GroupController groupController = new GroupController(groupService);
+            router.put(Request.RequestType.ADD_GROUP, groupController);
+            router.put(Request.RequestType.REMOVE_GROUP, groupController);
+            router.put(Request.RequestType.FIND_GROUP_BY_ID, groupController);
+            router.put(Request.RequestType.GET_ALL_GROUPS, groupController);
+
+            DepartmentController departmentController = new DepartmentController(departmentService);
+            router.put(Request.RequestType.ADD_DEPARTMENT, departmentController);
+            router.put(Request.RequestType.REMOVE_DEPARTMENT, departmentController);
+            router.put(Request.RequestType.FIND_DEPARTMENT_BY_ID, departmentController);
+            router.put(Request.RequestType.GET_ALL_DEPARTMENTS, departmentController);
+
+            StudentController studentController = new StudentController(studentService);
+            router.put(Request.RequestType.ADD_STUDENT, studentController);
+            router.put(Request.RequestType.REMOVE_STUDENT, studentController);
+            router.put(Request.RequestType.FIND_STUDENT_BY_ID, studentController);
+            router.put(Request.RequestType.GET_ALL_STUDENTS, studentController);
+
+            TeacherController teacherController = new TeacherController(teacherService);
+            router.put(Request.RequestType.ADD_TEACHER, teacherController);
+            router.put(Request.RequestType.REMOVE_TEACHER, teacherController);
+            router.put(Request.RequestType.FIND_TEACHER_BY_ID, teacherController);
+            router.put(Request.RequestType.GET_ALL_TEACHERS, teacherController);
+
+
             userService.initUser();
 
             while (true) {
                 try {
                     socket = serverSocket.accept();
-                    System.out.println("Accepted connection on port 8080");
+                    String clientIp = socket.getInetAddress().getHostAddress();
+                    System.out.println("Accepted connection from " + clientIp + " on port 8080");
 
                     ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
                     ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
 
                     while (true) {
                         Request request = (Request) ois.readObject();
-                        request.getType();
 
-                        switch (request.getType()) {
-                            case LOGIN -> {
-                                SystemUser credentials = (SystemUser) request.getData();
-                                Response response;
-                                System.out.println("Received login request");
-                                try {
-                                    SystemUser realUser = userService.authenticate(credentials);
-                                    response = new Response(
-                                            Response.ResponseStatus.SUCCESS,
-                                            realUser,
-                                            "Login successful");
-                                } catch (EntityNotFoundException | IncorrectDataException e) {
-                                    response = new Response(Response.ResponseStatus.FAILURE,
-                                            "Login failed: " + e.getMessage());
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case LOGOUT -> {
-                                System.out.println("Received logout request");
-                                Response response;
-                                try {
-                                    response = new Response(
-                                            Response.ResponseStatus.SUCCESS,
-                                            "Logout successful");
-                                } catch (EntityNotFoundException | IncorrectDataException e) {
-                                    response = new Response(
-                                            Response.ResponseStatus.FAILURE,
-                                            "Logout failed: " + e.getMessage());
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case ADD_USER -> {
-                                SystemUser userToAdd = (SystemUser) request.getData();
-                                Response response;
-                                System.out.println("Received add user request");
-                                try {
-                                    userService.add(userToAdd);
-                                    response = new Response(
-                                            Response.ResponseStatus.SUCCESS,
-                                            "Add user successful");
-                                } catch (DuplicateEntityException e) {
-                                    response = new Response(
-                                            Response.ResponseStatus.FAILURE,
-                                            "User already exists"
-                                    );
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case REMOVE_USER -> {
-                                int userIdToRemove = (Integer) request.getData();
-                                System.out.println("Received remove user request");
-                                Response response;
-                                try {
-                                    userService.deleteById(userIdToRemove);
-                                    response = new Response(
-                                            Response.ResponseStatus.SUCCESS,
-                                            "User with id " + userIdToRemove + " was successfully deleted");
-                                } catch (EntityNotFoundException e) {
-                                    response = new Response(
-                                            Response.ResponseStatus.FAILURE,
-                                            "Remove user failed " + e.getMessage());
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case ADD_GROUP -> {
-                                Group groupToAdd = (Group) request.getData();
-                                System.out.println("Received add group request");
-                                Response response;
-                                try {
-                                    groupService.add(groupToAdd);
-                                    response = new Response(
-                                            Response.ResponseStatus.SUCCESS,
-                                            "Add group successful");
-                                } catch (EntityNotFoundException e) {
-                                    response = new Response(
-                                            Response.ResponseStatus.FAILURE,
-                                            "Added group failed " + e.getMessage());
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case REMOVE_GROUP -> {
-                                int groupIdToRemove = (Integer) request.getData();
-                                System.out.println("Received remove group request");
-                                Response response;
-                                try {
-                                    groupService.deleteById(groupIdToRemove);
-                                    response = new Response(
-                                            Response.ResponseStatus.SUCCESS,
-                                            "Group with id " + groupIdToRemove + " was successfully deleted");
-                                } catch (EntityNotFoundException e) {
-                                    response = new Response(
-                                            Response.ResponseStatus.FAILURE,
-                                            "Error removing group " + e.getMessage());
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case ADD_FACULTY -> {
-                                Faculty facultyToAdd = (Faculty) request.getData();
-                                System.out.println("Received add faculty request");
-                                Response response;
-                                try {
-                                    facultyService.add(facultyToAdd);
-                                    response = new Response(
-                                            Response.ResponseStatus.SUCCESS,
-                                            "Faculty with id " + facultyToAdd.getId() + " was successfully added");
-                                } catch (DuplicateEntityException e) {
-                                    response = new Response(
-                                            Response.ResponseStatus.FAILURE,
-                                            "Error adding faculty " + e.getMessage());
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case REMOVE_FACULTY -> {
-                                int idFacultyToRemove = (Integer) request.getData();
-                                System.out.println("Received remove faculty request");
-                                Response response;
-                                try {
-                                    facultyService.deleteById(idFacultyToRemove);
-                                    response = new Response(
-                                            Response.ResponseStatus.SUCCESS,
-                                            "Faculty with id " + idFacultyToRemove + " was successfully deleted");
-                                } catch (EntityNotFoundException e) {
-                                    response = new Response(
-                                            Response.ResponseStatus.FAILURE,
-                                            "Remove faculty failed " + e.getMessage());
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case ADD_STUDENT -> {
-                                Student studentToAdd = (Student) request.getData();
-                                System.out.println("Received add student request");
-                                Response response;
-                                try {
-                                    studentService.add(studentToAdd);
-                                    response = new Response(Response.ResponseStatus.SUCCESS,
-                                            "Student with id " + studentToAdd.getId() + " has been successfully added");
-                                } catch (DuplicateEntityException e) {
-                                    response = new Response(
-                                            Response.ResponseStatus.FAILURE, "User already exists with id " + studentToAdd.getId()
-                                    );
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case REMOVE_STUDENT -> {
-                                int idStudentToRemove = (Integer) request.getData();
-                                System.out.println("Received remove student request");
-                                Response response;
-                                try {
-                                    studentService.deleteById(idStudentToRemove);
-                                    response = new Response(Response.ResponseStatus.SUCCESS,
-                                            "Student with id " + idStudentToRemove + " was successfully removed");
-                                } catch (EntityNotFoundException e) {
-                                    response = new Response(Response.ResponseStatus.FAILURE,
-                                            "Remove student failed " + e.getMessage());
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case ADD_DEPARTMENT -> {
-                                Department departmentToAdd = (Department) request.getData();
-                                System.out.println("Received add department request");
-                                Response response;
-                                try {
-                                    departmentService.add(departmentToAdd);
-                                    response = new Response(
-                                            Response.ResponseStatus.SUCCESS,
-                                            "Department with id " + departmentToAdd.getId() + " has been successfully added");
-                                } catch (DuplicateEntityException e) {
-                                    response = new Response(
-                                            Response.ResponseStatus.FAILURE,
-                                            "Add department failed " + e.getMessage());
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case REMOVE_DEPARTMENT -> {
-                                int idToRemove = (Integer) request.getData();
-                                System.out.println("Received remove department request");
-                                Response response;
-                                try {
-                                    departmentService.deleteById(idToRemove);
-                                    response = new Response(
-                                            Response.ResponseStatus.SUCCESS,
-                                            "Department with id " + idToRemove + " was successfully deleted");
-                                } catch (EntityNotFoundException e) {
-                                    response = new Response(
-                                            Response.ResponseStatus.FAILURE,
-                                            "Error removing department " + e.getMessage());
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case ADD_TEACHER -> {
-                                Teacher teacherToAdd = (Teacher) request.getData();
-                                System.out.println("Received add teacher request");
-                                Response response;
-                                try {
-                                    teacherService.add(teacherToAdd);
-                                    response = new Response(
-                                            Response.ResponseStatus.SUCCESS,
-                                            "Teacher with id " + teacherToAdd.getId() + " was successfully created");
-                                } catch (DuplicateEntityException e) {
-                                    response = new Response(
-                                            Response.ResponseStatus.FAILURE,
-                                            "Error adding teacher " + e.getMessage());
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case REMOVE_TEACHER -> {
-                                int idTeacher = (Integer) request.getData();
-                                System.out.println("Received remove teacher request");
-                                Response response;
-                                try {
-                                    teacherService.deleteById(idTeacher);
-                                    response = new Response(
-                                            Response.ResponseStatus.SUCCESS,
-                                            "Teacher with id " + idTeacher + " was successfully deleted");
-                                } catch (EntityNotFoundException e) {
-                                    response = new Response(
-                                            Response.ResponseStatus.FAILURE,
-                                            "Error removing teacher " + e.getMessage());
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case ADD_UNIVERSITY -> {
-                                System.out.println("Received add university request");
-                                University uniToAdd = (University) request.getData();
-                                Response response;
-                                try {
-                                    uniService.add(uniToAdd);
-                                    response = new Response(
-                                            Response.ResponseStatus.SUCCESS,
-                                            "University " + uniToAdd.getFullName() + " has been added successfully");
-                                } catch (DuplicateEntityException e) {
-                                    response = new Response(Response.ResponseStatus.FAILURE,
-                                            "Error adding university: " + e.getMessage());
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case REMOVE_UNIVERSITY -> {
-                                System.out.println("Received remove university request");
-                                Response response = new Response(
-                                        Response.ResponseStatus.SUCCESS,
-                                        "Remove university successful");
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case GET_ALL_UNIVERSITIES -> {
-                                List<University> universities = uniService.findAll();
-                                System.out.println("Received all university request");
-                                Response response = new Response(
-                                        Response.ResponseStatus.FAILURE,
-                                        universities, "University list has been successfully retrieved"
-                                );
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case GET_ALL_FACULTIES -> {
-                                int uniId = (Integer) request.getData();
-                                System.out.println("Receive id request");
-                                List<Faculty> faculties = facultyService.findAllByUniId(uniId);
-                                System.out.println("Received all faculties request");
-                                Response response = new Response(
-                                        Response.ResponseStatus.SUCCESS,
-                                        faculties, "Faculty list has been successfully retrieved"
-                                );
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case GET_ALL_DEPARTMENTS -> {
-                                int facultyId = (Integer) request.getData();
-                                System.out.println("Receive id request");
-                                List<Department> departments = departmentService.findAllByFacultyId(facultyId);
-                                System.out.println("Received all departments request");
-                                Response response = new Response(
-                                        Response.ResponseStatus.SUCCESS,
-                                        departments, "Department list has been successfully retrieved"
-                                );
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case GET_ALL_GROUPS -> {
-                                int facultyId = (Integer) request.getData();
-                                System.out.println("Receive id request");
-                                List<Group> groups = groupService.findAllByFacultyId(facultyId);
-                                System.out.println("Received all groups request");
-                                Response response = new Response(
-                                        Response.ResponseStatus.SUCCESS,
-                                        groups, "Group list has been successfully retrieved"
-                                );
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case GET_ALL_STUDENTS -> {
-                                int groupId = (Integer) request.getData();
-                                System.out.println("Receive id request");
-                                List<Student> students = studentService.findAllByGroupId(groupId);
-                                System.out.println("Received all departments request");
-                                Response response = new Response(
-                                        Response.ResponseStatus.SUCCESS,
-                                        students, "Student list has been successfully retrieved"
-                                );
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case GET_ALL_TEACHERS -> {
-                                int departmentId = (Integer) request.getData();
-                                System.out.println("Receive id request");
-                                List<Teacher> teachers = teacherService.findAllByDepartmentId(departmentId);
-                                System.out.println("Receive all departments request");
-                                Response response = new Response(
-                                        Response.ResponseStatus.SUCCESS,
-                                        teachers, "Teacher list has been successfully retrieved"
-                                );
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case GET_ALL_USERS -> {
-                                List<SystemUser> list = userService.findAll();
-                                System.out.println("Receive all users request");
-                                Response response = new Response(
-                                        Response.ResponseStatus.SUCCESS,
-                                        list, "User list has been successfully retrieved"
-                                );
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case FIND_USER_BY_ID -> {
-                                int userIdToFind = (Integer) request.getData();
-                                System.out.println("Receive id request");
-                                Response response;
-                                try {
-                                    SystemUser foundUser = userService.findById(userIdToFind);
-                                    response = new Response(
-                                            Response.ResponseStatus.SUCCESS,
-                                            foundUser, "User found successfully"
-                                    );
-                                } catch (Exception e) {
-                                    response = new Response(
-                                            Response.ResponseStatus.FAILURE,
-                                            "Error finding user: " + e.getMessage()
-                                    );
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case FIND_UNIVERSITY_BY_ID -> {
-                                int uniIdToFind = (Integer) request.getData();
-                                System.out.println("Receive id request");
-                                Response response;
-                                try {
-                                    University foundId = uniService.findById(uniIdToFind);
-                                    response = new Response(
-                                            Response.ResponseStatus.SUCCESS,
-                                            foundId,
-                                            "University with id " + uniIdToFind + " was successfully found"
-                                    );
-                                } catch (EntityNotFoundException e) {
-                                    response = new Response(Response.ResponseStatus.FAILURE,
-                                            "Error finding university with id " + uniIdToFind);
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case FIND_FACULTY_BY_ID -> {
-                                int idToFind = (Integer) request.getData();
-                                System.out.println("Received request to find faculty with ID: " + idToFind);
-                                Response response;
-                                try {
-                                    Faculty foundFaculty = facultyService.findById(idToFind);
-                                    response = new Response(Response.ResponseStatus.SUCCESS,
-                                            foundFaculty,
-                                            "Faculty with ID " + idToFind + " was successfully found");
-                                } catch (EntityNotFoundException e) {
-                                    response = new Response(Response.ResponseStatus.FAILURE,
-                                            "Not found: " + e.getMessage());
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case FIND_DEPARTMENT_BY_ID -> {
-                                int idToFind = (Integer) request.getData();
-                                System.out.println("Received request to find department with ID: " + idToFind);
-                                Response response;
-                                try {
-                                    Department foundDepartment = departmentService.findById(idToFind);
-                                    response = new Response(Response.ResponseStatus.SUCCESS,
-                                            foundDepartment,
-                                            "Department with ID " + idToFind + " was successfully found");
-                                } catch (EntityNotFoundException e) {
-                                    response = new Response(Response.ResponseStatus.FAILURE,
-                                            "Not found: " + e.getMessage());
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case FIND_GROUP_BY_ID -> {
-                                int idToFind = (Integer) request.getData();
-                                System.out.println("Received request to find group with ID: " + idToFind);
-                                Response response;
-                                try {
-                                    Group foundGroup = groupService.findById(idToFind);
-                                    response = new Response(Response.ResponseStatus.SUCCESS,
-                                            foundGroup,
-                                            "Group with ID " + idToFind + " was successfully found");
-                                } catch (EntityNotFoundException e) {
-                                    response = new Response(Response.ResponseStatus.FAILURE,
-                                            "Not found: " + e.getMessage());
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case FIND_STUDENT_BY_ID -> {
-                                int idToFind = (Integer) request.getData();
-                                System.out.println("Received request to find student with ID: " + idToFind);
-                                Response response;
-                                try {
-                                    Student foundStudent = studentService.findById(idToFind);
-                                    response = new Response(Response.ResponseStatus.SUCCESS,
-                                            foundStudent,
-                                            "Student with ID " + idToFind + " was successfully found");
-                                } catch (EntityNotFoundException e) {
-                                    response = new Response(
-                                            Response.ResponseStatus.FAILURE,
-                                            "Not found: " + e.getMessage()
-                                    );
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case FIND_TEACHER_BY_ID -> {
-                                int idToFind = (Integer) request.getData();
-                                System.out.println("Received request to find teacher with ID: " + idToFind);
-                                Response response;
-                                try {
-                                    Teacher foundTeacher = teacherService.findById(idToFind);
-                                    response = new Response(Response.ResponseStatus.SUCCESS,
-                                            foundTeacher,
-                                            "Teacher with ID " + idToFind + " was successfully found");
-                                } catch (EntityNotFoundException e) {
-                                    response = new Response(Response.ResponseStatus.FAILURE,
-                                            "Not found: " + e.getMessage());
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case GET_STUDENTS_COUNT -> {
-                                int groupId = (Integer) request.getData();
-                                System.out.println("Received request to get students count");
-                                Response response;
-                                try {
-                                    int studentsCount = (int) studentService.getStudentsCount(groupId);
-                                    response = new Response(Response.ResponseStatus.SUCCESS,
-                                            studentsCount,
-                                            "Student count was successfully found");
-                                } catch (EntityNotFoundException e) {
-                                    response = new Response(
-                                            Response.ResponseStatus.FAILURE,
-                                            "Not found: " + e.getMessage()
-                                    );
-                                }
-                                oos.writeObject(response);
-                                oos.flush();
-                            }
-                            case null, default -> {
-                                System.out.println("Received default request");
-                            }
+                        RequestHandler handler = router.get(request.getType());
+
+                        System.out.println("========================================");
+                        System.out.println("New request from: " + clientIp);
+                        System.out.println("Request Type:   " + request.getType());
+                        System.out.println("Data attached:  " + request.getData());
+                        System.out.println("========================================");
+
+                        if (handler != null) {
+                            Response response = handler.process(request);
+
+                            System.out.println("Response Status: " + response.getResponseStatus());
+                            System.out.println("Message:         " + response.getMsg());
+                            System.out.println("Data sent back:  " + response.getPayload());
+                            System.out.println("========================================\n");
+                            oos.writeObject(response);
+                            oos.flush();
                         }
                     }
                 } catch (EOFException e) {
-                    System.out.println("Received EOF exception " + e.getMessage());
+                    System.out.println("Client disconnected: " + e.getMessage());
                 } catch (ClassNotFoundException e) {
-                    System.out.println("Received ClassNotFound exception " + e.getMessage());
+                    System.out.println("ClassNotFound exception: " + e.getMessage());
                 }
             }
         } catch (IOException e) {
