@@ -9,9 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@ua.naukma.server.annotation.Repository
 public class FileUserRepository implements Repository<SystemUser, Integer> {
-    private final Path filePath = Path.of("data/users.dat");
+    private final Path filePath = Path.of("data/users.json");
 
+    @SuppressWarnings("unchecked")
     private List<SystemUser> loadUsers() throws IOException {
         if (!Files.exists(filePath)) {
             return new ArrayList<>();

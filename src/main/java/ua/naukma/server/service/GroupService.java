@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@ua.naukma.server.annotation.Service
 public class GroupService implements Service<Group, Integer> {
     private final Repository<Group, Integer> groupRepository;
 
@@ -45,6 +46,9 @@ public class GroupService implements Service<Group, Integer> {
 
     @Override
     public List<Group> findAll() {
+        if  (groupRepository.findAll().isEmpty()) {
+            throw new EntityNotFoundException("No groups have been found!");
+        }
         return groupRepository.findAll();
     }
 

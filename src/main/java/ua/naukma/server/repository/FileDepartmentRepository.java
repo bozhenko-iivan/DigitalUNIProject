@@ -11,9 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@ua.naukma.server.annotation.Repository
 public class FileDepartmentRepository implements Repository<Department, Integer> {
-    private final Path filePath = Path.of("data/department.dat");
+    private final Path filePath = Path.of("data/department.json");
 
+    @SuppressWarnings("unchecked")
     private List<Department> loadDepartment() throws IOException {
         if (!Files.exists(filePath)) {
             return new ArrayList<>();
@@ -27,6 +29,7 @@ public class FileDepartmentRepository implements Repository<Department, Integer>
         }
     }
 
+    @SuppressWarnings("unchecked")
     private List<Department> writeDepartment(List<Department> departments) throws IOException {
         try {
             if (filePath.getParent() != null && !Files.exists(filePath.getParent())) {

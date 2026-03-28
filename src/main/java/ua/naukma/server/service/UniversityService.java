@@ -5,9 +5,11 @@ import ua.naukma.exception.DuplicateEntityException;
 import ua.naukma.exception.EntityNotFoundException;
 import ua.naukma.server.repository.Repository;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+@ua.naukma.server.annotation.Service
 public class UniversityService implements Service<University, Integer> {
     private final Repository<University, Integer> repository;
 
@@ -43,6 +45,9 @@ public class UniversityService implements Service<University, Integer> {
 
     @Override
     public List<University> findAll() {
+        if (repository.findAll().isEmpty()) {
+            throw new EntityNotFoundException("No universities have been found!");
+        }
         return repository.findAll();
     }
 

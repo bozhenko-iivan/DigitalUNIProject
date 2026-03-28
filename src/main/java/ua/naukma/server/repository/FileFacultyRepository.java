@@ -1,6 +1,7 @@
 package ua.naukma.server.repository;
 
 import ua.naukma.domain.Faculty;
+import ua.naukma.domain.University;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -11,9 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@ua.naukma.server.annotation.Repository
 public class FileFacultyRepository implements Repository<Faculty, Integer> {
-    private final Path filePath = Path.of("data/faculty.dat");
+    private final Path filePath = Path.of("data/faculty.json");
 
+    @SuppressWarnings("unchecked")
     private List<Faculty> loadFaculty() throws IOException {
         if (!Files.exists(filePath)) {
             return new ArrayList<>();
@@ -29,7 +32,7 @@ public class FileFacultyRepository implements Repository<Faculty, Integer> {
 
     private List<Faculty> writeFaculty(List<Faculty> faculties) throws IOException {
         try {
-            if (filePath.getParent() != null || !Files.exists(filePath.getParent())) {
+            if (filePath.getParent() != null && !Files.exists(filePath.getParent())) {
                 Files.createDirectories(filePath.getParent());
             }
             try (ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(filePath))) {

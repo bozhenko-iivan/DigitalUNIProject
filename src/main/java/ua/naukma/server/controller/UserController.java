@@ -3,7 +3,17 @@ package ua.naukma.server.controller;
 import ua.naukma.domain.SystemUser;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
+import ua.naukma.server.annotation.CommandRoute;
 import ua.naukma.server.service.UserService;
+
+@CommandRoute({
+        Request.RequestType.ADD_USER,
+        Request.RequestType.REMOVE_USER,
+        Request.RequestType.FIND_USER_BY_ID,
+        Request.RequestType.GET_ALL_USERS,
+        Request.RequestType.LOGIN,
+        Request.RequestType.LOGOUT,
+})
 
 public class UserController implements RequestHandler {
     private final UserService userService;

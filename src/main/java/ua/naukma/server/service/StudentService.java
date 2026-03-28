@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+@ua.naukma.server.annotation.Service
 public class StudentService implements Service<Student, Integer> {
     private final PersonRepository<Student, Integer> repository;
 
@@ -60,6 +61,9 @@ public class StudentService implements Service<Student, Integer> {
 
     @Override
     public List<Student> findAll() {
+        if  (repository.findAll().isEmpty()) {
+            throw new EntityNotFoundException("No students in current group have been found!");
+        }
         return repository.findAll();
     }
 
@@ -88,5 +92,23 @@ public class StudentService implements Service<Student, Integer> {
 
     public long getStudentsCount(int groupId) throws EntityNotFoundException {
         return repository.findAll().stream().filter(s -> s.getGroup() != null && s.getGroup().getId() == groupId).count();
+    }
+
+    public void updateContacts(int studentID, String newPhoneNum, String newEmail) {
+        if (repository.findById(studentID).isPresent()) {
+            Student student = repository.findById(studentID).get();
+            student.setPhoneNumber(newPhoneNum);
+            student.setEmail(newEmail);
+            repository.save(student);
+        } else {
+            throw new EntityNotFoundException("Student with id " + studentID + " doesn't exist.");
+        }
+    }
+
+    @Deprecated
+    public void updateAddress(int studentID, String newAddress) {
+        if (repository.findById(studentID).isPresent()) {
+            Student student = repository.findById(studentID).get();
+        }
     }
 }

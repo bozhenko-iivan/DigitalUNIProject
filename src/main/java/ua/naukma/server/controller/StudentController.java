@@ -3,7 +3,15 @@ package ua.naukma.server.controller;
 import ua.naukma.domain.Student;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
+import ua.naukma.server.annotation.CommandRoute;
 import ua.naukma.server.service.StudentService;
+
+@CommandRoute({
+        Request.RequestType.ADD_STUDENT,
+        Request.RequestType.REMOVE_STUDENT,
+        Request.RequestType.FIND_STUDENT_BY_ID,
+        Request.RequestType.GET_ALL_STUDENTS,
+})
 
 public class StudentController implements RequestHandler {
     private final StudentService studentService;

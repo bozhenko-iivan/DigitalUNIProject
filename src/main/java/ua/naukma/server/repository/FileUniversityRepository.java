@@ -11,9 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@ua.naukma.server.annotation.Repository
 public class FileUniversityRepository implements Repository<University, Integer> {
-    private final Path filePath = Path.of("data/university.dat");
+    private final Path filePath = Path.of("data/university.json");
 
+    @SuppressWarnings("unchecked")
     private List<University> loadUniversity() throws IOException {
         if (!Files.exists(filePath)) {
             return new ArrayList<>();

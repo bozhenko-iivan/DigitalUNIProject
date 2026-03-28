@@ -15,27 +15,31 @@ public interface RequestHandler {
     }
 
     default Response execute(Callable<Object> action, Request.RequestType requestType) {
+        String lowerCase = requestType.name().replace('_', ' ').toLowerCase();
+
         try {
             Object resultData = action.call();
-            String successMsg = requestType.name() + " successful";
+            String successMsg = lowerCase + ": ";
             if (resultData != null) {
                 return new Response(Response.ResponseStatus.SUCCESS, resultData, successMsg);
             } else {
                 return new Response(Response.ResponseStatus.SUCCESS, successMsg);
             }
         } catch (Exception e) {
-            String errorPrefix = requestType.name() + " failed: "  + e.getMessage();
+            String errorPrefix = lowerCase + ": \n" + e.getMessage();
             return new Response(Response.ResponseStatus.FAILURE, errorPrefix);
         }
     }
 
     default Response execute(VoidAction action, Request.RequestType requestType) {
+        String lowerCase = requestType.name().replace('_', ' ').toLowerCase();
+
         try {
             action.run();
-            String successMsg = requestType.name() + " successful";
+            String successMsg = lowerCase + ": ";
             return new Response(Response.ResponseStatus.SUCCESS, successMsg);
         } catch (Exception e) {
-            String errorPrefix = requestType.name() + " failed: "  + e.getMessage();
+            String errorPrefix = lowerCase+ ": \n" + e.getMessage();
             return new Response(Response.ResponseStatus.FAILURE, errorPrefix);
         }
     }

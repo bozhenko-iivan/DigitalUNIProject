@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@ua.naukma.server.annotation.Service
 public class DepartmentService implements Service<Department, Integer> {
     private final Repository<Department, Integer> repository;
 
@@ -50,6 +51,9 @@ public class DepartmentService implements Service<Department, Integer> {
 
     @Override
     public List<Department> findAll() {
+        if  (repository.findAll().isEmpty()) {
+            throw new EntityNotFoundException("No departments have been found!");
+        }
         return repository.findAll();
     }
 

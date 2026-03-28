@@ -1,6 +1,7 @@
 package ua.naukma.server.service;
 
 import ua.naukma.domain.Teacher;
+import ua.naukma.domain.University;
 import ua.naukma.exception.DuplicateEntityException;
 import ua.naukma.exception.EntityNotFoundException;
 import ua.naukma.server.repository.PersonRepository;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@ua.naukma.server.annotation.Service
 public class TeacherService implements Service<Teacher, Integer> {
     private final PersonRepository<Teacher, Integer> repository;
 
@@ -53,6 +55,9 @@ public class TeacherService implements Service<Teacher, Integer> {
 
     @Override
     public List<Teacher> findAll() {
+        if  (repository.findAll().isEmpty()) {
+            throw new EntityNotFoundException("No teacher has been found!");
+        }
         return repository.findAll();
     }
 

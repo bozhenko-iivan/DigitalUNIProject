@@ -3,6 +3,7 @@ package ua.naukma.server;
 import ua.naukma.domain.*;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
+import ua.naukma.server.annotation.CommandRoute;
 import ua.naukma.server.controller.*;
 import ua.naukma.server.repository.*;
 import ua.naukma.server.service.*;
@@ -14,6 +15,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ServerMain {
+    public static void registerController(Map<Request.RequestType, RequestHandler> router, RequestHandler handler) {
+        if (handler.getClass().isAnnotationPresent(CommandRoute.class)) {
+            CommandRoute annotation = handler.getClass().getAnnotation(CommandRoute.class);
+            Request.RequestType[] requestTypes = annotation.value();
+            for (Request.RequestType requestType : requestTypes) {
+                router.put(requestType, handler);
+            }
+        } else {
+            throw new RuntimeException(handler.getClass().getName() + " is not annotated with @CommandRoute");
+        }
+    }
+
     public static void main(String[] args) {
         Socket socket = null;
         InputStream inputStream = null;
@@ -42,50 +55,13 @@ public class ServerMain {
 
             Map<Request.RequestType, RequestHandler> router = new HashMap<>();
 
-            UserController userController = new UserController(userService);
-            router.put(Request.RequestType.LOGIN, userController);
-            router.put(Request.RequestType.ADD_USER, userController);
-            router.put(Request.RequestType.REMOVE_USER, userController);
-            router.put(Request.RequestType.FIND_USER_BY_ID, userController);
-            router.put(Request.RequestType.LOGOUT, userController);
-            router.put(Request.RequestType.GET_ALL_USERS, userController);
-
-            UniversityController uniController = new UniversityController(uniService);
-            router.put(Request.RequestType.ADD_UNIVERSITY, uniController);
-            router.put(Request.RequestType.REMOVE_UNIVERSITY, uniController);
-            router.put(Request.RequestType.FIND_UNIVERSITY_BY_ID, uniController);
-            router.put(Request.RequestType.GET_ALL_UNIVERSITIES, uniController);
-
-            FacultyController facController = new FacultyController(facultyService);
-            router.put(Request.RequestType.ADD_FACULTY, facController);
-            router.put(Request.RequestType.REMOVE_FACULTY, facController);
-            router.put(Request.RequestType.FIND_FACULTY_BY_ID, facController);
-            router.put(Request.RequestType.GET_ALL_FACULTIES, facController);
-
-            GroupController groupController = new GroupController(groupService);
-            router.put(Request.RequestType.ADD_GROUP, groupController);
-            router.put(Request.RequestType.REMOVE_GROUP, groupController);
-            router.put(Request.RequestType.FIND_GROUP_BY_ID, groupController);
-            router.put(Request.RequestType.GET_ALL_GROUPS, groupController);
-
-            DepartmentController departmentController = new DepartmentController(departmentService);
-            router.put(Request.RequestType.ADD_DEPARTMENT, departmentController);
-            router.put(Request.RequestType.REMOVE_DEPARTMENT, departmentController);
-            router.put(Request.RequestType.FIND_DEPARTMENT_BY_ID, departmentController);
-            router.put(Request.RequestType.GET_ALL_DEPARTMENTS, departmentController);
-
-            StudentController studentController = new StudentController(studentService);
-            router.put(Request.RequestType.ADD_STUDENT, studentController);
-            router.put(Request.RequestType.REMOVE_STUDENT, studentController);
-            router.put(Request.RequestType.FIND_STUDENT_BY_ID, studentController);
-            router.put(Request.RequestType.GET_ALL_STUDENTS, studentController);
-
-            TeacherController teacherController = new TeacherController(teacherService);
-            router.put(Request.RequestType.ADD_TEACHER, teacherController);
-            router.put(Request.RequestType.REMOVE_TEACHER, teacherController);
-            router.put(Request.RequestType.FIND_TEACHER_BY_ID, teacherController);
-            router.put(Request.RequestType.GET_ALL_TEACHERS, teacherController);
-
+            registerController(router, new UserController(userService));
+            registerController(router, new UniversityController(uniService));
+            registerController(router, new FacultyController(facultyService));
+            registerController(router, new DepartmentController(departmentService));
+            registerController(router, new GroupController(groupService));
+            registerController(router, new TeacherController(teacherService));
+            registerController(router, new StudentController(studentService));
 
             userService.initUser();
 
@@ -100,8 +76,8 @@ public class ServerMain {
 
                     while (true) {
                         Request request = (Request) ois.readObject();
-
-                        RequestHandler handler = router.get(request.getType());
+                        Request.RequestType currentType = request.getType();
+                        RequestHandler handler = router.get(currentType);
 
                         System.out.println("========================================");
                         System.out.println("New request from: " + clientIp);
@@ -122,6 +98,13 @@ public class ServerMain {
                     }
                 } catch (EOFException e) {
                     System.out.println("Client disconnected: " + e.getMessage());
+                    try {
+                        if (socket != null) {
+                            socket.close();
+                        }
+                    } catch (IOException ioe) {
+                        ioe.printStackTrace();
+                    }
                 } catch (ClassNotFoundException e) {
                     System.out.println("ClassNotFound exception: " + e.getMessage());
                 }

@@ -11,9 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@ua.naukma.server.annotation.Repository
 public class FileGroupRepository implements Repository<Group, Integer> {
-    private final Path filePath = Path.of("data/group.dat");
+    private final Path filePath = Path.of("data/group.json");
 
+    @SuppressWarnings("unchecked")
     private List<Group> loadGroup() throws IOException {
         if (!Files.exists(filePath)) {
             return new ArrayList<>();

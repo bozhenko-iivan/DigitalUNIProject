@@ -5,6 +5,7 @@ import ua.naukma.domain.*;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
 import ua.naukma.security.Permissions;
+import ua.naukma.server.annotation.Secured;
 import ua.naukma.server.service.*;
 
 import java.io.IOException;
@@ -108,6 +109,7 @@ public class MenuOptionsHandler{
             case 5:
                 Response getAllRes = sendRequest(Request.RequestType.GET_ALL_UNIVERSITIES, null, false);
                 if (getAllRes != null && getAllRes.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                    @SuppressWarnings("unchecked")
                     List<University> universities = (List<University>) getAllRes.getPayload();
                     universities.forEach(System.out::println);
                 }
@@ -174,6 +176,7 @@ public class MenuOptionsHandler{
                 case 5 -> {
                     Response getAllRes = sendRequest(Request.RequestType.GET_ALL_FACULTIES, null, false);
                     if (getAllRes != null && getAllRes.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                        @SuppressWarnings("unchecked")
                         List<Faculty> faculties = (List<Faculty>) getAllRes.getPayload();
                         faculties.forEach(System.out::println);
                     }
@@ -236,6 +239,7 @@ public class MenuOptionsHandler{
 
                     if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
                         System.out.println("All groups found");
+                        @SuppressWarnings("unchecked")
                         List<Group> list = (List<Group>) response.getPayload();
                         list.forEach(System.out::println);
                     } else {
@@ -302,8 +306,11 @@ public class MenuOptionsHandler{
             case 5 -> {
                 Response getAll = sendRequest(Request.RequestType.GET_ALL_STUDENTS, null, false);
                 if (getAll.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                    @SuppressWarnings("unchecked")
                     List<Student> list = (List<Student>) getAll.getPayload();
-                    list.forEach(System.out::println);
+                    list.forEach((student) -> {
+                        System.out.println(student.toStringShort());
+                    });
                 }
                 break;
             }
@@ -413,6 +420,7 @@ public class MenuOptionsHandler{
 
                         if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
                             System.out.println("All departments found");
+                            @SuppressWarnings("unchecked")
                             List<Department> list = (List<Department>) response.getPayload();
                             list.forEach(System.out::println);
                         } else   {
@@ -625,6 +633,7 @@ public class MenuOptionsHandler{
 
                     if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
                         System.out.println("All users found");
+                        @SuppressWarnings("unchecked")
                         List<SystemUser> list = (List<SystemUser>) response.getPayload();
                         list.forEach(System.out::println);
                     } else  {
