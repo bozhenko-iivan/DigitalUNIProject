@@ -1,0 +1,35 @@
+[
+  {
+    "recordBookNumber": "B-1342o-409",
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1234567,
+    "firstName": "Ivan",
+    "lastName": "Bozhenko",
+    "middleName": "Igorovych",
+    "birthDate": "06.03.2008",
+    "email": "bozhenkoi@gmail.com",
+    "phoneNumber": "+380976607505"
+  }
+]

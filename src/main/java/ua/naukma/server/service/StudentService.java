@@ -1,6 +1,8 @@
 package ua.naukma.server.service;
 
 import ua.naukma.domain.Student;
+import ua.naukma.domain.StudentStatus;
+import ua.naukma.domain.StudyForm;
 import ua.naukma.exception.DuplicateEntityException;
 import ua.naukma.exception.EntityNotFoundException;
 import ua.naukma.server.repository.PersonRepository;
@@ -61,7 +63,7 @@ public class StudentService implements Service<Student, Integer> {
 
     @Override
     public List<Student> findAll() {
-        if  (repository.findAll().isEmpty()) {
+        if (repository.findAll().isEmpty()) {
             throw new EntityNotFoundException("No students in current group have been found!");
         }
         return repository.findAll();
@@ -91,24 +93,43 @@ public class StudentService implements Service<Student, Integer> {
     }
 
     public long getStudentsCount(int groupId) throws EntityNotFoundException {
+        if (repository.findAll().isEmpty()) {
+            return 0;
+        }
         return repository.findAll().stream().filter(s -> s.getGroup() != null && s.getGroup().getId() == groupId).count();
     }
 
-    public void updateContacts(int studentID, String newPhoneNum, String newEmail) {
+    public Student updateContacts(int studentID, String newPhoneNum, String newEmail) {
         if (repository.findById(studentID).isPresent()) {
             Student student = repository.findById(studentID).get();
             student.setPhoneNumber(newPhoneNum);
             student.setEmail(newEmail);
             repository.save(student);
-        } else {
+            return student;
+        } else  {
             throw new EntityNotFoundException("Student with id " + studentID + " doesn't exist.");
         }
     }
 
-    @Deprecated
-    public void updateAddress(int studentID, String newAddress) {
+    public Student updateStudyForm(int studentID, StudyForm studyForm) {
         if (repository.findById(studentID).isPresent()) {
             Student student = repository.findById(studentID).get();
+            student.setStudyForm(studyForm);
+            repository.save(student);
+            return student;
+        } else  {
+            throw new EntityNotFoundException("Student with id " + studentID + " doesn't exist.");
+        }
+    }
+
+    public Student updateStudentStatus(int studentID, StudentStatus studentStatus) {
+        if (repository.findById(studentID).isPresent()) {
+            Student student = repository.findById(studentID).get();
+            student.setStatus(studentStatus);
+            repository.save(student);
+            return student;
+        } else {
+            throw new EntityNotFoundException("Student with id " + studentID + " doesn't exist.");
         }
     }
 }

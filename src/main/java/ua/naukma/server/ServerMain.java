@@ -94,6 +94,11 @@ public class ServerMain {
                             System.out.println("========================================\n");
                             oos.writeObject(response);
                             oos.flush();
+                        } else {
+                            System.out.println("No handler found for " + currentType);
+                            Response errorResponse = new Response(Response.ResponseStatus.FAILURE, "Server Error: Unknown command " + currentType);
+                            oos.writeObject(errorResponse);
+                            oos.flush();
                         }
                     }
                 } catch (EOFException e) {
@@ -107,6 +112,9 @@ public class ServerMain {
                     }
                 } catch (ClassNotFoundException e) {
                     System.out.println("ClassNotFound exception: " + e.getMessage());
+                } catch (Exception e) {
+                    System.out.println("Server exception: ");
+                    e.printStackTrace();
                 }
             }
         } catch (IOException e) {

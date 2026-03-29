@@ -76,6 +76,9 @@ public class Request implements Serializable {
         FIND_TEACHER_BY_ID,
 
         GET_STUDENTS_COUNT,
+        UPDATE_STUDENT_CONTACTS,
+        UPDATE_STUDENT_STUDY_FORM,
+        UPDATE_STUDENT_STATUS
     }
 
     public Request(RequestType type, Object data) {

@@ -107,22 +107,24 @@ public class NewMenu {
                 break;
         }
 
-        String action4;
-        if (level == MenuLevel.UNI || level == MenuLevel.DEPS || level == MenuLevel.GRPS) {
-            action4 = "Select ";
-        } else {
-            action4 = "Find ";
-        }
+        if (level != MenuLevel.STUDENT) {
+            String action4;
+            if (level == MenuLevel.UNI || level == MenuLevel.DEPS || level == MenuLevel.GRPS) {
+                action4 = "Select ";
+            } else {
+                action4 = "Find ";
+            }
 
-        if (canAdd) {
-            System.out.println("➕ 2. Add " + s);
-        }
-        if (canRemove) {
-            System.out.println("❌ 3. Remove " + s);
-        }
+            if (canAdd) {
+                System.out.println("➕ 2. Add " + s);
+            }
+            if (canRemove) {
+                System.out.println("❌ 3. Remove " + s);
+            }
 
-        System.out.println("\uD83D\uDD0D 4. " + action4 + s + " by ID");
-        System.out.println("\uD83D\uDCCB 5. Show all " + s + "s");
+            System.out.println("\uD83D\uDD0D 4. " + action4 + s + " by ID");
+            System.out.println("\uD83D\uDCCB 5. Show all " + s + "s");
+        }
 
         if (level == MenuLevel.MON) {
             if (loggedUser.hasPermission(Permissions.MANAGE_USERS)) {
@@ -130,6 +132,14 @@ public class NewMenu {
             }
             System.out.println("\uD83D\uDEAA 7. Log out");
         }
+
+        if (level == MenuLevel.STUDENT) {
+            System.out.println("ℹ\uFE0F 2. Show student info");
+            System.out.println("\uD83D\uDCC7 3. Update student's contacts");
+            System.out.println("\uD83D\uDCDA 4. Update student's study form");
+            System.out.println("✅ 5. Update student's status");
+        }
+
         System.out.println("===================================");
     }
 }

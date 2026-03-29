@@ -14,7 +14,9 @@ import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
+import java.util.function.IntBinaryOperator;
 
 public class MenuOptionsHandler{
     private MenuLevel current_level;
@@ -23,6 +25,7 @@ public class MenuOptionsHandler{
     private University current_university;
     private Group current_group;
     private SystemUser current_user;
+    private Student current_student;
 
     private ObjectOutputStream oos;
     private ObjectInputStream ois;
@@ -300,6 +303,8 @@ public class MenuOptionsHandler{
                Response findStudentRes = sendRequest(Request.RequestType.FIND_STUDENT_BY_ID, studentId, false);
                if (findStudentRes != null && findStudentRes.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
                    System.out.println(findStudentRes.getPayload());
+                   current_student = (Student) findStudentRes.getPayload();
+                   current_level = MenuLevel.STUDENT;
                }
                break;
             }
@@ -316,121 +321,171 @@ public class MenuOptionsHandler{
             }
         }
     }
+
+    private void handle_STUDENT(Student s) {
+        System.out.print("⏩ Enter your choice: ");
+        int choice = readInt();
+        switch (choice){
+            case 1 -> {
+                current_level = MenuLevel.GROUP;
+                current_student = null;
+                break;
+            }
+            case 2 -> {
+                Response showStudentInfo = sendRequest(Request.RequestType.FIND_STUDENT_BY_ID, current_student.getId(), false);
+                if (showStudentInfo.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                    Student student = (Student) showStudentInfo.getPayload();
+                    System.out.println(student.toString());
+                }
+                break;
+            }
+            case 3 -> {
+                int studentId = current_student.getId();
+                String phoneNumber = PhoneNumberVerificator.ask_phonenum();
+                String email = EmailVerificator.ask_email();
+                Object[] studentData = {studentId, phoneNumber, email};
+                Response updateResponse = sendRequest(Request.RequestType.UPDATE_STUDENT_CONTACTS, studentData, false);
+                if (updateResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                    current_student = (Student) updateResponse.getPayload();
+                }
+            }
+            case 4 -> {
+                int studentId = current_student.getId();
+                StudyForm studyForm = AcademicInfoVerificator.ask_study_form();
+                Object[] studentData = {studentId, studyForm};
+                Response updateResponse = sendRequest(Request.RequestType.UPDATE_STUDENT_STUDY_FORM, studentData, false);
+                if (updateResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                    current_student = (Student) updateResponse.getPayload();
+                }
+            }
+            case 5 -> {
+                int studentId = current_student.getId();
+                StudentStatus status = AcademicInfoVerificator.ask_student_status();
+                Object[] studentData = {studentId, status};
+                sendRequest(Request.RequestType.UPDATE_STUDENT_STATUS, studentData, false);
+                Response updateResponse = sendRequest(Request.RequestType.UPDATE_STUDENT_STATUS, studentId, false);
+                if (updateResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                    current_student = (Student) updateResponse.getPayload();
+                }
+            }
+        }
+    }
+
     private   void handle_FAC(Faculty f) {
         System.out.print("⏩ Enter your choice: ");
 //        show all faculties
         int choice = readInt();
-            switch (choice){
-                case 1 -> {
-                    current_level = MenuLevel.UNI;
-                    current_faculty = null;
-                    break;
-                }
-                case 2 -> {
-                    current_level = MenuLevel.DEPS;
-                    break;
-                }
-                case 3 -> {
-                    current_level = MenuLevel.GRPS;
-                    break;
-                }
-                case 4 -> {
-                    System.out.println("This method is currently not implemented yet.");
-                    break;
-                }
+        switch (choice) {
+            case 1 -> {
+                current_level = MenuLevel.UNI;
+                current_faculty = null;
+                break;
             }
-
+            case 2 -> {
+                current_level = MenuLevel.DEPS;
+                break;
+            }
+            case 3 -> {
+                current_level = MenuLevel.GRPS;
+                break;
+            }
+            case 4 -> {
+                System.out.println("This method is currently not implemented yet.");
+                break;
+            }
+        }
     }
+
     private void handle_DEPS(Faculty f) {
         System.out.print("⏩ Enter your choice: ");
         int choice = readInt();
-            switch (choice){
-                case 1 -> {
-                    current_level = MenuLevel.FAC;
-                    break;
-                }
-                case 2 -> {
-                    requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
-                        int departmentId = IdVerificator.ask_id();
+        switch (choice) {
+            case 1 -> {
+                current_level = MenuLevel.FAC;
+                break;
+            }
+            case 2 -> {
+                requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
+                    int departmentId = IdVerificator.ask_id();
 
-                        if (isIdAlreadyTaken(departmentId, Request.RequestType.FIND_DEPARTMENT_BY_ID)) {
-                            System.out.println("This id is already taken. Please try choose another id");
-                            return;
-                        }
-
-                        String departmentName = FacilityNameVerificator.ask_facility_name();
-                        String email = EmailVerificator.ask_email();
-                        String location = UniversityVerificator.ask_address();
-
-                        Department dep = new Department(departmentId, departmentName, f,
-                                null, location, email);
-
-                        sendRequest(Request.RequestType.ADD_DEPARTMENT, dep, false);
-                    });
-                    break;
-                }
-                case 3 -> {
-                    if (current_user.hasPermission(Permissions.MANAGE_STRUCTURE)) {
-                        try {
-                            int departmentId = IdVerificator.ask_id();
-
-                            Request removeRequest = new Request(Request.RequestType.REMOVE_DEPARTMENT, departmentId);
-                            oos.writeObject(removeRequest);
-                            oos.flush();
-
-                            Response response = (Response) ois.readObject();
-                            System.out.println(response.getMsg());
-                        } catch (IOException | ClassNotFoundException e) {
-                            e.printStackTrace();
-                        }
-                    } else   {
-                        System.out.println("Access Denied: You cannot remove department.");
+                    if (isIdAlreadyTaken(departmentId, Request.RequestType.FIND_DEPARTMENT_BY_ID)) {
+                        System.out.println("This id is already taken. Please try choose another id");
+                        return;
                     }
-                }
-                case 4 -> {
+
+                    String departmentName = FacilityNameVerificator.ask_facility_name();
+                    String email = EmailVerificator.ask_email();
+                    String location = UniversityVerificator.ask_address();
+
+                    Department dep = new Department(departmentId, departmentName, f,
+                            null, location, email);
+
+                    sendRequest(Request.RequestType.ADD_DEPARTMENT, dep, false);
+                });
+                break;
+            }
+            case 3 -> {
+                if (current_user.hasPermission(Permissions.MANAGE_STRUCTURE)) {
                     try {
                         int departmentId = IdVerificator.ask_id();
 
-                        Request findRequest = new Request(Request.RequestType.FIND_DEPARTMENT_BY_ID, departmentId);
-                        oos.writeObject(findRequest);
+                        Request removeRequest = new Request(Request.RequestType.REMOVE_DEPARTMENT, departmentId);
+                        oos.writeObject(removeRequest);
                         oos.flush();
 
                         Response response = (Response) ois.readObject();
-
-                        if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
-                            System.out.println("Department found");
-                            Department department = (Department) response.getPayload();
-                            System.out.println(department);
-                            current_department = department;
-                            current_level = MenuLevel.DEPARTAMENT;
-                        } else {
-                            System.out.println(response.getMsg());
-                        }
-                    }  catch (IOException | ClassNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                }
-                case 5 -> {
-                    try {
-                        Request showAllDepartmentsRequest = new Request(Request.RequestType.GET_ALL_DEPARTMENTS, f.getId());
-                        oos.writeObject(showAllDepartmentsRequest);
-                        oos.flush();
-
-                        Response response = (Response) ois.readObject();
-
-                        if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
-                            System.out.println("All departments found");
-                            @SuppressWarnings("unchecked")
-                            List<Department> list = (List<Department>) response.getPayload();
-                            list.forEach(System.out::println);
-                        } else   {
-                            System.out.println(response.getMsg());
-                        }
+                        System.out.println(response.getMsg());
                     } catch (IOException | ClassNotFoundException e) {
                         e.printStackTrace();
                     }
+                } else {
+                    System.out.println("Access Denied: You cannot remove department.");
                 }
             }
+            case 4 -> {
+                try {
+                    int departmentId = IdVerificator.ask_id();
+
+                    Request findRequest = new Request(Request.RequestType.FIND_DEPARTMENT_BY_ID, departmentId);
+                    oos.writeObject(findRequest);
+                    oos.flush();
+
+                    Response response = (Response) ois.readObject();
+
+                    if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                        System.out.println("Department found");
+                        Department department = (Department) response.getPayload();
+                        System.out.println(department);
+                        current_department = department;
+                        current_level = MenuLevel.DEPARTAMENT;
+                    } else {
+                        System.out.println(response.getMsg());
+                    }
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+            case 5 -> {
+                try {
+                    Request showAllDepartmentsRequest = new Request(Request.RequestType.GET_ALL_DEPARTMENTS, f.getId());
+                    oos.writeObject(showAllDepartmentsRequest);
+                    oos.flush();
+
+                    Response response = (Response) ois.readObject();
+
+                    if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                        System.out.println("All departments found");
+                        @SuppressWarnings("unchecked")
+                        List<Department> list = (List<Department>) response.getPayload();
+                        list.forEach(System.out::println);
+                    } else {
+                        System.out.println(response.getMsg());
+                    }
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     private   void handle_DEPARTAMENT(Department d) {
@@ -681,6 +736,11 @@ public class MenuOptionsHandler{
                         .append(" > ").append(current_faculty.getShortName())
                         .append(" > ").append(current_group.getName());
             }
+            case STUDENT -> {
+                path.append(" > ").append(current_university.getShortName())
+                        .append(" > ").append(current_faculty.getShortName())
+                        .append(" > ").append(current_group.getName()).append(" > ").append("Student ").append(current_student.getLastName());
+            }
             case ADMIN_PANEL -> {
                 path.append(" > [Admin Panel]");
             }
@@ -703,18 +763,19 @@ public class MenuOptionsHandler{
             case DEPARTAMENT -> content = DashboardBuilder.buildDepartmentPanel(current_department);
             case DEPS -> content = DashboardBuilder.buildFacultyPanel(current_faculty);
             case GROUP -> {
-                int studentsCount = fetchStudentsCountFromServer(current_group.getId());
+                long studentsCount = fetchStudentsCountFromServer(current_group.getId());
                 content = DashboardBuilder.buildGroupPanel(current_group, studentsCount);
             }
+            case STUDENT -> content = DashboardBuilder.buildStudentPanel(current_student);
         }
 
         return content;
     }
 
-    private int fetchStudentsCountFromServer(int groupId) {
+    private long fetchStudentsCountFromServer(int groupId) {
         Response res = sendRequest(Request.RequestType.GET_STUDENTS_COUNT, groupId, false);
         if (res.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
-            return (int) res.getPayload();
+            return (long) res.getPayload();
         }
         return -1;
     }
@@ -756,6 +817,9 @@ public class MenuOptionsHandler{
                     case GROUP:
                         handle_GROUP(current_group);
                         break;
+                        case STUDENT:
+                            handle_STUDENT(current_student);
+                            break;
             case ADMIN_PANEL:
                 handle_ADMIN_PANEL(); break;
                 default: break;
