@@ -112,7 +112,6 @@ class DigitalUniTests {
             studentService.add(student);
         });
         assertTrue(exception.getMessage().contains("already exists"));
-
     }
 
     @Test
