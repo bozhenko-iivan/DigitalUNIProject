@@ -117,8 +117,8 @@ class DigitalUniTests {
 
     @Test
     void testDOB() {
-        Teacher t = new Teacher(1111111, "zov", "svo", "svin",
-                LocalDate.of(1488, 06, 12), "hryakmail@gmail.com",
+        Teacher t = new Teacher(1111111, "Ivan", "Igorovych", "F",
+                LocalDate.of(1490, 06, 12), "ivan1@gmail.com",
                 "+380976607505", TeacherPosition.DEAN, TeacherDegree.DOCTOR_OF_SCIENCES, TeacherRank.DOCENT,
                 LocalDate.of(1580, 11, 23), 4, testDepartment);
         try {

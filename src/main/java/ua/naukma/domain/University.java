@@ -1,9 +1,5 @@
 package ua.naukma.domain;
 
-
-import ua.naukma.server.repository.*;
-import ua.naukma.server.service.FacultyService;
-
 import java.io.Serial;
 import java.io.Serializable;
 
