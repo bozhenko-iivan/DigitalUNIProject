@@ -1,44 +1,52 @@
 package ua.naukma.server.repository;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import ua.naukma.domain.Faculty;
 import ua.naukma.domain.University;
+import ua.naukma.server.service.util.JsonAdapter;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@ua.naukma.server.annotation.Repository
 public class FileUniversityRepository implements Repository<University, Integer> {
-    private final Path filePath = Path.of("data/university.dat");
+    private final Path filePath = Path.of("data/university.json");
+    private final Gson gson = JsonAdapter.getCustomGson();
 
+    @SuppressWarnings("unchecked")
     private List<University> loadUniversity() throws IOException {
         if (!Files.exists(filePath)) {
             return new ArrayList<>();
         }
-        try {
-            ObjectInputStream ios = new ObjectInputStream(Files.newInputStream(filePath));
-            return (List<University>) ios.readObject();
-        } catch (IOException | ClassNotFoundException e) {
+        try(Reader reader = Files.newBufferedReader(filePath)) {
+            Type listType = new TypeToken<List<University>>(){}.getType();
+            List<University> universities = gson.fromJson(reader, listType);
+            return universities != null ? universities : new ArrayList<>();
+        } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
             return new ArrayList<>();
         }
     }
 
-    private List<University> writeUniversity(List<University> university) throws IOException {
+    private List<University> writeUniversity(List<University> universities) throws IOException {
         try {
-            if (filePath.getParent() != null || !Files.exists(filePath.getParent())) {
+            if (filePath.getParent() != null && !Files.exists(filePath.getParent())) {
                 Files.createDirectories(filePath.getParent());
             }
-            try (ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(filePath))) {
-                oos.writeObject(university);
+            try (Writer writer = Files.newBufferedWriter(filePath)) {
+                gson.toJson(universities, writer);
             }
         } catch (IOException e) {
             System.out.println("Error writing file: " + e.getMessage());
         }
-        return university;
+        return universities;
     }
 
     @Override

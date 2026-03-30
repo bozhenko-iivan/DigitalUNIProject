@@ -77,6 +77,9 @@ public class SystemUser implements Serializable {
 
     @Override
     public String toString() {
+        if (role == null) {
+            return "User: " + login + "\nID: " + id + "\nRole: NOT ASSIGNED";
+        }
         return "User: " + login + "\nID: " + id + "\nRole: " + role + "\nCurrent rights: " + getRightsString();
     }
 }

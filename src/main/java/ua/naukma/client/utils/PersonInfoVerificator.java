@@ -1,9 +1,12 @@
 package ua.naukma.client.utils;
 
+import ua.naukma.exception.IncorrectNameException;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PersonInfoVerificator {
@@ -62,13 +65,15 @@ public class PersonInfoVerificator {
         }while(alphabet == null);
         return switch (alphabet) {
             case "Latin" -> true;
+            case "latin" -> true;
             case "Cyrillic" -> false;
+            case "cyrillic" -> false;
             default -> false;
         };
     }
     private static String validate_alphabet(String alphabet) {
-        return switch (alphabet) {
-            case "Latin", "Cyrillic" -> alphabet;
+        return switch (alphabet.toLowerCase()) {
+            case "latin", "cyrillic" -> alphabet;
             default -> null;
         };
     }
@@ -95,12 +100,15 @@ public class PersonInfoVerificator {
     }
     public static LocalDate ask_dob(){
         Scanner scanner = InitScanner.try_init_scanner();
-        LocalDate dob;
+        LocalDate dob = null;
         do{
-            System.out.print("Enter date of birth (dd.MM.yyyy): ");
-            String s = scanner.nextLine();
-            dob = validate_dob(s);
-            if(dob == null) System.out.println("Person is too young.");
+            try {
+                System.out.print("Enter date of birth (dd.MM.yyyy): ");
+                String s = scanner.nextLine();
+                dob = validate_dob(s);
+            } catch (IncorrectNameException e) {
+                System.out.println(e.getMessage());
+            }
         }while(dob == null);
         return dob;
     }
@@ -115,8 +123,11 @@ public class PersonInfoVerificator {
             return null;
         }
         years = Period.between(dob_date, LocalDate.now()).getYears();
-        if(years < 17){
-            System.out.println("Person is too young.");
+        if (years > 101) {
+            System.out.println("Person is too old");
+            return null;
+        } else if(years < 17){
+            System.out.println("Person is too young");
             return null;
         }
         return dob_date;

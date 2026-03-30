@@ -1,7 +1,8 @@
 package ua.naukma.server.service;
 
-import ua.naukma.domain.Group;
 import ua.naukma.domain.Student;
+import ua.naukma.domain.StudentStatus;
+import ua.naukma.domain.StudyForm;
 import ua.naukma.exception.DuplicateEntityException;
 import ua.naukma.exception.EntityNotFoundException;
 import ua.naukma.server.repository.PersonRepository;
@@ -12,14 +13,16 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class StudentService {
+@ua.naukma.server.annotation.Service
+public class StudentService implements Service<Student, Integer> {
     private final PersonRepository<Student, Integer> repository;
 
     public StudentService(PersonRepository<Student, Integer> repository) {
         this.repository = repository;
     }
 
-    public void addStudent(Student student) throws DuplicateEntityException {
+    @Override
+    public void add(Student student) throws DuplicateEntityException {
         if (repository.findById(student.getId()).isPresent()) {
             throw new DuplicateEntityException("Student with id " + student.getId() + " already exists.");
         }
@@ -31,14 +34,16 @@ public class StudentService {
         repository.save(student);
     }
 
-    public void deleteById(int id) throws EntityNotFoundException {
+    @Override
+    public void deleteById(Integer id) throws EntityNotFoundException {
         if (repository.findById(id).isEmpty()) {
             throw new EntityNotFoundException("Student with id " + id + " doesn't exist.");
         }
         repository.deleteById(id);
     }
 
-    public Student findById(int id) throws EntityNotFoundException {
+    @Override
+    public Student findById(Integer id) throws EntityNotFoundException {
         Optional<Student> student = repository.findById(id);
         if (student.isPresent()) {
             return student.get();
@@ -47,13 +52,21 @@ public class StudentService {
         }
     }
 
-    public Student findByPIB(String firstName, String lastName, String middleName) throws EntityNotFoundException {
-        Optional<Student> student = repository.findByPIB(firstName, lastName, middleName);
-        if (student.isPresent()) {
-            return student.get();
-        } else {
-            throw new EntityNotFoundException("Student " + lastName + " " + firstName + " doesn't exist.");
+//    public Student findByPIB(String firstName, String lastName, String middleName) throws EntityNotFoundException {
+//        Optional<Student> student = repository.findByPIB(firstName, lastName, middleName);
+//        if (student.isPresent()) {
+//            return student.get();
+//        } else {
+//            throw new EntityNotFoundException("Student " + lastName + " " + firstName + " doesn't exist.");
+//        }
+//    }
+
+    @Override
+    public List<Student> findAll() {
+        if (repository.findAll().isEmpty()) {
+            throw new EntityNotFoundException("No students in current group have been found!");
         }
+        return repository.findAll();
     }
 
     public List<Student> findAllByGroupId(int groupId) {
@@ -72,7 +85,7 @@ public class StudentService {
     private String generateRecordbookNum(String lastName, int id, int year) {
         Random rand = new Random();
 
-        char firstChar = lastName.length() > 0 ? lastName.charAt(0) : 'X';
+        char firstChar = !lastName.isEmpty() ? lastName.charAt(0) : 'X';
         char secondChar = lastName.length() > 1 ? lastName.charAt(1) : 'Y';
         int safeYear = (year > 0) ? year : LocalDate.now().getYear();
 
@@ -80,6 +93,43 @@ public class StudentService {
     }
 
     public long getStudentsCount(int groupId) throws EntityNotFoundException {
+        if (repository.findAll().isEmpty()) {
+            return 0;
+        }
         return repository.findAll().stream().filter(s -> s.getGroup() != null && s.getGroup().getId() == groupId).count();
+    }
+
+    public Student updateContacts(int studentID, String newPhoneNum, String newEmail) {
+        if (repository.findById(studentID).isPresent()) {
+            Student student = repository.findById(studentID).get();
+            student.setPhoneNumber(newPhoneNum);
+            student.setEmail(newEmail);
+            repository.save(student);
+            return student;
+        } else  {
+            throw new EntityNotFoundException("Student with id " + studentID + " doesn't exist.");
+        }
+    }
+
+    public Student updateStudyForm(int studentID, StudyForm studyForm) {
+        if (repository.findById(studentID).isPresent()) {
+            Student student = repository.findById(studentID).get();
+            student.setStudyForm(studyForm);
+            repository.save(student);
+            return student;
+        } else  {
+            throw new EntityNotFoundException("Student with id " + studentID + " doesn't exist.");
+        }
+    }
+
+    public Student updateStudentStatus(int studentID, StudentStatus studentStatus) {
+        if (repository.findById(studentID).isPresent()) {
+            Student student = repository.findById(studentID).get();
+            student.setStatus(studentStatus);
+            repository.save(student);
+            return student;
+        } else {
+            throw new EntityNotFoundException("Student with id " + studentID + " doesn't exist.");
+        }
     }
 }

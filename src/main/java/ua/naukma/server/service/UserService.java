@@ -9,7 +9,8 @@ import ua.naukma.server.repository.Repository;
 import java.util.List;
 import java.util.Optional;
 
-public class UserService {
+@ua.naukma.server.annotation.Service
+public class UserService implements Service<SystemUser, Integer> {
     private final Repository<SystemUser, Integer> repository;
 
     public UserService(Repository<SystemUser, Integer> repository) {
@@ -37,7 +38,8 @@ public class UserService {
         return foundUser.get();
     }
 
-    public void addUser(SystemUser user) throws DuplicateEntityException {
+    @Override
+    public void add(SystemUser user) throws DuplicateEntityException {
         Optional<SystemUser> optionalUser = repository.findById(user.getId());
         if (optionalUser.isPresent()) {
             throw new DuplicateEntityException("System user with id " + user.getId() + " already exists.");
@@ -45,14 +47,16 @@ public class UserService {
         repository.save(user);
     }
 
-    public void deleteById(int id) throws EntityNotFoundException {
+    @Override
+    public void deleteById(Integer id) throws EntityNotFoundException {
         if (repository.findById(id).isEmpty()) {
             throw new EntityNotFoundException("User with id " + id + " doesn't exist.");
         }
         repository.deleteById(id);
     }
 
-    public SystemUser findById(int id) throws EntityNotFoundException {
+    @Override
+    public SystemUser findById(Integer id) throws EntityNotFoundException {
         Optional<SystemUser> user = repository.findById(id);
         if (user.isPresent()) {
             return user.get();
@@ -61,7 +65,15 @@ public class UserService {
         }
     }
 
-    public List<SystemUser> getAllUsers() {
+    @Override
+    public List<SystemUser> findAll() {
+        if  (repository.findAll().isEmpty()) {
+            throw new EntityNotFoundException("No users have been found!");
+        }
         return repository.findAll();
+    }
+
+    public int getUserCount() {
+        return repository.findAll().size();
     }
 }

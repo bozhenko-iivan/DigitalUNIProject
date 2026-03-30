@@ -6,33 +6,22 @@ import ua.naukma.client.utils.SystemUserVerificator;
 import ua.naukma.domain.*;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
-import ua.naukma.server.repository.FileUniversityRepository;
-import ua.naukma.server.repository.FileUserRepository;
-import ua.naukma.server.repository.Repository;
-import ua.naukma.server.service.UniversityService;
-import ua.naukma.server.service.UserService;
 
 import java.io.*;
+import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.sql.SQLOutput;
 
 
 public class ClientMain {
     public static void main(String[] args) {
-//        Repository<University, Integer> uniRepo = new InMemoryUniversityRepository();
-//        Repository<University, Integer> uniRepo = new FileUniversityRepository();
-//        UniversityService uniService = new UniversityService(uniRepo);
-//        Repository<SystemUser, Integer> userRepository = new FileUserRepository();
-//        UserService userService = new UserService(userRepository);
-//        SystemUser loggedUser = userService.login();
-//
 
         Socket socket = null;
         InputStream inputStream = null;
         OutputStream outputStream = null;
 
         try {
-            socket = new Socket("localhost", 8080);
+            socket = new Socket();
+            socket.connect(new InetSocketAddress("127.0.0.1", 8080), 5000);
 
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
@@ -41,13 +30,12 @@ public class ClientMain {
             while (true) {
                 SystemUser loggedUser = null;
 
-
                 while (true) {
                     System.out.println("Login");
                     String login = SystemUserVerificator.askLogin();
                     String password = SystemUserVerificator.askPassword();
 
-                    SystemUser credentials = new SystemUser(0, login, password, null);
+                    SystemUser credentials = new SystemUser(-1, login, password, null);
 
                     Request loginRequest = new Request(Request.RequestType.LOGIN, credentials);
                     oos.writeObject(loginRequest);

@@ -1,25 +1,39 @@
 package ua.naukma.server.repository;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import ua.naukma.domain.Faculty;
 import ua.naukma.domain.SystemUser;
+import ua.naukma.domain.University;
+import ua.naukma.server.service.UserService;
+import ua.naukma.server.service.util.JsonAdapter;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.attribute.UserPrincipal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@ua.naukma.server.annotation.Repository
 public class FileUserRepository implements Repository<SystemUser, Integer> {
-    private final Path filePath = Path.of("data/users.dat");
+    private final Path filePath = Path.of("data/users.json");
+    private final Gson gson = JsonAdapter.getCustomGson();
 
+    @SuppressWarnings("unchecked")
     private List<SystemUser> loadUsers() throws IOException {
         if (!Files.exists(filePath)) {
             return new ArrayList<>();
         }
-        try (ObjectInputStream ios = new ObjectInputStream(Files.newInputStream(filePath))) {
-            return (List<SystemUser>) ios.readObject();
-        } catch (IOException  | ClassNotFoundException e) {
-            System.out.println("Error reading users file " + e.getMessage());
+        try(Reader reader = Files.newBufferedReader(filePath)) {
+            Type listType = new TypeToken<List<SystemUser>>(){}.getType();
+            List<SystemUser> systemUsers = gson.fromJson(reader, listType);
+            return systemUsers != null ? systemUsers : new ArrayList<>();
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
             return new ArrayList<>();
         }
     }
@@ -29,11 +43,11 @@ public class FileUserRepository implements Repository<SystemUser, Integer> {
             if (filePath.getParent() != null && !Files.exists(filePath.getParent())) {
                 Files.createDirectories(filePath.getParent());
             }
-            try (ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(filePath))) {
-                oos.writeObject(users);
+            try (Writer writer = Files.newBufferedWriter(filePath)) {
+                gson.toJson(users, writer);
             }
         } catch (IOException e) {
-            System.out.println("Error writing users file: " + e.getMessage());
+            System.out.println("Error writing file: " + e.getMessage());
         }
         return users;
     }

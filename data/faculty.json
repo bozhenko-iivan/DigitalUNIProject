@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1234567,
+    "name": "Fi",
+    "shortName": "fi",
+    "email": "fi@gmail.com",
+    "university": {
+      "id": 1234567,
+      "fullName": "NaUKMA",
+      "shortName": "KMA",
+      "city": "Kyiv",
+      "address": "Contractova, 2M"
+    }
+  }
+]
