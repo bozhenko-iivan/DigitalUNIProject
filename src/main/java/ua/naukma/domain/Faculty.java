@@ -1,28 +1,78 @@
 package ua.naukma.domain;
 
-public class Faculty {
+import ua.naukma.exception.IncorrectDataException;
+
+import java.io.Serial;
+import java.io.Serializable;
+
+public class Faculty implements Serializable {
     private int id;
     private String name;
     private String shortName;
     private Teacher dean;
-    private String contacts;
+    private String email;
+    private University university;
 
-    public Faculty(int id, String name, String shortName, Teacher dean, String contacts) {
-        this.id = id;
-        this.name = name;
-        this.shortName = shortName;
-        this.dean = dean;
-        this.contacts = contacts;
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    public Faculty(int id, String name, String shortName, Teacher dean, String email, University university) {
+        setId(id);
+        setName(name);
+        setShortName(shortName);
+        setDean(dean);
+        setEmail(email);
+        setUniversity(university);
     }
 
     public int getId() { return id; }
     public String getName() { return name; }
     public String getShortName() { return shortName; }
     public Teacher getDean() { return dean; }
+    public String getEmail() { return email; }
+    public University getUniversity() {
+        return university;
+    }
+
+    public void setUniversity(University university) {
+        this.university = university;
+    }
+
+    private void setName(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Name cannot be empty.");
+        }
+        this.name = name;
+    }
+
+    private void setShortName(String shortName) {
+        if (shortName == null || shortName.isBlank()) {
+            throw new IllegalArgumentException("shortname cannot be empty.");
+        }
+        this.shortName = shortName;
+    }
+
+    private void setId(int id) {
+        if  (id <= 0) {
+            throw new IncorrectDataException("id cannot be 0 or negative.");
+        }
+        this.id = id;
+    }
+
+    public void setDean(Teacher dean) {
+        this.dean = dean;
+    }
+
+    public void setEmail(String email) {
+        if (email == null || email.isBlank() || !email.contains("@")) {
+            throw new IncorrectDataException("Email cannot be empty.");
+        }
+        this.email = email;
+    }
 
     @Override
     public String toString() {
-        String deanName = (dean != null) ? dean.getLastName() : "Vacant";
-        return shortName + " (Dean: " + deanName + ")";
+        return "Faculty's ID: " + getId() + "\nFaculty's fullname: " + getName() + "\nShortName: " + getShortName()
+        + "\nFaculty's email: " + getEmail();
     }
 }

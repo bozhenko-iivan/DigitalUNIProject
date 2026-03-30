@@ -1,29 +1,71 @@
 package ua.naukma.domain;
 
-import java.time.LocalDate;
+import ua.naukma.exception.IncorrectDataException;
 
-public class Teacher extends Person {
-    private String position;
-    private String degree;
-    private String rank;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.IllegalFormatCodePointException;
+
+public class Teacher extends Person implements Serializable {
+    private TeacherPosition  position;
+    private TeacherDegree  degree;
+    private TeacherRank  rank;
     private LocalDate hiringDate;
     private double load;
+    private Department department;
 
     public Teacher(int id, String firstName, String lastName, String middleName, LocalDate birthDate, String email, String phoneNumber,
-                   String position, String degree, String rank, LocalDate hiringDate, double load) {
+                   TeacherPosition position, TeacherDegree degree, TeacherRank rank, LocalDate hiringDate, double load, Department department) {
         super(id, firstName, lastName, middleName, birthDate, email, phoneNumber);
-        this.position = position;
-        this.degree = degree;
-        this.rank = rank;
-        this.hiringDate = hiringDate;
-        this.load = load;
+        setPosition(position);
+        setDegree(degree);
+        setRank(rank);
+        setHiringDate(hiringDate);
+        setLoad(load);
+        setDepartment(department);
     }
 
-    public String getPosition() {return position;}
-    public String getDegree() {return degree;}
-    public String getRank() {return rank;}
+    private void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public TeacherPosition getPosition() {return position;}
+    public TeacherDegree getDegree() {return degree;}
+    public TeacherRank getRank() {return rank;}
     public LocalDate getHiringDate() {return hiringDate;}
     public double getLoad() {return load;}
+    public Department getDepartment() {return department;}
+
+    public void setPosition(TeacherPosition position) {
+        if (position == null) {
+            throw new NullPointerException("Position is null");
+        }
+        this.position = position;
+    }
+    public void setDegree(TeacherDegree degree) {
+        if (degree == null) {
+            throw new NullPointerException("Degree is null");
+        }
+        this.degree = degree;
+    }
+    public void setRank(TeacherRank rank) {
+        if (rank == null) {
+            throw new NullPointerException("Rank is null");
+        }
+        this.rank = rank;
+    }
+    private void setHiringDate(LocalDate hiringDate) {
+        if (hiringDate == null || hiringDate.isAfter(LocalDate.now())) {
+            throw new IncorrectDataException("Hiring Date is invalid.");
+        }
+        this.hiringDate = hiringDate;
+    }
+    public void setLoad(double load) {
+        if (load < 0) {
+            throw new IncorrectDataException("Load cannot be negative.");
+        }
+        this.load = load;
+    }
 
     @Override
     public String toString() {
