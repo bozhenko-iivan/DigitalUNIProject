@@ -138,6 +138,9 @@ public class NewMenu {
             System.out.println("\uD83D\uDCC7 3. Update student's contacts");
             System.out.println("\uD83D\uDCDA 4. Update student's study form");
             System.out.println("✅ 5. Update student's status");
+            System.out.println("\uD83D\uDCAF 6. Set student's grade");
+            System.out.println("⛔ 7. Delete student's grade");
+            System.out.println("\uD83D\uDCCB 8. Show student's transcript");
         }
 
         System.out.println("===================================");

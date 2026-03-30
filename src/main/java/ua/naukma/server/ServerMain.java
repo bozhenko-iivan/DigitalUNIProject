@@ -44,6 +44,7 @@ public class ServerMain {
             Repository<Department, Integer> departmentRepository = new FileDepartmentRepository();
             PersonRepository<Student, Integer> studentRepository = new FileStudentRepository();
             PersonRepository<Teacher, Integer> teacherRepository = new FileTeacherRepository();
+            Repository<Grade, Integer> gradeRepository = new FileGradeRepository();
 
             UniversityService uniService = new UniversityService(uniRepo);
             UserService userService = new UserService(userRepository);
@@ -52,6 +53,7 @@ public class ServerMain {
             StudentService studentService = new StudentService(studentRepository);
             TeacherService teacherService = new TeacherService(teacherRepository);
             DepartmentService departmentService = new DepartmentService(departmentRepository);
+            GradeService gradeService = new GradeService(gradeRepository);
 
             Map<Request.RequestType, RequestHandler> router = new HashMap<>();
 
@@ -61,7 +63,7 @@ public class ServerMain {
             registerController(router, new DepartmentController(departmentService));
             registerController(router, new GroupController(groupService));
             registerController(router, new TeacherController(teacherService));
-            registerController(router, new StudentController(studentService));
+            registerController(router, new StudentController(studentService, gradeService));
 
             userService.initUser();
 

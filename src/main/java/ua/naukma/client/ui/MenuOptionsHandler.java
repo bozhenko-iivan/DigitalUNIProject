@@ -4,6 +4,10 @@ import ua.naukma.client.utils.*;
 import ua.naukma.domain.*;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
+import ua.naukma.network.dto.SetStudentGrade;
+import ua.naukma.network.dto.UpdateContactsDTO;
+import ua.naukma.network.dto.UpdateStudentStatusDTO;
+import ua.naukma.network.dto.UpdateStudyFormDTO;
 import ua.naukma.security.Permissions;
 import ua.naukma.server.annotation.Secured;
 import ua.naukma.server.service.*;
@@ -12,11 +16,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 import java.util.function.IntBinaryOperator;
+import java.util.stream.Collectors;
 
 public class MenuOptionsHandler{
     private MenuLevel current_level;
@@ -343,7 +345,7 @@ public class MenuOptionsHandler{
                 int studentId = current_student.getId();
                 String phoneNumber = PhoneNumberVerificator.ask_phonenum();
                 String email = EmailVerificator.ask_email();
-                Object[] studentData = {studentId, phoneNumber, email};
+                UpdateContactsDTO studentData = new UpdateContactsDTO(studentId, phoneNumber, email);
                 Response updateResponse = sendRequest(Request.RequestType.UPDATE_STUDENT_CONTACTS, studentData, false);
                 if (updateResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
                     current_student = (Student) updateResponse.getPayload();
@@ -352,7 +354,7 @@ public class MenuOptionsHandler{
             case 4 -> {
                 int studentId = current_student.getId();
                 StudyForm studyForm = AcademicInfoVerificator.ask_study_form();
-                Object[] studentData = {studentId, studyForm};
+                UpdateStudyFormDTO studentData = new UpdateStudyFormDTO(studentId, studyForm);
                 Response updateResponse = sendRequest(Request.RequestType.UPDATE_STUDENT_STUDY_FORM, studentData, false);
                 if (updateResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
                     current_student = (Student) updateResponse.getPayload();
@@ -361,11 +363,55 @@ public class MenuOptionsHandler{
             case 5 -> {
                 int studentId = current_student.getId();
                 StudentStatus status = AcademicInfoVerificator.ask_student_status();
-                Object[] studentData = {studentId, status};
+                UpdateStudentStatusDTO studentData = new UpdateStudentStatusDTO(studentId, status);
                 sendRequest(Request.RequestType.UPDATE_STUDENT_STATUS, studentData, false);
                 Response updateResponse = sendRequest(Request.RequestType.UPDATE_STUDENT_STATUS, studentId, false);
                 if (updateResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
                     current_student = (Student) updateResponse.getPayload();
+                }
+            }
+            case 6 -> {
+                int studentId = current_student.getId();
+                Subject subject = GradeVerificator.askSubject();
+                int score = GradeVerificator.askScore();
+                SetStudentGrade studentData = new SetStudentGrade(studentId, score, subject);
+                Response updateResponse = sendRequest(Request.RequestType.SET_STUDENT_GRADE, studentData, false);
+            }
+            case 7 -> {
+                int studentId = current_student.getId();
+                Response transcriptRes = sendRequest(Request.RequestType.SHOW_TRANSCRIPT, studentId, true);
+
+                if (transcriptRes.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                    List<Grade> currentGrades = (List<Grade>) transcriptRes.getPayload();
+                    if (currentGrades.isEmpty()) {
+                        System.out.println("No grades found for this student.");
+                    } else {
+                        int gradeID = GradeVerificator.askGradeID(currentGrades);
+                        sendRequest(Request.RequestType.DELETE_STUDENT_GRADE, gradeID, false);
+                    }
+                }
+
+            }
+            case 8 -> {
+                int studentId = current_student.getId();
+                Response response = sendRequest(Request.RequestType.SHOW_TRANSCRIPT, studentId, false);
+                if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                    List<Grade> grades = (List<Grade>) response.getPayload();
+                    Map<Subject, List<Grade>> map = grades.stream()
+                            .collect(Collectors.groupingBy(Grade::getSubjectName));
+                    System.out.println("========= STUDENT " + current_student.getLastName().toUpperCase() + " TRANSCRIPT =========");
+                    for (Subject sub : Subject.values()) {
+                        System.out.printf("%-20s | ", sub);
+                        List<Grade> gradeList = map.getOrDefault(sub, new ArrayList<>());
+                        if (gradeList.isEmpty()) {
+                            System.out.println("—");
+                        } else {
+                            String gradeString = gradeList.stream()
+                                    .map(g -> "(id: " + g.getGradeId() + ") " + g.getScore())
+                                    .collect(Collectors.joining(" | "));
+                            System.out.println(gradeString);
+                        }
+                    }
                 }
             }
         }

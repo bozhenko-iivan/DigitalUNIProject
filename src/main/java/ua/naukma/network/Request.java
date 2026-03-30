@@ -78,7 +78,10 @@ public class Request implements Serializable {
         GET_STUDENTS_COUNT,
         UPDATE_STUDENT_CONTACTS,
         UPDATE_STUDENT_STUDY_FORM,
-        UPDATE_STUDENT_STATUS
+        UPDATE_STUDENT_STATUS,
+        SET_STUDENT_GRADE,
+        DELETE_STUDENT_GRADE,
+        SHOW_TRANSCRIPT,
     }
 
     public Request(RequestType type, Object data) {

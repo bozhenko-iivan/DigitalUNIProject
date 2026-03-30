@@ -72,7 +72,8 @@ public class FileGroupRepository implements Repository<Group, Integer> {
             List<Group> groups = loadGroup();
             return groups.stream().filter(g -> g.getId() == id).findFirst();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error reading file: " + e.getMessage());
+            return Optional.empty();
         }
     }
 
