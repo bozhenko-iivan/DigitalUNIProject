@@ -3,9 +3,15 @@ package ua.naukma.server.controller;
 import ua.naukma.domain.Faculty;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
+import ua.naukma.server.annotation.CommandRoute;
 import ua.naukma.server.service.FacultyService;
 
-import java.util.List;
+@CommandRoute({
+        Request.RequestType.ADD_FACULTY,
+        Request.RequestType.REMOVE_FACULTY,
+        Request.RequestType.FIND_FACULTY_BY_ID,
+        Request.RequestType.GET_ALL_FACULTIES
+})
 
 public class FacultyController implements RequestHandler {
     private final FacultyService facultyService;

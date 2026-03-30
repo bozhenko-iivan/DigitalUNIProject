@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@ua.naukma.server.annotation.Service
 public class FacultyService implements Service<Faculty, Integer> {
     private final Repository<Faculty, Integer> repository;
 
@@ -44,6 +45,9 @@ public class FacultyService implements Service<Faculty, Integer> {
 
     @Override
     public List<Faculty> findAll() {
+        if  (repository.findAll().isEmpty()) {
+            throw new EntityNotFoundException("No faculties have been found!");
+        }
         return repository.findAll();
     }
 

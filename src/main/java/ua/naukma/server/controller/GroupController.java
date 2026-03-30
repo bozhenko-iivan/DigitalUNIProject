@@ -3,7 +3,15 @@ package ua.naukma.server.controller;
 import ua.naukma.domain.Group;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
+import ua.naukma.server.annotation.CommandRoute;
 import ua.naukma.server.service.GroupService;
+
+@CommandRoute({
+        Request.RequestType.ADD_GROUP,
+        Request.RequestType.REMOVE_GROUP,
+        Request.RequestType.FIND_GROUP_BY_ID,
+        Request.RequestType.GET_ALL_GROUPS,
+})
 
 public class GroupController implements RequestHandler {
     private final GroupService groupService;

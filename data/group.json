@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1234567,
+    "name": "IPZ-1",
+    "course": 1,
+    "admissionYear": 2025,
+    "faculty": {
+      "id": 1234567,
+      "name": "Fi",
+      "shortName": "fi",
+      "email": "fi@gmail.com",
+      "university": {
+        "id": 1234567,
+        "fullName": "NaUKMA",
+        "shortName": "KMA",
+        "city": "Kyiv",
+        "address": "Contractova, 2M"
+      }
+    }
+  }
+]

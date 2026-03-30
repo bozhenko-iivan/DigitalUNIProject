@@ -1,15 +1,38 @@
 package ua.naukma.server.controller;
 
-import ua.naukma.domain.Student;
+import ua.naukma.client.utils.PhoneNumberVerificator;
+import ua.naukma.domain.*;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
+import ua.naukma.network.dto.SetStudentGrade;
+import ua.naukma.network.dto.UpdateContactsDTO;
+import ua.naukma.network.dto.UpdateStudentStatusDTO;
+import ua.naukma.network.dto.UpdateStudyFormDTO;
+import ua.naukma.server.annotation.CommandRoute;
+import ua.naukma.server.service.GradeService;
 import ua.naukma.server.service.StudentService;
+
+@CommandRoute({
+        Request.RequestType.ADD_STUDENT,
+        Request.RequestType.REMOVE_STUDENT,
+        Request.RequestType.FIND_STUDENT_BY_ID,
+        Request.RequestType.GET_ALL_STUDENTS,
+        Request.RequestType.GET_STUDENTS_COUNT,
+        Request.RequestType.UPDATE_STUDENT_CONTACTS,
+        Request.RequestType.UPDATE_STUDENT_STUDY_FORM,
+        Request.RequestType.UPDATE_STUDENT_STATUS,
+        Request.RequestType.SET_STUDENT_GRADE,
+        Request.RequestType.DELETE_STUDENT_GRADE,
+        Request.RequestType.SHOW_TRANSCRIPT,
+})
 
 public class StudentController implements RequestHandler {
     private final StudentService studentService;
+    private final GradeService gradeService;
 
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentService studentService, GradeService gradeService) {
         this.studentService = studentService;
+        this.gradeService = gradeService;
     }
 
     @Override
@@ -39,6 +62,66 @@ public class StudentController implements RequestHandler {
             case GET_ALL_STUDENTS -> {
                 yield execute(
                         studentService::findAll,
+                        request.getType()
+                );
+            }
+            case GET_STUDENTS_COUNT -> {
+                int groupId = (int) request.getData();
+                yield execute(
+                        () -> studentService.getStudentsCount(groupId),
+                        request.getType()
+                );
+            }
+            case UPDATE_STUDENT_CONTACTS ->  {
+                UpdateContactsDTO studentData = (UpdateContactsDTO) request.getData();
+                int studentId = studentData.studentId();
+                String phoneNumber = studentData.phoneNumber();
+                String email = studentData.email();
+                yield execute(
+                        () -> studentService.updateContacts(studentId, phoneNumber, email),
+                        request.getType()
+                );
+            }
+            case  UPDATE_STUDENT_STUDY_FORM ->  {
+                UpdateStudyFormDTO studentData = (UpdateStudyFormDTO) request.getData();
+                int studentId = studentData.studentID();
+                StudyForm studyForm = (StudyForm) request.getData();
+                yield execute(
+                        () -> studentService.updateStudyForm(studentId, studyForm),
+                        request.getType()
+                );
+            }
+            case UPDATE_STUDENT_STATUS ->  {
+                UpdateStudentStatusDTO studentData = (UpdateStudentStatusDTO) request.getData();
+                int studentId = studentData.studentID();
+                StudentStatus studentStatus = studentData.status();
+                yield execute (
+                        () -> studentService.updateStudentStatus(studentId, studentStatus),
+                        request.getType()
+                );
+            }
+            case SET_STUDENT_GRADE ->  {
+                SetStudentGrade studentData = (SetStudentGrade) request.getData();
+                int studentId = studentData.studentID();
+                int score = studentData.grade();
+                Subject subject = studentData.subject();
+                //Student student = studentService.findById(studentId);
+                Grade grade = new Grade(score, studentId, subject);
+                yield execute(
+                        () -> gradeService.add(grade),
+                        request.getType()
+                );
+            }
+            case DELETE_STUDENT_GRADE ->  {
+                int idToDelete = (int) request.getData();
+                yield execute(
+                        () -> gradeService.deleteById(idToDelete), request.getType()
+                );
+            }
+            case SHOW_TRANSCRIPT ->  {
+                int studentId = (int) request.getData();
+                yield execute(
+                        () -> gradeService.findByStudentId(studentId),
                         request.getType()
                 );
             }

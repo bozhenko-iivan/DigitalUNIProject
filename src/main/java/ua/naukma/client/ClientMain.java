@@ -8,7 +8,6 @@ import ua.naukma.network.Request;
 import ua.naukma.network.Response;
 
 import java.io.*;
-import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
@@ -22,7 +21,7 @@ public class ClientMain {
 
         try {
             socket = new Socket();
-            socket.connect(new InetSocketAddress("255.243.123.134", 8080), 5000);
+            socket.connect(new InetSocketAddress("127.0.0.1", 8080), 5000);
 
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());

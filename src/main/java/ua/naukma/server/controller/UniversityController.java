@@ -3,7 +3,15 @@ package ua.naukma.server.controller;
 import ua.naukma.domain.University;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
+import ua.naukma.server.annotation.CommandRoute;
 import ua.naukma.server.service.UniversityService;
+
+@CommandRoute({
+        Request.RequestType.ADD_UNIVERSITY,
+        Request.RequestType.REMOVE_UNIVERSITY,
+        Request.RequestType.FIND_UNIVERSITY_BY_ID,
+        Request.RequestType.GET_ALL_UNIVERSITIES
+})
 
 public class UniversityController implements RequestHandler {
     private final UniversityService uniService;
@@ -44,7 +52,7 @@ public class UniversityController implements RequestHandler {
             }
             case GET_ALL_UNIVERSITIES -> {
                 yield execute(
-                        () -> uniService.findAll(),
+                        uniService::findAll,
                         request.getType()
                 );
             }

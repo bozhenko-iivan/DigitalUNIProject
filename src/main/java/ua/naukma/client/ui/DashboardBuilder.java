@@ -41,7 +41,7 @@ public class DashboardBuilder {
                 d.getName(), d.getLocation(), d.getId());
     }
 
-    public static String buildGroupPanel(Group g, int studentsCount) {
+    public static String buildGroupPanel(Group g, long studentsCount) {
         return String.format(
                 "🎓 Group:         %s\n" +
                         "🆔 ID:            %d\n" +
@@ -51,5 +51,14 @@ public class DashboardBuilder {
 
     public static String buildGRPSPanel(Faculty f) {
         return "";
+    }
+
+    public static String buildStudentPanel(Student s) {
+        return String.format(
+                "🧑‍🎓 Student:     %s\n" +
+                        "🆔 ID:          %d\n" +
+                        "\uD83D\uDCE7 Email:       %s",
+                s.getLastName() + " " + s.getFirstName() + " " + s.getMiddleName(), s.getId(), s.getEmail()
+        );
     }
 }

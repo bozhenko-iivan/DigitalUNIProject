@@ -1,27 +1,35 @@
 package ua.naukma.server.repository;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import ua.naukma.domain.Faculty;
 import ua.naukma.domain.Student;
+import ua.naukma.server.service.util.JsonAdapter;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@ua.naukma.server.annotation.Repository
 public class FileStudentRepository implements PersonRepository<Student, Integer> {
-    private final Path filePath = Path.of("data/student.dat");
+    private final Path filePath = Path.of("data/student.json");
+    private final Gson gson = JsonAdapter.getCustomGson();
 
+    @SuppressWarnings("unchecked")
     private List<Student> loadStudent() throws IOException {
         if (!Files.exists(filePath)) {
             return new ArrayList<>();
         }
-        try {
-            ObjectInputStream ios = new ObjectInputStream(Files.newInputStream(filePath));
-            return (List<Student>) ios.readObject();
-        } catch (IOException | ClassNotFoundException e) {
+        try(Reader reader = Files.newBufferedReader(filePath)) {
+            Type listType = new TypeToken<List<Student>>(){}.getType();
+            List<Student> students = gson.fromJson(reader, listType);
+            return students != null ? students : new ArrayList<>();
+        } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
             return new ArrayList<>();
         }
@@ -32,8 +40,8 @@ public class FileStudentRepository implements PersonRepository<Student, Integer>
             if (filePath.getParent() != null && !Files.exists(filePath.getParent())) {
                 Files.createDirectories(filePath.getParent());
             }
-            try (ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(filePath))) {
-                oos.writeObject(students);
+            try (Writer writer = Files.newBufferedWriter(filePath)) {
+                gson.toJson(students, writer);
             }
         } catch (IOException e) {
             System.out.println("Error writing file: " + e.getMessage());

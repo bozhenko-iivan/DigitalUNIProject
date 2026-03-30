@@ -9,6 +9,7 @@ import ua.naukma.server.repository.Repository;
 import java.util.List;
 import java.util.Optional;
 
+@ua.naukma.server.annotation.Service
 public class UserService implements Service<SystemUser, Integer> {
     private final Repository<SystemUser, Integer> repository;
 
@@ -66,6 +67,9 @@ public class UserService implements Service<SystemUser, Integer> {
 
     @Override
     public List<SystemUser> findAll() {
+        if  (repository.findAll().isEmpty()) {
+            throw new EntityNotFoundException("No users have been found!");
+        }
         return repository.findAll();
     }
 
