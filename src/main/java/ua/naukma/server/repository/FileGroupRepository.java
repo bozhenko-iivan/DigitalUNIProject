@@ -1,9 +1,8 @@
 package ua.naukma.server.repository;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import ua.naukma.domain.Faculty;
+import org.slf4j.LoggerFactory;
 import ua.naukma.domain.Group;
 import ua.naukma.server.service.util.JsonAdapter;
 
@@ -19,8 +18,10 @@ import java.util.Optional;
 public class FileGroupRepository implements Repository<Group, Integer> {
     private final Path filePath = Path.of("data/group.json");
     private final Gson gson = JsonAdapter.getCustomGson();
+    private static final String errorReadingFileMsg = "Error reading file: ";
+    private static final String errorWritingFileMsg = "Error writing file: ";
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(FileGroupRepository.class);
 
-    @SuppressWarnings("unchecked")
     private List<Group> loadGroup() throws IOException {
         if (!Files.exists(filePath)) {
             return new ArrayList<>();
@@ -30,7 +31,7 @@ public class FileGroupRepository implements Repository<Group, Integer> {
             List<Group> groups = gson.fromJson(reader, listType);
             return groups != null ? groups : new ArrayList<>();
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
             return new ArrayList<>();
         }
     }
@@ -44,7 +45,7 @@ public class FileGroupRepository implements Repository<Group, Integer> {
                 gson.toJson(groups, writer);
             }
         } catch (IOException e) {
-            System.out.println("Error writing file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
         return groups;
     }
@@ -55,14 +56,14 @@ public class FileGroupRepository implements Repository<Group, Integer> {
         try {
             currentGroups = loadGroup();
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
         currentGroups.removeIf(g -> g.getId() == group.getId());
         currentGroups.add(group);
         try {
             writeGroup(currentGroups);
         } catch (IOException e) {
-            System.out.println("Error writing file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
     }
 
@@ -72,7 +73,7 @@ public class FileGroupRepository implements Repository<Group, Integer> {
             List<Group> groups = loadGroup();
             return groups.stream().filter(g -> g.getId() == id).findFirst();
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
             return Optional.empty();
         }
     }
@@ -82,7 +83,7 @@ public class FileGroupRepository implements Repository<Group, Integer> {
         try {
             return loadGroup();
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
         return new ArrayList<>();
     }
@@ -94,7 +95,7 @@ public class FileGroupRepository implements Repository<Group, Integer> {
             groups = loadGroup();
             groups.forEach(System.out::println);
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
     }
 
@@ -106,7 +107,7 @@ public class FileGroupRepository implements Repository<Group, Integer> {
             currGroups.removeIf(g -> g.getId() == id);
             writeGroup(currGroups);
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorWritingFileMsg, e);
         }
     }
 }

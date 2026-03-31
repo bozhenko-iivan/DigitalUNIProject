@@ -50,12 +50,10 @@ public class FacultyController implements RequestHandler {
                         request.getType()
                 );
             }
-            case GET_ALL_FACULTIES -> {
-                yield execute(
-                        facultyService::findAll,
-                        request.getType()
-                );
-            }
+            case GET_ALL_FACULTIES -> execute(
+                    facultyService::findAll,
+                    request.getType()
+            );
             default -> new Response(Response.ResponseStatus.FAILURE, "Unknown command");
         };
     }

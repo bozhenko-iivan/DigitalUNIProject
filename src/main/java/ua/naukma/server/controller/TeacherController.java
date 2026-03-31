@@ -44,12 +44,10 @@ public class TeacherController implements RequestHandler {
                         request.getType()
                 );
             }
-            case GET_ALL_TEACHERS -> {
-                yield execute(
-                        teacherService::findAll,
-                        request.getType()
-                );
-            }
+            case GET_ALL_TEACHERS -> execute(
+                    teacherService::findAll,
+                    request.getType()
+            );
           default -> new Response(Response.ResponseStatus.FAILURE, "Unknow command");
         };
     }

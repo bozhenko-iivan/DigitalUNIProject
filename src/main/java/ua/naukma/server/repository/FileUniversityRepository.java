@@ -1,9 +1,8 @@
 package ua.naukma.server.repository;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import ua.naukma.domain.Faculty;
+import org.slf4j.LoggerFactory;
 import ua.naukma.domain.University;
 import ua.naukma.server.service.util.JsonAdapter;
 
@@ -19,8 +18,10 @@ import java.util.Optional;
 public class FileUniversityRepository implements Repository<University, Integer> {
     private final Path filePath = Path.of("data/university.json");
     private final Gson gson = JsonAdapter.getCustomGson();
+    private static final String errorReadingFileMsg = "Error reading file: ";
+    private static final String errorWritingFileMsg = "Error writing file: ";
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(FileUniversityRepository.class);
 
-    @SuppressWarnings("unchecked")
     private List<University> loadUniversity() throws IOException {
         if (!Files.exists(filePath)) {
             return new ArrayList<>();
@@ -30,7 +31,7 @@ public class FileUniversityRepository implements Repository<University, Integer>
             List<University> universities = gson.fromJson(reader, listType);
             return universities != null ? universities : new ArrayList<>();
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
             return new ArrayList<>();
         }
     }
@@ -44,7 +45,7 @@ public class FileUniversityRepository implements Repository<University, Integer>
                 gson.toJson(universities, writer);
             }
         } catch (IOException e) {
-            System.out.println("Error writing file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
         return universities;
     }
@@ -55,14 +56,14 @@ public class FileUniversityRepository implements Repository<University, Integer>
         try {
             currentUniversities = loadUniversity();
         } catch (IOException e) {
-            throw new RuntimeException("Error loading universities", e);
+            throw new IllegalArgumentException("Error loading universities", e);
         }
         currentUniversities.removeIf(u -> u.getId() == uni.getId());
         currentUniversities.add(uni);
         try {
             writeUniversity(currentUniversities);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            log.info(errorReadingFileMsg, e);
         }
     }
 
@@ -72,7 +73,7 @@ public class FileUniversityRepository implements Repository<University, Integer>
             List<University> currUni = loadUniversity();
             return currUni.stream().filter(u -> u.getId() == id).findFirst();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -81,7 +82,7 @@ public class FileUniversityRepository implements Repository<University, Integer>
         try {
             return loadUniversity();
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
         return new ArrayList<>();
     }
@@ -93,7 +94,7 @@ public class FileUniversityRepository implements Repository<University, Integer>
             currUni = loadUniversity();
             currUni.forEach(System.out::println);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -105,7 +106,7 @@ public class FileUniversityRepository implements Repository<University, Integer>
             currUni.removeIf(u -> u.getId() == integer);
             writeUniversity(currUni);
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorWritingFileMsg, e);
         }
     }
 }

@@ -1,19 +1,15 @@
 package ua.naukma.server.repository;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import ua.naukma.domain.Faculty;
+import org.slf4j.LoggerFactory;
 import ua.naukma.domain.SystemUser;
-import ua.naukma.domain.University;
-import ua.naukma.server.service.UserService;
 import ua.naukma.server.service.util.JsonAdapter;
 
 import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.attribute.UserPrincipal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -22,8 +18,10 @@ import java.util.Optional;
 public class FileUserRepository implements Repository<SystemUser, Integer> {
     private final Path filePath = Path.of("data/users.json");
     private final Gson gson = JsonAdapter.getCustomGson();
+    private static final String errorReadingFileMsg = "Error reading file: ";
+    private static final String errorWritingFileMsg = "Error writing file: ";
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(FileUserRepository.class);
 
-    @SuppressWarnings("unchecked")
     private List<SystemUser> loadUsers() throws IOException {
         if (!Files.exists(filePath)) {
             return new ArrayList<>();
@@ -33,7 +31,7 @@ public class FileUserRepository implements Repository<SystemUser, Integer> {
             List<SystemUser> systemUsers = gson.fromJson(reader, listType);
             return systemUsers != null ? systemUsers : new ArrayList<>();
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
             return new ArrayList<>();
         }
     }
@@ -47,7 +45,7 @@ public class FileUserRepository implements Repository<SystemUser, Integer> {
                 gson.toJson(users, writer);
             }
         } catch (IOException e) {
-            System.out.println("Error writing file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
         return users;
     }
@@ -58,13 +56,14 @@ public class FileUserRepository implements Repository<SystemUser, Integer> {
         try {
             currentUsers = loadUsers();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(e);
         }
+        currentUsers.removeIf(us -> us.getId() == user.getId());
         currentUsers.add(user);
         try {
             writeUsers(currentUsers);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw  new IllegalArgumentException(e);
         }
     }
 
@@ -74,7 +73,7 @@ public class FileUserRepository implements Repository<SystemUser, Integer> {
             List<SystemUser> users = loadUsers();
             return users.stream().filter(u -> u.getId() == id).findFirst();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -83,7 +82,7 @@ public class FileUserRepository implements Repository<SystemUser, Integer> {
         try {
             return loadUsers();
         } catch (IOException e) {
-            System.out.println("Error reading users file" + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
         return new ArrayList<>();
     }
@@ -95,7 +94,7 @@ public class FileUserRepository implements Repository<SystemUser, Integer> {
             users = loadUsers();
             users.forEach(System.out::println);
         } catch (IOException e) {
-            System.out.println("Error reading users file" + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
     }
 
@@ -107,7 +106,7 @@ public class FileUserRepository implements Repository<SystemUser, Integer> {
             users.removeIf(u -> u.getId() == id);
             writeUsers(users);
         } catch (IOException e) {
-            System.out.println("Error reading users file" + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
     }
 }
