@@ -14,13 +14,7 @@ import java.net.Socket;
 
 public class ClientMain {
     public static void main(String[] args) {
-
-        Socket socket = null;
-        InputStream inputStream = null;
-        OutputStream outputStream = null;
-
-        try {
-            socket = new Socket();
+        try(Socket socket = new Socket()) {
             socket.connect(new InetSocketAddress("127.0.0.1", 8080), 5000);
 
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
@@ -28,7 +22,7 @@ public class ClientMain {
 
 
             while (true) {
-                SystemUser loggedUser = null;
+                SystemUser loggedUser;
 
                 while (true) {
                     System.out.println("Login");
@@ -58,7 +52,6 @@ public class ClientMain {
             NewMenu menu = new NewMenu(oos, ois, loggedUser);
             menu.main_menu();
         }
-
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

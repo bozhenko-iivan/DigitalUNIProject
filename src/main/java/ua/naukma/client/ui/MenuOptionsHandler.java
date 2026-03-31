@@ -395,7 +395,7 @@ public class MenuOptionsHandler{
             case 8 -> {
                 int studentId = current_student.getId();
                 Response response = sendRequest(Request.RequestType.SHOW_TRANSCRIPT, studentId, false);
-                if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                if (response.getResponseStatus() != null && response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
                     List<Grade> grades = (List<Grade>) response.getPayload();
                     Map<Subject, List<Grade>> map = grades.stream()
                             .collect(Collectors.groupingBy(Grade::getSubjectName));
@@ -829,7 +829,7 @@ public class MenuOptionsHandler{
     private static int readInt(){
         Scanner scanner = InitScanner.try_init_scanner();
         for(;;) {
-            int choice = 0;
+            int choice;
             try {
                 choice = scanner.nextInt();
             } catch (InputMismatchException e) {
