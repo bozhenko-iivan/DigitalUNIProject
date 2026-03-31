@@ -9,7 +9,6 @@ import ua.naukma.server.controller.*;
 import ua.naukma.server.repository.*;
 import ua.naukma.server.service.*;
 
-import javax.swing.*;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;

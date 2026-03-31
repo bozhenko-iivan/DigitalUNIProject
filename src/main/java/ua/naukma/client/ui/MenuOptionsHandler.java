@@ -364,8 +364,7 @@ public class MenuOptionsHandler{
                 int studentId = current_student.getId();
                 StudentStatus status = AcademicInfoVerificator.ask_student_status();
                 UpdateStudentStatusDTO studentData = new UpdateStudentStatusDTO(studentId, status);
-                sendRequest(Request.RequestType.UPDATE_STUDENT_STATUS, studentData, false);
-                Response updateResponse = sendRequest(Request.RequestType.UPDATE_STUDENT_STATUS, studentId, false);
+                Response updateResponse = sendRequest(Request.RequestType.UPDATE_STUDENT_STATUS, studentData, false);
                 if (updateResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
                     current_student = (Student) updateResponse.getPayload();
                 }
