@@ -82,7 +82,7 @@ public class StudentController implements RequestHandler {
             case  UPDATE_STUDENT_STUDY_FORM ->  {
                 UpdateStudyFormDTO studentData = (UpdateStudyFormDTO) request.getData();
                 int studentId = studentData.studentID();
-                StudyForm studyForm = (StudyForm) request.getData();
+                StudyForm studyForm = studentData.studyForm();
                 yield execute(
                         () -> studentService.updateStudyForm(studentId, studyForm),
                         request.getType()
