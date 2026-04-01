@@ -44,12 +44,10 @@ public class GroupController implements RequestHandler {
                         request.getType()
                 );
             }
-            case GET_ALL_GROUPS -> {
-                yield execute(
-                        groupService::findAll,
-                        request.getType()
-                );
-            }
+            case GET_ALL_GROUPS -> execute(
+                    groupService::findAll,
+                    request.getType()
+            );
             default -> new Response(Response.ResponseStatus.FAILURE, "Unknown command");
         };
     }

@@ -2,6 +2,7 @@ package ua.naukma.server.repository;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.slf4j.LoggerFactory;
 import ua.naukma.domain.Grade;
 import ua.naukma.domain.Group;
 import ua.naukma.server.service.util.JsonAdapter;
@@ -19,6 +20,9 @@ import java.util.Optional;
 public class FileGradeRepository implements Repository<Grade, Integer> {
     private final Path filePath = Path.of("data/grade.json");
     private final Gson gson = JsonAdapter.getCustomGson();
+    private static final String errorReadingFileMsg = "Error reading file: ";
+    private static final String errorWritingFileMsg = "Error writing file: ";
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(FileGradeRepository.class);
 
     private List<Grade> loadGrade() throws IOException {
         if (Files.notExists(filePath)) {
@@ -55,7 +59,7 @@ public class FileGradeRepository implements Repository<Grade, Integer> {
         try {
             grades = loadGrade();
         } catch (IOException e) {
-            System.out.println("Error writing file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
         grades.removeIf(currGr -> currGr.getGradeId() == grade.getGradeId());
         if (grade.getGradeId() == 0) {
@@ -66,7 +70,7 @@ public class FileGradeRepository implements Repository<Grade, Integer> {
         try {
             writeGrade(grades);
         } catch (IOException e) {
-            System.out.println("Error writing file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
     }
 
@@ -77,7 +81,7 @@ public class FileGradeRepository implements Repository<Grade, Integer> {
             return grades.stream().filter(currGr -> currGr.getGradeId() == integer).findFirst();
         }
         catch (IOException e) {
-            System.out.println("Error writing file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
             return Optional.empty();
         }
     }
@@ -87,7 +91,7 @@ public class FileGradeRepository implements Repository<Grade, Integer> {
         try {
             return loadGrade();
         } catch (IOException e) {
-            System.out.println("Error writing file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
         return new ArrayList<>();
     }
@@ -99,7 +103,7 @@ public class FileGradeRepository implements Repository<Grade, Integer> {
             grades = loadGrade();
             grades.forEach(System.out::println);
         } catch (IOException e) {
-            System.out.println("Error writing file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
     }
 
@@ -111,7 +115,7 @@ public class FileGradeRepository implements Repository<Grade, Integer> {
             grades.removeIf(currGr -> currGr.getGradeId() == integer);
             writeGrade(grades);
         } catch (IOException e) {
-            System.out.println("Error writing file: " + e.getMessage());
+            log.info(errorWritingFileMsg, e);
         }
     }
 

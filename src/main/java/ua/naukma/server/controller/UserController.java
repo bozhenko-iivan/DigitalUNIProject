@@ -31,25 +31,21 @@ public class UserController implements RequestHandler {
                         () -> userService.authenticate(credentials), request.getType()
                 );
             }
-            case LOGOUT -> {
-                yield execute(
-                        () -> null, request.getType()
-                );
-            }
+            case LOGOUT -> execute(
+                    () -> null, request.getType()
+            );
             case ADD_USER -> {
                 SystemUser userToAdd = (SystemUser) request.getData();
                 yield execute(
-                        () -> {
-                            userService.add(userToAdd);
-                        }, request.getType()
+                        () -> userService.add(userToAdd),
+                            request.getType()
                 );
             }
             case REMOVE_USER -> {
                 int userIdToRemove = (int) request.getData();
                 yield execute(
-                        () -> {
-                            userService.deleteById(userIdToRemove);
-                        }, request.getType()
+                        () -> userService.deleteById(userIdToRemove),
+                        request.getType()
                 );
             }
             case FIND_USER_BY_ID -> {
@@ -59,12 +55,10 @@ public class UserController implements RequestHandler {
                         request.getType()
                 );
             }
-            case GET_ALL_USERS -> {
-                yield execute(
-                        userService::findAll,
-                        request.getType()
-                );
-            }
+            case GET_ALL_USERS -> execute(
+                    userService::findAll,
+                    request.getType()
+            );
             default -> new Response(Response.ResponseStatus.FAILURE, "Unknown command");
         };
     }

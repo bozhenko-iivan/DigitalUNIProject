@@ -50,12 +50,10 @@ public class UniversityController implements RequestHandler {
                         request.getType()
                 );
             }
-            case GET_ALL_UNIVERSITIES -> {
-                yield execute(
-                        uniService::findAll,
-                        request.getType()
-                );
-            }
+            case GET_ALL_UNIVERSITIES -> execute(
+                    uniService::findAll,
+                    request.getType()
+            );
             default -> new Response(Response.ResponseStatus.FAILURE, "Unknown command");
         };
     }

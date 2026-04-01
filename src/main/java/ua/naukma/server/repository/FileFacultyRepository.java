@@ -1,10 +1,8 @@
 package ua.naukma.server.repository;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import ua.naukma.domain.Faculty;
-import ua.naukma.domain.University;
 import ua.naukma.server.service.util.JsonAdapter;
 
 import java.io.*;
@@ -12,16 +10,18 @@ import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import org.slf4j.LoggerFactory;
 
 @ua.naukma.server.annotation.Repository
 public class FileFacultyRepository implements Repository<Faculty, Integer> {
     private final Path filePath = Path.of("data/faculty.json");
     private final Gson gson = JsonAdapter.getCustomGson();
+    private static final String errorReadingFileMsg = "Error reading file: ";
+    private static final String errorWritingFileMsg = "Error writing file: ";
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(FileFacultyRepository.class);
 
-    @SuppressWarnings("unchecked")
     private List<Faculty> loadFaculty() throws IOException {
         if (!Files.exists(filePath)) {
             return new ArrayList<>();
@@ -31,7 +31,7 @@ public class FileFacultyRepository implements Repository<Faculty, Integer> {
             List<Faculty> faculties = gson.fromJson(reader, listType);
             return faculties != null ? faculties : new ArrayList<>();
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
             return new ArrayList<>();
         }
     }
@@ -45,7 +45,7 @@ public class FileFacultyRepository implements Repository<Faculty, Integer> {
                 gson.toJson(faculties, writer);
             }
         } catch (IOException e) {
-            System.out.println("Error writing file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
         return faculties;
     }
@@ -56,14 +56,14 @@ public class FileFacultyRepository implements Repository<Faculty, Integer> {
         try {
             currentFaculties = loadFaculty();
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
         currentFaculties.removeIf(f -> f.getId() ==  fac.getId());
         currentFaculties.add(fac);
         try {
             writeFaculty(currentFaculties);
         } catch (IOException e) {
-            System.out.println("Error writing file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
     }
 
@@ -73,7 +73,7 @@ public class FileFacultyRepository implements Repository<Faculty, Integer> {
             List<Faculty> faculties = loadFaculty();
             return faculties.stream().filter(f -> f.getId() == id).findFirst();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(errorReadingFileMsg + e.getMessage());
         }
     }
 
@@ -82,7 +82,7 @@ public class FileFacultyRepository implements Repository<Faculty, Integer> {
         try {
             return loadFaculty();
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
         return new ArrayList<>();
     }
@@ -94,7 +94,7 @@ public class FileFacultyRepository implements Repository<Faculty, Integer> {
             faculties = loadFaculty();
             faculties.forEach(System.out::println);
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
     }
 
@@ -106,7 +106,7 @@ public class FileFacultyRepository implements Repository<Faculty, Integer> {
             currFaculties.removeIf(f -> f.getId() == integer);
             writeFaculty(currFaculties);
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorWritingFileMsg, e);
         }
     }
 }

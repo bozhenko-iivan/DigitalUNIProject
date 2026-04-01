@@ -44,12 +44,10 @@ public class DepartmentController implements RequestHandler {
                         request.getType()
                 );
             }
-            case GET_ALL_DEPARTMENTS -> {
-                yield execute(
-                        departmentService::findAll,
-                        request.getType()
-                );
-            }
+            case GET_ALL_DEPARTMENTS -> execute(
+                    departmentService::findAll,
+                    request.getType()
+            );
             default -> new Response(Response.ResponseStatus.FAILURE, "Unknown command");
         };
     }
