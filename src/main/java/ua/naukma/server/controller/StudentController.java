@@ -1,6 +1,5 @@
 package ua.naukma.server.controller;
 
-import ua.naukma.client.utils.PhoneNumberVerificator;
 import ua.naukma.domain.*;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
@@ -59,12 +58,10 @@ public class StudentController implements RequestHandler {
                         request.getType()
                 );
             }
-            case GET_ALL_STUDENTS -> {
-                yield execute(
-                        studentService::findAll,
-                        request.getType()
-                );
-            }
+            case GET_ALL_STUDENTS -> execute(
+                    studentService::findAll,
+                    request.getType()
+            );
             case GET_STUDENTS_COUNT -> {
                 int groupId = (int) request.getData();
                 yield execute(
@@ -85,7 +82,7 @@ public class StudentController implements RequestHandler {
             case  UPDATE_STUDENT_STUDY_FORM ->  {
                 UpdateStudyFormDTO studentData = (UpdateStudyFormDTO) request.getData();
                 int studentId = studentData.studentID();
-                StudyForm studyForm = (StudyForm) request.getData();
+                StudyForm studyForm = studentData.studyForm();
                 yield execute(
                         () -> studentService.updateStudyForm(studentId, studyForm),
                         request.getType()
@@ -105,7 +102,6 @@ public class StudentController implements RequestHandler {
                 int studentId = studentData.studentID();
                 int score = studentData.grade();
                 Subject subject = studentData.subject();
-                //Student student = studentService.findById(studentId);
                 Grade grade = new Grade(score, studentId, subject);
                 yield execute(
                         () -> gradeService.add(grade),

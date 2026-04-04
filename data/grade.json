@@ -10,5 +10,11 @@
     "score": 100,
     "studentId": 1234567,
     "subjectName": "ENGLISH"
+  },
+  {
+    "gradeId": 3,
+    "score": 98,
+    "studentId": 1234567,
+    "subjectName": "COMPUTER_SCIENCE"
   }
 ]

@@ -1,9 +1,8 @@
 package ua.naukma.server.repository;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import ua.naukma.domain.Faculty;
+import org.slf4j.LoggerFactory;
 import ua.naukma.domain.Student;
 import ua.naukma.server.service.util.JsonAdapter;
 
@@ -19,8 +18,10 @@ import java.util.Optional;
 public class FileStudentRepository implements PersonRepository<Student, Integer> {
     private final Path filePath = Path.of("data/student.json");
     private final Gson gson = JsonAdapter.getCustomGson();
+    private static final String errorReadingFileMsg = "Error reading file: ";
+    private static final String errorWritingFileMsg = "Error writing file: ";
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(FileStudentRepository.class);
 
-    @SuppressWarnings("unchecked")
     private List<Student> loadStudent() throws IOException {
         if (!Files.exists(filePath)) {
             return new ArrayList<>();
@@ -30,7 +31,7 @@ public class FileStudentRepository implements PersonRepository<Student, Integer>
             List<Student> students = gson.fromJson(reader, listType);
             return students != null ? students : new ArrayList<>();
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
             return new ArrayList<>();
         }
     }
@@ -44,7 +45,7 @@ public class FileStudentRepository implements PersonRepository<Student, Integer>
                 gson.toJson(students, writer);
             }
         } catch (IOException e) {
-            System.out.println("Error writing file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
         return students;
     }
@@ -55,14 +56,14 @@ public class FileStudentRepository implements PersonRepository<Student, Integer>
         try {
             currentStudents = loadStudent();
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
         currentStudents.removeIf(s -> s.getId() == student.getId());
         currentStudents.add(student);
         try {
             writeStudent(currentStudents);
         } catch (IOException e) {
-            System.out.println("Error writing file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
     }
 
@@ -72,7 +73,7 @@ public class FileStudentRepository implements PersonRepository<Student, Integer>
             List<Student> students = loadStudent();
             return students.stream().filter(s -> s.getId() == id).findFirst();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -81,7 +82,7 @@ public class FileStudentRepository implements PersonRepository<Student, Integer>
         try {
             return loadStudent();
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
         return new ArrayList<>();
     }
@@ -93,7 +94,7 @@ public class FileStudentRepository implements PersonRepository<Student, Integer>
             students = loadStudent();
             students.forEach(System.out::println);
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
     }
 
@@ -105,7 +106,7 @@ public class FileStudentRepository implements PersonRepository<Student, Integer>
             currStudents.removeIf(s -> s.getId() == id);
             writeStudent(currStudents);
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorWritingFileMsg, e);
         }
     }
 

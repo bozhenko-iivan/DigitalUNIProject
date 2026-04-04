@@ -1,10 +1,9 @@
 package ua.naukma.server.repository;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import org.slf4j.LoggerFactory;
 import ua.naukma.domain.Department;
-import ua.naukma.domain.Faculty;
 import ua.naukma.server.service.util.JsonAdapter;
 
 import java.io.*;
@@ -19,8 +18,10 @@ import java.util.Optional;
 public class FileDepartmentRepository implements Repository<Department, Integer> {
     private final Path filePath = Path.of("data/department.json");
     private final Gson gson = JsonAdapter.getCustomGson();
+    private static final String errorReadingFileMsg = "Error reading file: ";
+    private static final String errorWritingFileMsg = "Error writing file: ";
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(FileDepartmentRepository.class);
 
-    @SuppressWarnings("unchecked")
     private List<Department> loadDepartment() throws IOException {
         if (!Files.exists(filePath)) {
             return new ArrayList<>();
@@ -30,7 +31,7 @@ public class FileDepartmentRepository implements Repository<Department, Integer>
             List<Department> departments = gson.fromJson(reader, listType);
             return departments != null ? departments : new ArrayList<>();
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
             return new ArrayList<>();
         }
     }
@@ -44,7 +45,7 @@ public class FileDepartmentRepository implements Repository<Department, Integer>
                 gson.toJson(departments, writer);
             }
         } catch (IOException e) {
-            System.out.println("Error writing file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
         return departments;
     }
@@ -55,14 +56,14 @@ public class FileDepartmentRepository implements Repository<Department, Integer>
         try {
             currentDepartments = loadDepartment();
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
         currentDepartments.removeIf(d -> d.getId() == dep.getId());
         currentDepartments.add(dep);
         try {
             writeDepartment(currentDepartments);
         } catch (IOException e) {
-            System.out.println("Error writing file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
     }
 
@@ -72,7 +73,7 @@ public class FileDepartmentRepository implements Repository<Department, Integer>
             List<Department> departments = loadDepartment();
             return departments.stream().filter(d -> d.getId() == id).findFirst();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -81,7 +82,7 @@ public class FileDepartmentRepository implements Repository<Department, Integer>
         try {
             return loadDepartment();
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
         return new ArrayList<>();
     }
@@ -93,7 +94,7 @@ public class FileDepartmentRepository implements Repository<Department, Integer>
             departments = loadDepartment();
             departments.forEach(System.out::println);
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorReadingFileMsg, e);
         }
     }
 
@@ -105,7 +106,7 @@ public class FileDepartmentRepository implements Repository<Department, Integer>
             currDepartments.removeIf(d -> d.getId() == id);
             writeDepartment(currDepartments);
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            log.info(errorWritingFileMsg, e);
         }
     }
 }

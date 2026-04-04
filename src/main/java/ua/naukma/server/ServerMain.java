@@ -1,5 +1,6 @@
 package ua.naukma.server;
 
+import org.slf4j.LoggerFactory;
 import ua.naukma.domain.*;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
@@ -11,10 +12,12 @@ import ua.naukma.server.service.*;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 public class ServerMain {
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(ServerMain.class);
+
     public static void registerController(Map<Request.RequestType, RequestHandler> router, RequestHandler handler) {
         if (handler.getClass().isAnnotationPresent(CommandRoute.class)) {
             CommandRoute annotation = handler.getClass().getAnnotation(CommandRoute.class);
@@ -23,19 +26,13 @@ public class ServerMain {
                 router.put(requestType, handler);
             }
         } else {
-            throw new RuntimeException(handler.getClass().getName() + " is not annotated with @CommandRoute");
+            throw new IllegalArgumentException(handler.getClass().getName() + " is not annotated with @CommandRoute");
         }
     }
 
     public static void main(String[] args) {
-        Socket socket = null;
-        InputStream inputStream = null;
-        OutputStream outputStream = null;
-        ServerSocket serverSocket = null;
-
-        try {
-            serverSocket = new ServerSocket(8080);
-            System.out.println("Server started on port 8080");
+        try(ServerSocket serverSocket = new ServerSocket(8080)) {
+            log.info("Starting server on port 8080");
 
             Repository<University, Integer> uniRepo = new FileUniversityRepository();
             Repository<SystemUser, Integer> userRepository = new FileUserRepository();
@@ -55,7 +52,7 @@ public class ServerMain {
             DepartmentService departmentService = new DepartmentService(departmentRepository);
             GradeService gradeService = new GradeService(gradeRepository);
 
-            Map<Request.RequestType, RequestHandler> router = new HashMap<>();
+            Map<Request.RequestType, RequestHandler> router = new EnumMap<>(Request.RequestType.class);
 
             registerController(router, new UserController(userService));
             registerController(router, new UniversityController(uniService));
@@ -67,60 +64,54 @@ public class ServerMain {
 
             userService.initUser();
 
-            while (true) {
-                try {
-                    socket = serverSocket.accept();
-                    String clientIp = socket.getInetAddress().getHostAddress();
-                    System.out.println("Accepted connection from " + clientIp + " on port 8080");
-
-                    ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-                    ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-
-                    while (true) {
-                        Request request = (Request) ois.readObject();
-                        Request.RequestType currentType = request.getType();
-                        RequestHandler handler = router.get(currentType);
-
-                        System.out.println("========================================");
-                        System.out.println("New request from: " + clientIp);
-                        System.out.println("Request Type:   " + request.getType());
-                        System.out.println("Data attached:  " + request.getData());
-                        System.out.println("========================================");
-
-                        if (handler != null) {
-                            Response response = handler.process(request);
-
-                            System.out.println("Response Status: " + response.getResponseStatus());
-                            System.out.println("Message:         " + response.getMsg());
-                            System.out.println("Data sent back:  " + response.getPayload());
-                            System.out.println("========================================\n");
-                            oos.writeObject(response);
-                            oos.flush();
-                        } else {
-                            System.out.println("No handler found for " + currentType);
-                            Response errorResponse = new Response(Response.ResponseStatus.FAILURE, "Server Error: Unknown command " + currentType);
-                            oos.writeObject(errorResponse);
-                            oos.flush();
-                        }
-                    }
-                } catch (EOFException e) {
-                    System.out.println("Client disconnected: " + e.getMessage());
-                    try {
-                        if (socket != null) {
-                            socket.close();
-                        }
-                    } catch (IOException ioe) {
-                        ioe.printStackTrace();
-                    }
-                } catch (ClassNotFoundException e) {
-                    System.out.println("ClassNotFound exception: " + e.getMessage());
-                } catch (Exception e) {
-                    System.out.println("Server exception: ");
-                    e.printStackTrace();
-                }
+            while (!serverSocket.isClosed()) {
+                handleClientConnection(serverSocket, router);
             }
         } catch (IOException e) {
-            System.out.println("Could not start server on port 8080: " + e.getMessage());
+            log.error("Couldn't start server on port 8080 ", e);
+        }
+    }
+
+    private static void handleClientConnection(ServerSocket serverSocket, Map<Request.RequestType, RequestHandler> router) {
+        try(Socket socket = serverSocket.accept()) {
+            String clientIp = socket.getInetAddress().getHostAddress();
+            log.info("Client IP: {}", clientIp);
+
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+
+            while (!serverSocket.isClosed()) {
+                Request request = (Request) ois.readObject();
+                Request.RequestType currentType = request.getType();
+                RequestHandler handler = router.get(currentType);
+
+                log.info("==========================================");
+                log.info("New request received from: {} ", clientIp);
+                log.info("Request type: {} ", request.getType());
+                log.info("Data attached:  {}", request.getData());
+                log.info("==========================================");
+
+                if (handler != null) {
+                    Response response = handler.process(request);
+                    log.info("Response status:     {}", response.getResponseStatus());
+                    log.info("Msg:                 {}", response.getMsg());
+                    log.info("Data sent back:      {}", response.getPayload());
+                    log.info("==========================================");
+                    oos.writeObject(response);
+                    oos.flush();
+                } else {
+                    log.warn("No handler found: ", currentType);
+                    Response errorResponse = new Response(Response.ResponseStatus.FAILURE, "Server Error: Unknown command " + currentType);
+                    oos.writeObject(errorResponse);
+                    oos.flush();
+                }
+            }
+        } catch (EOFException e) {
+            log.info("Client disconnected (EOF): {}", e.getMessage());
+        } catch (ClassNotFoundException e) {
+            log.error("ClassNotFound exception: ", e);
+        } catch (Exception e) {
+            log.error("Exception:", e);
         }
     }
 }
