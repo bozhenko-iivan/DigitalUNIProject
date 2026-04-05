@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import ua.naukma.domain.*;
 import ua.naukma.exception.DuplicateEntityException;
 import ua.naukma.exception.IncorrectDataException;
+import ua.naukma.server.repository.FilePersonRepository;
 import ua.naukma.server.repository.PersonRepository;
 import ua.naukma.server.service.StudentService;
 import ua.naukma.server.service.TeacherService;
@@ -28,8 +29,8 @@ class DigitalUniTests {
 
     @BeforeEach
     void setUp() {
-        studentRepository = new FileStudentRepository();
-        teacherRepository = new FileTeacherRepository();
+        studentRepository = new FilePersonRepository<>(Student.class);
+        teacherRepository = new FilePersonRepository<>(Teacher.class);
         testDepartment = new Department(1111111, "TestDept", null, null, "TestLoc", "test@ukma.edu.ua");
         testGroup = new Group(1234567, "IPZ-2025", testFaculty, 1, 2025);
         studentService = new StudentService(studentRepository);
