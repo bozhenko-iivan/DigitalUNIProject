@@ -33,8 +33,8 @@ class DigitalUniTests {
         teacherRepository = new FilePersonRepository<>(Teacher.class);
         testDepartment = new Department(1111111, "TestDept", null, null, "TestLoc", "test@ukma.edu.ua");
         testGroup = new Group(1234567, "IPZ-2025", testFaculty, 1, 2025);
-        studentService = new StudentService(studentRepository);
-        teacherService = new TeacherService(teacherRepository);
+        studentService = new StudentService(studentRepository, Student.class);
+        teacherService = new TeacherService(teacherRepository, Teacher.class);
     }
 
     @Test
