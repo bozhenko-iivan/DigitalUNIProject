@@ -10,7 +10,6 @@ import ua.naukma.network.Request;
 import ua.naukma.network.Response;
 
 import java.io.*;
-import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 

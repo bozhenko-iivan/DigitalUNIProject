@@ -55,11 +55,11 @@ public class ServerMain {
             Map<Request.RequestType, RequestHandler> router = new EnumMap<>(Request.RequestType.class);
 
             registerController(router, new UserController(userService));
-            registerController(router, new UniversityController(uniService));
-            registerController(router, new FacultyController(facultyService));
-            registerController(router, new DepartmentController(departmentService));
-            registerController(router, new GroupController(groupService));
-            registerController(router, new TeacherController(teacherService));
+            registerController(router, new EntityController<>(uniService));
+            registerController(router, new EntityController<>(facultyService));
+            registerController(router, new EntityController<>(departmentService));
+            registerController(router, new EntityController<>(groupService));
+            registerController(router, new EntityController<>(teacherService));
             registerController(router, new StudentController(studentService, gradeService));
 
             userService.initUser();

@@ -82,6 +82,11 @@ public class Request implements Serializable {
         SET_STUDENT_GRADE,
         DELETE_STUDENT_GRADE,
         SHOW_TRANSCRIPT,
+
+        ADD,
+        REMOVE,
+        FIND,
+        GET_ALL
     }
 
     public Request(RequestType type, Object data) {

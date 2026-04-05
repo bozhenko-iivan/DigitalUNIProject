@@ -1,21 +1,21 @@
 package ua.naukma.server.service;
 
-import ua.naukma.domain.Department;
+
 import ua.naukma.exception.DuplicateEntityException;
 import ua.naukma.exception.EntityNotFoundException;
 import ua.naukma.server.repository.GetId;
 import ua.naukma.server.repository.Repository;
 
-import javax.management.ObjectInstance;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
-public class EntityService <T extends Serializable & GetId, ID extends Integer> implements Service<T, ID> {
-    private final Repository<T, ID> repository;
+
+public class EntityService <T extends Serializable & GetId, Number> implements Service<T, Integer> {
+    private final Repository<T, Integer> repository;
     private final Class<T> clazz;
-    public EntityService(Repository<T, ID> repository, Class<T> clazz) {
+    public EntityService(Repository<T, Integer> repository, Class<T> clazz) {
         this.clazz = clazz;
         this.repository = repository;
     }
@@ -29,21 +29,21 @@ public class EntityService <T extends Serializable & GetId, ID extends Integer> 
     }
     @Override
     public void add(T e) throws DuplicateEntityException {
-        ID id = (ID)((Integer)e.getId());
+        Integer id = (Integer) e.getId();
         if (repository.findById(id).isPresent()) {
             throw new DuplicateEntityException( getClassName() +" with id " + e.getId() + " already exists.");
         }
         repository.save(e);
     }
     @Override
-    public void deleteById(ID id) throws EntityNotFoundException {
+    public void deleteById(Integer id) throws EntityNotFoundException {
         if (repository.findById(id).isEmpty()) {
             throw new EntityNotFoundException(getClassName() + " with id " + id + " doesn't exist.");
         }
         repository.deleteById(id);
     }
     @Override
-    public T findById(ID id) throws EntityNotFoundException {
+    public T findById(Integer id) throws EntityNotFoundException {
         Optional<T> entity = repository.findById(id);
         if (entity.isPresent()) {
             return entity.get();

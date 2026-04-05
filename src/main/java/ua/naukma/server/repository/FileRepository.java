@@ -42,7 +42,7 @@ public class FileRepository <T extends Serializable & GetId, ID extends Number> 
             return new ArrayList<>();
         }
         try(Reader reader = Files.newBufferedReader(filePath)) {
-            Type listType = new TypeToken<List<T>>(){}.getType();
+            Type listType = TypeToken.getParameterized(List.class, clazz).getType();
             List<T> entities = gson.fromJson(reader, listType);
             return entities != null ? entities : new ArrayList<>();
         } catch (IOException e) {
