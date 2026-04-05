@@ -1,8 +1,10 @@
 package ua.naukma.domain;
 
+import ua.naukma.server.repository.GetId;
+
 import java.io.Serializable;
 
-public class Department implements Serializable {
+public class Department implements Serializable, GetId {
     private int id;
     private String name;
     private Faculty faculty;
@@ -18,8 +20,9 @@ public class Department implements Serializable {
         setLocation(location);
         setEmail(email);
     }
-
+    @Override
     public int getId() { return id; }
+
     public String getName() { return name; }
     public Faculty getFaculty() { return faculty; }
     public Teacher getHead() { return head; }

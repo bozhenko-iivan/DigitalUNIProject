@@ -2,9 +2,7 @@ package ua.naukma.client.utils;
 
 import ua.naukma.domain.Grade;
 import ua.naukma.domain.Subject;
-import ua.naukma.server.repository.Repository;
 
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -17,7 +15,7 @@ public class GradeVerificator {
             try {
                 int inputId = scanner.nextInt();
                 boolean exists = grades.stream()
-                        .anyMatch(g -> g.getGradeId() == inputId);
+                        .anyMatch(g -> g.getId() == inputId);
                 if (exists) {
                     return inputId;
                 } else {

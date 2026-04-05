@@ -9,15 +9,12 @@ import ua.naukma.network.dto.UpdateContactsDTO;
 import ua.naukma.network.dto.UpdateStudentStatusDTO;
 import ua.naukma.network.dto.UpdateStudyFormDTO;
 import ua.naukma.security.Permissions;
-import ua.naukma.server.annotation.Secured;
-import ua.naukma.server.service.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.function.IntBinaryOperator;
 import java.util.stream.Collectors;
 
 public class MenuOptionsHandler{
@@ -406,7 +403,7 @@ public class MenuOptionsHandler{
                             System.out.println("—");
                         } else {
                             String gradeString = gradeList.stream()
-                                    .map(g -> "(id: " + g.getGradeId() + ") " + g.getScore())
+                                    .map(g -> "(id: " + g.getId() + ") " + g.getScore())
                                     .collect(Collectors.joining(" | "));
                             System.out.println(gradeString);
                         }

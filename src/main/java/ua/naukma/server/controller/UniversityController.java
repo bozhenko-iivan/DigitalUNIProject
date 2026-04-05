@@ -28,7 +28,6 @@ public class UniversityController implements RequestHandler {
                 yield execute(
                         () -> {
                             uniService.add(uniToAdd);
-                            return null;
                         },
                         request.getType()
                 );
@@ -38,7 +37,6 @@ public class UniversityController implements RequestHandler {
                 yield execute(
                         () -> {
                             uniService.deleteById(idUniToRemove);
-                            return null;
                         },
                         request.getType()
                 );

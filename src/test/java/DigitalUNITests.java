@@ -3,8 +3,6 @@ import org.junit.jupiter.api.Test;
 import ua.naukma.domain.*;
 import ua.naukma.exception.DuplicateEntityException;
 import ua.naukma.exception.IncorrectDataException;
-import ua.naukma.server.repository.FileStudentRepository;
-import ua.naukma.server.repository.FileTeacherRepository;
 import ua.naukma.server.repository.PersonRepository;
 import ua.naukma.server.service.StudentService;
 import ua.naukma.server.service.TeacherService;

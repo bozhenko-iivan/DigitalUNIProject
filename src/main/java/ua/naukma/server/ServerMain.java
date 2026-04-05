@@ -34,14 +34,14 @@ public class ServerMain {
         try(ServerSocket serverSocket = new ServerSocket(8080)) {
             log.info("Starting server on port 8080");
 
-            Repository<University, Integer> uniRepo = new FileUniversityRepository();
-            Repository<SystemUser, Integer> userRepository = new FileUserRepository();
-            Repository<Faculty, Integer> facultyRepository = new FileFacultyRepository();
-            Repository<Group, Integer> groupRepository = new FileGroupRepository();
-            Repository<Department, Integer> departmentRepository = new FileDepartmentRepository();
-            PersonRepository<Student, Integer> studentRepository = new FileStudentRepository();
-            PersonRepository<Teacher, Integer> teacherRepository = new FileTeacherRepository();
-            Repository<Grade, Integer> gradeRepository = new FileGradeRepository();
+            Repository<University, Integer> uniRepo = new FileRepository<>(University.class);
+            Repository<SystemUser, Integer> userRepository = new FileRepository<>(SystemUser.class);
+            Repository<Faculty, Integer> facultyRepository = new FileRepository<>(Faculty.class);
+            Repository<Group, Integer> groupRepository = new FileRepository<>(Group.class);
+            Repository<Department, Integer> departmentRepository = new FileRepository<>(Department.class);
+            Repository<Grade, Integer> gradeRepository = new FileRepository<>(Grade.class);
+            PersonRepository<Student, Integer> studentRepository = new FilePersonRepository<>(Student.class);
+            PersonRepository<Teacher, Integer> teacherRepository = new FilePersonRepository<>(Teacher.class);
 
             UniversityService uniService = new UniversityService(uniRepo);
             UserService userService = new UserService(userRepository);
