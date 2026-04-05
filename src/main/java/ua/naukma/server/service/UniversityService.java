@@ -10,45 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 @ua.naukma.server.annotation.Service
-public class UniversityService implements Service<University, Integer> {
+public class UniversityService extends EntityService<University, Integer> {
     private final Repository<University, Integer> repository;
-
-    public UniversityService(Repository<University, Integer> repository) {
+    public UniversityService(Repository<University, Integer> repository,  Class<University> clazz) {
+        super(repository, clazz);
         this.repository = repository;
-    }
-
-    @Override
-    public void add(University university) throws DuplicateEntityException {
-        if (repository.findById(university.getId()).isPresent()) {
-            throw new DuplicateEntityException("University with id " + university.getId() + " already exists.");
-        }
-        repository.save(university);
-    }
-
-    @Override
-    public void deleteById(Integer id) throws EntityNotFoundException {
-        if (repository.findById(id).isEmpty()) {
-            throw new EntityNotFoundException("University with id " + id + " not found!");
-        }
-        repository.deleteById(id);
-    }
-
-    @Override
-    public University findById(Integer id) throws EntityNotFoundException {
-        Optional<University> university = repository.findById(id);
-        if (university.isPresent()) {
-            return university.get();
-        } else {
-            throw new EntityNotFoundException("University with id " + id + " not found!");
-        }
-    }
-
-    @Override
-    public List<University> findAll() {
-        if (repository.findAll().isEmpty()) {
-            throw new EntityNotFoundException("No universities have been found!");
-        }
-        return repository.findAll();
     }
 
     public int getAllUniversitiesCount() {

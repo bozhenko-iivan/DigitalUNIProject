@@ -43,14 +43,14 @@ public class ServerMain {
             PersonRepository<Student, Integer> studentRepository = new FilePersonRepository<>(Student.class);
             PersonRepository<Teacher, Integer> teacherRepository = new FilePersonRepository<>(Teacher.class);
 
-            UniversityService uniService = new UniversityService(uniRepo);
-            UserService userService = new UserService(userRepository);
-            FacultyService facultyService = new FacultyService(facultyRepository);
-            GroupService groupService = new GroupService(groupRepository);
-            StudentService studentService = new StudentService(studentRepository);
-            TeacherService teacherService = new TeacherService(teacherRepository);
-            DepartmentService departmentService = new DepartmentService(departmentRepository);
-            GradeService gradeService = new GradeService(gradeRepository);
+            UniversityService uniService = new UniversityService(uniRepo, University.class);
+            UserService userService = new UserService(userRepository, SystemUser.class);
+            FacultyService facultyService = new FacultyService(facultyRepository, Faculty.class);
+            GroupService groupService = new GroupService(groupRepository, Group.class);
+            StudentService studentService = new StudentService(studentRepository, Student.class);
+            TeacherService teacherService = new TeacherService(teacherRepository, Teacher.class);
+            DepartmentService departmentService = new DepartmentService(departmentRepository, Department.class);
+            GradeService gradeService = new GradeService(gradeRepository, Grade.class);
 
             Map<Request.RequestType, RequestHandler> router = new EnumMap<>(Request.RequestType.class);
 
