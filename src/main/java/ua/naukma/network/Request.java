@@ -1,5 +1,6 @@
 package ua.naukma.network;
 
+import ua.naukma.client.ui.MenuLevel;
 import ua.naukma.security.Permissions;
 import ua.naukma.server.annotation.Secured;
 
@@ -9,7 +10,7 @@ import java.io.Serializable;
 public class Request implements Serializable {
     private Object data;
     private RequestType type;
-
+    private MenuLevel level;
     @Serial
     private static final long serialVersionUID = 1L;
 
@@ -23,41 +24,12 @@ public class Request implements Serializable {
         @Secured(Permissions.MANAGE_USERS)
         REMOVE_USER,
 
-        @Secured(Permissions.ADD_UNIVERSITY)
-        ADD_UNIVERSITY,
-
-        @Secured(Permissions.MANAGE_STRUCTURE)
-        REMOVE_UNIVERSITY,
-
-        @Secured(Permissions.MANAGE_STRUCTURE)
-        ADD_FACULTY,
-
-        @Secured(Permissions.MANAGE_STRUCTURE)
-        REMOVE_FACULTY,
-
-        @Secured(Permissions.MANAGE_STRUCTURE)
-        ADD_GROUP,
-
-        @Secured(Permissions.MANAGE_STRUCTURE)
-        REMOVE_GROUP,
-
         @Secured(Permissions.MANAGE_STUDENTS)
         ADD_STUDENT,
 
         @Secured(Permissions.MANAGE_STUDENTS)
         REMOVE_STUDENT,
 
-        @Secured(Permissions.MANAGE_STRUCTURE)
-        ADD_DEPARTMENT,
-
-        @Secured(Permissions.MANAGE_STRUCTURE)
-        REMOVE_DEPARTMENT,
-
-        @Secured(Permissions.MANAGE_STRUCTURE)
-        ADD_TEACHER,
-
-        @Secured(Permissions.MANAGE_STRUCTURE)
-        REMOVE_TEACHER,
 
         GET_ALL_USERS,
         GET_ALL_TEACHERS,
@@ -83,17 +55,26 @@ public class Request implements Serializable {
         DELETE_STUDENT_GRADE,
         SHOW_TRANSCRIPT,
 
+        @Secured(Permissions.MANAGE_STRUCTURE)
         ADD,
+        @Secured(Permissions.MANAGE_STRUCTURE)
         REMOVE,
         FIND,
         GET_ALL
     }
-
     public Request(RequestType type, Object data) {
         setType(type);
         setData(data);
     }
+    public Request(RequestType type, Object data, MenuLevel menuLevel) {
+        setType(type);
+        setData(data);
+        this.level = menuLevel;
+    }
 
+    public MenuLevel getLevel() {
+        return level;
+    }
     public Request(RequestType type) {
         setType(type);
     }

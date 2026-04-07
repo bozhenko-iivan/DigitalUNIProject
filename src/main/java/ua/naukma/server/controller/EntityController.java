@@ -2,10 +2,17 @@ package ua.naukma.server.controller;
 
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
+import ua.naukma.server.annotation.CommandRoute;
 import ua.naukma.server.repository.GetId;
 import ua.naukma.server.service.Service;
-
 import java.io.Serializable;
+
+@CommandRoute({
+    Request.RequestType.ADD,
+            Request.RequestType.REMOVE,
+            Request.RequestType.FIND,
+            Request.RequestType.GET_ALL
+})
 
 public class EntityController<A extends Serializable & GetId, T extends Service<A, Integer>> implements RequestHandler {
     private final T service;

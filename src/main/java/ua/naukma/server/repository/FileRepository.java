@@ -21,8 +21,9 @@ public class FileRepository <T extends Serializable & GetId, ID extends Number> 
     private final Class<T> clazz;
     public FileRepository(Class<T> clazz) {
         this.clazz = clazz;
+        this.filePath = Path.of("data/" + getClassName().toLowerCase() +".json");
     }
-    private final Path filePath = Path.of("data/" + getClassName() +".json");
+    private final Path filePath;
     private final Gson gson = JsonAdapter.getCustomGson();
     private static final String errorReadingFileMsg = "Error reading file: ";
     private static final String errorWritingFileMsg = "Error writing file: ";

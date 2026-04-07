@@ -18,7 +18,7 @@ public class ClientMain {
 
     public static void main(String[] args) {
         try (Socket socket = new Socket()) {
-            socket.connect(new InetSocketAddress("255.243.123.134", 8080), 5000);
+            socket.connect(new InetSocketAddress("127.0.0.1", 8080), 5000);
 
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
@@ -40,7 +40,7 @@ public class ClientMain {
             String password = SystemUserVerificator.askPassword();
 
             SystemUser credentials = new SystemUser(-1, login, password, null);
-            Request loginRequest = new Request(Request.RequestType.LOGIN, credentials);
+            Request loginRequest = new Request(Request.RequestType.LOGIN, credentials, MenuLevel.ADMIN_PANEL);
 
             try {
                 oos.writeObject(loginRequest);
