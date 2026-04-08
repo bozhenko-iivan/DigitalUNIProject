@@ -64,7 +64,7 @@ public class ServerMain {
             router.put(MenuLevel.GROUP, new StudentController(studentService, gradeService));
             router.put(MenuLevel.DEPS, new EntityController<>(departmentService));
             router.put(MenuLevel.DEPARTAMENT, new EntityController<>(teacherService));
-
+            router.put(MenuLevel.STUDENT, new StudentController(studentService, gradeService));
            // registerController(router, new UserController(userService));
             //registerController(router, new EntityController<>(uniService));
             //registerController(router, new EntityController<>(facultyService));
