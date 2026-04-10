@@ -111,7 +111,7 @@ public class AdminPanelHandler extends BasicHandler {
     }
     private void show_all_users() {
         try {
-            Request showAllUsersRequest = new Request(Request.RequestType.GET_ALL_USERS);
+            Request showAllUsersRequest = new Request(Request.RequestType.GET_ALL_USERS,null, menuContext.getCurrent_level());
             oos.writeObject(showAllUsersRequest);
             oos.flush();
 

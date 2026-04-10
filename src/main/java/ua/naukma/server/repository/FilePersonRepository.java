@@ -11,7 +11,7 @@ public class FilePersonRepository<T extends Serializable & GetId, ID extends Num
     }
     /*To be implemented later*/
     @Override
-    public Optional<T> findByPIB(String firstName, String lastName, String middleName) {
+    public synchronized Optional<T> findByPIB(String firstName, String lastName, String middleName) {
         return Optional.empty();
     }
 }

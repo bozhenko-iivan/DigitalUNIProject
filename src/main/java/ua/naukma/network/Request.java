@@ -32,20 +32,10 @@ public class Request implements Serializable {
 
 
         GET_ALL_USERS,
-        GET_ALL_TEACHERS,
-        GET_ALL_DEPARTMENTS,
-        GET_ALL_GROUPS,
         GET_ALL_STUDENTS,
-        GET_ALL_FACULTIES,
-        GET_ALL_UNIVERSITIES,
 
         FIND_USER_BY_ID,
-        FIND_UNIVERSITY_BY_ID,
-        FIND_FACULTY_BY_ID,
         FIND_STUDENT_BY_ID,
-        FIND_DEPARTMENT_BY_ID,
-        FIND_GROUP_BY_ID,
-        FIND_TEACHER_BY_ID,
 
         GET_STUDENTS_COUNT,
         UPDATE_STUDENT_CONTACTS,

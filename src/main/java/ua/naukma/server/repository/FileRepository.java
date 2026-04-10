@@ -38,7 +38,7 @@ public class FileRepository <T extends Serializable & GetId, ID extends Number> 
         return className.toLowerCase();
     }
     @Override
-    public List<T> load() throws IOException {
+    public synchronized List<T> load() throws IOException {
         if (!Files.exists(filePath)) {
             return new ArrayList<>();
         }
@@ -52,7 +52,7 @@ public class FileRepository <T extends Serializable & GetId, ID extends Number> 
         }
     }
     @Override
-    public List<T> write(List<T> list) throws IOException {
+    public synchronized List<T> write(List<T> list) throws IOException {
         try {
             if (filePath.getParent() != null && !Files.exists(filePath.getParent())) {
                 Files.createDirectories(filePath.getParent());
@@ -66,7 +66,7 @@ public class FileRepository <T extends Serializable & GetId, ID extends Number> 
         return list;
     }
     @Override
-    public void save(T t) {
+    public synchronized void save(T t) {
         List<T> current = new ArrayList<>();
         try {
             current = load();
@@ -83,7 +83,7 @@ public class FileRepository <T extends Serializable & GetId, ID extends Number> 
     }
 
     @Override
-    public Optional<T> findById(ID id) {
+    public synchronized Optional<T> findById(ID id) {
         try {
             List<T> entities = load();
             return entities.stream().filter(d -> d.getId() == id.intValue()).findFirst();
@@ -93,7 +93,7 @@ public class FileRepository <T extends Serializable & GetId, ID extends Number> 
     }
 
     @Override
-    public List<T> findAll() {
+    public synchronized List<T> findAll() {
         try {
             return load();
         } catch (IOException e) {
@@ -103,7 +103,7 @@ public class FileRepository <T extends Serializable & GetId, ID extends Number> 
     }
 
     @Override
-    public void showAll() {
+    public synchronized void showAll() {
         List<T> entities;
         try {
             entities = load();
@@ -114,7 +114,7 @@ public class FileRepository <T extends Serializable & GetId, ID extends Number> 
     }
 
     @Override
-    public void deleteById(ID id) {
+    public synchronized void deleteById(ID id) {
         List<T> current;
         try {
             current = load();

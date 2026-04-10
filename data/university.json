@@ -5,5 +5,19 @@
     "shortName": "KMA",
     "city": "Kyiv",
     "address": "Contractova, 2M"
+  },
+  {
+    "id": 1234566,
+    "fullName": "KNU",
+    "shortName": "KNU",
+    "city": "Kyiv",
+    "address": "Kyv, 1"
+  },
+  {
+    "id": 1020304,
+    "fullName": "NTUU",
+    "shortName": "KPI",
+    "city": "Kyiv",
+    "address": "Beresteiskyi Ave, 37"
   }
 ]
