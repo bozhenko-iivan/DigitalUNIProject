@@ -2,9 +2,9 @@ package ua.naukma.server.service;
 import java.util.List;
 
 @ua.naukma.server.annotation.Service
-public interface Service <T, ID extends Integer> {
+public interface Service <T, Integer> {
     void add(T entity);
-    void deleteById(ID id);
-    T findById(ID id);
+    void deleteById(Integer id);
+    T findById(Integer id);
     List<T> findAll();
 }

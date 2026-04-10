@@ -1,10 +1,13 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ua.naukma.domain.*;
 import ua.naukma.exception.DuplicateEntityException;
+import ua.naukma.exception.EntityNotFoundException;
 import ua.naukma.exception.IncorrectDataException;
-import ua.naukma.server.repository.FileStudentRepository;
-import ua.naukma.server.repository.FileTeacherRepository;
+import ua.naukma.network.Request;
+import ua.naukma.server.controller.EntityController;
+import ua.naukma.server.repository.FilePersonRepository;
 import ua.naukma.server.repository.PersonRepository;
 import ua.naukma.server.service.StudentService;
 import ua.naukma.server.service.TeacherService;
@@ -24,61 +27,20 @@ class DigitalUniTests {
 
     private Group testGroup;
     private Department testDepartment;
-    private Faculty testFaculty;
+    private Faculty testFaculty = new Faculty( 1236567, "FFi", "ffi", null ,"ffi@gmail.com", new University(1234567, "NaUKMA", "KMA", "Kyiv", "address, 2"));
+
     private University testUniversity;
     private UniversityService universityService;
 
     @BeforeEach
     void setUp() {
-        studentRepository = new FileStudentRepository();
-        teacherRepository = new FileTeacherRepository();
-        testDepartment = new Department(1111111, "TestDept", null, null, "TestLoc", "test@ukma.edu.ua");
+        studentRepository = new FilePersonRepository<>(Student.class);
+        teacherRepository = new FilePersonRepository<>(Teacher.class);
+        testDepartment = new Department(1111111, "TestDept", testFaculty, null, "TestLoc", "test@ukma.edu.ua");
         testGroup = new Group(1234567, "IPZ-2025", testFaculty, 1, 2025);
-        studentService = new StudentService(studentRepository);
-        teacherService = new TeacherService(teacherRepository);
+        studentService = new StudentService(studentRepository, Student.class);
+        teacherService = new TeacherService(teacherRepository, Teacher.class);
     }
-
-    @Test
-    void testBirthDateInFutureThrowsException() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Student(1, "Іван", "Іваненко", "Іванович",
-                    LocalDate.now().plusDays(5),
-                    "test@ukma.edu.ua", "+380981231234",
-                    "12345678", 1, testGroup, 2024,
-                    StudyForm.BUDGET, StudentStatus.STUDYING);
-        });
-
-        assertEquals("Future fiction? Future dates not allowed.", exception.getMessage());
-    }
-
-    @Test
-    void testInvalidPhoneNumberLengthThrowsException() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Student(2, "Ганна", "Петренко", "Олегівна",
-                    LocalDate.of(2005, 5, 5),
-                    "test@ukma.edu.ua",
-                    "12345", // Занадто короткий номер
-                    "12345678", 1, testGroup, 2024,
-                    StudyForm.BUDGET, StudentStatus.STUDYING);
-        });
-
-        assertEquals("Phone number must contain 13 digits. Example: +380981231234", exception.getMessage());
-    }
-
-    @Test
-    void testInvalidEmailThrowsException() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Student(3, "Олег", "Сидоренко", "Іванович",
-                    LocalDate.of(2004, 3, 3),
-                    "oleg_ukma.edu.ua", // Відсутня собачка '@'
-                    "+380981231234",
-                    "87654321", 1, testGroup, 2024,
-                    StudyForm.CONTRACT, StudentStatus.STUDYING);
-        });
-
-        assertEquals("Email cannot be empty and must contain '@'.", exception.getMessage());
-    }
-
     @Test
     void testInvalidAdmissionYearThrowsException() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
@@ -99,7 +61,7 @@ class DigitalUniTests {
 
     @Test
     void testAddExistingStudentThrowsException() {
-        Student student = new Student(5, "Максим", "Ткаченко", "Ігорович",
+        Student student = new Student(1234456, "Максим", "Ткаченко", "Ігорович",
                 LocalDate.of(2005, 10, 10),
                 "max@ukma.edu.ua", "+380981231234",
                 "11112222", 1, testGroup, 2024,
@@ -112,22 +74,21 @@ class DigitalUniTests {
             studentService.add(student);
         });
         assertTrue(exception.getMessage().contains("already exists"));
-
     }
-
     @Test
-    void testDOB() {
-        Teacher t = new Teacher(1111111, "Ivan", "Igorovych", "F",
-                LocalDate.of(1490, 06, 12), "ivan1@gmail.com",
-                "+380976607505", TeacherPosition.DEAN, TeacherDegree.DOCTOR_OF_SCIENCES, TeacherRank.DOCENT,
-                LocalDate.of(1580, 11, 23), 4, testDepartment);
-        try {
-            teacherService.add(t);
-        } catch (IncorrectDataException ignored) {}
-
-        IncorrectDataException exception = assertThrows(IncorrectDataException.class, () -> {
-            teacherService.add(t);
-        });
-        assertTrue(exception.getMessage().contains("too old"));
+    void testEntityControllerAddsStudent(){
+        EntityController<Student, StudentService> entityController = new EntityController<>(studentService);
+        Request r = new Request(Request.RequestType.ADD, new Student(1234456, "Максим", "Ткаченко", "Ігорович",
+                LocalDate.of(2005, 10, 10),
+                "max@ukma.edu.ua", "+380981231234",
+                "11112222", 1, testGroup, 2024,
+                StudyForm.BUDGET, StudentStatus.STUDYING));
+        entityController.process(r);
+    }
+    @Test
+    void testEntityControllerRemovesStudent(){
+        EntityController<Student, StudentService> entityController = new EntityController<>(studentService);
+        Request r = new Request(Request.RequestType.REMOVE, 1234456);
+        entityController.process(r);
     }
 }

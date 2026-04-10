@@ -14,42 +14,11 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 @ua.naukma.server.annotation.Service
-public class StudentService implements Service<Student, Integer> {
+public class StudentService extends EntityService<Student, Integer> {
     private final PersonRepository<Student, Integer> repository;
-
-    public StudentService(PersonRepository<Student, Integer> repository) {
+    public StudentService(PersonRepository<Student, Integer> repository, Class<Student> clazz) {
+        super(repository, clazz);
         this.repository = repository;
-    }
-
-    @Override
-    public void add(Student student) throws DuplicateEntityException {
-        if (repository.findById(student.getId()).isPresent()) {
-            throw new DuplicateEntityException("Student with id " + student.getId() + " already exists.");
-        }
-        if (student.getRecordbookNumber() == null || student.getRecordbookNumber().isEmpty()) {
-            String recordbookNum = generateRecordbookNum(student.getLastName(), student.getId(), student.getAdmissionYear());
-            student.setRecordbookNumber(recordbookNum);
-        }
-
-        repository.save(student);
-    }
-
-    @Override
-    public void deleteById(Integer id) throws EntityNotFoundException {
-        if (repository.findById(id).isEmpty()) {
-            throw new EntityNotFoundException("Student with id " + id + " doesn't exist.");
-        }
-        repository.deleteById(id);
-    }
-
-    @Override
-    public Student findById(Integer id) throws EntityNotFoundException {
-        Optional<Student> student = repository.findById(id);
-        if (student.isPresent()) {
-            return student.get();
-        } else {
-            throw new EntityNotFoundException("Student with id " + id + " doesn't exist.");
-        }
     }
 
 //    public Student findByPIB(String firstName, String lastName, String middleName) throws EntityNotFoundException {
@@ -60,14 +29,6 @@ public class StudentService implements Service<Student, Integer> {
 //            throw new EntityNotFoundException("Student " + lastName + " " + firstName + " doesn't exist.");
 //        }
 //    }
-
-    @Override
-    public List<Student> findAll() {
-        if (repository.findAll().isEmpty()) {
-            throw new EntityNotFoundException("No students in current group have been found!");
-        }
-        return repository.findAll();
-    }
 
     public List<Student> findAllByGroupId(int groupId) {
         return repository.findAll().stream()

@@ -40,7 +40,7 @@ public class ClientMain {
             String password = SystemUserVerificator.askPassword();
 
             SystemUser credentials = new SystemUser(-1, login, password, null);
-            Request loginRequest = new Request(Request.RequestType.LOGIN, credentials);
+            Request loginRequest = new Request(Request.RequestType.LOGIN, credentials, MenuLevel.ADMIN_PANEL);
 
             try {
                 oos.writeObject(loginRequest);

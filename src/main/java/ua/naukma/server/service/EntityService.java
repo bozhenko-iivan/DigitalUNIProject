@@ -1,0 +1,61 @@
+package ua.naukma.server.service;
+
+
+import ua.naukma.exception.DuplicateEntityException;
+import ua.naukma.exception.EntityNotFoundException;
+import ua.naukma.server.repository.GetId;
+import ua.naukma.server.repository.Repository;
+
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.Optional;
+
+
+public class EntityService <T extends Serializable & GetId, Number> implements Service<T, Integer> {
+    private final Repository<T, Integer> repository;
+    private final Class<T> clazz;
+    public EntityService(Repository<T, Integer> repository, Class<T> clazz) {
+        this.clazz = clazz;
+        this.repository = repository;
+    }
+    private String getClassName(){
+        String className;
+        if (clazz == null){
+            className = "unknown_class";
+        }
+        else className = clazz.getSimpleName();
+        return className.toLowerCase();
+    }
+    @Override
+    public void add(T e) throws DuplicateEntityException {
+        Integer id = (Integer) e.getId();
+        if (repository.findById(id).isPresent()) {
+            throw new DuplicateEntityException( getClassName() +" with id " + e.getId() + " already exists.");
+        }
+        repository.save(e);
+    }
+    @Override
+    public void deleteById(Integer id) throws EntityNotFoundException {
+        if (repository.findById(id).isEmpty()) {
+            throw new EntityNotFoundException(getClassName() + " with id " + id + " doesn't exist.");
+        }
+        repository.deleteById(id);
+    }
+    @Override
+    public T findById(Integer id) throws EntityNotFoundException {
+        Optional<T> entity = repository.findById(id);
+        if (entity.isPresent()) {
+            return entity.get();
+        } else {
+            throw new EntityNotFoundException(getClassName() + " with id " + id + " doesn't exist.");
+        }
+    }
+    @Override
+    public List<T> findAll() {
+        if  (repository.findAll().isEmpty()) {
+            throw new EntityNotFoundException("No " + getClassName().toLowerCase() + " have been found!");
+        }
+        return repository.findAll();
+    }
+}

@@ -1,10 +1,11 @@
 package ua.naukma.domain;
 
 import ua.naukma.security.Permissions;
+import ua.naukma.server.repository.GetId;
 
 import java.io.Serializable;
 
-public class SystemUser implements Serializable {
+public class SystemUser implements Serializable, GetId {
     private int id;
     private String login;
     private String password;
@@ -28,6 +29,7 @@ public class SystemUser implements Serializable {
         return role;
     }
 
+    @Override
     public int getId() {
         return id;
     }

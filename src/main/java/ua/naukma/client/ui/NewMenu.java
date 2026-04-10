@@ -13,7 +13,7 @@ public class NewMenu {
 
     public NewMenu(ObjectOutputStream universityService, ObjectInputStream userService, SystemUser loggedUser) {
         this.loggedUser = loggedUser;
-        this.menu_options_handler = new MenuOptionsHandler(current_level, universityService, userService, loggedUser);
+        this.menu_options_handler = new MenuOptionsHandler(new MenuContext(loggedUser, current_level), universityService, userService);
     }
 
     public void main_menu() {

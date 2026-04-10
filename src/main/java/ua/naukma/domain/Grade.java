@@ -1,8 +1,10 @@
 package ua.naukma.domain;
 
+import ua.naukma.server.repository.GetId;
+
 import java.io.Serializable;
 
-public class Grade implements Serializable {
+public class Grade implements Serializable, GetId {
     private int gradeId;
     private int score;
     private int studentId;
@@ -15,8 +17,8 @@ public class Grade implements Serializable {
         this.studentId = studentId;
         this.subjectName = subjectName;
     }
-
-    public int getGradeId() {
+    @Override
+    public int getId() {
         return gradeId;
     }
     public int getScore() {
