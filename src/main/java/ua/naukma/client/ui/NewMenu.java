@@ -2,8 +2,10 @@ package ua.naukma.client.ui;
 import ua.naukma.domain.SystemUser;
 import ua.naukma.security.Permissions;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.Socket;
 
 public class NewMenu {
     public static MenuLevel current_level = MenuLevel.MON;
@@ -16,11 +18,16 @@ public class NewMenu {
         this.menu_options_handler = new MenuOptionsHandler(new MenuContext(loggedUser, current_level), universityService, userService);
     }
 
-    public void main_menu() {
+    public void main_menu(Socket socket){
         draw_greetings();
         while (current_level != null) {
             draw_current(current_level);
             current_level = menu_options_handler.handle(current_level);
+        }
+        try{
+            socket.close();
+        }catch (IOException e){
+            e.printStackTrace();
         }
     }
 

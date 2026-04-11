@@ -22,12 +22,11 @@ public class ClientMain {
 
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-
             while (!socket.isClosed() && socket.isConnected()) {
                 SystemUser loggedUser = authenticateUser(oos, ois);
                 NewMenu.current_level = MenuLevel.MON;
                 NewMenu menu = new NewMenu(oos, ois, loggedUser);
-                menu.main_menu();
+                menu.main_menu(socket);
             }
         } catch (IOException e) {
             log.error("Network connection error: {}", e.getMessage(), e);

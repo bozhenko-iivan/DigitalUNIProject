@@ -49,6 +49,9 @@ public class EntityController<A extends Serializable & GetId, T extends Service<
                     service::findAll,
                     request.getType()
             );
+            case LOGOUT -> execute(
+                    () -> null, request.getType()
+            );
             default -> new Response(Response.ResponseStatus.FAILURE, "Unknown command");
         };
     }

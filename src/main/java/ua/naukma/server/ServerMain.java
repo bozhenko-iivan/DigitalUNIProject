@@ -12,7 +12,9 @@ import ua.naukma.server.service.*;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -21,21 +23,24 @@ public class ServerMain {
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(ServerMain.class);
     static void main() {
         final ExecutorService executors = Executors.newFixedThreadPool(10);
+        List<Socket> sockets = new ArrayList<>();
         for(;;){
             try(ServerSocket serverSocket = new ServerSocket(8080)) {
                 log.info("Starting server on port 8080");
                 Socket socket = serverSocket.accept();
+                sockets.add(socket);
                 executors.submit(()->{
                     Map<MenuLevel, RequestHandler> router = InitRouter();
-                    while (!socket.isClosed()) {
                         handleClientConnection(socket, router);
-                    }});
+                        sockets.remove(socket);
+                });
             } catch (IOException e) {
                 log.error("Couldn't start server on port 8080 ", e);
                 break;
             } catch (Exception e) {
                 log.error("Exception:", e);
             }
+            if(sockets.isEmpty()) break;
         }
         executors.shutdown();
     }
@@ -60,7 +65,6 @@ public class ServerMain {
                 log.info("Request type: {} ", request.getType());
                 log.info("Data attached:  {}", request.getData());
                 log.info("==========================================");
-
                 if (handler != null) {
                     Response response = handler.process(request);
                     log.info("Response status:     {}", response.getResponseStatus());

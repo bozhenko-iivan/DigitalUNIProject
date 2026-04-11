@@ -34,7 +34,7 @@ public class MONHandler extends BasicHandler{
     }
     private void exit(){
         System.out.println("Exiting..");
-        System.exit(0);
+        menuContext.setCurrent_level(null);
     }
     private void add_uni(){
         requirePermission(Permissions.MANAGE_STRUCTURE, () -> {

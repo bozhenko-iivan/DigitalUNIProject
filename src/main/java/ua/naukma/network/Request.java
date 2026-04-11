@@ -20,16 +20,12 @@ public class Request implements Serializable {
 
         @Secured(Permissions.MANAGE_USERS)
         ADD_USER,
-
         @Secured(Permissions.MANAGE_USERS)
         REMOVE_USER,
-
         @Secured(Permissions.MANAGE_STUDENTS)
         ADD_STUDENT,
-
         @Secured(Permissions.MANAGE_STUDENTS)
         REMOVE_STUDENT,
-
 
         GET_ALL_USERS,
         GET_ALL_STUDENTS,
