@@ -1,9 +1,21 @@
 [
   {
     "id": 1234567,
-    "name": "Fi",
-    "shortName": "fi",
-    "dean": {
+    "name": "department of informatics",
+    "faculty": {
+      "id": 1234567,
+      "name": "Fi",
+      "shortName": "fi",
+      "email": "fi@gmail.com",
+      "university": {
+        "id": 1234567,
+        "fullName": "NaUKMA",
+        "shortName": "KMA",
+        "city": "Kyiv",
+        "address": "Contractova, 2M"
+      }
+    },
+    "head": {
       "position": "HEAD_OF_DEPARTMENT",
       "degree": "DOCTOR_OF_SCIENCES",
       "rank": "PROFESSOR",
@@ -36,13 +48,7 @@
       "email": "hlyb1@gmail.com",
       "phoneNumber": "+380971457898"
     },
-    "email": "fi@gmail.com",
-    "university": {
-      "id": 1234567,
-      "fullName": "NaUKMA",
-      "shortName": "KMA",
-      "city": "Kyiv",
-      "address": "Contractova, 2M"
-    }
+    "location": "Contractiva, 1",
+    "email": "depFi@gmail.com"
   }
 ]

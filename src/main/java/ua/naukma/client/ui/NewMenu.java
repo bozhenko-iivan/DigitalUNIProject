@@ -53,7 +53,8 @@ public class NewMenu {
         System.out.println(
                 "2. Go to departaments\n" +
                         "3. Go to groups\n" +
-                        "4. Show faculty info");
+                        "4. Show faculty info\n" +
+                        "5. Set Faculty's Dean");
     }
 
     public void draw_current(MenuLevel level) {
@@ -138,6 +139,12 @@ public class NewMenu {
                 System.out.println("\uD83D\uDD12 6. Manage users (ADMIN only): ");
             }
             System.out.println("\uD83D\uDEAA 7. Log out");
+        }
+
+        if (level == MenuLevel.DEPARTAMENT) {
+            if (loggedUser.hasPermission(Permissions.MANAGE_STRUCTURE)) {
+                System.out.println("6. Set Head of Department");
+            }
         }
 
         if (level == MenuLevel.STUDENT) {

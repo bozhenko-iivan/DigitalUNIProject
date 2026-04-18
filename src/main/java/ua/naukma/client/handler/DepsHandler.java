@@ -7,6 +7,7 @@ import ua.naukma.client.utils.FacilityNameVerificator;
 import ua.naukma.client.utils.IdVerificator;
 import ua.naukma.client.utils.UniversityVerificator;
 import ua.naukma.domain.Department;
+import ua.naukma.domain.Teacher;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
 import ua.naukma.security.Permissions;
@@ -48,6 +49,7 @@ public class DepsHandler extends BasicHandler {
             String departmentName = FacilityNameVerificator.ask_facility_name();
             String email = EmailVerificator.ask_email();
             String location = UniversityVerificator.ask_address();
+            //Teacher head =
 
             Department dep = new Department(departmentId, departmentName, menuContext.getCurrent_faculty(),
                     null, location, email);
