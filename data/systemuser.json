@@ -10,5 +10,11 @@
     "login": "ivanLastochka",
     "password": "1054!Yam",
     "role": "ADMIN"
+  },
+  {
+    "id": 1000001,
+    "login": "manager",
+    "password": "Man!1234",
+    "role": "MANAGER"
   }
 ]

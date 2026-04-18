@@ -21,32 +21,34 @@ import java.util.concurrent.Executors;
 
 public class ServerMain {
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(ServerMain.class);
+
     static void main() {
-        final ExecutorService executors = Executors.newFixedThreadPool(10);
-        List<Socket> sockets = new ArrayList<>();
-        for(;;){
-            try(ServerSocket serverSocket = new ServerSocket(8080)) {
-                log.info("Starting server on port 8080");
-                Socket socket = serverSocket.accept();
-                sockets.add(socket);
-                executors.submit(()->{
-                    Map<MenuLevel, RequestHandler> router = InitRouter();
+        try (final ExecutorService executors = Executors.newFixedThreadPool(10)) {
+            List<Socket> sockets = new ArrayList<>();
+            for (; ; ) {
+                try (ServerSocket serverSocket = new ServerSocket(8080)) {
+                    log.info("Starting server on port 8080");
+                    Socket socket = serverSocket.accept();
+                    sockets.add(socket);
+                    executors.submit(() -> {
+                        Map<MenuLevel, RequestHandler> router = InitRouter();
                         handleClientConnection(socket, router);
                         sockets.remove(socket);
-                });
-            } catch (IOException e) {
-                log.error("Couldn't start server on port 8080 ", e);
-                break;
-            } catch (Exception e) {
-                log.error("Exception:", e);
+                    });
+                } catch (IOException e) {
+                    log.error("Couldn't start server on port 8080 ", e);
+                    break;
+                } catch (Exception e) {
+                    log.error("Exception:", e);
+                }
+                if (sockets.isEmpty()) break;
             }
-            if(sockets.isEmpty()) break;
+            executors.shutdown();
         }
-        executors.shutdown();
     }
 
     private static void handleClientConnection(Socket socket, Map<MenuLevel, RequestHandler> router) {
-        try{
+        try {
             String clientIp = socket.getInetAddress().getHostAddress();
             log.info("Client IP: {}", clientIp);
 
@@ -88,6 +90,7 @@ public class ServerMain {
             log.error("Exception:", e);
         }
     }
+
     static Map<MenuLevel, RequestHandler> InitRouter() {
         Repository<University, Integer> uniRepo = new FileRepository<>(University.class);
         Repository<SystemUser, Integer> userRepository = new FileRepository<>(SystemUser.class);
@@ -100,25 +103,24 @@ public class ServerMain {
 
         UniversityService uniService = new UniversityService(uniRepo, University.class);
         UserService userService = new UserService(userRepository, SystemUser.class);
-        FacultyService facultyService = new FacultyService(facultyRepository, Faculty.class);
+        FacultyService facultyService = new FacultyService(facultyRepository, teacherRepository, Faculty.class);
         GroupService groupService = new GroupService(groupRepository, Group.class);
         StudentService studentService = new StudentService(studentRepository, Student.class);
         TeacherService teacherService = new TeacherService(teacherRepository, Teacher.class);
-        DepartmentService departmentService = new DepartmentService(departmentRepository, Department.class);
+        DepartmentService departmentService = new DepartmentService(departmentRepository, teacherRepository, Department.class);
         GradeService gradeService = new GradeService(gradeRepository, Grade.class);
 
         Map<MenuLevel, RequestHandler> router = new EnumMap<>(MenuLevel.class);
         router.put(MenuLevel.ADMIN_PANEL, new UserController(userService));
         router.put(MenuLevel.MON, new EntityController<>(uniService));
-        router.put(MenuLevel.UNI, new EntityController<>(facultyService));
+        router.put(MenuLevel.UNI, new FacultyController(facultyService, teacherService));
+        router.put(MenuLevel.FAC, new FacultyController(facultyService, teacherService));
         router.put(MenuLevel.GRPS, new EntityController<>(groupService));
         router.put(MenuLevel.GROUP, new StudentController(studentService, gradeService));
         router.put(MenuLevel.DEPS, new EntityController<>(departmentService));
-        router.put(MenuLevel.DEPARTAMENT, new EntityController<>(teacherService));
+        router.put(MenuLevel.DEPARTAMENT, new DepartmentController(departmentService, teacherService));
         router.put(MenuLevel.STUDENT, new StudentController(studentService, gradeService));
         userService.initUser();
-        return  router;
+        return router;
     }
-
-
 }

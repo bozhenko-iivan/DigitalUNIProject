@@ -28,6 +28,7 @@ public class DepartmentHandler extends BasicHandler {
             case 3 -> remove_teacher();
             case 4 -> find_teacher();
             case 5 -> show_all_teachers();
+            case 6 -> set_head();
             default -> System.out.println("Invalid choice");
         }
     }
@@ -74,6 +75,36 @@ public class DepartmentHandler extends BasicHandler {
             System.out.println("Access Denied: You cannot add teacher.");
         }
     }
+    private void set_head() {
+        if (menuContext.getCurrent_user().hasPermission(Permissions.MANAGE_STRUCTURE)) {
+            try {
+                int teacherId = IdVerificator.ask_id();
+
+                int departmentId = menuContext.getCurrent_department().getId();
+
+                int[] payload = new int[]{departmentId, teacherId};
+
+                Request setHeadRequest = new Request(Request.RequestType.SET_HEAD, payload, menuContext.getCurrent_level());
+                oos.writeObject(setHeadRequest);
+                oos.flush();
+
+                Response response = (Response) ois.readObject();
+                if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                    Department d = menuContext.getCurrent_department();
+                    Teacher teacher = (Teacher) response.getPayload();
+                    d.setHead(teacher);
+                    System.out.println("Head of department successfully set!");
+                } else {
+                    System.out.println("Failed to set head: " + response.getMsg());
+                }
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Access Denied: You cannot set head of department.");
+        }
+    }
+
     private void remove_teacher() {
         if (menuContext.getCurrent_user().hasPermission(Permissions.MANAGE_STRUCTURE)) {
             try {

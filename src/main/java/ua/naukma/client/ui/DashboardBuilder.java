@@ -36,9 +36,9 @@ public class DashboardBuilder {
     public static String buildDepartmentPanel(Department d) {
         return String.format(
                 "🔬 Department: %s\n" +
-                        "📍 Location:   %s\n" +
+                        "👨‍🏫 Head:       %s\n" +
                         "🆔 ID:         %d",
-                d.getName(), d.getLocation(), d.getId());
+                d.getName(), d.getHead(), d.getId());
     }
 
     public static String buildGroupPanel(Group g, long studentsCount) {

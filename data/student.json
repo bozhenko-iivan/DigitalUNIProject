@@ -23,16 +23,16 @@
     "admissionYear": 2025,
     "studyForm": "BUDGET",
     "status": "STUDYING",
-    "id": 2281337,
-    "firstName": "Іван",
-    "lastName": "Ластівка",
-    "middleName": "Іванович",
-    "birthDate": "18.06.2008",
-    "email": "ivanLL@gmail.com",
-    "phoneNumber": "+380123456789"
+    "id": 1000000,
+    "firstName": "Віталіна",
+    "lastName": "Бачинська",
+    "middleName": "Сергіївна",
+    "birthDate": "25.12.2007",
+    "email": "vitabachynska@gmail.com",
+    "phoneNumber": "+380978656966",
+    "recordBookNumber": "Б-514а-696"
   },
   {
-    "recordBookNumber": "B-1342o-409",
     "course": 1,
     "group": {
       "id": 1234567,
@@ -55,13 +55,2159 @@
     },
     "admissionYear": 2025,
     "studyForm": "BUDGET",
-    "status": "ACADEMIC_LEAVE",
-    "id": 1234567,
-    "firstName": "Ivan",
-    "lastName": "Bozhenko",
-    "middleName": "Igorovych",
+    "status": "STUDYING",
+    "id": 1000001,
+    "firstName": "Георгій",
+    "lastName": "Башкін",
+    "middleName": "Дмитрович",
+    "birthDate": "12.08.2007",
+    "email": "dogehoper@gmail.com",
+    "phoneNumber": "+380602464440",
+    "recordBookNumber": "Б-515а-322"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000002,
+    "firstName": "Ангеліна",
+    "lastName": "Білик",
+    "middleName": "Олегівна",
+    "birthDate": "09.04.2008",
+    "email": "angelinabilyk133@gmail.com",
+    "phoneNumber": "+380557549440",
+    "recordBookNumber": "Б-18і-913"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000003,
+    "firstName": "Дар`я",
+    "lastName": "Бобко",
+    "middleName": "Ігорівна",
+    "birthDate": "28.03.2008",
+    "email": "bobkodaria289@gmail.com",
+    "phoneNumber": "+380988407704",
+    "recordBookNumber": "Б-19о-509"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000004,
+    "firstName": "Іван",
+    "lastName": "Боженко",
+    "middleName": "Ігорович",
     "birthDate": "06.03.2008",
-    "email": "bozhenkoi@gmail.com",
-    "phoneNumber": "+380976607505"
+    "email": "bozhenko.iivan@gmail.com",
+    "phoneNumber": "+380976607505",
+    "recordBookNumber": "Б-20о-664"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000005,
+    "firstName": "Гордій",
+    "lastName": "Бондаренко",
+    "middleName": "Сергійович",
+    "birthDate": "05.09.2007",
+    "email": "sshheezzee@gmail.com",
+    "phoneNumber": "+380981279896",
+    "recordBookNumber": "Б-519о-580"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000006,
+    "firstName": "Софія",
+    "lastName": "Бордаченко",
+    "middleName": "Олександрівна",
+    "birthDate": "26.11.2007",
+    "email": "s.bordachenko@gmail.com",
+    "phoneNumber": "+380979930231",
+    "recordBookNumber": "Б-520о-844"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000007,
+    "firstName": "Вероніка",
+    "lastName": "Бурмецька",
+    "middleName": "Валентинівна",
+    "birthDate": "18.07.2008",
+    "email": "burmetska07@gmail.com",
+    "phoneNumber": "+380972360446",
+    "recordBookNumber": "Б-23у-510"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000008,
+    "firstName": "Микола",
+    "lastName": "Ващук",
+    "middleName": "Володимирович",
+    "birthDate": "06.08.2008",
+    "email": "mmykolavashchuk@gmail.com",
+    "phoneNumber": "+380682081605",
+    "recordBookNumber": "В-24а-219"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000009,
+    "firstName": "Юрій",
+    "lastName": "Волошанович",
+    "middleName": "Костянтинович",
+    "birthDate": "15.12.2007",
+    "email": "yurigvolosanovic@gmail.com",
+    "phoneNumber": "+380664931992",
+    "recordBookNumber": "В-523о-159"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000010,
+    "firstName": "Артем",
+    "lastName": "Волощенко",
+    "middleName": "Олексійович",
+    "birthDate": "09.01.2008",
+    "email": "avoloschenko008@gmail.com",
+    "phoneNumber": "+380727601861",
+    "recordBookNumber": "В-26о-768"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000011,
+    "firstName": "Роман",
+    "lastName": "Гвоздік",
+    "middleName": "Андрійович",
+    "birthDate": "06.05.2007",
+    "email": "romangvozdik999@gmail.com",
+    "phoneNumber": "+380546144334",
+    "recordBookNumber": "Г-525в-192"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000012,
+    "firstName": "Нікіта",
+    "lastName": "Гелла",
+    "middleName": "Сергійович",
+    "birthDate": "27.02.2008",
+    "email": "gns2008sng@gmail.com",
+    "phoneNumber": "+380635930535",
+    "recordBookNumber": "Г-1194е-731"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000013,
+    "firstName": "Ігор",
+    "lastName": "Гордієнко",
+    "middleName": "Володимирович",
+    "birthDate": "21.12.2008",
+    "email": "garikgord05@gmail.com",
+    "phoneNumber": "+380680057368",
+    "recordBookNumber": "Г-29о-284"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000014,
+    "firstName": "Арсеній",
+    "lastName": "Грох",
+    "middleName": "Миколайович",
+    "birthDate": "28.06.2008",
+    "email": "a.m.groh07@gmail.com",
+    "phoneNumber": "+380832766918",
+    "recordBookNumber": "Г-30р-233"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000015,
+    "firstName": "Максим",
+    "lastName": "Демків",
+    "middleName": "Романович",
+    "birthDate": "21.03.2008",
+    "email": "maxymka21@gmail.com",
+    "phoneNumber": "+380669219735",
+    "recordBookNumber": "Д-31е-130"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000016,
+    "firstName": "Станіслав",
+    "lastName": "Дубина",
+    "middleName": "Валентинович",
+    "birthDate": "08.03.2008",
+    "email": "stanislavdubina298@gmail.com",
+    "phoneNumber": "+380981211628",
+    "recordBookNumber": "Д-32у-574"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000017,
+    "firstName": "Вадім",
+    "lastName": "Дудар",
+    "middleName": "Андрійович",
+    "birthDate": "20.07.2007",
+    "email": "contactdudarvadim@gmail.com",
+    "phoneNumber": "+380566639398",
+    "recordBookNumber": "Д-531у-765"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000018,
+    "firstName": "Діана",
+    "lastName": "Єзовіт",
+    "middleName": "Максимівна",
+    "birthDate": "08.05.2007",
+    "email": "d.yezovit@gmail.com",
+    "phoneNumber": "+380674085208",
+    "recordBookNumber": "Є-532з-899"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000019,
+    "firstName": "Олександр",
+    "lastName": "Зайончківський",
+    "middleName": "Володимирович",
+    "birthDate": "14.07.2008",
+    "email": "8169325@gmail.com",
+    "phoneNumber": "+380367254285",
+    "recordBookNumber": "З-35а-360"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000020,
+    "firstName": "Марія",
+    "lastName": "Занько",
+    "middleName": "Андріївна",
+    "birthDate": "31.08.2007",
+    "email": "mz07.animation@gmail.com",
+    "phoneNumber": "+380043690067",
+    "recordBookNumber": "З-534а-343"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000021,
+    "firstName": "Андрій",
+    "lastName": "Заяць",
+    "middleName": "Сергійович",
+    "birthDate": "25.06.2008",
+    "email": "andriy.s.zayats@gmail.com",
+    "phoneNumber": "+380992134951",
+    "recordBookNumber": "З-37а-951"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000022,
+    "firstName": "Ілля",
+    "lastName": "Кабиш",
+    "middleName": "Анатолійович",
+    "birthDate": "02.10.2008",
+    "email": "recyut5132@gmail.com",
+    "phoneNumber": "+380957739507",
+    "recordBookNumber": "К-38а-745"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000023,
+    "firstName": "Дарина",
+    "lastName": "Казмірчук",
+    "middleName": "Василівна",
+    "birthDate": "08.12.2007",
+    "email": "darynakazmirchuk08@gmail.com",
+    "phoneNumber": "+380362067390",
+    "recordBookNumber": "К-537а-319"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000024,
+    "firstName": "Софія",
+    "lastName": "Караченцева",
+    "middleName": "Олексіївна",
+    "birthDate": "07.10.2007",
+    "email": "karachentseva.sofi@gmail.com",
+    "phoneNumber": "+380505910447",
+    "recordBookNumber": "К-538а-153"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000025,
+    "firstName": "Денис",
+    "lastName": "Колісник",
+    "middleName": "Максимович",
+    "birthDate": "02.10.2007",
+    "email": "deniloc244@gmail.com",
+    "phoneNumber": "+380633155000",
+    "recordBookNumber": "К-539о-761"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000026,
+    "firstName": "Софія",
+    "lastName": "Корж",
+    "middleName": "Олегівна",
+    "birthDate": "13.10.2007",
+    "email": "ksofiko628@gmail.com",
+    "phoneNumber": "+380937070875",
+    "recordBookNumber": "К-540о-401"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000027,
+    "firstName": "Андрій",
+    "lastName": "Коротков",
+    "middleName": "Костянтинович",
+    "birthDate": "23.05.2008",
+    "email": "andriikorotkov@gmail.com",
+    "phoneNumber": "+380955630209",
+    "recordBookNumber": "К-43о-627"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000028,
+    "firstName": "Станіслав",
+    "lastName": "Кошинський",
+    "middleName": "Михайлович",
+    "birthDate": "08.12.2007",
+    "email": "stasony10@gmail.com",
+    "phoneNumber": "+380993129997",
+    "recordBookNumber": "К-542о-150"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000029,
+    "firstName": "Богдан",
+    "lastName": "Кравчук",
+    "middleName": "Тарасович",
+    "birthDate": "15.07.2008",
+    "email": "bogdankravchuk11@gmail.com",
+    "phoneNumber": "+380263542865",
+    "recordBookNumber": "К-45р-879"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000030,
+    "firstName": "Андрій",
+    "lastName": "Курляк",
+    "middleName": "Юрійович",
+    "birthDate": "09.12.2005",
+    "email": "Andrijkurlak@gmail.com",
+    "phoneNumber": "+380633186025",
+    "recordBookNumber": "К-1540у-611"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000031,
+    "firstName": "Катерина",
+    "lastName": "Лаврук",
+    "middleName": "Сергіївна",
+    "birthDate": "06.09.2008",
+    "email": "kkatyalavruk@gmail.com",
+    "phoneNumber": "+380505232083",
+    "recordBookNumber": "Л-47а-928"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000032,
+    "firstName": "Іван",
+    "lastName": "Ластівка",
+    "middleName": "Іванович",
+    "birthDate": "18.06.2008",
+    "email": "ivanfreeman42@gmail.com",
+    "phoneNumber": "+380681529247",
+    "recordBookNumber": "Л-48а-973"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000033,
+    "firstName": "Софія",
+    "lastName": "Лещенко",
+    "middleName": "Анатоліївна",
+    "birthDate": "24.07.2008",
+    "email": "leshchenkosofiiaa@gmail.com",
+    "phoneNumber": "+380665532078",
+    "recordBookNumber": "Л-49е-379"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000034,
+    "firstName": "Кіра",
+    "lastName": "Лятамбур",
+    "middleName": "Дмитрівна🍓",
+    "birthDate": "09.09.2008",
+    "email": "kira.liatambur@gmail.com",
+    "phoneNumber": "+380971651771",
+    "recordBookNumber": "Л-50я-535"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000035,
+    "firstName": "Марк",
+    "lastName": "Макаров",
+    "middleName": "Ігорович",
+    "birthDate": "04.01.2008",
+    "email": "markmakarov1204@gmail.com",
+    "phoneNumber": "+380671759787",
+    "recordBookNumber": "М-51а-338"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000036,
+    "firstName": "Олександр",
+    "lastName": "Малецький",
+    "middleName": "Вікторович",
+    "birthDate": "15.02.2007",
+    "email": "nan",
+    "phoneNumber": "+380948559755",
+    "recordBookNumber": "М-550а-138"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000037,
+    "firstName": "Анна",
+    "lastName": "Мартазіна",
+    "middleName": "Сергіївна",
+    "birthDate": "31.05.2007",
+    "email": "anqweta@gmail.com",
+    "phoneNumber": "+380974858027",
+    "recordBookNumber": "М-551а-433"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000038,
+    "firstName": "Анна",
+    "lastName": "Матящук",
+    "middleName": "Сергіївна",
+    "birthDate": "18.12.2007",
+    "email": "anna.matjascuk@gmail.com",
+    "phoneNumber": "+380958702473",
+    "recordBookNumber": "М-4а-333"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000039,
+    "firstName": "Вячеслав",
+    "lastName": "Мокляк",
+    "middleName": "Сергійович",
+    "birthDate": "28.01.2007",
+    "email": "slava.mokliak@gmail.com",
+    "phoneNumber": "+380509831589",
+    "recordBookNumber": "М-553о-138"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000040,
+    "firstName": "Михайло",
+    "lastName": "Нехай",
+    "middleName": "Ігорович",
+    "birthDate": "16.06.2007",
+    "email": "misha.nekhai@gmail.com",
+    "phoneNumber": "+380920419768",
+    "recordBookNumber": "Н-554е-805"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000041,
+    "firstName": "Артур",
+    "lastName": "Ніколайчук",
+    "middleName": "Кирилович",
+    "birthDate": "02.12.2008",
+    "email": "arturnikolaichuk23@gmail.com",
+    "phoneNumber": "+380760677675",
+    "recordBookNumber": "Н-57і-614"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000042,
+    "firstName": "Олександр",
+    "lastName": "Ображей",
+    "middleName": "Валерійович",
+    "birthDate": "10.11.2007",
+    "email": "oleksandrobrazhei@gmail.con",
+    "phoneNumber": "+380978620341",
+    "recordBookNumber": "О-556б-222"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000043,
+    "firstName": "Гліб",
+    "lastName": "П`ятаченко",
+    "middleName": "Олександрович",
+    "birthDate": "05.01.2007",
+    "email": "patachenkogleb@gmail.com",
+    "phoneNumber": "+380987887466",
+    "recordBookNumber": "П-557`-499"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000044,
+    "firstName": "Вікторія",
+    "lastName": "Поліщук",
+    "middleName": "Юріївна",
+    "birthDate": "05.07.2007",
+    "email": "victplsk@gmail.com",
+    "phoneNumber": "+380113920636",
+    "recordBookNumber": "П-558о-458"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000045,
+    "firstName": "Кристина",
+    "lastName": "Попкова",
+    "middleName": "",
+    "birthDate": "02.10.2007",
+    "email": "popkovakristina118@gmail.com",
+    "phoneNumber": "+380231559419",
+    "recordBookNumber": "П-559о-194"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000046,
+    "firstName": "Дмитро",
+    "lastName": "Поплавський",
+    "middleName": "Вікторович",
+    "birthDate": "11.08.2006",
+    "email": "poplavskijdmitro584@gmail.com",
+    "phoneNumber": "+380976076990",
+    "recordBookNumber": "П-1058о-52"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000047,
+    "firstName": "Вероніка",
+    "lastName": "Просвіркін",
+    "middleName": "Олександрівна",
+    "birthDate": "11.07.2007",
+    "email": "veronika.prosvirkin@gmail.com",
+    "phoneNumber": "+380980131226",
+    "recordBookNumber": "П-561р-972"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000048,
+    "firstName": "Михайло",
+    "lastName": "Пулов",
+    "middleName": "Володимирович",
+    "birthDate": "05.03.2008",
+    "email": "mihail.pulov.247@gmail.com",
+    "phoneNumber": "+380988219617",
+    "recordBookNumber": "П-64у-202"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000049,
+    "firstName": "Дарія",
+    "lastName": "Радько",
+    "middleName": "Олександрівна",
+    "birthDate": "27.02.2008",
+    "email": "dariaradko5@gmail.com",
+    "phoneNumber": "+380993670589",
+    "recordBookNumber": "Р-65а-470"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000050,
+    "firstName": "Владислав",
+    "lastName": "Резанов",
+    "middleName": "Євгенович",
+    "birthDate": "04.12.2007",
+    "email": "vladdreza@gmail.com",
+    "phoneNumber": "+380952513580",
+    "recordBookNumber": "Р-564е-550"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000051,
+    "firstName": "Нікіта",
+    "lastName": "Різник",
+    "middleName": "Юрійович",
+    "birthDate": "02.04.2007",
+    "email": "nikita.rezzz@gmail.com",
+    "phoneNumber": "+380011179448",
+    "recordBookNumber": "Р-565і-115"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000052,
+    "firstName": "Софія",
+    "lastName": "Самойлич",
+    "middleName": "Олександрівна",
+    "birthDate": "15.05.2008",
+    "email": "sofia.samoylich@gmail.com",
+    "phoneNumber": "+380958659511",
+    "recordBookNumber": "С-68а-743"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000053,
+    "firstName": "Максим",
+    "lastName": "Святун",
+    "middleName": "Олександрович",
+    "birthDate": "04.11.2007",
+    "email": "kopkayt@gmail.com",
+    "phoneNumber": "+380953384521",
+    "recordBookNumber": "С-567в-980"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000054,
+    "firstName": "Тетяна",
+    "lastName": "Солтис",
+    "middleName": "Миколаївна",
+    "birthDate": "25.01.2008",
+    "email": "soltetiana12@gmail.com",
+    "phoneNumber": "+380685870531",
+    "recordBookNumber": "С-70о-394"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000055,
+    "firstName": "Віолетта",
+    "lastName": "Топчий",
+    "middleName": "Дмитрівна",
+    "birthDate": "31.10.2007",
+    "email": "violetta.topchiy@gmail.com",
+    "phoneNumber": "+380981092103",
+    "recordBookNumber": "Т-569о-137"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000056,
+    "firstName": "Дар`я",
+    "lastName": "Трухан",
+    "middleName": "Романівна",
+    "birthDate": "31.07.2008",
+    "email": "dashamegavip@gmail.com",
+    "phoneNumber": "+380683889777",
+    "recordBookNumber": "Т-72р-334"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000057,
+    "firstName": "Олександра",
+    "lastName": "Фломбойм",
+    "middleName": "Олексіївна",
+    "birthDate": "29.07.2008",
+    "email": "sflomboim@gmail.com",
+    "phoneNumber": "+380955941312",
+    "recordBookNumber": "Ф-73л-424"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000058,
+    "firstName": "Анастасія",
+    "lastName": "Хмара",
+    "middleName": "Юріївна",
+    "birthDate": "06.03.2008",
+    "email": "anastasiakhmara176@gmail.com",
+    "phoneNumber": "+380971837794",
+    "recordBookNumber": "Х-74м-701"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000059,
+    "firstName": "Анастасія",
+    "lastName": "Шаповал",
+    "middleName": "Олександрівна",
+    "birthDate": "03.02.2007",
+    "email": "anastashap03@gmail.com",
+    "phoneNumber": "+380666163290",
+    "recordBookNumber": "Ш-573а-156"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000060,
+    "firstName": "Михайло",
+    "lastName": "Шапошніков",
+    "middleName": "Артемій",
+    "birthDate": "20.01.2005",
+    "email": "mahxd9@gmail.com",
+    "phoneNumber": "+380687638767",
+    "recordBookNumber": "Ш-1242а-794"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000061,
+    "firstName": "Дамір",
+    "lastName": "Шахін-Крупчан",
+    "middleName": "Гюнайович",
+    "birthDate": "28.08.2008",
+    "email": "damirshahinkrupchan@gmail.com",
+    "phoneNumber": "+380370613914",
+    "recordBookNumber": "Ш-77а-313"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000062,
+    "firstName": "Ангеліна",
+    "lastName": "Шепетюк",
+    "middleName": "Артемівна",
+    "birthDate": "24.09.2007",
+    "email": "shepetukangelina24@gmail.com",
+    "phoneNumber": "+380844475943",
+    "recordBookNumber": "Ш-576е-253"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000063,
+    "firstName": "Анастасія",
+    "lastName": "Шкаровська",
+    "middleName": "Сергіївна",
+    "birthDate": "24.01.2008",
+    "email": "shkarow.n@gmail.com",
+    "phoneNumber": "+380953962243",
+    "recordBookNumber": "Ш-79к-650"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000064,
+    "firstName": "Анна",
+    "lastName": "Шкут",
+    "middleName": "Сергіївна",
+    "birthDate": "11.12.2007",
+    "email": "annshkut11@gmail.com",
+    "phoneNumber": "+380679990506",
+    "recordBookNumber": "Ш-578к-442"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000065,
+    "firstName": "Єгор",
+    "lastName": "Щеголев",
+    "middleName": "Тимофійович",
+    "birthDate": "28.03.2008",
+    "email": "goshashchegolev@gmail.com",
+    "phoneNumber": "+380503456977",
+    "recordBookNumber": "Щ-81е-174"
+  },
+  {
+    "course": 1,
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-1",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000066,
+    "firstName": "Анастасія",
+    "lastName": "Яцкевич",
+    "middleName": "Іванівна",
+    "birthDate": "14.06.2007",
+    "email": "nastia.yatskevych@gmail.com",
+    "phoneNumber": "+380967201296",
+    "recordBookNumber": "Я-580ц-181"
   }
 ]

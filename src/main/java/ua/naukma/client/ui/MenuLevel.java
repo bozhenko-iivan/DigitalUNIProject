@@ -1,6 +1,8 @@
 package ua.naukma.client.ui;
 
 public enum MenuLevel {
+        MAIN,
+        LOGIN,
         MON,
         UNI,
         FAC,

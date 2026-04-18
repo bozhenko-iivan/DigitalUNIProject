@@ -9,6 +9,7 @@ import ua.naukma.domain.StudyForm;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
 import ua.naukma.security.Permissions;
+import ua.naukma.server.service.StudentService;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -16,6 +17,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class GroupHandler extends BasicHandler {
+    private StudentService studentService;
     public GroupHandler(MenuContext menuContext, ObjectInputStream in, ObjectOutputStream out) {
         super(menuContext, out, in);
     }
@@ -54,9 +56,10 @@ public class GroupHandler extends BasicHandler {
             String phoneNumber = PhoneNumberVerificator.ask_phonenum();
             StudyForm studyForm = AcademicInfoVerificator.ask_study_form();
             StudentStatus status = AcademicInfoVerificator.ask_student_status();
+            String recordBookNumber = studentService.generateRecordbookNum(lastName, studentId, LocalDate.now().getYear());
 
             Student student = new Student(studentId, firstName, lastName, middleName,dob,
-                    email, phoneNumber, null
+                    email, phoneNumber, recordBookNumber
                     ,menuContext.getCurrent_group().getCourse(), menuContext.getCurrent_group(),menuContext.getCurrent_group().getAdmissionYear(), studyForm, status);
 
             sendRequest(Request.RequestType.ADD_STUDENT, student, false);

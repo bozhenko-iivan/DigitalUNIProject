@@ -42,6 +42,12 @@ public class Request implements Serializable {
         SHOW_TRANSCRIPT,
 
         @Secured(Permissions.MANAGE_STRUCTURE)
+        SET_DEAN,
+
+        @Secured(Permissions.MANAGE_STRUCTURE)
+        SET_HEAD,
+
+        @Secured(Permissions.MANAGE_STRUCTURE)
         ADD,
         @Secured(Permissions.MANAGE_STRUCTURE)
         REMOVE,

@@ -43,7 +43,7 @@ public class StudentService extends EntityService<Student, Integer> {
         repository.save(student);
     }
 
-    private String generateRecordbookNum(String lastName, int id, int year) {
+    public String generateRecordbookNum(String lastName, int id, int year) {
         Random rand = new Random();
 
         char firstChar = !lastName.isEmpty() ? lastName.charAt(0) : 'X';
