@@ -1,7 +1,9 @@
 package ua.naukma.client;
 
+import com.sun.tools.javac.Main;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ua.naukma.client.ui.MenuContext;
 import ua.naukma.client.ui.MenuLevel;
 import ua.naukma.client.ui.NewMenu;
 import ua.naukma.client.utils.SystemUserVerificator;
@@ -33,7 +35,7 @@ public class ClientMain {
         }
     }
 
-    private static SystemUser authenticateUser(ObjectOutputStream oos, ObjectInputStream ois) {
+    private static SystemUser authenticateUser(ObjectOutputStream oos, ObjectInputStream ois) throws IOException {
         while (true) {
             String login = SystemUserVerificator.askLogin();
             String password = SystemUserVerificator.askPassword();

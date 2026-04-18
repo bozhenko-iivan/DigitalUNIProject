@@ -34,7 +34,7 @@ public class MONHandler extends BasicHandler{
     }
     private void exit(){
         System.out.println("Exiting..");
-        menuContext.setCurrent_level(null);
+        System.exit(0);
     }
     private void add_uni(){
         requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
@@ -86,7 +86,7 @@ public class MONHandler extends BasicHandler{
     private void log_out(){
         Response logoutResponse = sendRequest(Request.RequestType.LOGOUT, null, false);
         if (logoutResponse != null && logoutResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
-            menuContext.setCurrent_level(null);
+            menuContext.setCurrent_level(MenuLevel.LOGIN);
         }
     }
 }

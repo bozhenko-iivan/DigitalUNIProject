@@ -21,13 +21,11 @@ public class NewMenu {
     public void main_menu(Socket socket){
         draw_greetings();
         while (current_level != null) {
+            if (current_level == MenuLevel.LOGIN) {
+                break;
+            }
             draw_current(current_level);
             current_level = menu_options_handler.handle(current_level);
-        }
-        try{
-            socket.close();
-        }catch (IOException e){
-            e.printStackTrace();
         }
     }
 
