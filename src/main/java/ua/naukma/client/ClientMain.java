@@ -18,7 +18,7 @@ public class ClientMain {
 
     public static void main(String[] args) {
         try (Socket socket = new Socket()) {
-            socket.connect(new InetSocketAddress("127.0.0.1", 8080), 5000);
+            socket.connect(new InetSocketAddress("localhost", 8080), 5000);
 
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
@@ -52,7 +52,7 @@ public class ClientMain {
                     log.info("Logged in as {}", user.getLogin());
                     return user;
                 } else {
-                    log.warn("Login failed. Please try again.");
+                    System.out.println("Invalid login or password. Please try again.");
                 }
             } catch (IOException | ClassNotFoundException e) {
                 log.error("Authentication process interrupted: {}", e.getMessage(), e);
