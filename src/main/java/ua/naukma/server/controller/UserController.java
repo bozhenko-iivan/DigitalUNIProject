@@ -6,6 +6,8 @@ import ua.naukma.network.Response;
 import ua.naukma.server.annotation.CommandRoute;
 import ua.naukma.server.service.UserService;
 
+import java.util.List;
+
 @CommandRoute({
         Request.RequestType.ADD_USER,
         Request.RequestType.REMOVE_USER,
@@ -13,6 +15,8 @@ import ua.naukma.server.service.UserService;
         Request.RequestType.GET_ALL_USERS,
         Request.RequestType.LOGIN,
         Request.RequestType.LOGOUT,
+        Request.RequestType.SORT_BY_ID,
+        Request.RequestType.SORT_BY_ALPHABETIC_NAME
 })
 
 public class UserController implements RequestHandler {
@@ -59,6 +63,18 @@ public class UserController implements RequestHandler {
                     userService::findAll,
                     request.getType()
             );
+            case SORT_BY_ID ->  {
+                yield execute(
+                        userService::sortByIds,
+                        request.getType()
+                );
+            }
+            case  SORT_BY_ALPHABETIC_NAME ->  {
+                yield execute(
+                        userService::sortByName,
+                        request.getType()
+                );
+            }
             default -> new Response(Response.ResponseStatus.FAILURE, "Unknown command");
         };
     }

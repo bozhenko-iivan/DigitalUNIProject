@@ -4,37 +4,22 @@
     "name": "Fi",
     "shortName": "fi",
     "dean": {
-      "position": "HEAD_OF_DEPARTMENT",
+      "position": "PROFESSOR",
       "degree": "DOCTOR_OF_SCIENCES",
       "rank": "PROFESSOR",
-      "hiringDate": "01.01.2015",
-      "load": 2.0,
+      "hiringDate": "22.10.1993",
+      "load": 1.5,
       "department": {
         "id": 1234567,
-        "name": "department of informatics",
-        "faculty": {
-          "id": 1234567,
-          "name": "Fi",
-          "shortName": "fi",
-          "email": "fi@gmail.com",
-          "university": {
-            "id": 1234567,
-            "fullName": "NaUKMA",
-            "shortName": "KMA",
-            "city": "Kyiv",
-            "address": "Contractova, 2M"
-          }
-        },
-        "location": "Contractiva, 1",
-        "email": "depFi@gmail.com"
+        "name": "department of informatics"
       },
-      "id": 1000001,
-      "firstName": "Андрій",
+      "id": 1000002,
+      "firstName": "Микола",
       "lastName": "Глибовець",
       "middleName": "Миколайович",
-      "birthDate": "01.01.1970",
-      "email": "hlyb1@gmail.com",
-      "phoneNumber": "+380971457898"
+      "birthDate": "23.01.1959",
+      "email": "hlybovets.m@ukma.edu.ua",
+      "phoneNumber": "+380971234567"
     },
     "email": "fi@gmail.com",
     "university": {

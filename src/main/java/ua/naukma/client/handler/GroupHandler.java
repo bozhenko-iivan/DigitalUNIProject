@@ -3,6 +3,7 @@ package ua.naukma.client.handler;
 import ua.naukma.client.ui.MenuContext;
 import ua.naukma.client.ui.MenuLevel;
 import ua.naukma.client.utils.*;
+import ua.naukma.domain.Group;
 import ua.naukma.domain.Student;
 import ua.naukma.domain.StudentStatus;
 import ua.naukma.domain.StudyForm;
@@ -31,6 +32,8 @@ public class GroupHandler extends BasicHandler {
             case 3 -> remove_student();
             case 4 -> find_student();
             case 5 -> show_all_students();
+            case 6 -> sort_by_id();
+            case 7 -> sort_by_name();
             default -> System.out.println("Invalid choice");
         }
     }
@@ -88,6 +91,24 @@ public class GroupHandler extends BasicHandler {
             list.forEach((student) -> {
                 System.out.println(student.toStringShort());
             });
+        }
+    }
+
+    private void sort_by_id() {
+        Response sortByIdResponse = sendRequest(Request.RequestType.SORT_BY_ID, null, false);
+        if (sortByIdResponse != null && sortByIdResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            @SuppressWarnings("unchecked")
+            List<Student> students = (List<Student>) sortByIdResponse.getPayload();
+            students.forEach(student -> System.out.printf("%-25s | ID: %d%n", student.getName(), student.getId()));
+        }
+    }
+
+    private void sort_by_name(){
+        Response sortByNameResponse = sendRequest(Request.RequestType.SORT_BY_ALPHABETIC_NAME, null, false);
+        if (sortByNameResponse != null && sortByNameResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            @SuppressWarnings("unchecked")
+            List<Student> students = (List<Student>) sortByNameResponse.getPayload();
+            students.forEach(student -> System.out.printf("%-15s%n", student.getName()));
         }
     }
 }

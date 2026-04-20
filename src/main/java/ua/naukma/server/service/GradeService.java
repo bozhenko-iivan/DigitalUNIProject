@@ -16,4 +16,8 @@ public class GradeService extends EntityService<Grade, Integer> {
     public List<Grade> findByStudentId(Integer studentId) {
         return repository.findAll().stream().filter(grade -> grade.getStudentId() == studentId).toList();
     }
+
+    public int generateID() {
+        return repository.findAll().stream().mapToInt(Grade::getId).max().orElse(-1) + 1;
+    }
 }

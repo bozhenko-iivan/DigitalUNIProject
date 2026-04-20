@@ -7,12 +7,16 @@ import ua.naukma.server.annotation.CommandRoute;
 import ua.naukma.server.service.DepartmentService;
 import ua.naukma.server.service.TeacherService;
 
+import java.util.List;
+
 @CommandRoute({
         Request.RequestType.SET_HEAD,
         Request.RequestType.ADD,
         Request.RequestType.REMOVE,
         Request.RequestType.FIND,
-        Request.RequestType.GET_ALL
+        Request.RequestType.GET_ALL,
+        Request.RequestType.SORT_BY_ID,
+        Request.RequestType.SORT_BY_ALPHABETIC_NAME
 })
 public class DepartmentController implements RequestHandler {
     private final DepartmentService departmentService;
@@ -58,6 +62,18 @@ public class DepartmentController implements RequestHandler {
                 int departmentId = (int) request.getData();
                 yield execute(
                         () -> teacherService.findAllByDepartmentId(departmentId),
+                        request.getType()
+                );
+            }
+            case SORT_BY_ID ->  {
+                yield execute(
+                        teacherService::sortByIds,
+                        request.getType()
+                );
+            }
+            case  SORT_BY_ALPHABETIC_NAME ->  {
+                yield execute(
+                        teacherService::sortByName,
                         request.getType()
                 );
             }

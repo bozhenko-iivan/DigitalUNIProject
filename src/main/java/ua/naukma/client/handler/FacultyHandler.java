@@ -5,6 +5,7 @@ import ua.naukma.client.ui.MenuLevel;
 import ua.naukma.client.utils.IdVerificator;
 import ua.naukma.domain.Department;
 import ua.naukma.domain.Faculty;
+import ua.naukma.domain.Student;
 import ua.naukma.domain.Teacher;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
@@ -26,7 +27,7 @@ public class FacultyHandler extends BasicHandler{
             case 1 -> go_higher();
             case 2 -> go_deps();
             case 3 -> go_groups();
-            case 4 -> System.out.println("This method is currently not implemented yet.");
+            case 4 -> show_fac_info();
             case 5 -> set_dean();
             default -> System.out.println("Invalid choice.");
         }
@@ -71,5 +72,13 @@ public class FacultyHandler extends BasicHandler{
     }
     private void go_groups() {
         menuContext.setCurrent_level(MenuLevel.GRPS);
+    }
+
+    private void show_fac_info() {
+        Response showFacultyInfo = sendRequest(Request.RequestType.FIND, menuContext.getCurrent_faculty().getId(), false);
+        if (showFacultyInfo.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            Faculty faculty = (Faculty) showFacultyInfo.getPayload();
+            System.out.println(faculty.toString());
+        }
     }
 }

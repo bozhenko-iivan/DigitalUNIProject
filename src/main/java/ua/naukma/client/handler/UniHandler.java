@@ -28,6 +28,8 @@ public class UniHandler extends BasicHandler {
             case 3 -> remove_faculty();
             case 4 -> find_faculty();
             case 5 -> show_all_faculties();
+            case 6 -> sort_by_ids();
+            case 7 -> sort_by_name();
             default -> System.out.println("Invalid choice");
         }
     }
@@ -76,6 +78,24 @@ public class UniHandler extends BasicHandler {
             @SuppressWarnings("unchecked")
             List<Faculty> faculties = (List<Faculty>) getAllRes.getPayload();
             faculties.forEach(System.out::println);
+        }
+    }
+
+    private void sort_by_ids() {
+        Response sortByIdResponse = sendRequest(Request.RequestType.SORT_BY_ID, null, false);
+        if (sortByIdResponse != null && sortByIdResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            @SuppressWarnings("unchecked")
+            List<Faculty> faculties = (List<Faculty>) sortByIdResponse.getPayload();
+            faculties.forEach(fac -> System.out.printf("%-15s | ID: %d%n", fac.getName(), fac.getId()));
+        }
+    }
+
+    private void sort_by_name() {
+        Response sortByNameResponse = sendRequest(Request.RequestType.SORT_BY_ALPHABETIC_NAME, null, false);
+        if (sortByNameResponse != null && sortByNameResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            @SuppressWarnings("unchecked")
+            List<Faculty> faculties = (List<Faculty>) sortByNameResponse.getPayload();
+            faculties.forEach(fac -> System.out.printf("%-15s%n", fac.getName()));
         }
     }
 }

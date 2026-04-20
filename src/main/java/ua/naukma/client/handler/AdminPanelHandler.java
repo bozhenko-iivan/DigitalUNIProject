@@ -5,6 +5,7 @@ import ua.naukma.client.ui.MenuLevel;
 import ua.naukma.client.utils.IdVerificator;
 import ua.naukma.client.utils.ReadInt;
 import ua.naukma.client.utils.SystemUserVerificator;
+import ua.naukma.domain.Group;
 import ua.naukma.domain.SystemUser;
 import ua.naukma.domain.SystemUserRoles;
 import ua.naukma.network.Request;
@@ -30,6 +31,8 @@ public class AdminPanelHandler extends BasicHandler {
             case 3 -> remove_user();
             case 4 -> find_user();
             case 5 -> show_all_users();
+            case 6 -> sort_by_id();
+            case 7 -> sort_by_name();
             default -> System.out.println("Invalid choice");
         }
     }
@@ -127,6 +130,24 @@ public class AdminPanelHandler extends BasicHandler {
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void sort_by_id() {
+        Response sortByIdResponse = sendRequest(Request.RequestType.SORT_BY_ID, null, false);
+        if (sortByIdResponse != null && sortByIdResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            @SuppressWarnings("unchecked")
+            List<SystemUser> users = (List<SystemUser>) sortByIdResponse.getPayload();
+            users.forEach(user -> System.out.printf("%-15s | ID: %d%n", user.getName(), user.getId()));
+        }
+    }
+
+    private void sort_by_name(){
+        Response sortByNameResponse = sendRequest(Request.RequestType.SORT_BY_ALPHABETIC_NAME, null, false);
+        if (sortByNameResponse != null && sortByNameResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            @SuppressWarnings("unchecked")
+            List<SystemUser> users = (List<SystemUser>) sortByNameResponse.getPayload();
+            users.forEach(user -> System.out.printf("%-15s%n", user.getName()));
         }
     }
 }

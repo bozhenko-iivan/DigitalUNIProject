@@ -34,12 +34,14 @@ public class Request implements Serializable {
         FIND_STUDENT_BY_ID,
 
         GET_STUDENTS_COUNT,
+
         UPDATE_STUDENT_CONTACTS,
         UPDATE_STUDENT_STUDY_FORM,
         UPDATE_STUDENT_STATUS,
         SET_STUDENT_GRADE,
         DELETE_STUDENT_GRADE,
         SHOW_TRANSCRIPT,
+        CALCULATE_AVG,
 
         @Secured(Permissions.MANAGE_STRUCTURE)
         SET_DEAN,
@@ -52,7 +54,10 @@ public class Request implements Serializable {
         @Secured(Permissions.MANAGE_STRUCTURE)
         REMOVE,
         FIND,
-        GET_ALL
+
+        GET_ALL,
+        SORT_BY_ID,
+        SORT_BY_ALPHABETIC_NAME,
     }
     public Request(RequestType type, Object data) {
         setType(type);

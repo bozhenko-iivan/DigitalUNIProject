@@ -2,11 +2,12 @@ package ua.naukma.domain;
 
 import ua.naukma.exception.IncorrectDataException;
 import ua.naukma.server.repository.GetId;
+import ua.naukma.server.repository.GetName;
 
 import java.io.Serial;
 import java.io.Serializable;
 
-public class Faculty implements Serializable, GetId {
+public class Faculty implements Serializable, GetId, GetName {
     private int id;
     private String name;
     private String shortName;
@@ -27,7 +28,10 @@ public class Faculty implements Serializable, GetId {
     }
     @Override
     public int getId() { return id; }
+
+    @Override
     public String getName() { return name; }
+
     public String getShortName() { return shortName; }
     public Teacher getDean() { return dean; }
     public String getEmail() { return email; }

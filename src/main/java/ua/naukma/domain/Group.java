@@ -1,11 +1,12 @@
 package ua.naukma.domain;
 
 import ua.naukma.server.repository.GetId;
+import ua.naukma.server.repository.GetName;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Group implements Serializable, GetId {
+public class Group implements Serializable, GetId, GetName {
     private int id;
     private String name;
     private int course;
@@ -21,6 +22,7 @@ public class Group implements Serializable, GetId {
     }
     @Override
     public int getId() { return id; }
+    @Override
     public String getName() { return name; }
     public int getCourse() { return course; }
     public int getAdmissionYear() { return admissionYear; }

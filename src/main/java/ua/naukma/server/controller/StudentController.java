@@ -11,6 +11,8 @@ import ua.naukma.server.annotation.CommandRoute;
 import ua.naukma.server.service.GradeService;
 import ua.naukma.server.service.StudentService;
 
+import java.util.List;
+
 @CommandRoute({
         Request.RequestType.ADD_STUDENT,
         Request.RequestType.REMOVE_STUDENT,
@@ -23,6 +25,8 @@ import ua.naukma.server.service.StudentService;
         Request.RequestType.SET_STUDENT_GRADE,
         Request.RequestType.DELETE_STUDENT_GRADE,
         Request.RequestType.SHOW_TRANSCRIPT,
+        Request.RequestType.SORT_BY_ID,
+        Request.RequestType.SORT_BY_ALPHABETIC_NAME
 })
 
 public class StudentController implements RequestHandler {
@@ -98,11 +102,12 @@ public class StudentController implements RequestHandler {
                 );
             }
             case SET_STUDENT_GRADE ->  {
+                int gradeID = gradeService.generateID();
                 SetStudentGrade studentData = (SetStudentGrade) request.getData();
                 int studentId = studentData.studentID();
                 int score = studentData.grade();
                 Subject subject = studentData.subject();
-                Grade grade = new Grade(score, studentId, subject);
+                Grade grade = new Grade(gradeID ,score, studentId, subject);
                 yield execute(
                         () -> gradeService.add(grade),
                         request.getType()
@@ -118,6 +123,25 @@ public class StudentController implements RequestHandler {
                 int studentId = (int) request.getData();
                 yield execute(
                         () -> gradeService.findByStudentId(studentId),
+                        request.getType()
+                );
+            }
+            case SORT_BY_ID ->  {
+                yield execute(
+                        studentService::sortByIds,
+                        request.getType()
+                );
+            }
+            case  SORT_BY_ALPHABETIC_NAME ->  {
+                yield execute(
+                        studentService::sortByName,
+                        request.getType()
+                );
+            }
+            case CALCULATE_AVG -> {
+                int studentId = (int) request.getData();
+                yield execute(
+                        () -> studentService.calculateAverageScore(studentId),
                         request.getType()
                 );
             }

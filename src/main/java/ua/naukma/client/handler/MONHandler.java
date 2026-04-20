@@ -1,5 +1,6 @@
 package ua.naukma.client.handler;
 
+import com.google.gson.internal.bind.util.ISO8601Utils;
 import ua.naukma.client.ui.MenuContext;
 import ua.naukma.client.ui.MenuLevel;
 import ua.naukma.client.utils.IdVerificator;
@@ -27,8 +28,10 @@ public class MONHandler extends BasicHandler{
             case 3 -> remove_uni();
             case 4 -> find_uni();
             case 5 -> show_all_uni();
-            case 6 -> admin_panel();
-            case 7 -> log_out();
+            case 6 -> sort_by_id();
+            case 7 -> sort_by_name();
+            case 8 -> admin_panel();
+            case 9 -> log_out();
             default -> System.out.println("Wrong choice");
         }
     }
@@ -87,6 +90,24 @@ public class MONHandler extends BasicHandler{
         Response logoutResponse = sendRequest(Request.RequestType.LOGOUT, null, false);
         if (logoutResponse != null && logoutResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             menuContext.setCurrent_level(MenuLevel.LOGIN);
+        }
+    }
+
+    private void sort_by_id() {
+        Response sortByIdResponse = sendRequest(Request.RequestType.SORT_BY_ID, null, false);
+        if (sortByIdResponse != null && sortByIdResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            @SuppressWarnings("unchecked")
+            List<University> universities = (List<University>) sortByIdResponse.getPayload();
+            universities.forEach(uni -> System.out.printf("%-15s | ID: %d%n", uni.getName(), uni.getId()));
+        }
+    }
+
+    private void sort_by_name(){
+        Response sortByNameResponse = sendRequest(Request.RequestType.SORT_BY_ALPHABETIC_NAME, null, false);
+        if (sortByNameResponse != null && sortByNameResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            @SuppressWarnings("unchecked")
+            List<University> universities = (List<University>) sortByNameResponse.getPayload();
+            universities.forEach(university -> System.out.printf("%-15s%n", university.getName()));
         }
     }
 }

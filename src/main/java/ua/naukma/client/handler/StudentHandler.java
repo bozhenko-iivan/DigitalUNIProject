@@ -36,8 +36,14 @@ public class StudentHandler extends BasicHandler {
             case 4 -> update_study_form();
             case 5 -> update_student_status();
             case 6 -> set_grade();
-            case 7 -> delete_grade();
+            case 7 -> {
+                List<Grade> transcript = show_transcript();
+                if (transcript != null) {
+                    delete_grade(transcript);
+                }
+            }
             case 8 -> show_transcript();
+            case 9 -> calculate_avg();
             default -> System.out.println("Invalid choice.");
         }
     }
@@ -86,22 +92,17 @@ public class StudentHandler extends BasicHandler {
         int score = GradeVerificator.askScore();
         SetStudentGrade studentData = new SetStudentGrade(studentId, score, subject);
         Response updateResponse = sendRequest(Request.RequestType.SET_STUDENT_GRADE, studentData, false);
+        System.out.println(updateResponse.getMsg());
     }
-    private void delete_grade() {
-        int studentId = menuContext.getCurrent_student().getId();
-        Response transcriptRes = sendRequest(Request.RequestType.SHOW_TRANSCRIPT, studentId, true);
-
-        if (transcriptRes.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
-            List<Grade> currentGrades = (List<Grade>) transcriptRes.getPayload();
-            if (currentGrades.isEmpty()) {
-                System.out.println("No grades found for this student.");
-            } else {
-                int gradeID = GradeVerificator.askGradeID(currentGrades);
-                sendRequest(Request.RequestType.DELETE_STUDENT_GRADE, gradeID, false);
-            }
+    private void delete_grade(List<Grade> currentGrades) {
+        if (currentGrades.isEmpty()) {
+            System.out.println("No grades found for this student.");
+        } else {
+            int gradeID = GradeVerificator.askGradeID(currentGrades);
+            sendRequest(Request.RequestType.DELETE_STUDENT_GRADE, gradeID, false);
         }
     }
-    private void show_transcript() {
+    private List<Grade> show_transcript() {
         int studentId = menuContext.getCurrent_student().getId();
         Response response = sendRequest(Request.RequestType.SHOW_TRANSCRIPT, studentId, false);
         if (response.getResponseStatus() != null && response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
@@ -121,6 +122,17 @@ public class StudentHandler extends BasicHandler {
                     System.out.println(gradeString);
                 }
             }
+            return grades;
+        }
+        return null;
+    }
+
+    private void calculate_avg() {
+        int studentId = menuContext.getCurrent_student().getId();
+        Response response = sendRequest(Request.RequestType.CALCULATE_AVG, studentId, false);
+        if (response.getResponseStatus() != null && response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            Double avg = (Double) response.getPayload();
+            System.out.println("Student's " + studentId + " GPA is: " + avg);
         }
     }
 }

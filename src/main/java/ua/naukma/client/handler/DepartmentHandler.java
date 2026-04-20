@@ -28,7 +28,9 @@ public class DepartmentHandler extends BasicHandler {
             case 3 -> remove_teacher();
             case 4 -> find_teacher();
             case 5 -> show_all_teachers();
-            case 6 -> set_head();
+            case 6 -> sort_by_id();
+            case 7 -> sort_by_name();
+            case 8 -> set_head();
             default -> System.out.println("Invalid choice");
         }
     }
@@ -162,6 +164,24 @@ public class DepartmentHandler extends BasicHandler {
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void sort_by_id() {
+        Response sortByIdResponse = sendRequest(Request.RequestType.SORT_BY_ID, null, false);
+        if (sortByIdResponse != null && sortByIdResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            @SuppressWarnings("unchecked")
+            List<Teacher> teachers = (List<Teacher>) sortByIdResponse.getPayload();
+            teachers.forEach(teacher -> System.out.printf("%-25s | ID: %d%n", teacher.getName(), teacher.getId()));
+        }
+    }
+
+    private void sort_by_name(){
+        Response sortByNameResponse = sendRequest(Request.RequestType.SORT_BY_ALPHABETIC_NAME, null, false);
+        if (sortByNameResponse != null && sortByNameResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            @SuppressWarnings("unchecked")
+            List<Teacher> teachers = (List<Teacher>) sortByNameResponse.getPayload();
+            teachers.forEach(teacher -> System.out.printf("%-15s%n", teacher.getName()));
         }
     }
 }

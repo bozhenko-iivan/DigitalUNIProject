@@ -1,11 +1,12 @@
 package ua.naukma.domain;
 
 import ua.naukma.server.repository.GetId;
+import ua.naukma.server.repository.GetName;
 
 import java.io.Serial;
 import java.io.Serializable;
 
-public class University implements Serializable, GetId {
+public class University implements Serializable, GetId, GetName {
     private final int id;
     private String fullName;
     private String shortName;
@@ -26,6 +27,10 @@ public class University implements Serializable, GetId {
 
     @Override
     public int getId() { return id; }
+
+    @Override
+    public String getName() { return fullName; }
+
     public String getFullName() { return fullName; }
     public String getShortName() { return shortName; }
     public String getCity() { return city; }
