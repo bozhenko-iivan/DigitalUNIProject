@@ -34,10 +34,10 @@
             "fullName": "NaUKMA",
             "shortName": "KMA",
             "city": "Kyiv",
-            "address": "Skovorody str. 2"
+            "address": "Skovorody str, 2"
           }
         },
-        "location": "1 корпус, кім. 315",
+        "location": "Room, 315",
         "email": "gor@ukma.edu.ua"
       },
       "id": 1000001,
@@ -48,7 +48,7 @@
       "email": "gor@ukma.edu.ua",
       "phoneNumber": "+380444636985"
     },
-    "location": "Contractiva, 1",
+    "location": "Contractova, 1",
     "email": "depFi@gmail.com"
   }
 ]

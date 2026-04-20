@@ -1,0 +1,18 @@
+2026-04-21 11:25:26.191 [main] INFO  ua.naukma.server.ServerMain - Starting server on port 8080
+2026-04-21 11:25:29.522 [main] INFO  ua.naukma.server.ServerMain - Starting server on port 8080
+2026-04-21 11:25:29.540 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Client IP: 127.0.0.1
+2026-04-21 11:25:33.816 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 11:25:33.816 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 11:25:33.816 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: LOGIN 
+2026-04-21 11:25:33.816 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  User: admin
+ID: -1
+Role: NOT ASSIGNED
+2026-04-21 11:25:33.817 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 11:25:33.819 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 11:25:33.819 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 login: 
+2026-04-21 11:25:33.819 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      User: admin
+ID: 1111111
+Role: ADMIN
+Current rights: [|READ|MANAGE_USERS|MANAGE_STRUCTURE|MANAGE_STUDENTS|ADDITION_UNIVERSITY|DELETION_UNIVERSITY|]
+2026-04-21 11:25:33.820 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 11:25:33.824 [main] INFO  ua.naukma.client.ClientMain - Logged in as admin
