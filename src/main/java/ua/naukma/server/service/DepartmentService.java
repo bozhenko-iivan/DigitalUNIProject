@@ -51,4 +51,12 @@ public class DepartmentService extends EntityService<Department, Integer> {
             throw new EntityNotFoundException("Department with id " + departmentId + " doesn't exist.");
         }
     }
+
+    public Department updateDepartmentInfo(int deptId, String newLocation, String newEmail) {
+        Department dept = findById(deptId);
+        dept.setLocation(newLocation);
+        dept.setEmail(newEmail);
+        repository.save(dept);
+        return dept;
+    }
 }

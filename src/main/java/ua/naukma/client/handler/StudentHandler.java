@@ -9,10 +9,7 @@ import ua.naukma.client.utils.PhoneNumberVerificator;
 import ua.naukma.domain.*;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
-import ua.naukma.network.dto.SetStudentGrade;
-import ua.naukma.network.dto.UpdateContactsDTO;
-import ua.naukma.network.dto.UpdateStudentStatusDTO;
-import ua.naukma.network.dto.UpdateStudyFormDTO;
+import ua.naukma.network.dto.*;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -36,8 +33,16 @@ public class StudentHandler extends BasicHandler {
             case 4 -> update_study_form();
             case 5 -> update_student_status();
             case 6 -> set_grade();
-            case 7 -> delete_grade();
+            case 7 -> {
+                List<Grade> transcript = show_transcript();
+                if (transcript != null) {
+                    delete_grade(transcript);
+                }
+            }
             case 8 -> show_transcript();
+            case 9 -> calculate_avg();
+            case 10 -> change_course();
+            case 11 -> transfer_group();
             default -> System.out.println("Invalid choice.");
         }
     }
@@ -86,22 +91,17 @@ public class StudentHandler extends BasicHandler {
         int score = GradeVerificator.askScore();
         SetStudentGrade studentData = new SetStudentGrade(studentId, score, subject);
         Response updateResponse = sendRequest(Request.RequestType.SET_STUDENT_GRADE, studentData, false);
+        System.out.println(updateResponse.getMsg());
     }
-    private void delete_grade() {
-        int studentId = menuContext.getCurrent_student().getId();
-        Response transcriptRes = sendRequest(Request.RequestType.SHOW_TRANSCRIPT, studentId, true);
-
-        if (transcriptRes.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
-            List<Grade> currentGrades = (List<Grade>) transcriptRes.getPayload();
-            if (currentGrades.isEmpty()) {
-                System.out.println("No grades found for this student.");
-            } else {
-                int gradeID = GradeVerificator.askGradeID(currentGrades);
-                sendRequest(Request.RequestType.DELETE_STUDENT_GRADE, gradeID, false);
-            }
+    private void delete_grade(List<Grade> currentGrades) {
+        if (currentGrades.isEmpty()) {
+            System.out.println("No grades found for this student.");
+        } else {
+            int gradeID = GradeVerificator.askGradeID(currentGrades);
+            sendRequest(Request.RequestType.DELETE_STUDENT_GRADE, gradeID, false);
         }
     }
-    private void show_transcript() {
+    private List<Grade> show_transcript() {
         int studentId = menuContext.getCurrent_student().getId();
         Response response = sendRequest(Request.RequestType.SHOW_TRANSCRIPT, studentId, false);
         if (response.getResponseStatus() != null && response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
@@ -121,6 +121,45 @@ public class StudentHandler extends BasicHandler {
                     System.out.println(gradeString);
                 }
             }
+            return grades;
+        }
+        return null;
+    }
+
+    private void calculate_avg() {
+        int studentId = menuContext.getCurrent_student().getId();
+        Response response = sendRequest(Request.RequestType.CALCULATE_AVG, studentId, false);
+        if (response.getResponseStatus() != null && response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            Double avg = (Double) response.getPayload();
+            System.out.println("Student's " + studentId + " GPA is: " + avg);
+        }
+    }
+
+    private synchronized void change_course() {
+        int studentId = menuContext.getCurrent_student().getId();
+        int newCourse = AcademicInfoVerificator.ask_course();
+
+        int[] payload = new int[]{studentId, newCourse};
+        Response updateResponse = sendRequest(Request.RequestType.CHANGE_COURSE, payload, false);
+
+        if (updateResponse != null && updateResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            menuContext.setCurrent_student((Student) updateResponse.getPayload());
+            System.out.println("Student's course successfully updated!");
+        }
+    }
+
+    private synchronized void transfer_group() {
+        int studentId = menuContext.getCurrent_student().getId();
+        System.out.print("Enter new group ID to transfer into: ");
+        int newGroupId = readInt();
+        TransferDTO payload = new TransferDTO(studentId, newGroupId);
+        Response response = sendRequest(Request.RequestType.TRANSFER_GROUP, payload, false);
+
+        if (response != null && response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            Student updatedStudent = (Student) response.getPayload();
+            menuContext.setCurrent_student(updatedStudent);
+            menuContext.setCurrent_group(updatedStudent.getGroup());
+            System.out.println("Student has been successfully transferred to group: " + updatedStudent.getGroup().getName());
         }
     }
 }

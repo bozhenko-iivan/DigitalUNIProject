@@ -4,15 +4,19 @@ package ua.naukma.server.service;
 import ua.naukma.exception.DuplicateEntityException;
 import ua.naukma.exception.EntityNotFoundException;
 import ua.naukma.server.repository.GetId;
+import ua.naukma.server.repository.GetName;
 import ua.naukma.server.repository.Repository;
 
 
 import java.io.Serializable;
+import java.text.Collator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
-public class EntityService <T extends Serializable & GetId, Number> implements Service<T, Integer> {
+public class EntityService <T extends Serializable & GetId & GetName, Number> implements Service<T, Integer> {
     private final Repository<T, Integer> repository;
     private final Class<T> clazz;
     public EntityService(Repository<T, Integer> repository, Class<T> clazz) {
@@ -29,7 +33,7 @@ public class EntityService <T extends Serializable & GetId, Number> implements S
     }
     @Override
     public void add(T e) throws DuplicateEntityException {
-        Integer id = (Integer) e.getId();
+        Integer id = e.getId();
         if (repository.findById(id).isPresent()) {
             throw new DuplicateEntityException( getClassName() +" with id " + e.getId() + " already exists.");
         }
@@ -57,5 +61,21 @@ public class EntityService <T extends Serializable & GetId, Number> implements S
             throw new EntityNotFoundException("No " + getClassName().toLowerCase() + " have been found!");
         }
         return repository.findAll();
+    }
+
+    @Override
+    public List<T> sortByIds() {
+        return findAll().stream()
+                .sorted(java.util.Comparator.comparing(GetId::getId))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<T> sortByName() {
+        Collator ukrainianCollator = Collator.getInstance(new Locale("uk", "UA"));
+
+        return findAll().stream()
+                .sorted((e1, e2) -> ukrainianCollator.compare(e1.getName(), e2.getName()))
+                .collect(Collectors.toList());
     }
 }

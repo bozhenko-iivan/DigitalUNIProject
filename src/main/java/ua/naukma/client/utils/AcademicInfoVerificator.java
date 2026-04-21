@@ -83,7 +83,7 @@ public class AcademicInfoVerificator {
 
     public static TeacherPosition ask_teacher_position() {
         Scanner scanner = InitScanner.try_init_scanner();
-        System.out.print("Enter teacher position: (1/2/3/4/5): ");
+        System.out.print("Enter teacher position: (1/2/3/4/5/6/7): ");
         System.out.println(Arrays.toString(TeacherPosition.values()));
         while (true) {
             try {
@@ -92,8 +92,10 @@ public class AcademicInfoVerificator {
                     case 1 -> TeacherPosition.ASSISTANT;
                     case 2 -> TeacherPosition.LECTURER;
                     case 3 -> TeacherPosition.SENIOR_LECTURER;
-                    case 4 -> TeacherPosition.HEAD_OF_DEPARTMENT;
-                    case 5 -> TeacherPosition.DEAN;
+                    case 4 -> TeacherPosition.DOCENT;
+                    case 5 -> TeacherPosition.PROFESSOR;
+                    case 6 -> TeacherPosition.HEAD_OF_DEPARTMENT;
+                    case 7 -> TeacherPosition.DEAN;
                     default -> null;
                 };
             } catch (InputMismatchException e) {
@@ -105,15 +107,17 @@ public class AcademicInfoVerificator {
 
     public static TeacherDegree ask_teacher_degree() {
         Scanner scanner = InitScanner.try_init_scanner();
-        System.out.print("Enter teacher degree: (1/2/3): ");
+        System.out.print("Enter teacher degree: (1/2/3/4/5): ");
         System.out.println(Arrays.toString(TeacherDegree.values()));
         while (true) {
             try {
                 int teacherDegree = scanner.nextInt();
                 return switch (teacherDegree) {
                     case 1 -> TeacherDegree.NONE;
-                    case 2 -> TeacherDegree.PHD;
-                    case 3 -> TeacherDegree.DOCTOR_OF_SCIENCES;
+                    case 2 -> TeacherDegree.MASTER;
+                    case 3 -> TeacherDegree.POSTGRADUATE;
+                    case 4 -> TeacherDegree.PHD;
+                    case 5 -> TeacherDegree.DOCTOR_OF_SCIENCES;
                     default -> null;
                 };
             } catch (InputMismatchException e) {
@@ -126,14 +130,15 @@ public class AcademicInfoVerificator {
     public static TeacherRank ask_teacher_rank() {
         Scanner scanner = InitScanner.try_init_scanner();
         while (true) {
-            System.out.print("Enter teacher rank: (1/2/3): ");
+            System.out.print("Enter teacher rank: (1/2/3/4): ");
             System.out.println(Arrays.toString(TeacherRank.values()));
             try {
                 int teacherRank = scanner.nextInt();
                 return switch (teacherRank) {
-                    case 1 -> TeacherRank.DOCENT;
-                    case 2 -> TeacherRank.PROFESSOR;
-                    case 3 -> TeacherRank.SENIOR_RESEARCHER;
+                    case 1 -> TeacherRank.NONE;
+                    case 2 -> TeacherRank.DOCENT;
+                    case 3 -> TeacherRank.PROFESSOR;
+                    case 4 -> TeacherRank.SENIOR_RESEARCHER;
                     default -> null;
                 };
             } catch (InputMismatchException e) {

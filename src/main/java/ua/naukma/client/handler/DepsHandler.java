@@ -7,6 +7,7 @@ import ua.naukma.client.utils.FacilityNameVerificator;
 import ua.naukma.client.utils.IdVerificator;
 import ua.naukma.client.utils.UniversityVerificator;
 import ua.naukma.domain.Department;
+import ua.naukma.domain.Group;
 import ua.naukma.domain.Teacher;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
@@ -31,6 +32,8 @@ public class DepsHandler extends BasicHandler {
             case 3 -> remove_dep();
             case 4 -> find_dep();
             case 5 -> show_all();
+            case 6 -> sort_by_id();
+            case 7 -> sort_by_name();
             default -> System.out.println("Invalid choice");
         }
     }
@@ -117,6 +120,24 @@ public class DepsHandler extends BasicHandler {
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void sort_by_id() {
+        Response sortByIdResponse = sendRequest(Request.RequestType.SORT_BY_ID, null, false);
+        if (sortByIdResponse != null && sortByIdResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            @SuppressWarnings("unchecked")
+            List<Department> deps = (List<Department>) sortByIdResponse.getPayload();
+            deps.forEach(dep -> System.out.printf("%-15s | ID: %d%n", dep.getName(), dep.getId()));
+        }
+    }
+
+    private void sort_by_name(){
+        Response sortByNameResponse = sendRequest(Request.RequestType.SORT_BY_ALPHABETIC_NAME, null, false);
+        if (sortByNameResponse != null && sortByNameResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            @SuppressWarnings("unchecked")
+            List<Department> deps = (List<Department>) sortByNameResponse.getPayload();
+            deps.forEach(dep -> System.out.printf("%-15s%n", dep.getName()));
         }
     }
 }

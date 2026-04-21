@@ -7,4 +7,6 @@ public interface Service <T, Integer> {
     void deleteById(Integer id);
     T findById(Integer id);
     List<T> findAll();
+    List<T> sortByIds();
+    List<T> sortByName();
 }

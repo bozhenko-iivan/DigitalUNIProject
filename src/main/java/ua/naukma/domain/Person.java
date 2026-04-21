@@ -1,10 +1,11 @@
 package ua.naukma.domain;
 import ua.naukma.server.repository.GetId;
+import ua.naukma.server.repository.GetName;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public abstract class Person implements Serializable, GetId {
+public abstract class Person implements Serializable, GetId, GetName {
     private int id;
     private String firstName;
     private String lastName;
@@ -24,6 +25,11 @@ public abstract class Person implements Serializable, GetId {
     }
     @Override
     public int getId() {return id;}
+
+    @Override
+    public String getName() {
+        return lastName + " " + firstName;
+    }
     public String getFirstName() {return firstName;}
     public String getLastName() {return lastName;}
     public String getMiddleName() {return middleName;}

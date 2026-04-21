@@ -6,6 +6,9 @@ import ua.naukma.client.utils.*;
 import ua.naukma.domain.*;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
+import ua.naukma.network.dto.UpdateDepartmentDTO;
+import ua.naukma.network.dto.UpdateTeacherAcademicDTO;
+import ua.naukma.network.dto.UpdateTeacherContactsDTO;
 import ua.naukma.security.Permissions;
 
 import java.io.IOException;
@@ -28,7 +31,13 @@ public class DepartmentHandler extends BasicHandler {
             case 3 -> remove_teacher();
             case 4 -> find_teacher();
             case 5 -> show_all_teachers();
-            case 6 -> set_head();
+            case 6 -> sort_by_id();
+            case 7 -> sort_by_name();
+            case 8 -> set_head();
+            case 9 -> find_teacher_by_pib();
+            case 10 -> update_teacher_contacts();
+            case 11 -> update_teacher_academic();
+            case 12 -> edit_department();
             default -> System.out.println("Invalid choice");
         }
     }
@@ -163,5 +172,90 @@ public class DepartmentHandler extends BasicHandler {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    private void sort_by_id() {
+        Response sortByIdResponse = sendRequest(Request.RequestType.SORT_BY_ID, null, false);
+        if (sortByIdResponse != null && sortByIdResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            @SuppressWarnings("unchecked")
+            List<Teacher> teachers = (List<Teacher>) sortByIdResponse.getPayload();
+            teachers.forEach(teacher -> System.out.printf("%-25s | ID: %d%n", teacher.getName(), teacher.getId()));
+        }
+    }
+
+    private void sort_by_name() {
+        int departmentId = menuContext.getCurrent_department().getId();
+        Response res = sendRequest(Request.RequestType.SORT_DEPT_TEACHERS_BY_NAME, departmentId, false);
+        if (res != null && res.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            @SuppressWarnings("unchecked")
+            List<Teacher> teachers = (List<Teacher>) res.getPayload();
+            teachers.forEach(teacher -> System.out.printf("%-20s | ID: %d%n", teacher.getName(), teacher.getId()));
+        }
+    }
+
+    private void find_teacher_by_pib() {
+        boolean alphabet = PersonInfoVerificator.ask_alphabet();
+        String[] pib = {
+                PersonInfoVerificator.ask_name("last name", alphabet),
+                PersonInfoVerificator.ask_name("first name", alphabet),
+                PersonInfoVerificator.ask_name("middle name", alphabet)
+        };
+        Response res = sendRequest(Request.RequestType.FIND_TEACHER_BY_PIB, pib, false);
+        if (res.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            @SuppressWarnings("unchecked")
+            List<Teacher> teachers = (List<Teacher>) res.getPayload();
+            if (teachers.isEmpty()) {
+                System.out.println("Teachers not found.");
+            } else {
+                teachers.forEach(System.out::println);
+            }
+        }
+    }
+
+    private void update_teacher_contacts() {
+        requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
+            int teacherId = IdVerificator.ask_id();
+            String phoneNumber = PhoneNumberVerificator.ask_phonenum();
+            String email = EmailVerificator.ask_email();
+
+            UpdateTeacherContactsDTO payload = new UpdateTeacherContactsDTO(teacherId, phoneNumber, email);
+            Response response = sendRequest(Request.RequestType.UPDATE_TEACHER_CONTACTS, payload, false);
+
+            if (response != null && response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                System.out.println("Teacher contacts updated successfully.");
+            }
+        });
+    }
+
+    private void update_teacher_academic() {
+        requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
+            int teacherId = IdVerificator.ask_id();
+            TeacherPosition pos = AcademicInfoVerificator.ask_teacher_position();
+            TeacherDegree deg = AcademicInfoVerificator.ask_teacher_degree();
+            TeacherRank rank = AcademicInfoVerificator.ask_teacher_rank();
+            double load = AcademicInfoVerificator.ask_load();
+
+            UpdateTeacherAcademicDTO payload = new UpdateTeacherAcademicDTO(teacherId, pos, deg, rank, load);
+            sendRequest(Request.RequestType.UPDATE_TEACHER_ACADEMIC, payload, false);
+            System.out.println("Teacher academic info updated.");
+        });
+    }
+
+    private void edit_department() {
+        requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
+            int deptId = menuContext.getCurrent_department().getId();
+
+            System.out.print("Enter new location: ");
+            String newLocation = UniversityVerificator.ask_address();
+            String newEmail = EmailVerificator.ask_email();
+
+            UpdateDepartmentDTO dto = new UpdateDepartmentDTO(deptId, newLocation, newEmail);
+            Response res = sendRequest(Request.RequestType.UPDATE_DEPARTMENT, dto, false);
+
+            if (res != null && res.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                System.out.println("Department info updated!");
+                menuContext.setCurrent_department((Department) res.getPayload());
+            }
+        });
     }
 }

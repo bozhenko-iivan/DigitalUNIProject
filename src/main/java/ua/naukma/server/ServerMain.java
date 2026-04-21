@@ -105,7 +105,7 @@ public class ServerMain {
         UserService userService = new UserService(userRepository, SystemUser.class);
         FacultyService facultyService = new FacultyService(facultyRepository, teacherRepository, Faculty.class);
         GroupService groupService = new GroupService(groupRepository, Group.class);
-        StudentService studentService = new StudentService(studentRepository, Student.class);
+        StudentService studentService = new StudentService(studentRepository, gradeRepository, groupRepository,Student.class);
         TeacherService teacherService = new TeacherService(teacherRepository, Teacher.class);
         DepartmentService departmentService = new DepartmentService(departmentRepository, teacherRepository, Department.class);
         GradeService gradeService = new GradeService(gradeRepository, Grade.class);

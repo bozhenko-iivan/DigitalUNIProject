@@ -6,12 +6,15 @@ import ua.naukma.server.annotation.CommandRoute;
 import ua.naukma.server.repository.GetId;
 import ua.naukma.server.service.Service;
 import java.io.Serializable;
+import java.util.List;
 
 @CommandRoute({
     Request.RequestType.ADD,
             Request.RequestType.REMOVE,
             Request.RequestType.FIND,
-            Request.RequestType.GET_ALL
+            Request.RequestType.GET_ALL,
+        Request.RequestType.SORT_BY_ID,
+        Request.RequestType.SORT_BY_ALPHABETIC_NAME
 })
 
 public class EntityController<A extends Serializable & GetId, T extends Service<A, Integer>> implements RequestHandler {
@@ -52,6 +55,18 @@ public class EntityController<A extends Serializable & GetId, T extends Service<
             case LOGOUT -> execute(
                     () -> null, request.getType()
             );
+            case SORT_BY_ID ->  {
+                yield execute(
+                       service::sortByIds,
+                        request.getType()
+                );
+            }
+            case  SORT_BY_ALPHABETIC_NAME ->  {
+                yield execute(
+                       service::sortByName,
+                        request.getType()
+                );
+            }
             default -> new Response(Response.ResponseStatus.FAILURE, "Unknown command");
         };
     }

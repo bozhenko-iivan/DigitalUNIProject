@@ -17,18 +17,103 @@
     },
     "head": {
       "position": "HEAD_OF_DEPARTMENT",
-      "degree": "DOCTOR_OF_SCIENCES",
-      "rank": "PROFESSOR",
-      "hiringDate": "01.01.2015",
-      "load": 2.0,
+      "degree": "PHD",
+      "rank": "DOCENT",
+      "hiringDate": "01.09.2015",
+      "load": 1.0,
       "department": {
         "id": 1234567,
         "name": "department of informatics",
         "faculty": {
           "id": 1234567,
-          "name": "Fi",
+          "name": "Faculty of Informatics",
           "shortName": "fi",
-          "email": "fi@gmail.com",
+          "email": "fin@ukma.edu.ua",
+          "university": {
+            "id": 1234567,
+            "fullName": "NaUKMA",
+            "shortName": "KMA",
+            "city": "Kyiv",
+            "address": "Skovorody str, 2"
+          }
+        },
+        "location": "Room, 315",
+        "email": "gor@ukma.edu.ua"
+      },
+      "id": 1000001,
+      "firstName": "Семен",
+      "lastName": "Гороховський",
+      "middleName": "Самуїлович",
+      "birthDate": "12.05.1975",
+      "email": "gor@ukma.edu.ua",
+      "phoneNumber": "+380444636985"
+    },
+    "location": "Contractova, 1",
+    "email": "depFi@gmail.com"
+  },
+  {
+    "id": 1000001,
+    "name": "department of finances",
+    "faculty": {
+      "id": 1000002,
+      "name": "faculty of economics",
+      "shortName": "fen",
+      "dean": {
+        "position": "DEAN",
+        "degree": "PHD",
+        "rank": "DOCENT",
+        "hiringDate": "01.09.2010",
+        "load": 1.0,
+        "department": {
+          "id": 1000001,
+          "name": "department of finances",
+          "faculty": {
+            "id": 1000002,
+            "name": "faculty of economics",
+            "shortName": "fen",
+            "email": "fen@gmail.com",
+            "university": {
+              "id": 1234567,
+              "fullName": "NaUKMA",
+              "shortName": "KMA",
+              "city": "Kyiv",
+              "address": "Contractova, 2M"
+            }
+          },
+          "location": "Contractova, 67m",
+          "email": "financesdep@gmail.com"
+        },
+        "id": 1000027,
+        "firstName": "Світлана",
+        "lastName": "Глущенко",
+        "middleName": "Василівна",
+        "birthDate": "15.06.1975",
+        "email": "hlushchenko.s@ukma.edu.ua",
+        "phoneNumber": "+380444256042"
+      },
+      "email": "fen@gmail.com",
+      "university": {
+        "id": 1234567,
+        "fullName": "NaUKMA",
+        "shortName": "KMA",
+        "city": "Kyiv",
+        "address": "Contractova, 2M"
+      }
+    },
+    "head": {
+      "position": "DOCENT",
+      "degree": "PHD",
+      "rank": "DOCENT",
+      "hiringDate": "01.09.2012",
+      "load": 1.0,
+      "department": {
+        "id": 1000001,
+        "name": "department of finances",
+        "faculty": {
+          "id": 1000002,
+          "name": "faculty of economics",
+          "shortName": "fen",
+          "email": "fen@gmail.com",
           "university": {
             "id": 1234567,
             "fullName": "NaUKMA",
@@ -37,18 +122,18 @@
             "address": "Contractova, 2M"
           }
         },
-        "location": "Contractiva, 1",
-        "email": "depFi@gmail.com"
+        "location": "Contractova, 67m",
+        "email": "financesdep@gmail.com"
       },
-      "id": 1000001,
-      "firstName": "Андрій",
-      "lastName": "Глибовець",
-      "middleName": "Миколайович",
-      "birthDate": "01.01.1970",
-      "email": "hlyb1@gmail.com",
-      "phoneNumber": "+380971457898"
+      "id": 1000028,
+      "firstName": "Олена",
+      "lastName": "Бугрова",
+      "middleName": "Олександрівна",
+      "birthDate": "20.08.1980",
+      "email": "buhrova.o@ukma.edu.ua",
+      "phoneNumber": "+380444256042"
     },
-    "location": "Contractiva, 1",
-    "email": "depFi@gmail.com"
+    "location": "Contractova, 69m",
+    "email": "findep@gmail.com"
   }
 ]

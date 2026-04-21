@@ -1,18 +1,19 @@
 package ua.naukma.domain;
 
 import ua.naukma.server.repository.GetId;
+import ua.naukma.server.repository.GetName;
 
 import java.io.Serializable;
 
-public class Grade implements Serializable, GetId {
+public class Grade implements Serializable, GetId, GetName {
     private int gradeId;
     private int score;
     private int studentId;
     //private Student student;
     private Subject subjectName;
 
-    public Grade(int score, int studentId, Subject subjectName) {
-        setGradeId(gradeId);
+    public Grade(int gradeId, int score, int studentId, Subject subjectName) {
+        this.gradeId = gradeId;
         this.score = score;
         this.studentId = studentId;
         this.subjectName = subjectName;
@@ -21,12 +22,13 @@ public class Grade implements Serializable, GetId {
     public int getId() {
         return gradeId;
     }
+
+    @Override
+    public String getName() {return subjectName.name(); }
     public int getScore() {
         return score;
     }
-//    public Student getStudent() {
-//        return student;
-//    }
+
     public int getStudentId() {
         return studentId;
     }

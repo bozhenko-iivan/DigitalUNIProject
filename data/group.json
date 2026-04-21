@@ -17,5 +17,42 @@
         "address": "Contractova, 2M"
       }
     }
+  },
+  {
+    "id": 1000001,
+    "name": "IPZ-2",
+    "course": 1,
+    "admissionYear": 2025,
+    "faculty": {
+      "id": 1234567,
+      "name": "Fi",
+      "shortName": "fi",
+      "dean": {
+        "position": "PROFESSOR",
+        "degree": "DOCTOR_OF_SCIENCES",
+        "rank": "PROFESSOR",
+        "hiringDate": "22.10.1993",
+        "load": 1.5,
+        "department": {
+          "id": 1234567,
+          "name": "department of informatics"
+        },
+        "id": 1000002,
+        "firstName": "Микола",
+        "lastName": "Глибовець",
+        "middleName": "Миколайович",
+        "birthDate": "23.01.1959",
+        "email": "hlybovets.m@ukma.edu.ua",
+        "phoneNumber": "+380971234567"
+      },
+      "email": "fi@gmail.com",
+      "university": {
+        "id": 1234567,
+        "fullName": "NaUKMA",
+        "shortName": "KMA",
+        "city": "Kyiv",
+        "address": "Contractova, 2M"
+      }
+    }
   }
 ]
