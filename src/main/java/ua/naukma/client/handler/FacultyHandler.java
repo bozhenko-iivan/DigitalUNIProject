@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class FacultyHandler extends BasicHandler {
     public FacultyHandler(MenuContext menuContext, ObjectOutputStream out, ObjectInputStream in) {
@@ -133,7 +134,11 @@ public class FacultyHandler extends BasicHandler {
                 System.out.println("No students found on this course.");
                 return;
             }
-
+            list = list.stream().filter(isChild).toList();
+            if(list.isEmpty()) {
+                System.out.println("No students found on this course.");
+                return;
+            }
             if (sortChoice.equals("y")) {
                 java.text.Collator collator = java.text.Collator.getInstance(new java.util.Locale("uk", "UA"));
                 list.sort((s1, s2) -> collator.compare(s1.getName(), s2.getName()));
@@ -154,6 +159,7 @@ public class FacultyHandler extends BasicHandler {
         if (res != null && res.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             @SuppressWarnings("unchecked")
             List<Teacher> list = (List<Teacher>) res.getPayload();
+            list = list.stream().filter(isTeacherChild).toList();
             System.out.println("Teachers of Faculty");
             if (list.isEmpty()) System.out.println("No teachers found.");
             list.forEach(t -> System.out.printf("%-25s | Dept: %s%n", t.getName(), t.getDepartment().getName()));
@@ -164,6 +170,7 @@ public class FacultyHandler extends BasicHandler {
         if (res != null && res.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             @SuppressWarnings("unchecked")
             List<Student> list = (List<Student>) res.getPayload();
+            list = list.stream().filter(isChild).toList();
             if (list.isEmpty()) {
                 System.out.println("No students found.");
                 return;
@@ -174,4 +181,6 @@ public class FacultyHandler extends BasicHandler {
             System.out.println("Failed to load students list.");
         }
     }
+    private final Predicate<Student> isChild = s -> s.getGroup().getFaculty() != null && s.getGroup().getFaculty().getId() == menuContext.getCurrent_faculty().getId();
+    private final Predicate<Teacher> isTeacherChild = t -> t.getDepartment().getFaculty() != null && t.getDepartment().getFaculty().getId() == menuContext.getCurrent_faculty().getId();
 }

@@ -13,6 +13,7 @@ import ua.naukma.security.Permissions;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class UniHandler extends BasicHandler {
     public UniHandler(MenuContext context, ObjectOutputStream oos, ObjectInputStream ois) {
@@ -58,8 +59,10 @@ public class UniHandler extends BasicHandler {
     private void remove_faculty() {
         requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
             int facultyId = IdVerificator.ask_id();
-
-            sendRequest(Request.RequestType.REMOVE, facultyId, false);
+            Response findFacultyResponse = sendRequest(Request.RequestType.FIND, facultyId, false);
+            Faculty f = (Faculty) findFacultyResponse.getPayload();
+            if(f.getUniversity() != null && f.getUniversity().getId() == menuContext.getCurrent_university().getId())
+                sendRequest(Request.RequestType.REMOVE, facultyId, false);
         });
     }
     private void find_faculty() {
@@ -68,15 +71,20 @@ public class UniHandler extends BasicHandler {
         Response findFacultyResponse = sendRequest(Request.RequestType.FIND, facultyId, false);
 
         if (findFacultyResponse != null && findFacultyResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
-            menuContext.setCurrent_faculty((Faculty) findFacultyResponse.getPayload());
-            menuContext.setCurrent_level(MenuLevel.FAC);
+            Faculty f = (Faculty) findFacultyResponse.getPayload();
+            if(f.getUniversity() != null && f.getUniversity().getId() == menuContext.getCurrent_university().getId()) {
+                menuContext.setCurrent_faculty((Faculty) findFacultyResponse.getPayload());
+                menuContext.setCurrent_level(MenuLevel.FAC);
+            }
         }
+
     }
     private void show_all_faculties() {
         Response getAllRes = sendRequest(Request.RequestType.GET_ALL, null, false);
         if (getAllRes != null && getAllRes.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             @SuppressWarnings("unchecked")
             List<Faculty> faculties = (List<Faculty>) getAllRes.getPayload();
+            faculties = faculties.stream().filter(isChild).toList();
             faculties.forEach(System.out::println);
         }
     }
@@ -86,6 +94,7 @@ public class UniHandler extends BasicHandler {
         if (sortByIdResponse != null && sortByIdResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             @SuppressWarnings("unchecked")
             List<Faculty> faculties = (List<Faculty>) sortByIdResponse.getPayload();
+            faculties = faculties.stream().filter(isChild).toList();
             faculties.forEach(fac -> System.out.printf("%-25s | ID: %d%n", fac.getName(), fac.getId()));
         }
     }
@@ -95,7 +104,9 @@ public class UniHandler extends BasicHandler {
         if (sortByNameResponse != null && sortByNameResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             @SuppressWarnings("unchecked")
             List<Faculty> faculties = (List<Faculty>) sortByNameResponse.getPayload();
+            faculties = faculties.stream().filter(isChild).toList();
             faculties.forEach(fac -> System.out.printf("%-25s%n", fac.getName()));
         }
     }
+    private final Predicate<Faculty> isChild = f -> f.getUniversity() != null && f.getUniversity().getId() == menuContext.getCurrent_university().getId();
 }

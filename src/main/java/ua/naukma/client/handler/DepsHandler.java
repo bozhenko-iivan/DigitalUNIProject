@@ -7,6 +7,7 @@ import ua.naukma.client.utils.FacilityNameVerificator;
 import ua.naukma.client.utils.IdVerificator;
 import ua.naukma.client.utils.UniversityVerificator;
 import ua.naukma.domain.Department;
+import ua.naukma.domain.Faculty;
 import ua.naukma.domain.Group;
 import ua.naukma.domain.Teacher;
 import ua.naukma.network.Request;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class DepsHandler extends BasicHandler {
     public DepsHandler(MenuContext menuContext, ObjectInputStream in, ObjectOutputStream out) {
@@ -62,43 +64,40 @@ public class DepsHandler extends BasicHandler {
     }
     private void remove_dep() {
         if (menuContext.getCurrent_user().hasPermission(Permissions.MANAGE_STRUCTURE)) {
-            try {
                 int departmentId = IdVerificator.ask_id();
+                Response response = sendRequest(Request.RequestType.FIND, departmentId, false);
+                Department f = (Department) response.getPayload();
+                if(f.getFaculty() != null && f.getFaculty().getId() == menuContext.getCurrent_faculty().getId()) {
+                    response = sendRequest(Request.RequestType.REMOVE, departmentId, false);
+                    if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                        System.out.println("Department removed");
+                    } else {
+                        System.out.println(response.getMsg());
+                    }
+                }
 
-                Request removeRequest = new Request(Request.RequestType.REMOVE, departmentId, menuContext.getCurrent_level());
-                oos.writeObject(removeRequest);
-                oos.flush();
-
-                Response response = (Response) ois.readObject();
-                System.out.println(response.getMsg());
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
         } else {
             System.out.println("Access Denied: You cannot remove department.");
         }
     }
     private void find_dep() {
-        try {
-            int departmentId = IdVerificator.ask_id();
 
-            Request findRequest = new Request(Request.RequestType.FIND, departmentId, menuContext.getCurrent_level());
-            oos.writeObject(findRequest);
-            oos.flush();
+        int departmentId = IdVerificator.ask_id();
 
-            Response response = (Response) ois.readObject();
-
-            if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+        Response response = sendRequest(Request.RequestType.FIND, departmentId, false);
+        Department f = (Department) response.getPayload();
+        if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            if( f.getFaculty() != null && f.getFaculty().getId() == menuContext.getCurrent_faculty().getId()) {
                 System.out.println("Department found");
                 Department department = (Department) response.getPayload();
                 System.out.println(department);
                 menuContext.setCurrent_department(department);
                 menuContext.setCurrent_level(MenuLevel.DEPARTAMENT);
-            } else {
-                System.out.println(response.getMsg());
+            }else {
+                System.out.println("No department found");
             }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } else {
+            System.out.println(response.getMsg());
         }
     }
     private void show_all() {
@@ -114,6 +113,7 @@ public class DepsHandler extends BasicHandler {
                 System.out.println("All departments found");
                 @SuppressWarnings("unchecked")
                 List<Department> list = (List<Department>) response.getPayload();
+                list = list.stream().filter(isChild).toList();
                 list.forEach(System.out::println);
             } else {
                 System.out.println(response.getMsg());
@@ -128,6 +128,7 @@ public class DepsHandler extends BasicHandler {
         if (sortByIdResponse != null && sortByIdResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             @SuppressWarnings("unchecked")
             List<Department> deps = (List<Department>) sortByIdResponse.getPayload();
+            deps = deps.stream().filter(isChild).toList();
             deps.forEach(dep -> System.out.printf("%-15s | ID: %d%n", dep.getName(), dep.getId()));
         }
     }
@@ -137,7 +138,9 @@ public class DepsHandler extends BasicHandler {
         if (sortByNameResponse != null && sortByNameResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             @SuppressWarnings("unchecked")
             List<Department> deps = (List<Department>) sortByNameResponse.getPayload();
+            deps = deps.stream().filter(isChild).toList();
             deps.forEach(dep -> System.out.printf("%-15s%n", dep.getName()));
         }
     }
+    private final Predicate<Department> isChild = f -> f.getFaculty() != null && f.getFaculty().getId() == menuContext.getCurrent_faculty().getId();
 }

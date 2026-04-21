@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class GrpsHandler extends BasicHandler{
     public GrpsHandler(MenuContext menuContext, ObjectInputStream in, ObjectOutputStream out) {
@@ -61,15 +62,21 @@ public class GrpsHandler extends BasicHandler{
     private void remove_group() {
         requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
             int groupToRemoveId = IdVerificator.ask_id();
-            sendRequest(Request.RequestType.REMOVE, groupToRemoveId, false);
+            Response findGroupRes = sendRequest(Request.RequestType.FIND, groupToRemoveId, false);
+            Group g = (Group) findGroupRes.getPayload();
+            if(g.getFaculty() != null && g.getFaculty().getId() == menuContext.getCurrent_faculty().getId())
+                 sendRequest(Request.RequestType.REMOVE, groupToRemoveId, false);
         });
     }
     private void find_group() {
         int groupId = IdVerificator.ask_id();
         Response findGroupRes = sendRequest(Request.RequestType.FIND, groupId, false);
-        if (findGroupRes != null && findGroupRes.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
-            menuContext.setCurrent_group((Group) findGroupRes.getPayload());
-            menuContext.setCurrent_level(MenuLevel.GROUP);
+        Group g = (Group) findGroupRes.getPayload();
+        if (findGroupRes.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            if (g.getFaculty() != null && g.getFaculty().getId() == menuContext.getCurrent_faculty().getId()) {
+                menuContext.setCurrent_group((Group) findGroupRes.getPayload());
+                menuContext.setCurrent_level(MenuLevel.GROUP);
+            }
         }
     }
     private void show_all_groups() {
@@ -79,12 +86,11 @@ public class GrpsHandler extends BasicHandler{
             oos.flush();
 
             Response response = (Response) ois.readObject();
-
             if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
                 System.out.println("All groups found");
                 @SuppressWarnings("unchecked")
                 List<Group> list = (List<Group>) response.getPayload();
-                list.forEach(System.out::println);
+                list.stream().filter(isChild).forEach(System.out::println);
             } else {
                 System.out.println(response.getMsg());
             }
@@ -98,7 +104,7 @@ public class GrpsHandler extends BasicHandler{
         if (sortByIdResponse != null && sortByIdResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             @SuppressWarnings("unchecked")
             List<Group> groups = (List<Group>) sortByIdResponse.getPayload();
-            groups.forEach(gr -> System.out.printf("%-15s | ID: %d%n", gr.getName(), gr.getId()));
+            groups.stream().filter(isChild).forEach(gr -> System.out.printf("%-15s | ID: %d%n", gr.getName(), gr.getId()));
         }
     }
 
@@ -107,7 +113,8 @@ public class GrpsHandler extends BasicHandler{
         if (sortByNameResponse != null && sortByNameResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             @SuppressWarnings("unchecked")
             List<Group> groups = (List<Group>) sortByNameResponse.getPayload();
-            groups.forEach(gr -> System.out.printf("%-15s%n", gr.getName()));
+            groups.stream().filter(isChild).forEach(gr -> System.out.printf("%-15s%n", gr.getName()));
         }
     }
+    private final Predicate<Group> isChild = g -> g.getFaculty() != null && g.getFaculty().getId() == menuContext.getCurrent_faculty().getId();
 }

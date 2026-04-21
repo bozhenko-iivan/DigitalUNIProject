@@ -15427,3 +15427,3185 @@ Faculty's fullname: Fi
 ShortName: fi
 Faculty's email: fi@gmail.com
 2026-04-21 21:58:21.620 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:30:17.290 [main] INFO  ua.naukma.server.ServerMain - Starting server on port 8080
+2026-04-21 22:30:25.456 [main] INFO  ua.naukma.server.ServerMain - Starting server on port 8080
+2026-04-21 22:30:25.475 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Client IP: 127.0.0.1
+2026-04-21 22:30:39.423 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:30:39.423 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 22:30:39.423 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: LOGIN 
+2026-04-21 22:30:39.423 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  User: admun
+ID: -1
+Role: NOT ASSIGNED
+2026-04-21 22:30:39.424 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:30:39.426 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     FAILURE
+2026-04-21 22:30:39.426 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 login: 
+Invalid login or password
+2026-04-21 22:30:39.426 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      null
+2026-04-21 22:30:39.426 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:30:46.789 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:30:46.789 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 22:30:46.790 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: LOGIN 
+2026-04-21 22:30:46.790 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  User: admin
+ID: -1
+Role: NOT ASSIGNED
+2026-04-21 22:30:46.790 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:30:46.791 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 22:30:46.791 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 login: 
+2026-04-21 22:30:46.791 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      User: admin
+ID: 1111111
+Role: ADMIN
+Current rights: [|READ|MANAGE_USERS|MANAGE_STRUCTURE|MANAGE_STUDENTS|ADDITION_UNIVERSITY|DELETION_UNIVERSITY|]
+2026-04-21 22:30:46.793 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:30:46.796 [main] INFO  ua.naukma.client.ClientMain - Logged in as admin
+2026-04-21 22:31:17.795 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:31:17.796 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 22:31:17.797 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-21 22:31:17.797 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234567
+2026-04-21 22:31:17.797 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:31:17.801 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 22:31:17.801 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-21 22:31:17.801 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      NaUKMA (Kyiv)
+2026-04-21 22:31:17.801 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:31:37.791 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:31:37.791 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 22:31:37.792 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: GET_ALL 
+2026-04-21 22:31:37.792 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  null
+2026-04-21 22:31:37.792 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:31:37.806 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 22:31:37.807 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 get all: 
+2026-04-21 22:31:37.807 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      [Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Faculty's ID: 1000003
+Faculty's fullname: faculty of law
+ShortName: KMAlaw
+Faculty's email: kmalaw@gmail.com, Faculty's ID: 1000002
+Faculty's fullname: faculty of economics
+ShortName: fen
+Faculty's email: fen@gmail.com]
+2026-04-21 22:31:37.808 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:31:53.732 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:31:53.733 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 22:31:53.733 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-21 22:31:53.733 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234566
+2026-04-21 22:31:53.733 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:31:53.734 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 22:31:53.734 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-21 22:31:53.734 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      KNU (Kyiv)
+2026-04-21 22:31:53.734 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:31:58.466 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:31:58.467 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 22:31:58.467 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: GET_ALL 
+2026-04-21 22:31:58.467 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  null
+2026-04-21 22:31:58.467 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:31:58.469 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 22:31:58.469 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 get all: 
+2026-04-21 22:31:58.469 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      [Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Faculty's ID: 1000003
+Faculty's fullname: faculty of law
+ShortName: KMAlaw
+Faculty's email: kmalaw@gmail.com, Faculty's ID: 1000002
+Faculty's fullname: faculty of economics
+ShortName: fen
+Faculty's email: fen@gmail.com]
+2026-04-21 22:31:58.470 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:32:10.460 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:32:10.460 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 22:32:10.460 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-21 22:32:10.460 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234567
+2026-04-21 22:32:10.460 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:32:10.463 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 22:32:10.463 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-21 22:32:10.463 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com
+2026-04-21 22:32:10.463 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:32:20.940 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:32:20.940 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 22:32:20.940 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-21 22:32:20.940 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234567
+2026-04-21 22:32:20.940 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:32:20.942 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 22:32:20.942 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-21 22:32:20.942 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com
+2026-04-21 22:32:20.942 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:32:33.201 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:32:33.202 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 22:32:33.202 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-21 22:32:33.202 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234567
+2026-04-21 22:32:33.202 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:32:33.203 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 22:32:33.203 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-21 22:32:33.203 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      NaUKMA (Kyiv)
+2026-04-21 22:32:33.203 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:32:36.133 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:32:36.134 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 22:32:36.134 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: GET_ALL 
+2026-04-21 22:32:36.134 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  null
+2026-04-21 22:32:36.134 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:32:36.136 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 22:32:36.136 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 get all: 
+2026-04-21 22:32:36.136 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      [Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Faculty's ID: 1000003
+Faculty's fullname: faculty of law
+ShortName: KMAlaw
+Faculty's email: kmalaw@gmail.com, Faculty's ID: 1000002
+Faculty's fullname: faculty of economics
+ShortName: fen
+Faculty's email: fen@gmail.com]
+2026-04-21 22:32:36.137 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:54:15.192 [main] INFO  ua.naukma.server.ServerMain - Starting server on port 8080
+2026-04-21 22:54:17.599 [main] INFO  ua.naukma.server.ServerMain - Starting server on port 8080
+2026-04-21 22:54:17.622 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Client IP: 127.0.0.1
+2026-04-21 22:54:24.127 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:54:24.127 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 22:54:24.128 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: LOGIN 
+2026-04-21 22:54:24.128 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  User: admin
+ID: -1
+Role: NOT ASSIGNED
+2026-04-21 22:54:24.128 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:54:24.130 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 22:54:24.130 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 login: 
+2026-04-21 22:54:24.131 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      User: admin
+ID: 1111111
+Role: ADMIN
+Current rights: [|READ|MANAGE_USERS|MANAGE_STRUCTURE|MANAGE_STUDENTS|ADDITION_UNIVERSITY|DELETION_UNIVERSITY|]
+2026-04-21 22:54:24.132 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:54:24.135 [main] INFO  ua.naukma.client.ClientMain - Logged in as admin
+2026-04-21 22:54:28.997 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:54:28.997 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 22:54:28.997 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-21 22:54:28.997 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234566
+2026-04-21 22:54:28.997 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:54:29.002 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 22:54:29.002 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-21 22:54:29.002 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      KNU (Kyiv)
+2026-04-21 22:54:29.003 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:55:33.638 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:55:33.638 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 22:55:33.638 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-21 22:55:33.638 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234560
+2026-04-21 22:55:33.638 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:55:33.652 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     FAILURE
+2026-04-21 22:55:33.652 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+faculty with id 1234560 doesn't exist.
+2026-04-21 22:55:33.652 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      null
+2026-04-21 22:55:33.652 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:55:53.791 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:55:53.791 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 22:55:53.791 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: ADD 
+2026-04-21 22:55:53.791 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  Faculty's ID: 1234560
+Faculty's fullname: Faculty of Nature
+ShortName: FON
+Faculty's email: FON@gmail.com
+2026-04-21 22:55:53.793 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:55:53.801 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 22:55:53.801 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 add: 
+2026-04-21 22:55:53.801 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      null
+2026-04-21 22:55:53.801 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:56:03.915 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:56:03.915 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 22:56:03.915 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-21 22:56:03.915 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234560
+2026-04-21 22:56:03.915 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:56:03.917 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 22:56:03.917 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-21 22:56:03.917 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      Faculty's ID: 1234560
+Faculty's fullname: Faculty of Nature
+ShortName: FON
+Faculty's email: FON@gmail.com
+2026-04-21 22:56:03.917 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:56:32.956 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:56:32.956 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 22:56:32.956 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: GET_FAC_STUDENTS_BY_NAME 
+2026-04-21 22:56:32.956 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234560
+2026-04-21 22:56:32.956 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:56:32.986 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 22:56:32.986 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 get fac students by name: 
+2026-04-21 22:56:32.986 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      []
+2026-04-21 22:56:32.986 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:56:37.983 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:56:37.983 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 22:56:37.983 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: GET_FAC_STUDENTS_BY_COURSE 
+2026-04-21 22:56:37.983 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234560
+2026-04-21 22:56:37.983 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:56:37.997 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 22:56:37.997 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 get fac students by course: 
+2026-04-21 22:56:37.997 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      []
+2026-04-21 22:56:37.997 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:56:43.287 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:56:43.288 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 22:56:43.288 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: GET_FAC_TEACHERS_BY_NAME 
+2026-04-21 22:56:43.288 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234560
+2026-04-21 22:56:43.288 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:56:43.296 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 22:56:43.296 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 get fac teachers by name: 
+2026-04-21 22:56:43.296 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      []
+2026-04-21 22:56:43.296 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:56:50.860 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:56:50.861 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 22:56:50.861 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND_STUDENTS_BY_COURSE 
+2026-04-21 22:56:50.861 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1
+2026-04-21 22:56:50.861 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:56:50.866 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 22:56:50.866 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find students by course: 
+2026-04-21 22:56:50.866 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      [Student Віталіна Бачинська Сергіївна
+Email: vitabachynska@gmail.com
+Phone Number: +380978656966
+Record Book Number: Б-514а-696
+ID: 1000000
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Георгій Башкін Дмитрович
+Email: dogehoper@gmail.com
+Phone Number: +380602464440
+Record Book Number: Б-515а-322
+ID: 1000001
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Ангеліна Білик Олегівна
+Email: angelinabilyk133@gmail.com
+Phone Number: +380557549440
+Record Book Number: Б-18і-913
+ID: 1000002
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Дар`я Бобко Ігорівна
+Email: bobkodaria289@gmail.com
+Phone Number: +380988407704
+Record Book Number: Б-19о-509
+ID: 1000003
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Гордій Бондаренко Сергійович
+Email: sshheezzee@gmail.com
+Phone Number: +380981279896
+Record Book Number: Б-519о-580
+ID: 1000005
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Софія Бордаченко Олександрівна
+Email: s.bordachenko@gmail.com
+Phone Number: +380979930231
+Record Book Number: Б-520о-844
+ID: 1000006
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Вероніка Бурмецька Валентинівна
+Email: burmetska07@gmail.com
+Phone Number: +380972360446
+Record Book Number: Б-23у-510
+ID: 1000007
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Микола Ващук Володимирович
+Email: mmykolavashchuk@gmail.com
+Phone Number: +380682081605
+Record Book Number: В-24а-219
+ID: 1000008
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Юрій Волошанович Костянтинович
+Email: yurigvolosanovic@gmail.com
+Phone Number: +380664931992
+Record Book Number: В-523о-159
+ID: 1000009
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Артем Волощенко Олексійович
+Email: avoloschenko008@gmail.com
+Phone Number: +380727601861
+Record Book Number: В-26о-768
+ID: 1000010
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Роман Гвоздік Андрійович
+Email: romangvozdik999@gmail.com
+Phone Number: +380546144334
+Record Book Number: Г-525в-192
+ID: 1000011
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Нікіта Гелла Сергійович
+Email: gns2008sng@gmail.com
+Phone Number: +380635930535
+Record Book Number: Г-1194е-731
+ID: 1000012
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Ігор Гордієнко Володимирович
+Email: garikgord05@gmail.com
+Phone Number: +380680057368
+Record Book Number: Г-29о-284
+ID: 1000013
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Арсеній Грох Миколайович
+Email: a.m.groh07@gmail.com
+Phone Number: +380832766918
+Record Book Number: Г-30р-233
+ID: 1000014
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Максим Демків Романович
+Email: maxymka21@gmail.com
+Phone Number: +380669219735
+Record Book Number: Д-31е-130
+ID: 1000015
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Станіслав Дубина Валентинович
+Email: stanislavdubina298@gmail.com
+Phone Number: +380981211628
+Record Book Number: Д-32у-574
+ID: 1000016
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Вадім Дудар Андрійович
+Email: contactdudarvadim@gmail.com
+Phone Number: +380566639398
+Record Book Number: Д-531у-765
+ID: 1000017
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Діана Єзовіт Максимівна
+Email: d.yezovit@gmail.com
+Phone Number: +380674085208
+Record Book Number: Є-532з-899
+ID: 1000018
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Олександр Зайончківський Володимирович
+Email: 8169325@gmail.com
+Phone Number: +380367254285
+Record Book Number: З-35а-360
+ID: 1000019
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Марія Занько Андріївна
+Email: mz07.animation@gmail.com
+Phone Number: +380043690067
+Record Book Number: З-534а-343
+ID: 1000020
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Андрій Заяць Сергійович
+Email: andriy.s.zayats@gmail.com
+Phone Number: +380992134951
+Record Book Number: З-37а-951
+ID: 1000021
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Ілля Кабиш Анатолійович
+Email: recyut5132@gmail.com
+Phone Number: +380957739507
+Record Book Number: К-38а-745
+ID: 1000022
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Дарина Казмірчук Василівна
+Email: darynakazmirchuk08@gmail.com
+Phone Number: +380362067390
+Record Book Number: К-537а-319
+ID: 1000023
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Софія Караченцева Олексіївна
+Email: karachentseva.sofi@gmail.com
+Phone Number: +380505910447
+Record Book Number: К-538а-153
+ID: 1000024
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Денис Колісник Максимович
+Email: deniloc244@gmail.com
+Phone Number: +380633155000
+Record Book Number: К-539о-761
+ID: 1000025
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Софія Корж Олегівна
+Email: ksofiko628@gmail.com
+Phone Number: +380937070875
+Record Book Number: К-540о-401
+ID: 1000026
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Андрій Коротков Костянтинович
+Email: andriikorotkov@gmail.com
+Phone Number: +380955630209
+Record Book Number: К-43о-627
+ID: 1000027
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Станіслав Кошинський Михайлович
+Email: stasony10@gmail.com
+Phone Number: +380993129997
+Record Book Number: К-542о-150
+ID: 1000028
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Богдан Кравчук Тарасович
+Email: bogdankravchuk11@gmail.com
+Phone Number: +380263542865
+Record Book Number: К-45р-879
+ID: 1000029
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Андрій Курляк Юрійович
+Email: Andrijkurlak@gmail.com
+Phone Number: +380633186025
+Record Book Number: К-1540у-611
+ID: 1000030
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Катерина Лаврук Сергіївна
+Email: kkatyalavruk@gmail.com
+Phone Number: +380505232083
+Record Book Number: Л-47а-928
+ID: 1000031
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Софія Лещенко Анатоліївна
+Email: leshchenkosofiiaa@gmail.com
+Phone Number: +380665532078
+Record Book Number: Л-49е-379
+ID: 1000033
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Кіра Лятамбур Дмитрівна🍓
+Email: kira.liatambur@gmail.com
+Phone Number: +380971651771
+Record Book Number: Л-50я-535
+ID: 1000034
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Марк Макаров Ігорович
+Email: markmakarov1204@gmail.com
+Phone Number: +380671759787
+Record Book Number: М-51а-338
+ID: 1000035
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Олександр Малецький Вікторович
+Email: nan
+Phone Number: +380948559755
+Record Book Number: М-550а-138
+ID: 1000036
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анна Мартазіна Сергіївна
+Email: anqweta@gmail.com
+Phone Number: +380974858027
+Record Book Number: М-551а-433
+ID: 1000037
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анна Матящук Сергіївна
+Email: anna.matjascuk@gmail.com
+Phone Number: +380958702473
+Record Book Number: М-4а-333
+ID: 1000038
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Вячеслав Мокляк Сергійович
+Email: slava.mokliak@gmail.com
+Phone Number: +380509831589
+Record Book Number: М-553о-138
+ID: 1000039
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Михайло Нехай Ігорович
+Email: misha.nekhai@gmail.com
+Phone Number: +380920419768
+Record Book Number: Н-554е-805
+ID: 1000040
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Артур Ніколайчук Кирилович
+Email: arturnikolaichuk23@gmail.com
+Phone Number: +380760677675
+Record Book Number: Н-57і-614
+ID: 1000041
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Олександр Ображей Валерійович
+Email: oleksandrobrazhei@gmail.con
+Phone Number: +380978620341
+Record Book Number: О-556б-222
+ID: 1000042
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Гліб П`ятаченко Олександрович
+Email: patachenkogleb@gmail.com
+Phone Number: +380987887466
+Record Book Number: П-557`-499
+ID: 1000043
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Вікторія Поліщук Юріївна
+Email: victplsk@gmail.com
+Phone Number: +380113920636
+Record Book Number: П-558о-458
+ID: 1000044
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Кристина Попкова 
+Email: popkovakristina118@gmail.com
+Phone Number: +380231559419
+Record Book Number: П-559о-194
+ID: 1000045
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Дмитро Поплавський Вікторович
+Email: poplavskijdmitro584@gmail.com
+Phone Number: +380976076990
+Record Book Number: П-1058о-52
+ID: 1000046
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Вероніка Просвіркін Олександрівна
+Email: veronika.prosvirkin@gmail.com
+Phone Number: +380980131226
+Record Book Number: П-561р-972
+ID: 1000047
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Михайло Пулов Володимирович
+Email: mihail.pulov.247@gmail.com
+Phone Number: +380988219617
+Record Book Number: П-64у-202
+ID: 1000048
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Дарія Радько Олександрівна
+Email: dariaradko5@gmail.com
+Phone Number: +380993670589
+Record Book Number: Р-65а-470
+ID: 1000049
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Владислав Резанов Євгенович
+Email: vladdreza@gmail.com
+Phone Number: +380952513580
+Record Book Number: Р-564е-550
+ID: 1000050
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Нікіта Різник Юрійович
+Email: nikita.rezzz@gmail.com
+Phone Number: +380011179448
+Record Book Number: Р-565і-115
+ID: 1000051
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Софія Самойлич Олександрівна
+Email: sofia.samoylich@gmail.com
+Phone Number: +380958659511
+Record Book Number: С-68а-743
+ID: 1000052
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Максим Святун Олександрович
+Email: kopkayt@gmail.com
+Phone Number: +380953384521
+Record Book Number: С-567в-980
+ID: 1000053
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Тетяна Солтис Миколаївна
+Email: soltetiana12@gmail.com
+Phone Number: +380685870531
+Record Book Number: С-70о-394
+ID: 1000054
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Віолетта Топчий Дмитрівна
+Email: violetta.topchiy@gmail.com
+Phone Number: +380981092103
+Record Book Number: Т-569о-137
+ID: 1000055
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Дар`я Трухан Романівна
+Email: dashamegavip@gmail.com
+Phone Number: +380683889777
+Record Book Number: Т-72р-334
+ID: 1000056
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Олександра Фломбойм Олексіївна
+Email: sflomboim@gmail.com
+Phone Number: +380955941312
+Record Book Number: Ф-73л-424
+ID: 1000057
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анастасія Хмара Юріївна
+Email: anastasiakhmara176@gmail.com
+Phone Number: +380971837794
+Record Book Number: Х-74м-701
+ID: 1000058
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анастасія Шаповал Олександрівна
+Email: anastashap03@gmail.com
+Phone Number: +380666163290
+Record Book Number: Ш-573а-156
+ID: 1000059
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Михайло Шапошніков Артемій
+Email: mahxd9@gmail.com
+Phone Number: +380687638767
+Record Book Number: Ш-1242а-794
+ID: 1000060
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Дамір Шахін-Крупчан Гюнайович
+Email: damirshahinkrupchan@gmail.com
+Phone Number: +380370613914
+Record Book Number: Ш-77а-313
+ID: 1000061
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Ангеліна Шепетюк Артемівна
+Email: shepetukangelina24@gmail.com
+Phone Number: +380844475943
+Record Book Number: Ш-576е-253
+ID: 1000062
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анастасія Шкаровська Сергіївна
+Email: shkarow.n@gmail.com
+Phone Number: +380953962243
+Record Book Number: Ш-79к-650
+ID: 1000063
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анна Шкут Сергіївна
+Email: annshkut11@gmail.com
+Phone Number: +380679990506
+Record Book Number: Ш-578к-442
+ID: 1000064
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Єгор Щеголев Тимофійович
+Email: goshashchegolev@gmail.com
+Phone Number: +380503456977
+Record Book Number: Щ-81е-174
+ID: 1000065
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анастасія Яцкевич Іванівна
+Email: nastia.yatskevych@gmail.com
+Phone Number: +380967201296
+Record Book Number: Я-580ц-181
+ID: 1000066
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Іван Боженко Ігорович
+Email: bozhenko.iivan@gmail.com
+Phone Number: +380976607505
+Record Book Number: Б-20о-664
+ID: 1000004
+Admission year: 2025
+Course: 1
+GroupName: IPZ-2
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Іван Ластівка Іванович
+Email: ivanfreeman42@gmail.com
+Phone Number: +380681529247
+Record Book Number: Л-48а-973
+ID: 1000032
+Admission year: 2025
+Course: 1
+GroupName: IPZ-2
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com]
+2026-04-21 22:56:50.871 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:58:20.736 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:58:20.736 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 22:58:20.737 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: GET_ALL 
+2026-04-21 22:58:20.737 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234560
+2026-04-21 22:58:20.737 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 22:58:20.742 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 22:58:20.742 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 get all: 
+2026-04-21 22:58:20.742 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      [Department of department of informatics [fi], Department of department of finances [fen]]
+2026-04-21 22:58:20.743 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:31:23.461 [main] INFO  ua.naukma.server.ServerMain - Starting server on port 8080
+2026-04-21 23:31:26.250 [main] INFO  ua.naukma.server.ServerMain - Starting server on port 8080
+2026-04-21 23:31:26.265 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Client IP: 127.0.0.1
+2026-04-21 23:31:32.615 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:31:32.615 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:31:32.615 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: LOGIN 
+2026-04-21 23:31:32.615 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  User: admin
+ID: -1
+Role: NOT ASSIGNED
+2026-04-21 23:31:32.616 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:31:32.617 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:31:32.618 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 login: 
+2026-04-21 23:31:32.618 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      User: admin
+ID: 1111111
+Role: ADMIN
+Current rights: [|READ|MANAGE_USERS|MANAGE_STRUCTURE|MANAGE_STUDENTS|ADDITION_UNIVERSITY|DELETION_UNIVERSITY|]
+2026-04-21 23:31:32.618 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:31:32.621 [main] INFO  ua.naukma.client.ClientMain - Logged in as admin
+2026-04-21 23:31:47.995 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:31:47.995 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:31:47.995 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-21 23:31:47.995 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234566
+2026-04-21 23:31:47.995 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:31:48.000 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:31:48.000 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-21 23:31:48.000 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      KNU (Kyiv)
+2026-04-21 23:31:48.000 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:31:55.416 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:31:55.417 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:31:55.417 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: GET_ALL 
+2026-04-21 23:31:55.417 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  null
+2026-04-21 23:31:55.417 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:31:55.428 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:31:55.428 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 get all: 
+2026-04-21 23:31:55.428 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      [Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Faculty's ID: 1000003
+Faculty's fullname: faculty of law
+ShortName: KMAlaw
+Faculty's email: kmalaw@gmail.com, Faculty's ID: 1000002
+Faculty's fullname: faculty of economics
+ShortName: fen
+Faculty's email: fen@gmail.com, Faculty's ID: 1234560
+Faculty's fullname: Faculty of Nature
+ShortName: FON
+Faculty's email: FON@gmail.com]
+2026-04-21 23:31:55.429 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:03.611 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:03.611 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:32:03.611 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: SORT_BY_ID 
+2026-04-21 23:32:03.611 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  null
+2026-04-21 23:32:03.611 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:03.614 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:32:03.615 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 sort by id: 
+2026-04-21 23:32:03.615 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      [Faculty's ID: 1000002
+Faculty's fullname: faculty of economics
+ShortName: fen
+Faculty's email: fen@gmail.com, Faculty's ID: 1000003
+Faculty's fullname: faculty of law
+ShortName: KMAlaw
+Faculty's email: kmalaw@gmail.com, Faculty's ID: 1234560
+Faculty's fullname: Faculty of Nature
+ShortName: FON
+Faculty's email: FON@gmail.com, Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com]
+2026-04-21 23:32:03.615 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:14.799 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:14.799 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:32:14.800 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: SORT_BY_ALPHABETIC_NAME 
+2026-04-21 23:32:14.800 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  null
+2026-04-21 23:32:14.800 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:14.819 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:32:14.819 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 sort by alphabetic name: 
+2026-04-21 23:32:14.819 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      [Faculty's ID: 1000002
+Faculty's fullname: faculty of economics
+ShortName: fen
+Faculty's email: fen@gmail.com, Faculty's ID: 1000003
+Faculty's fullname: faculty of law
+ShortName: KMAlaw
+Faculty's email: kmalaw@gmail.com, Faculty's ID: 1234560
+Faculty's fullname: Faculty of Nature
+ShortName: FON
+Faculty's email: FON@gmail.com, Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com]
+2026-04-21 23:32:14.819 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:32.808 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:32.809 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:32:32.809 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-21 23:32:32.809 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234560
+2026-04-21 23:32:32.809 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:32.811 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:32:32.811 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-21 23:32:32.811 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      Faculty's ID: 1234560
+Faculty's fullname: Faculty of Nature
+ShortName: FON
+Faculty's email: FON@gmail.com
+2026-04-21 23:32:32.811 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:42.360 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:42.360 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:32:42.360 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: GET_FAC_STUDENTS_BY_NAME 
+2026-04-21 23:32:42.360 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234560
+2026-04-21 23:32:42.360 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:42.373 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:32:42.373 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 get fac students by name: 
+2026-04-21 23:32:42.373 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      []
+2026-04-21 23:32:42.373 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:50.893 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:50.894 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:32:50.894 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: GET_FAC_STUDENTS_BY_COURSE 
+2026-04-21 23:32:50.894 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234560
+2026-04-21 23:32:50.894 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:50.903 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:32:50.903 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 get fac students by course: 
+2026-04-21 23:32:50.903 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      []
+2026-04-21 23:32:50.903 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:53.346 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:53.346 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:32:53.347 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: GET_FAC_TEACHERS_BY_NAME 
+2026-04-21 23:32:53.347 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234560
+2026-04-21 23:32:53.347 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:53.352 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:32:53.352 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 get fac teachers by name: 
+2026-04-21 23:32:53.352 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      []
+2026-04-21 23:32:53.352 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:59.182 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:59.183 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:32:59.183 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND_STUDENTS_BY_COURSE 
+2026-04-21 23:32:59.183 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1
+2026-04-21 23:32:59.183 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:59.189 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:32:59.189 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find students by course: 
+2026-04-21 23:32:59.189 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      [Student Віталіна Бачинська Сергіївна
+Email: vitabachynska@gmail.com
+Phone Number: +380978656966
+Record Book Number: Б-514а-696
+ID: 1000000
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Георгій Башкін Дмитрович
+Email: dogehoper@gmail.com
+Phone Number: +380602464440
+Record Book Number: Б-515а-322
+ID: 1000001
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Ангеліна Білик Олегівна
+Email: angelinabilyk133@gmail.com
+Phone Number: +380557549440
+Record Book Number: Б-18і-913
+ID: 1000002
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Дар`я Бобко Ігорівна
+Email: bobkodaria289@gmail.com
+Phone Number: +380988407704
+Record Book Number: Б-19о-509
+ID: 1000003
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Гордій Бондаренко Сергійович
+Email: sshheezzee@gmail.com
+Phone Number: +380981279896
+Record Book Number: Б-519о-580
+ID: 1000005
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Софія Бордаченко Олександрівна
+Email: s.bordachenko@gmail.com
+Phone Number: +380979930231
+Record Book Number: Б-520о-844
+ID: 1000006
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Вероніка Бурмецька Валентинівна
+Email: burmetska07@gmail.com
+Phone Number: +380972360446
+Record Book Number: Б-23у-510
+ID: 1000007
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Микола Ващук Володимирович
+Email: mmykolavashchuk@gmail.com
+Phone Number: +380682081605
+Record Book Number: В-24а-219
+ID: 1000008
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Юрій Волошанович Костянтинович
+Email: yurigvolosanovic@gmail.com
+Phone Number: +380664931992
+Record Book Number: В-523о-159
+ID: 1000009
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Артем Волощенко Олексійович
+Email: avoloschenko008@gmail.com
+Phone Number: +380727601861
+Record Book Number: В-26о-768
+ID: 1000010
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Роман Гвоздік Андрійович
+Email: romangvozdik999@gmail.com
+Phone Number: +380546144334
+Record Book Number: Г-525в-192
+ID: 1000011
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Нікіта Гелла Сергійович
+Email: gns2008sng@gmail.com
+Phone Number: +380635930535
+Record Book Number: Г-1194е-731
+ID: 1000012
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Ігор Гордієнко Володимирович
+Email: garikgord05@gmail.com
+Phone Number: +380680057368
+Record Book Number: Г-29о-284
+ID: 1000013
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Арсеній Грох Миколайович
+Email: a.m.groh07@gmail.com
+Phone Number: +380832766918
+Record Book Number: Г-30р-233
+ID: 1000014
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Максим Демків Романович
+Email: maxymka21@gmail.com
+Phone Number: +380669219735
+Record Book Number: Д-31е-130
+ID: 1000015
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Станіслав Дубина Валентинович
+Email: stanislavdubina298@gmail.com
+Phone Number: +380981211628
+Record Book Number: Д-32у-574
+ID: 1000016
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Вадім Дудар Андрійович
+Email: contactdudarvadim@gmail.com
+Phone Number: +380566639398
+Record Book Number: Д-531у-765
+ID: 1000017
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Діана Єзовіт Максимівна
+Email: d.yezovit@gmail.com
+Phone Number: +380674085208
+Record Book Number: Є-532з-899
+ID: 1000018
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Олександр Зайончківський Володимирович
+Email: 8169325@gmail.com
+Phone Number: +380367254285
+Record Book Number: З-35а-360
+ID: 1000019
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Марія Занько Андріївна
+Email: mz07.animation@gmail.com
+Phone Number: +380043690067
+Record Book Number: З-534а-343
+ID: 1000020
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Андрій Заяць Сергійович
+Email: andriy.s.zayats@gmail.com
+Phone Number: +380992134951
+Record Book Number: З-37а-951
+ID: 1000021
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Ілля Кабиш Анатолійович
+Email: recyut5132@gmail.com
+Phone Number: +380957739507
+Record Book Number: К-38а-745
+ID: 1000022
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Дарина Казмірчук Василівна
+Email: darynakazmirchuk08@gmail.com
+Phone Number: +380362067390
+Record Book Number: К-537а-319
+ID: 1000023
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Софія Караченцева Олексіївна
+Email: karachentseva.sofi@gmail.com
+Phone Number: +380505910447
+Record Book Number: К-538а-153
+ID: 1000024
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Денис Колісник Максимович
+Email: deniloc244@gmail.com
+Phone Number: +380633155000
+Record Book Number: К-539о-761
+ID: 1000025
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Софія Корж Олегівна
+Email: ksofiko628@gmail.com
+Phone Number: +380937070875
+Record Book Number: К-540о-401
+ID: 1000026
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Андрій Коротков Костянтинович
+Email: andriikorotkov@gmail.com
+Phone Number: +380955630209
+Record Book Number: К-43о-627
+ID: 1000027
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Станіслав Кошинський Михайлович
+Email: stasony10@gmail.com
+Phone Number: +380993129997
+Record Book Number: К-542о-150
+ID: 1000028
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Богдан Кравчук Тарасович
+Email: bogdankravchuk11@gmail.com
+Phone Number: +380263542865
+Record Book Number: К-45р-879
+ID: 1000029
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Андрій Курляк Юрійович
+Email: Andrijkurlak@gmail.com
+Phone Number: +380633186025
+Record Book Number: К-1540у-611
+ID: 1000030
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Катерина Лаврук Сергіївна
+Email: kkatyalavruk@gmail.com
+Phone Number: +380505232083
+Record Book Number: Л-47а-928
+ID: 1000031
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Софія Лещенко Анатоліївна
+Email: leshchenkosofiiaa@gmail.com
+Phone Number: +380665532078
+Record Book Number: Л-49е-379
+ID: 1000033
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Кіра Лятамбур Дмитрівна🍓
+Email: kira.liatambur@gmail.com
+Phone Number: +380971651771
+Record Book Number: Л-50я-535
+ID: 1000034
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Марк Макаров Ігорович
+Email: markmakarov1204@gmail.com
+Phone Number: +380671759787
+Record Book Number: М-51а-338
+ID: 1000035
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Олександр Малецький Вікторович
+Email: nan
+Phone Number: +380948559755
+Record Book Number: М-550а-138
+ID: 1000036
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анна Мартазіна Сергіївна
+Email: anqweta@gmail.com
+Phone Number: +380974858027
+Record Book Number: М-551а-433
+ID: 1000037
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анна Матящук Сергіївна
+Email: anna.matjascuk@gmail.com
+Phone Number: +380958702473
+Record Book Number: М-4а-333
+ID: 1000038
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Вячеслав Мокляк Сергійович
+Email: slava.mokliak@gmail.com
+Phone Number: +380509831589
+Record Book Number: М-553о-138
+ID: 1000039
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Михайло Нехай Ігорович
+Email: misha.nekhai@gmail.com
+Phone Number: +380920419768
+Record Book Number: Н-554е-805
+ID: 1000040
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Артур Ніколайчук Кирилович
+Email: arturnikolaichuk23@gmail.com
+Phone Number: +380760677675
+Record Book Number: Н-57і-614
+ID: 1000041
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Олександр Ображей Валерійович
+Email: oleksandrobrazhei@gmail.con
+Phone Number: +380978620341
+Record Book Number: О-556б-222
+ID: 1000042
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Гліб П`ятаченко Олександрович
+Email: patachenkogleb@gmail.com
+Phone Number: +380987887466
+Record Book Number: П-557`-499
+ID: 1000043
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Вікторія Поліщук Юріївна
+Email: victplsk@gmail.com
+Phone Number: +380113920636
+Record Book Number: П-558о-458
+ID: 1000044
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Кристина Попкова 
+Email: popkovakristina118@gmail.com
+Phone Number: +380231559419
+Record Book Number: П-559о-194
+ID: 1000045
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Дмитро Поплавський Вікторович
+Email: poplavskijdmitro584@gmail.com
+Phone Number: +380976076990
+Record Book Number: П-1058о-52
+ID: 1000046
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Вероніка Просвіркін Олександрівна
+Email: veronika.prosvirkin@gmail.com
+Phone Number: +380980131226
+Record Book Number: П-561р-972
+ID: 1000047
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Михайло Пулов Володимирович
+Email: mihail.pulov.247@gmail.com
+Phone Number: +380988219617
+Record Book Number: П-64у-202
+ID: 1000048
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Дарія Радько Олександрівна
+Email: dariaradko5@gmail.com
+Phone Number: +380993670589
+Record Book Number: Р-65а-470
+ID: 1000049
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Владислав Резанов Євгенович
+Email: vladdreza@gmail.com
+Phone Number: +380952513580
+Record Book Number: Р-564е-550
+ID: 1000050
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Нікіта Різник Юрійович
+Email: nikita.rezzz@gmail.com
+Phone Number: +380011179448
+Record Book Number: Р-565і-115
+ID: 1000051
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Софія Самойлич Олександрівна
+Email: sofia.samoylich@gmail.com
+Phone Number: +380958659511
+Record Book Number: С-68а-743
+ID: 1000052
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Максим Святун Олександрович
+Email: kopkayt@gmail.com
+Phone Number: +380953384521
+Record Book Number: С-567в-980
+ID: 1000053
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Тетяна Солтис Миколаївна
+Email: soltetiana12@gmail.com
+Phone Number: +380685870531
+Record Book Number: С-70о-394
+ID: 1000054
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Віолетта Топчий Дмитрівна
+Email: violetta.topchiy@gmail.com
+Phone Number: +380981092103
+Record Book Number: Т-569о-137
+ID: 1000055
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Дар`я Трухан Романівна
+Email: dashamegavip@gmail.com
+Phone Number: +380683889777
+Record Book Number: Т-72р-334
+ID: 1000056
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Олександра Фломбойм Олексіївна
+Email: sflomboim@gmail.com
+Phone Number: +380955941312
+Record Book Number: Ф-73л-424
+ID: 1000057
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анастасія Хмара Юріївна
+Email: anastasiakhmara176@gmail.com
+Phone Number: +380971837794
+Record Book Number: Х-74м-701
+ID: 1000058
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анастасія Шаповал Олександрівна
+Email: anastashap03@gmail.com
+Phone Number: +380666163290
+Record Book Number: Ш-573а-156
+ID: 1000059
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Михайло Шапошніков Артемій
+Email: mahxd9@gmail.com
+Phone Number: +380687638767
+Record Book Number: Ш-1242а-794
+ID: 1000060
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Дамір Шахін-Крупчан Гюнайович
+Email: damirshahinkrupchan@gmail.com
+Phone Number: +380370613914
+Record Book Number: Ш-77а-313
+ID: 1000061
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Ангеліна Шепетюк Артемівна
+Email: shepetukangelina24@gmail.com
+Phone Number: +380844475943
+Record Book Number: Ш-576е-253
+ID: 1000062
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анастасія Шкаровська Сергіївна
+Email: shkarow.n@gmail.com
+Phone Number: +380953962243
+Record Book Number: Ш-79к-650
+ID: 1000063
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анна Шкут Сергіївна
+Email: annshkut11@gmail.com
+Phone Number: +380679990506
+Record Book Number: Ш-578к-442
+ID: 1000064
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Єгор Щеголев Тимофійович
+Email: goshashchegolev@gmail.com
+Phone Number: +380503456977
+Record Book Number: Щ-81е-174
+ID: 1000065
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анастасія Яцкевич Іванівна
+Email: nastia.yatskevych@gmail.com
+Phone Number: +380967201296
+Record Book Number: Я-580ц-181
+ID: 1000066
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Іван Боженко Ігорович
+Email: bozhenko.iivan@gmail.com
+Phone Number: +380976607505
+Record Book Number: Б-20о-664
+ID: 1000004
+Admission year: 2025
+Course: 1
+GroupName: IPZ-2
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Іван Ластівка Іванович
+Email: ivanfreeman42@gmail.com
+Phone Number: +380681529247
+Record Book Number: Л-48а-973
+ID: 1000032
+Admission year: 2025
+Course: 1
+GroupName: IPZ-2
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com]
+2026-04-21 23:32:59.193 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:32:59.217 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Client disconnected (EOF): null
+2026-04-21 23:35:56.504 [main] INFO  ua.naukma.server.ServerMain - Starting server on port 8080
+2026-04-21 23:35:57.424 [main] INFO  ua.naukma.server.ServerMain - Starting server on port 8080
+2026-04-21 23:35:57.442 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Client IP: 127.0.0.1
+2026-04-21 23:36:02.355 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:36:02.355 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:36:02.355 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: LOGIN 
+2026-04-21 23:36:02.355 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  User: admin
+ID: -1
+Role: NOT ASSIGNED
+2026-04-21 23:36:02.356 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:36:02.358 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:36:02.358 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 login: 
+2026-04-21 23:36:02.358 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      User: admin
+ID: 1111111
+Role: ADMIN
+Current rights: [|READ|MANAGE_USERS|MANAGE_STRUCTURE|MANAGE_STUDENTS|ADDITION_UNIVERSITY|DELETION_UNIVERSITY|]
+2026-04-21 23:36:02.359 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:36:02.361 [main] INFO  ua.naukma.client.ClientMain - Logged in as admin
+2026-04-21 23:36:10.136 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:36:10.136 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:36:10.136 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-21 23:36:10.136 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234566
+2026-04-21 23:36:10.136 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:36:10.138 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:36:10.138 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-21 23:36:10.138 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      KNU (Kyiv)
+2026-04-21 23:36:10.138 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:36:14.084 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:36:14.085 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:36:14.085 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-21 23:36:14.085 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234560
+2026-04-21 23:36:14.085 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:36:14.094 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:36:14.094 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-21 23:36:14.094 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      Faculty's ID: 1234560
+Faculty's fullname: Faculty of Nature
+ShortName: FON
+Faculty's email: FON@gmail.com
+2026-04-21 23:36:14.095 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:36:17.894 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:36:17.895 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:36:17.895 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND_STUDENTS_BY_COURSE 
+2026-04-21 23:36:17.895 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1
+2026-04-21 23:36:17.895 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:36:17.909 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:36:17.910 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find students by course: 
+2026-04-21 23:36:17.910 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      [Student Віталіна Бачинська Сергіївна
+Email: vitabachynska@gmail.com
+Phone Number: +380978656966
+Record Book Number: Б-514а-696
+ID: 1000000
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Георгій Башкін Дмитрович
+Email: dogehoper@gmail.com
+Phone Number: +380602464440
+Record Book Number: Б-515а-322
+ID: 1000001
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Ангеліна Білик Олегівна
+Email: angelinabilyk133@gmail.com
+Phone Number: +380557549440
+Record Book Number: Б-18і-913
+ID: 1000002
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Дар`я Бобко Ігорівна
+Email: bobkodaria289@gmail.com
+Phone Number: +380988407704
+Record Book Number: Б-19о-509
+ID: 1000003
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Гордій Бондаренко Сергійович
+Email: sshheezzee@gmail.com
+Phone Number: +380981279896
+Record Book Number: Б-519о-580
+ID: 1000005
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Софія Бордаченко Олександрівна
+Email: s.bordachenko@gmail.com
+Phone Number: +380979930231
+Record Book Number: Б-520о-844
+ID: 1000006
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Вероніка Бурмецька Валентинівна
+Email: burmetska07@gmail.com
+Phone Number: +380972360446
+Record Book Number: Б-23у-510
+ID: 1000007
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Микола Ващук Володимирович
+Email: mmykolavashchuk@gmail.com
+Phone Number: +380682081605
+Record Book Number: В-24а-219
+ID: 1000008
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Юрій Волошанович Костянтинович
+Email: yurigvolosanovic@gmail.com
+Phone Number: +380664931992
+Record Book Number: В-523о-159
+ID: 1000009
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Артем Волощенко Олексійович
+Email: avoloschenko008@gmail.com
+Phone Number: +380727601861
+Record Book Number: В-26о-768
+ID: 1000010
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Роман Гвоздік Андрійович
+Email: romangvozdik999@gmail.com
+Phone Number: +380546144334
+Record Book Number: Г-525в-192
+ID: 1000011
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Нікіта Гелла Сергійович
+Email: gns2008sng@gmail.com
+Phone Number: +380635930535
+Record Book Number: Г-1194е-731
+ID: 1000012
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Ігор Гордієнко Володимирович
+Email: garikgord05@gmail.com
+Phone Number: +380680057368
+Record Book Number: Г-29о-284
+ID: 1000013
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Арсеній Грох Миколайович
+Email: a.m.groh07@gmail.com
+Phone Number: +380832766918
+Record Book Number: Г-30р-233
+ID: 1000014
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Максим Демків Романович
+Email: maxymka21@gmail.com
+Phone Number: +380669219735
+Record Book Number: Д-31е-130
+ID: 1000015
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Станіслав Дубина Валентинович
+Email: stanislavdubina298@gmail.com
+Phone Number: +380981211628
+Record Book Number: Д-32у-574
+ID: 1000016
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Вадім Дудар Андрійович
+Email: contactdudarvadim@gmail.com
+Phone Number: +380566639398
+Record Book Number: Д-531у-765
+ID: 1000017
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Діана Єзовіт Максимівна
+Email: d.yezovit@gmail.com
+Phone Number: +380674085208
+Record Book Number: Є-532з-899
+ID: 1000018
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Олександр Зайончківський Володимирович
+Email: 8169325@gmail.com
+Phone Number: +380367254285
+Record Book Number: З-35а-360
+ID: 1000019
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Марія Занько Андріївна
+Email: mz07.animation@gmail.com
+Phone Number: +380043690067
+Record Book Number: З-534а-343
+ID: 1000020
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Андрій Заяць Сергійович
+Email: andriy.s.zayats@gmail.com
+Phone Number: +380992134951
+Record Book Number: З-37а-951
+ID: 1000021
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Ілля Кабиш Анатолійович
+Email: recyut5132@gmail.com
+Phone Number: +380957739507
+Record Book Number: К-38а-745
+ID: 1000022
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Дарина Казмірчук Василівна
+Email: darynakazmirchuk08@gmail.com
+Phone Number: +380362067390
+Record Book Number: К-537а-319
+ID: 1000023
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Софія Караченцева Олексіївна
+Email: karachentseva.sofi@gmail.com
+Phone Number: +380505910447
+Record Book Number: К-538а-153
+ID: 1000024
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Денис Колісник Максимович
+Email: deniloc244@gmail.com
+Phone Number: +380633155000
+Record Book Number: К-539о-761
+ID: 1000025
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Софія Корж Олегівна
+Email: ksofiko628@gmail.com
+Phone Number: +380937070875
+Record Book Number: К-540о-401
+ID: 1000026
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Андрій Коротков Костянтинович
+Email: andriikorotkov@gmail.com
+Phone Number: +380955630209
+Record Book Number: К-43о-627
+ID: 1000027
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Станіслав Кошинський Михайлович
+Email: stasony10@gmail.com
+Phone Number: +380993129997
+Record Book Number: К-542о-150
+ID: 1000028
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Богдан Кравчук Тарасович
+Email: bogdankravchuk11@gmail.com
+Phone Number: +380263542865
+Record Book Number: К-45р-879
+ID: 1000029
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Андрій Курляк Юрійович
+Email: Andrijkurlak@gmail.com
+Phone Number: +380633186025
+Record Book Number: К-1540у-611
+ID: 1000030
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Катерина Лаврук Сергіївна
+Email: kkatyalavruk@gmail.com
+Phone Number: +380505232083
+Record Book Number: Л-47а-928
+ID: 1000031
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Софія Лещенко Анатоліївна
+Email: leshchenkosofiiaa@gmail.com
+Phone Number: +380665532078
+Record Book Number: Л-49е-379
+ID: 1000033
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Кіра Лятамбур Дмитрівна🍓
+Email: kira.liatambur@gmail.com
+Phone Number: +380971651771
+Record Book Number: Л-50я-535
+ID: 1000034
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Марк Макаров Ігорович
+Email: markmakarov1204@gmail.com
+Phone Number: +380671759787
+Record Book Number: М-51а-338
+ID: 1000035
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Олександр Малецький Вікторович
+Email: nan
+Phone Number: +380948559755
+Record Book Number: М-550а-138
+ID: 1000036
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анна Мартазіна Сергіївна
+Email: anqweta@gmail.com
+Phone Number: +380974858027
+Record Book Number: М-551а-433
+ID: 1000037
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анна Матящук Сергіївна
+Email: anna.matjascuk@gmail.com
+Phone Number: +380958702473
+Record Book Number: М-4а-333
+ID: 1000038
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Вячеслав Мокляк Сергійович
+Email: slava.mokliak@gmail.com
+Phone Number: +380509831589
+Record Book Number: М-553о-138
+ID: 1000039
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Михайло Нехай Ігорович
+Email: misha.nekhai@gmail.com
+Phone Number: +380920419768
+Record Book Number: Н-554е-805
+ID: 1000040
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Артур Ніколайчук Кирилович
+Email: arturnikolaichuk23@gmail.com
+Phone Number: +380760677675
+Record Book Number: Н-57і-614
+ID: 1000041
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Олександр Ображей Валерійович
+Email: oleksandrobrazhei@gmail.con
+Phone Number: +380978620341
+Record Book Number: О-556б-222
+ID: 1000042
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Гліб П`ятаченко Олександрович
+Email: patachenkogleb@gmail.com
+Phone Number: +380987887466
+Record Book Number: П-557`-499
+ID: 1000043
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Вікторія Поліщук Юріївна
+Email: victplsk@gmail.com
+Phone Number: +380113920636
+Record Book Number: П-558о-458
+ID: 1000044
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Кристина Попкова 
+Email: popkovakristina118@gmail.com
+Phone Number: +380231559419
+Record Book Number: П-559о-194
+ID: 1000045
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Дмитро Поплавський Вікторович
+Email: poplavskijdmitro584@gmail.com
+Phone Number: +380976076990
+Record Book Number: П-1058о-52
+ID: 1000046
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Вероніка Просвіркін Олександрівна
+Email: veronika.prosvirkin@gmail.com
+Phone Number: +380980131226
+Record Book Number: П-561р-972
+ID: 1000047
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Михайло Пулов Володимирович
+Email: mihail.pulov.247@gmail.com
+Phone Number: +380988219617
+Record Book Number: П-64у-202
+ID: 1000048
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Дарія Радько Олександрівна
+Email: dariaradko5@gmail.com
+Phone Number: +380993670589
+Record Book Number: Р-65а-470
+ID: 1000049
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Владислав Резанов Євгенович
+Email: vladdreza@gmail.com
+Phone Number: +380952513580
+Record Book Number: Р-564е-550
+ID: 1000050
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Нікіта Різник Юрійович
+Email: nikita.rezzz@gmail.com
+Phone Number: +380011179448
+Record Book Number: Р-565і-115
+ID: 1000051
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Софія Самойлич Олександрівна
+Email: sofia.samoylich@gmail.com
+Phone Number: +380958659511
+Record Book Number: С-68а-743
+ID: 1000052
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Максим Святун Олександрович
+Email: kopkayt@gmail.com
+Phone Number: +380953384521
+Record Book Number: С-567в-980
+ID: 1000053
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Тетяна Солтис Миколаївна
+Email: soltetiana12@gmail.com
+Phone Number: +380685870531
+Record Book Number: С-70о-394
+ID: 1000054
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Віолетта Топчий Дмитрівна
+Email: violetta.topchiy@gmail.com
+Phone Number: +380981092103
+Record Book Number: Т-569о-137
+ID: 1000055
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Дар`я Трухан Романівна
+Email: dashamegavip@gmail.com
+Phone Number: +380683889777
+Record Book Number: Т-72р-334
+ID: 1000056
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Олександра Фломбойм Олексіївна
+Email: sflomboim@gmail.com
+Phone Number: +380955941312
+Record Book Number: Ф-73л-424
+ID: 1000057
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анастасія Хмара Юріївна
+Email: anastasiakhmara176@gmail.com
+Phone Number: +380971837794
+Record Book Number: Х-74м-701
+ID: 1000058
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анастасія Шаповал Олександрівна
+Email: anastashap03@gmail.com
+Phone Number: +380666163290
+Record Book Number: Ш-573а-156
+ID: 1000059
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Михайло Шапошніков Артемій
+Email: mahxd9@gmail.com
+Phone Number: +380687638767
+Record Book Number: Ш-1242а-794
+ID: 1000060
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Дамір Шахін-Крупчан Гюнайович
+Email: damirshahinkrupchan@gmail.com
+Phone Number: +380370613914
+Record Book Number: Ш-77а-313
+ID: 1000061
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Ангеліна Шепетюк Артемівна
+Email: shepetukangelina24@gmail.com
+Phone Number: +380844475943
+Record Book Number: Ш-576е-253
+ID: 1000062
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анастасія Шкаровська Сергіївна
+Email: shkarow.n@gmail.com
+Phone Number: +380953962243
+Record Book Number: Ш-79к-650
+ID: 1000063
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анна Шкут Сергіївна
+Email: annshkut11@gmail.com
+Phone Number: +380679990506
+Record Book Number: Ш-578к-442
+ID: 1000064
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Єгор Щеголев Тимофійович
+Email: goshashchegolev@gmail.com
+Phone Number: +380503456977
+Record Book Number: Щ-81е-174
+ID: 1000065
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Анастасія Яцкевич Іванівна
+Email: nastia.yatskevych@gmail.com
+Phone Number: +380967201296
+Record Book Number: Я-580ц-181
+ID: 1000066
+Admission year: 2025
+Course: 1
+GroupName: IPZ-1
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Іван Боженко Ігорович
+Email: bozhenko.iivan@gmail.com
+Phone Number: +380976607505
+Record Book Number: Б-20о-664
+ID: 1000004
+Admission year: 2025
+Course: 1
+GroupName: IPZ-2
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com, Student Іван Ластівка Іванович
+Email: ivanfreeman42@gmail.com
+Phone Number: +380681529247
+Record Book Number: Л-48а-973
+ID: 1000032
+Admission year: 2025
+Course: 1
+GroupName: IPZ-2
+Study form: BUDGET
+Status: STUDYING
+Faculty Faculty's ID: 1234567
+Faculty's fullname: Fi
+ShortName: fi
+Faculty's email: fi@gmail.com]
+2026-04-21 23:36:17.914 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:36:41.157 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:36:41.157 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:36:41.157 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: GET_ALL 
+2026-04-21 23:36:41.157 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234560
+2026-04-21 23:36:41.157 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:36:41.162 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:36:41.162 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 get all: 
+2026-04-21 23:36:41.162 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      [Group: IPZ-1 (ID: 1234567)
+Course: 1
+Admission year: 2025
+Faculty: Fi, Group: IPZ-2 (ID: 1000001)
+Course: 1
+Admission year: 2025
+Faculty: Fi]
+2026-04-21 23:36:41.164 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:36:50.587 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:36:50.588 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:36:50.588 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: SORT_BY_ID 
+2026-04-21 23:36:50.588 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  null
+2026-04-21 23:36:50.588 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:36:50.592 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:36:50.592 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 sort by id: 
+2026-04-21 23:36:50.592 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      [Group: IPZ-2 (ID: 1000001)
+Course: 1
+Admission year: 2025
+Faculty: Fi, Group: IPZ-1 (ID: 1234567)
+Course: 1
+Admission year: 2025
+Faculty: Fi]
+2026-04-21 23:36:50.592 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:36:54.039 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:36:54.039 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:36:54.039 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: SORT_BY_ALPHABETIC_NAME 
+2026-04-21 23:36:54.039 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  null
+2026-04-21 23:36:54.039 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:36:54.053 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:36:54.053 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 sort by alphabetic name: 
+2026-04-21 23:36:54.054 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      [Group: IPZ-1 (ID: 1234567)
+Course: 1
+Admission year: 2025
+Faculty: Fi, Group: IPZ-2 (ID: 1000001)
+Course: 1
+Admission year: 2025
+Faculty: Fi]
+2026-04-21 23:36:54.054 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:37:02.914 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:37:02.914 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:37:02.914 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-21 23:37:02.914 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234567
+2026-04-21 23:37:02.914 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:37:02.915 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:37:02.915 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-21 23:37:02.915 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      Group: IPZ-1 (ID: 1234567)
+Course: 1
+Admission year: 2025
+Faculty: Fi
+2026-04-21 23:37:02.915 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:37:21.752 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:37:21.753 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:37:21.753 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: GET_ALL 
+2026-04-21 23:37:21.753 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234560
+2026-04-21 23:37:21.753 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:37:21.756 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:37:21.756 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 get all: 
+2026-04-21 23:37:21.756 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      [Department of department of informatics [fi], Department of department of finances [fen]]
+2026-04-21 23:37:21.756 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:37:23.824 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:37:23.824 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:37:23.824 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: SORT_BY_ID 
+2026-04-21 23:37:23.824 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  null
+2026-04-21 23:37:23.824 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:37:23.826 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:37:23.826 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 sort by id: 
+2026-04-21 23:37:23.826 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      [Department of department of finances [fen], Department of department of informatics [fi]]
+2026-04-21 23:37:23.826 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:37:25.759 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:37:25.759 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:37:25.759 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: SORT_BY_ALPHABETIC_NAME 
+2026-04-21 23:37:25.759 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  null
+2026-04-21 23:37:25.759 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:37:25.761 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:37:25.762 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 sort by alphabetic name: 
+2026-04-21 23:37:25.762 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      [Department of department of finances [fen], Department of department of informatics [fi]]
+2026-04-21 23:37:25.762 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:37:33.035 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:37:33.036 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:37:33.036 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-21 23:37:33.036 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234567
+2026-04-21 23:37:33.036 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:37:33.037 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:37:33.037 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-21 23:37:33.037 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      Department of department of informatics [fi]
+2026-04-21 23:37:33.037 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:38:48.456 [main] INFO  ua.naukma.server.ServerMain - Starting server on port 8080
+2026-04-21 23:38:50.041 [main] INFO  ua.naukma.server.ServerMain - Starting server on port 8080
+2026-04-21 23:38:50.058 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Client IP: 127.0.0.1
+2026-04-21 23:38:54.812 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:38:54.812 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:38:54.812 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: LOGIN 
+2026-04-21 23:38:54.813 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  User: admin
+ID: -1
+Role: NOT ASSIGNED
+2026-04-21 23:38:54.813 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:38:54.815 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:38:54.815 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 login: 
+2026-04-21 23:38:54.815 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      User: admin
+ID: 1111111
+Role: ADMIN
+Current rights: [|READ|MANAGE_USERS|MANAGE_STRUCTURE|MANAGE_STUDENTS|ADDITION_UNIVERSITY|DELETION_UNIVERSITY|]
+2026-04-21 23:38:54.816 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:38:54.819 [main] INFO  ua.naukma.client.ClientMain - Logged in as admin
+2026-04-21 23:38:59.324 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:38:59.324 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:38:59.324 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-21 23:38:59.324 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234566
+2026-04-21 23:38:59.324 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:38:59.327 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:38:59.327 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-21 23:38:59.327 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      KNU (Kyiv)
+2026-04-21 23:38:59.328 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:39:05.047 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:39:05.048 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:39:05.048 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-21 23:39:05.048 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234560
+2026-04-21 23:39:05.048 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:39:05.058 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:39:05.058 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-21 23:39:05.058 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      Faculty's ID: 1234560
+Faculty's fullname: Faculty of Nature
+ShortName: FON
+Faculty's email: FON@gmail.com
+2026-04-21 23:39:05.059 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:39:13.022 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:39:13.022 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-21 23:39:13.022 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-21 23:39:13.022 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234567
+2026-04-21 23:39:13.022 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-21 23:39:13.025 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-21 23:39:13.025 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-21 23:39:13.025 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      Department of department of informatics [fi]
+2026-04-21 23:39:13.025 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================

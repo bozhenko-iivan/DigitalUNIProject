@@ -3,10 +3,7 @@ package ua.naukma.client.handler;
 import ua.naukma.client.ui.MenuContext;
 import ua.naukma.client.ui.MenuLevel;
 import ua.naukma.client.utils.*;
-import ua.naukma.domain.Group;
-import ua.naukma.domain.Student;
-import ua.naukma.domain.StudentStatus;
-import ua.naukma.domain.StudyForm;
+import ua.naukma.domain.*;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
 import ua.naukma.security.Permissions;
@@ -16,6 +13,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class GroupHandler extends BasicHandler {
     private StudentService studentService;
@@ -77,7 +75,10 @@ public class GroupHandler extends BasicHandler {
     private void remove_student() {
         requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
             int studentId = IdVerificator.ask_id();
-            sendRequest(Request.RequestType.REMOVE, studentId, false);
+            Response findStudentResponse = sendRequest(Request.RequestType.FIND_STUDENT_BY_ID, studentId, false);
+            Student s = (Student) findStudentResponse.getPayload();
+            if(s.getGroup() != null && s.getGroup().getId() == menuContext.getCurrent_group().getId())
+                sendRequest(Request.RequestType.REMOVE, studentId, false);
         });
     }
 
@@ -135,7 +136,7 @@ public class GroupHandler extends BasicHandler {
         if (getAll != null && getAll.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             @SuppressWarnings("unchecked")
             List<Student> list = (List<Student>) getAll.getPayload();
-            list.forEach((student) -> {
+            list.stream().filter(isChild).forEach((student) -> {
                 System.out.println(student.toStringShort());
             });
         }
@@ -160,4 +161,5 @@ public class GroupHandler extends BasicHandler {
             students.forEach(student -> System.out.printf("%-15s%n", student.getName()));
         }
     }
+    private final Predicate<Student> isChild = s -> s.getGroup() != null && s.getGroup().getId() == menuContext.getCurrent_group().getId();
 }

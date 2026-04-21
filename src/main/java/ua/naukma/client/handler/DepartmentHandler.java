@@ -16,6 +16,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class DepartmentHandler extends BasicHandler {
     public DepartmentHandler(MenuContext context, ObjectOutputStream oos, ObjectInputStream ois) {
@@ -116,41 +117,33 @@ public class DepartmentHandler extends BasicHandler {
 
     private void remove_teacher() {
         if (menuContext.getCurrent_user().hasPermission(Permissions.MANAGE_STRUCTURE)) {
-            try {
-                int teacherId = IdVerificator.ask_id();
-
-                Request removeRequest = new Request(Request.RequestType.REMOVE, teacherId, menuContext.getCurrent_level());
-                oos.writeObject(removeRequest);
-                oos.flush();
-
-                Response response = (Response) ois.readObject();
-                System.out.println(response.getMsg());
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
+            int teacherId = IdVerificator.ask_id();
+            Response r = sendRequest(Request.RequestType.FIND, teacherId, false);
+            Teacher t = (Teacher) r.getPayload();
+            if(t.getDepartment() != null && t.getDepartment().getId() == menuContext.getCurrent_department().getId()){
+                r =  sendRequest(Request.RequestType.REMOVE, teacherId, false);
+                if(r.getResponseStatus() == Response.ResponseStatus.SUCCESS){
+                    System.out.println("Teacher removed.");
+                }else{
+                    System.out.println("No teacher found.");
+                }
             }
         } else {
             System.out.println("Access Denied: You cannot remove teacher.");
         }
     }
     private void find_teacher() {
-        try {
-            int teacherId = IdVerificator.ask_id();
 
-            Request findRequest = new Request(Request.RequestType.FIND, teacherId, menuContext.getCurrent_level());
-            oos.writeObject(findRequest);
-            oos.flush();
+        int teacherId = IdVerificator.ask_id();
 
-            Response response = (Response) ois.readObject();
-
-            if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
-                System.out.println("Teacher found");
-                Teacher teacher = (Teacher) response.getPayload();
-                System.out.println(teacher);
-            } else {
-                System.out.println(response.getMsg());
+        Response response = sendRequest(Request.RequestType.FIND, teacherId, false);
+        if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            Teacher t = (Teacher) response.getPayload();
+            if (t.getDepartment() != null && t.getDepartment().getId() == menuContext.getCurrent_department().getId()) {
+                System.out.println(t);
             }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } else {
+            System.out.println("No teacher found.");
         }
     }
     private void show_all_teachers() {
@@ -165,6 +158,7 @@ public class DepartmentHandler extends BasicHandler {
             if  (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
                 System.out.println("All teachers found");
                 List<Teacher> list = (List<Teacher>) response.getPayload();
+                list = list.stream().filter(isChild).toList();
                 list.forEach(System.out::println);
             } else {
                 System.out.println(response.getMsg());
@@ -179,6 +173,7 @@ public class DepartmentHandler extends BasicHandler {
         if (sortByIdResponse != null && sortByIdResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             @SuppressWarnings("unchecked")
             List<Teacher> teachers = (List<Teacher>) sortByIdResponse.getPayload();
+            teachers = teachers.stream().filter(isChild).toList();
             teachers.forEach(teacher -> System.out.printf("%-25s | ID: %d%n", teacher.getName(), teacher.getId()));
         }
     }
@@ -189,6 +184,7 @@ public class DepartmentHandler extends BasicHandler {
         if (res != null && res.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             @SuppressWarnings("unchecked")
             List<Teacher> teachers = (List<Teacher>) res.getPayload();
+            teachers = teachers.stream().filter(isChild).toList();
             teachers.forEach(teacher -> System.out.printf("%-20s | ID: %d%n", teacher.getName(), teacher.getId()));
         }
     }
@@ -204,6 +200,7 @@ public class DepartmentHandler extends BasicHandler {
         if (res.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             @SuppressWarnings("unchecked")
             List<Teacher> teachers = (List<Teacher>) res.getPayload();
+            teachers = teachers.stream().filter(isChild).toList();
             if (teachers.isEmpty()) {
                 System.out.println("Teachers not found.");
             } else {
@@ -215,6 +212,7 @@ public class DepartmentHandler extends BasicHandler {
     private void update_teacher_contacts() {
         requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
             int teacherId = IdVerificator.ask_id();
+
             String phoneNumber = PhoneNumberVerificator.ask_phonenum();
             String email = EmailVerificator.ask_email();
 
@@ -258,4 +256,5 @@ public class DepartmentHandler extends BasicHandler {
             }
         });
     }
+    private final Predicate<Teacher> isChild = t -> t.getDepartment() != null && t.getDepartment().getId() == menuContext.getCurrent_department().getId();
 }
