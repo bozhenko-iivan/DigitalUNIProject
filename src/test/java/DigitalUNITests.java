@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DigitalUniTests {
     private Repository<Grade, Integer> gradeRepository;
+    private Repository<Group, Integer> groupRepository;
 
     private PersonRepository<Student, Integer> studentRepository;
     private StudentService studentService;
@@ -38,13 +39,14 @@ class DigitalUniTests {
         studentRepository = new FilePersonRepository<>(Student.class);
         teacherRepository = new FilePersonRepository<>(Teacher.class);
         gradeRepository = new FileRepository<>(Grade.class);
+        groupRepository = new FileRepository<>(Group.class);
 
         testUniversity = new University(1234567, "NaUKMA", "KMA", "Kyiv", "address, 2");
         testFaculty = new Faculty(1236567, "FFi", "ffi", null ,"ffi@gmail.com", testUniversity);
         testDepartment = new Department(1111111, "TestDept", testFaculty, null, "TestLoc", "test@ukma.edu.ua");
         testGroup = new Group(1234567, "IPZ-2025", testFaculty, 1, 2024);
 
-        studentService = new StudentService(studentRepository, gradeRepository,Student.class);
+        studentService = new StudentService(studentRepository, gradeRepository, groupRepository, Student.class);
         teacherService = new TeacherService(teacherRepository, Teacher.class);
 
         testStudent = new Student(1234456, "Максим", "Ткаченко", "Ігорович",

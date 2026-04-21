@@ -132,39 +132,6 @@
     "phoneNumber": "+380988407704"
   },
   {
-    "recordBookNumber": "Б-20о-664",
-    "course": 1,
-    "group": {
-      "id": 1234567,
-      "name": "IPZ-1",
-      "course": 1,
-      "admissionYear": 2025,
-      "faculty": {
-        "id": 1234567,
-        "name": "Fi",
-        "shortName": "fi",
-        "email": "fi@gmail.com",
-        "university": {
-          "id": 1234567,
-          "fullName": "NaUKMA",
-          "shortName": "KMA",
-          "city": "Kyiv",
-          "address": "Contractova, 2M"
-        }
-      }
-    },
-    "admissionYear": 2025,
-    "studyForm": "BUDGET",
-    "status": "STUDYING",
-    "id": 1000004,
-    "firstName": "Іван",
-    "lastName": "Боженко",
-    "middleName": "Ігорович",
-    "birthDate": "06.03.2008",
-    "email": "bozhenko.iivan@gmail.com",
-    "phoneNumber": "+380976607505"
-  },
-  {
     "recordBookNumber": "Б-519о-580",
     "course": 1,
     "group": {
@@ -1054,39 +1021,6 @@
     "birthDate": "06.09.2008",
     "email": "kkatyalavruk@gmail.com",
     "phoneNumber": "+380505232083"
-  },
-  {
-    "recordBookNumber": "Л-48а-973",
-    "course": 1,
-    "group": {
-      "id": 1234567,
-      "name": "IPZ-1",
-      "course": 1,
-      "admissionYear": 2025,
-      "faculty": {
-        "id": 1234567,
-        "name": "Fi",
-        "shortName": "fi",
-        "email": "fi@gmail.com",
-        "university": {
-          "id": 1234567,
-          "fullName": "NaUKMA",
-          "shortName": "KMA",
-          "city": "Kyiv",
-          "address": "Contractova, 2M"
-        }
-      }
-    },
-    "admissionYear": 2025,
-    "studyForm": "BUDGET",
-    "status": "STUDYING",
-    "id": 1000032,
-    "firstName": "Іван",
-    "lastName": "Ластівка",
-    "middleName": "Іванович",
-    "birthDate": "18.06.2008",
-    "email": "ivanfreeman42@gmail.com",
-    "phoneNumber": "+380681529247"
   },
   {
     "recordBookNumber": "Л-49е-379",
@@ -2211,69 +2145,105 @@
     "phoneNumber": "+380967201296"
   },
   {
-    "recordBookNumber": "22223333",
-    "course": 2,
-    "group": {
-      "id": 1234567,
-      "name": "IPZ-2025",
-      "course": 1,
-      "admissionYear": 2024,
-      "faculty": {
-        "id": 1236567,
-        "name": "FFi",
-        "shortName": "ffi",
-        "email": "ffi@gmail.com",
-        "university": {
-          "id": 1234567,
-          "fullName": "NaUKMA",
-          "shortName": "KMA",
-          "city": "Kyiv",
-          "address": "address, 2"
-        }
-      }
-    },
-    "admissionYear": 2023,
-    "studyForm": "CONTRACT",
-    "status": "STUDYING",
-    "id": 7654321,
-    "firstName": "Олег",
-    "lastName": "Петров",
-    "middleName": "Іванович",
-    "birthDate": "05.05.2004",
-    "email": "oleg@ukma.edu.ua",
-    "phoneNumber": "+380501234567"
-  },
-  {
-    "recordBookNumber": "11112222",
+    "recordBookNumber": "Б-20о-664",
     "course": 1,
     "group": {
-      "id": 1234567,
-      "name": "IPZ-2025",
+      "id": 1000001,
+      "name": "IPZ-2",
       "course": 1,
-      "admissionYear": 2024,
+      "admissionYear": 2025,
       "faculty": {
-        "id": 1236567,
-        "name": "FFi",
-        "shortName": "ffi",
-        "email": "ffi@gmail.com",
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "dean": {
+          "position": "PROFESSOR",
+          "degree": "DOCTOR_OF_SCIENCES",
+          "rank": "PROFESSOR",
+          "hiringDate": "22.10.1993",
+          "load": 1.5,
+          "department": {
+            "id": 1234567,
+            "name": "department of informatics"
+          },
+          "id": 1000002,
+          "firstName": "Микола",
+          "lastName": "Глибовець",
+          "middleName": "Миколайович",
+          "birthDate": "23.01.1959",
+          "email": "hlybovets.m@ukma.edu.ua",
+          "phoneNumber": "+380971234567"
+        },
+        "email": "fi@gmail.com",
         "university": {
           "id": 1234567,
           "fullName": "NaUKMA",
           "shortName": "KMA",
           "city": "Kyiv",
-          "address": "address, 2"
+          "address": "Contractova, 2M"
         }
       }
     },
-    "admissionYear": 2024,
-    "studyForm": "CONTRACT",
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
     "status": "STUDYING",
-    "id": 1234456,
-    "firstName": "Максим",
-    "lastName": "Ткаченко",
+    "id": 1000004,
+    "firstName": "Іван",
+    "lastName": "Боженко",
     "middleName": "Ігорович",
-    "birthDate": "10.10.2005",
-    "email": "new@ukma.edu.ua",
-    "phoneNumber": "+380999999999"
+    "birthDate": "06.03.2008",
+    "email": "bozhenko.iivan@gmail.com",
+    "phoneNumber": "+380976607505"
+  },
+  {
+    "recordBookNumber": "Л-48а-973",
+    "course": 1,
+    "group": {
+      "id": 1000001,
+      "name": "IPZ-2",
+      "course": 1,
+      "admissionYear": 2025,
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "dean": {
+          "position": "PROFESSOR",
+          "degree": "DOCTOR_OF_SCIENCES",
+          "rank": "PROFESSOR",
+          "hiringDate": "22.10.1993",
+          "load": 1.5,
+          "department": {
+            "id": 1234567,
+            "name": "department of informatics"
+          },
+          "id": 1000002,
+          "firstName": "Микола",
+          "lastName": "Глибовець",
+          "middleName": "Миколайович",
+          "birthDate": "23.01.1959",
+          "email": "hlybovets.m@ukma.edu.ua",
+          "phoneNumber": "+380971234567"
+        },
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    },
+    "admissionYear": 2025,
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000032,
+    "firstName": "Іван",
+    "lastName": "Ластівка",
+    "middleName": "Іванович",
+    "birthDate": "18.06.2008",
+    "email": "ivanfreeman42@gmail.com",
+    "phoneNumber": "+380681529247"
   }
 ]

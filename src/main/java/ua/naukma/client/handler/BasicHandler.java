@@ -34,9 +34,9 @@ public abstract class BasicHandler {
         Response response = sendRequest(requestType, id, true);
         return response != null && response.getResponseStatus() == Response.ResponseStatus.SUCCESS;
     }
-    public Response sendRequest(Request.RequestType requestType, Object payload, boolean silent) {
+    public Response sendRequest(Request.RequestType requestType, Object payload, boolean silent, MenuLevel targetLevel) {
         try {
-            Request request = new Request(requestType, payload, menuContext.getCurrent_level());
+            Request request = new Request(requestType, payload, targetLevel);
             oos.writeObject(request);
             oos.flush();
 
@@ -49,6 +49,9 @@ public abstract class BasicHandler {
         } catch (IOException | ClassNotFoundException e) {
             return new Response(Response.ResponseStatus.FAILURE, "Error while trying to read response from server");
         }
+    }
+    public Response sendRequest(Request.RequestType requestType, Object payload, boolean silent) {
+        return sendRequest(requestType, payload, silent, menuContext.getCurrent_level());
     }
     public abstract void handle();
 }

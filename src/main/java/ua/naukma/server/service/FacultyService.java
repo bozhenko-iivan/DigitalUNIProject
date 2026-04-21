@@ -52,4 +52,11 @@ public class FacultyService extends EntityService<Faculty, Integer> {
             throw new EntityNotFoundException("Faculty with id " + facultyId + " doesn't exist.");
         }
     }
+
+    public Faculty updateContacts(int facultyId, String newEmail) {
+        Faculty faculty = findById(facultyId);
+        faculty.setEmail(newEmail);
+        repository.save(faculty);
+        return faculty;
+    }
 }

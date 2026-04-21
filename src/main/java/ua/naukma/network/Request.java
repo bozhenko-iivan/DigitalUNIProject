@@ -42,6 +42,21 @@ public class Request implements Serializable {
         DELETE_STUDENT_GRADE,
         SHOW_TRANSCRIPT,
         CALCULATE_AVG,
+        CHANGE_COURSE,
+        TRANSFER_GROUP,
+        FIND_STUDENT_BY_PIB,
+
+        FIND_TEACHER_BY_PIB,
+        UPDATE_TEACHER_ACADEMIC,
+        UPDATE_TEACHER_CONTACTS,
+        SORT_DEPT_TEACHERS_BY_NAME,
+
+        GET_FAC_STUDENTS_BY_NAME,
+        GET_FAC_STUDENTS_BY_COURSE,
+        FIND_STUDENTS_BY_COURSE,
+        UPDATE_FACULTY,
+        GET_FAC_TEACHERS_BY_NAME,
+        UPDATE_DEPARTMENT,
 
         @Secured(Permissions.MANAGE_STRUCTURE)
         SET_DEAN,

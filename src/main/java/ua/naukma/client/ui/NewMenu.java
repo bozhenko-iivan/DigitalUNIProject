@@ -12,7 +12,6 @@ public class NewMenu {
     private MenuOptionsHandler menu_options_handler;
     private SystemUser loggedUser;
 
-
     public NewMenu(ObjectOutputStream universityService, ObjectInputStream userService, SystemUser loggedUser) {
         this.loggedUser = loggedUser;
         this.menu_options_handler = new MenuOptionsHandler(new MenuContext(loggedUser, current_level), universityService, userService);
@@ -48,11 +47,17 @@ public class NewMenu {
     }
 
     private void draw_FAC() {
-        System.out.println(
-                "2. Go to departaments\n" +
-                        "3. Go to groups\n" +
-                        "ℹ\uFE0F 4. Show faculty info\n" +
-                        "\uD83D\uDC68\u200D\uD83C\uDFEB 5. Set Faculty's Dean");
+        System.out.println("2. Go to departaments");
+        System.out.println("3. Go to groups");
+        System.out.println("ℹ️ 4. Show faculty info");
+        if (loggedUser.hasPermission(Permissions.MANAGE_STRUCTURE)) {
+            System.out.println("👨‍🏫 5. Set Faculty's Dean");
+            System.out.println("✏️ 6. Edit Faculty Info");
+        }
+        System.out.println("🗂️ 7. Faculty Students (Sorted by Name)");
+        System.out.println("📊 8. Faculty Students (Sorted by Course)");
+        System.out.println("👨‍🏫 9. Faculty Teachers (Sorted by Name)");
+        System.out.println("🔍 10. Find Students by specific Course");
     }
 
     public void draw_current(MenuLevel level) {
@@ -62,6 +67,7 @@ public class NewMenu {
         System.out.println(menu_options_handler.handleInfoAboutEntityDrawing());
         System.out.println("===================================");
         System.out.println("⚙\uFE0F Operations: ");
+
         if (level == MenuLevel.MON) {
             System.out.println("\uD83D\uDD11 1. Exit system");
         } else {
@@ -114,19 +120,11 @@ public class NewMenu {
         }
 
         if (level != MenuLevel.STUDENT) {
-            String action4;
-            if (level == MenuLevel.UNI || level == MenuLevel.DEPS || level == MenuLevel.GRPS) {
-                action4 = "Select ";
-            } else {
-                action4 = "Find ";
-            }
+            String action4 = (level == MenuLevel.UNI || level == MenuLevel.DEPS || level == MenuLevel.GRPS) ? "Select " : "Find ";
 
-            if (canAdd) {
-                System.out.println("➕ 2. Add " + s);
-            }
-            if (canRemove) {
-                System.out.println("❌ 3. Remove " + s);
-            }
+            if (canAdd) System.out.println("➕ 2. Add " + s);
+            if (canRemove) System.out.println("❌ 3. Remove " + s);
+
             System.out.println("\uD83D\uDD0D 4. " + action4 + s + " by ID");
             System.out.println("\uD83D\uDCCB 5. Show all " + s + "s");
             System.out.println("\uD83E\uDDED 6. Sort by ID");
@@ -135,15 +133,25 @@ public class NewMenu {
 
         if (level == MenuLevel.MON) {
             if (loggedUser.hasPermission(Permissions.MANAGE_USERS)) {
-                System.out.println("\uD83D\uDD12 8. Manage users (ADMIN only): ");
+                System.out.println("\uD83D\uDD12 8. Manage users (ADMIN only)");
             }
             System.out.println("\uD83D\uDEAA 9. Log out");
         }
 
+        if (level == MenuLevel.GROUP) {
+            System.out.println("\uD83D\uDD0E 8. Find Student by PIB");
+        }
 
         if (level == MenuLevel.DEPARTAMENT) {
             if (loggedUser.hasPermission(Permissions.MANAGE_STRUCTURE)) {
                 System.out.println("\uD83D\uDC68\u200D\uD83C\uDFEB 8. Set Head of Department");
+            }
+            System.out.println("\uD83D\uDD0E 9. Find Teacher by PIB");
+
+            if (loggedUser.hasPermission(Permissions.MANAGE_STRUCTURE)) {
+                System.out.println("\uD83D\uDCC7 10. Update teacher's contacts");
+                System.out.println("\uD83C\uDF93 11. Update teacher's academic info");
+                System.out.println("✏️ 12. Edit Department Info");
             }
         }
 
@@ -156,6 +164,8 @@ public class NewMenu {
             System.out.println("⛔ 7. Delete student's grade");
             System.out.println("\uD83D\uDCCB 8. Show student's transcript");
             System.out.println("\uD83D\uDCAF 9. Show student's GPA");
+            System.out.println("🔄 10. Change course");
+            System.out.println("🚪 11. Transfer to another group");
         }
 
         System.out.println("===================================");

@@ -3,6 +3,9 @@ package ua.naukma.server.controller;
 import ua.naukma.domain.Teacher;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
+import ua.naukma.network.dto.UpdateDepartmentDTO;
+import ua.naukma.network.dto.UpdateTeacherAcademicDTO;
+import ua.naukma.network.dto.UpdateTeacherContactsDTO;
 import ua.naukma.server.annotation.CommandRoute;
 import ua.naukma.server.service.DepartmentService;
 import ua.naukma.server.service.TeacherService;
@@ -16,7 +19,11 @@ import java.util.List;
         Request.RequestType.FIND,
         Request.RequestType.GET_ALL,
         Request.RequestType.SORT_BY_ID,
-        Request.RequestType.SORT_BY_ALPHABETIC_NAME
+        Request.RequestType.SORT_BY_ALPHABETIC_NAME,
+        Request.RequestType.UPDATE_TEACHER_CONTACTS,
+        Request.RequestType.UPDATE_TEACHER_ACADEMIC,
+        Request.RequestType.FIND_TEACHER_BY_PIB,
+        Request.RequestType.SORT_DEPT_TEACHERS_BY_NAME
 })
 public class DepartmentController implements RequestHandler {
     private final DepartmentService departmentService;
@@ -74,6 +81,36 @@ public class DepartmentController implements RequestHandler {
             case  SORT_BY_ALPHABETIC_NAME ->  {
                 yield execute(
                         teacherService::sortByName,
+                        request.getType()
+                );
+            }
+            case UPDATE_TEACHER_CONTACTS -> {
+                UpdateTeacherContactsDTO dto = (UpdateTeacherContactsDTO) request.getData();
+                yield execute(() -> teacherService.updateContacts(dto.teacherId(), dto.phoneNumber(), dto.email()), request.getType());
+            }
+            case UPDATE_TEACHER_ACADEMIC -> {
+                UpdateTeacherAcademicDTO dto = (UpdateTeacherAcademicDTO) request.getData();
+                yield execute(() -> teacherService.updateAcademicInfo(dto.teacherId(), dto.position(), dto.degree(), dto.rank(), dto.load()), request.getType());
+            }
+            case FIND_TEACHER_BY_PIB -> {
+                String[] pib = (String[]) request.getData();
+                yield execute(() -> teacherService.findByPIB(pib[0], pib[1], pib[2]), request.getType());
+            }
+            case SORT_DEPT_TEACHERS_BY_NAME -> {
+                int departmentId = (int) request.getData();
+                yield execute(() -> teacherService.findAllByDepartmentIdSortedByName(departmentId), request.getType());
+            }
+            case GET_FAC_TEACHERS_BY_NAME -> {
+                int facultyId = (int) request.getData();
+                yield execute(
+                        () -> teacherService.findAllByFacultyIdSortedByName(facultyId),
+                        request.getType()
+                );
+            }
+            case UPDATE_DEPARTMENT -> {
+                UpdateDepartmentDTO dto = (UpdateDepartmentDTO) request.getData();
+                yield execute(
+                        () -> departmentService.updateDepartmentInfo(dto.departmentId(), dto.location(), dto.email()),
                         request.getType()
                 );
             }

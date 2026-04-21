@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class PersonInfoVerificator {
     public static PersonData ask_common_info(Integer id) {
         //int id = IdVerificator.ask_id();
-        boolean is_name_english = ask_alphabet();
+        boolean is_name_english = false;
         String firstName = ask_name("first name", is_name_english);
         String lastName = ask_name("last name",is_name_english);
         String middleName = ask_name("middle name", is_name_english);
@@ -40,7 +40,7 @@ public class PersonInfoVerificator {
             return null;
         }
         char c = name.charAt(0);
-        if (!is_english && (c < 'А' || c > 'Я') && c != 'Ї' && c != 'І') {
+        if (!is_english && (c < 'А' || c > 'Я') && c != 'Ї' && c != 'І' && c != 'Є' && c != 'Ґ') {
             return null;
         }
         if (is_english && (c < 'A' || c > 'Z')) {
@@ -52,24 +52,26 @@ public class PersonInfoVerificator {
         }
         return name;
     }
+
     public static boolean ask_alphabet() {
-        Scanner scanner = InitScanner.try_init_scanner();
-        String alphabet;
-        String error_message = "Invalid alphabet.";
-        do {
-            System.out.print("Enter alphabet in which you want to type person's name.\n" +
-                    "Latin/Cyrillic: ");
-            alphabet = scanner.nextLine();
-            alphabet = validate_alphabet(alphabet);
-            if (alphabet == null) System.out.println(error_message);
-        }while(alphabet == null);
-        return switch (alphabet) {
-            case "Latin" -> true;
-            case "latin" -> true;
-            case "Cyrillic" -> false;
-            case "cyrillic" -> false;
-            default -> false;
-        };
+//        Scanner scanner = InitScanner.try_init_scanner();
+//        String alphabet;
+//        String error_message = "Invalid alphabet.";
+//        do {
+//            System.out.print("Enter alphabet in which you want to type person's name.\n" +
+//                    "Latin/Cyrillic: ");
+//            alphabet = scanner.nextLine();
+//            alphabet = validate_alphabet(alphabet);
+//            if (alphabet == null) System.out.println(error_message);
+//        }while(alphabet == null);
+//        return switch (alphabet) {
+//            case "Latin" -> true;
+//            case "latin" -> true;
+//            case "Cyrillic" -> false;
+//            case "cyrillic" -> false;
+//            default -> false;
+//        };
+        return false;
     }
     private static String validate_alphabet(String alphabet) {
         return switch (alphabet.toLowerCase()) {
@@ -81,7 +83,10 @@ public class PersonInfoVerificator {
         boolean isalpha = true;
         if(is_english) {
             for (char c : s.toCharArray()) {
-                if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
+                if ((c < 'А' || c > 'Я') && (c < 'а' || c > 'я') &&
+                        (c != 'ї' && c != 'Ї' && c != 'І' && c != 'і' &&
+                                c != 'Є' && c != 'є' && c != 'Ґ' && c != 'ґ' &&
+                                c != '\'' && c != '`')) {
                     isalpha = false;
                     break;
                 }

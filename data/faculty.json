@@ -29,5 +29,64 @@
       "city": "Kyiv",
       "address": "Contractova, 2M"
     }
+  },
+  {
+    "id": 1000003,
+    "name": "faculty of law",
+    "shortName": "KMAlaw",
+    "email": "kmalaw@gmail.com",
+    "university": {
+      "id": 1234567,
+      "fullName": "NaUKMA",
+      "shortName": "KMA",
+      "city": "Kyiv",
+      "address": "Contractova, 2M"
+    }
+  },
+  {
+    "id": 1000002,
+    "name": "faculty of economics",
+    "shortName": "fen",
+    "dean": {
+      "position": "DEAN",
+      "degree": "PHD",
+      "rank": "DOCENT",
+      "hiringDate": "01.09.2010",
+      "load": 1.0,
+      "department": {
+        "id": 1000001,
+        "name": "department of finances",
+        "faculty": {
+          "id": 1000002,
+          "name": "faculty of economics",
+          "shortName": "fen",
+          "email": "fen@gmail.com",
+          "university": {
+            "id": 1234567,
+            "fullName": "NaUKMA",
+            "shortName": "KMA",
+            "city": "Kyiv",
+            "address": "Contractova, 2M"
+          }
+        },
+        "location": "Contractova, 67m",
+        "email": "financesdep@gmail.com"
+      },
+      "id": 1000027,
+      "firstName": "Світлана",
+      "lastName": "Глущенко",
+      "middleName": "Василівна",
+      "birthDate": "15.06.1975",
+      "email": "hlushchenko.s@ukma.edu.ua",
+      "phoneNumber": "+380444256042"
+    },
+    "email": "fen@gmail.com",
+    "university": {
+      "id": 1234567,
+      "fullName": "NaUKMA",
+      "shortName": "KMA",
+      "city": "Kyiv",
+      "address": "Contractova, 2M"
+    }
   }
 ]

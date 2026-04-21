@@ -86,7 +86,7 @@ public class UniHandler extends BasicHandler {
         if (sortByIdResponse != null && sortByIdResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             @SuppressWarnings("unchecked")
             List<Faculty> faculties = (List<Faculty>) sortByIdResponse.getPayload();
-            faculties.forEach(fac -> System.out.printf("%-15s | ID: %d%n", fac.getName(), fac.getId()));
+            faculties.forEach(fac -> System.out.printf("%-25s | ID: %d%n", fac.getName(), fac.getId()));
         }
     }
 
@@ -95,7 +95,7 @@ public class UniHandler extends BasicHandler {
         if (sortByNameResponse != null && sortByNameResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             @SuppressWarnings("unchecked")
             List<Faculty> faculties = (List<Faculty>) sortByNameResponse.getPayload();
-            faculties.forEach(fac -> System.out.printf("%-15s%n", fac.getName()));
+            faculties.forEach(fac -> System.out.printf("%-25s%n", fac.getName()));
         }
     }
 }

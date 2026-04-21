@@ -1,9 +1,6 @@
 package ua.naukma.server.service;
 
-import ua.naukma.domain.Grade;
-import ua.naukma.domain.Student;
-import ua.naukma.domain.StudentStatus;
-import ua.naukma.domain.StudyForm;
+import ua.naukma.domain.*;
 import ua.naukma.exception.DuplicateEntityException;
 import ua.naukma.exception.EntityNotFoundException;
 import ua.naukma.server.repository.PersonRepository;
@@ -19,25 +16,34 @@ import java.util.stream.Collectors;
 public class StudentService extends EntityService<Student, Integer> {
     private final PersonRepository<Student, Integer> repository;
     private final Repository<Grade, Integer> gradeRepository;
+    private final Repository<Group, Integer> groupRepository;
 
-    public StudentService(PersonRepository<Student, Integer> repository, Repository<Grade, Integer> gradeRepository,Class<Student> clazz) {
+    public StudentService(PersonRepository<Student, Integer> repository,
+                          Repository<Grade, Integer> gradeRepository,
+                          Repository<Group, Integer> groupRepository,
+                          Class<Student> clazz) {
         super(repository, clazz);
         this.repository = repository;
         this.gradeRepository = gradeRepository;
+        this.groupRepository = groupRepository;
     }
-
-//    public Student findByPIB(String firstName, String lastName, String middleName) throws EntityNotFoundException {
-//        Optional<Student> student = repository.findByPIB(firstName, lastName, middleName);
-//        if (student.isPresent()) {
-//            return student.get();
-//        } else {
-//            throw new EntityNotFoundException("Student " + lastName + " " + firstName + " doesn't exist.");
-//        }
-//    }
 
     public List<Student> findAllByGroupId(int groupId) {
         return repository.findAll().stream()
                 .filter(s -> s.getGroup() != null && s.getGroup().getId() == groupId)
+                .collect(Collectors.toList());
+    }
+
+    public List<Student> sortByIds(int groupId) {
+        return findAllByGroupId(groupId).stream()
+                .sorted(java.util.Comparator.comparingInt(Student::getId))
+                .collect(Collectors.toList());
+    }
+
+    public List<Student> sortByName(int groupId) {
+        java.text.Collator ukrainianCollator = java.text.Collator.getInstance(new java.util.Locale("uk", "UA"));
+        return findAllByGroupId(groupId).stream()
+                .sorted((s1, s2) -> ukrainianCollator.compare(s1.getName(), s2.getName()))
                 .collect(Collectors.toList());
     }
 
@@ -105,5 +111,57 @@ public class StudentService extends EntityService<Student, Integer> {
                 .stream()
                 .filter(grade -> grade.getStudentId() == studentID)
                 .collect(Collectors.averagingDouble(Grade::getScore));
+    }
+
+    public List<Student> findByPIB(String lastName, String firstName, String middleName) {
+        return repository.findAll().stream()
+                .filter(s -> s.getLastName().equalsIgnoreCase(lastName) &&
+                        s.getFirstName().equalsIgnoreCase(firstName) &&
+                        s.getMiddleName().equalsIgnoreCase(middleName))
+                .collect(Collectors.toList());
+    }
+
+    public List<Student> findAllByCourse(int course) {
+        return repository.findAll().stream()
+                .filter(s -> s.getCourse() == course)
+                .collect(Collectors.toList());
+    }
+
+    public Student changeCourse(int studentID, int newCourse) {
+        Student student = findById(studentID);
+        student.setCourse(newCourse);
+        repository.save(student);
+        return student;
+    }
+
+    public Student transferGroup(int studentId, int newGroupId) {
+        Student student = findById(studentId);
+        Group newGroup = groupRepository.findById(newGroupId)
+                .orElseThrow(() -> new EntityNotFoundException("Group with id " + newGroupId + " not found."));
+        student.setGroup(newGroup);
+        repository.save(student);
+
+        return student;
+    }
+
+    public List<Student> sortByCourse() {
+        return findAll().stream()
+                .sorted(java.util.Comparator.comparingInt(Student::getCourse))
+                .collect(Collectors.toList());
+    }
+
+    public List<Student> findAllByFacultyIdSortedByName(int facultyId) {
+        java.text.Collator collator = java.text.Collator.getInstance(new java.util.Locale("uk", "UA"));
+        return repository.findAll().stream()
+                .filter(s -> s.getGroup() != null && s.getGroup().getFaculty() != null && s.getGroup().getFaculty().getId() == facultyId)
+                .sorted((s1, s2) -> collator.compare(s1.getName(), s2.getName()))
+                .collect(Collectors.toList());
+    }
+
+    public List<Student> findAllByFacultyIdSortedByCourse(int facultyId) {
+        return repository.findAll().stream()
+                .filter(s -> s.getGroup() != null && s.getGroup().getFaculty() != null && s.getGroup().getFaculty().getId() == facultyId)
+                .sorted(java.util.Comparator.comparingInt(Student::getCourse))
+                .collect(Collectors.toList());
     }
 }
