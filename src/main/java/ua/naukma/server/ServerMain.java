@@ -112,13 +112,13 @@ public class ServerMain {
 
         Map<MenuLevel, RequestHandler> router = new EnumMap<>(MenuLevel.class);
         router.put(MenuLevel.ADMIN_PANEL, new UserController(userService));
-        router.put(MenuLevel.MON, new EntityController<>(uniService));
+        router.put(MenuLevel.MON, new UniversityController(uniService, studentService, groupService));
         router.put(MenuLevel.UNI, new FacultyController(facultyService, teacherService));
         router.put(MenuLevel.FAC, new FacultyController(facultyService, teacherService));
         router.put(MenuLevel.GRPS, new EntityController<>(groupService));
         router.put(MenuLevel.GROUP, new StudentController(studentService, gradeService, groupService));
         router.put(MenuLevel.DEPS, new EntityController<>(departmentService));
-        router.put(MenuLevel.DEPARTAMENT, new DepartmentController(departmentService, teacherService));
+        router.put(MenuLevel.DEPARTAMENT, new DepartmentController(departmentService, studentService,teacherService));
         router.put(MenuLevel.STUDENT, new StudentController(studentService, gradeService, groupService));
         userService.initUser();
         return router;

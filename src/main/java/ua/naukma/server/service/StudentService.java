@@ -31,20 +31,20 @@ public class StudentService extends EntityService<Student, Integer> {
     public List<Student> findAllByGroupId(int groupId) {
         return repository.findAll().stream()
                 .filter(s -> s.getGroup() != null && s.getGroup().getId() == groupId)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<Student> sortByIds(int groupId) {
         return findAllByGroupId(groupId).stream()
                 .sorted(java.util.Comparator.comparingInt(Student::getId))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<Student> sortByName(int groupId) {
         java.text.Collator ukrainianCollator = java.text.Collator.getInstance(new java.util.Locale("uk", "UA"));
         return findAllByGroupId(groupId).stream()
                 .sorted((s1, s2) -> ukrainianCollator.compare(s1.getName(), s2.getName()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public void updateStudent(Student student) throws EntityNotFoundException {
@@ -118,13 +118,13 @@ public class StudentService extends EntityService<Student, Integer> {
                 .filter(s -> s.getLastName().equalsIgnoreCase(lastName) &&
                         s.getFirstName().equalsIgnoreCase(firstName) &&
                         s.getMiddleName().equalsIgnoreCase(middleName))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<Student> findAllByCourse(int course) {
         return repository.findAll().stream()
                 .filter(s -> s.getCourse() == course)
-                .collect(Collectors.toList());
+                .toList();
     }
 
 //    public Student changeCourse(int studentID, int newCourse) {
@@ -147,7 +147,7 @@ public class StudentService extends EntityService<Student, Integer> {
     public List<Student> sortByCourse() {
         return findAll().stream()
                 .sorted(java.util.Comparator.comparingInt(Student::getCourse))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<Student> findAllByFacultyIdSortedByName(int facultyId) {
@@ -155,14 +155,14 @@ public class StudentService extends EntityService<Student, Integer> {
         return repository.findAll().stream()
                 .filter(s -> s.getGroup() != null && s.getGroup().getFaculty() != null && s.getGroup().getFaculty().getId() == facultyId)
                 .sorted((s1, s2) -> collator.compare(s1.getName(), s2.getName()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<Student> findAllByFacultyIdSortedByCourse(int facultyId) {
         return repository.findAll().stream()
                 .filter(s -> s.getGroup() != null && s.getGroup().getFaculty() != null && s.getGroup().getFaculty().getId() == facultyId)
                 .sorted(java.util.Comparator.comparingInt(Student::getCourse))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public Group upgradeGroupCourse(int groupId) {
@@ -184,5 +184,53 @@ public class StudentService extends EntityService<Student, Integer> {
         }
 
         return group;
+    }
+
+    public List<Student> findAllByUniversityId(int uniId) {
+        return repository.findAll().stream()
+                .filter(s -> s.getGroup() != null &&
+                        s.getGroup().getFaculty() != null &&
+                        s.getGroup().getFaculty().getUniversity() != null &&
+                        s.getGroup().getFaculty().getUniversity().getId() == uniId)
+                .toList();
+    }
+
+    public List<Student> findAllByDepartmentId(int deptId) {
+        return repository.findAll().stream()
+                .filter(s -> s.getGroup() != null &&
+                        s.getGroup().getDepartment() != null &&
+                        s.getGroup().getDepartment().getId() == deptId)
+                .sorted(java.util.Comparator.comparingInt(Student::getCourse))
+                .toList();
+    }
+
+    public List<Student> findAllByUniversityIdSortedByCourse(int uniId) {
+        return repository.findAll().stream()
+                .filter(s -> s.getGroup() != null &&
+                        s.getGroup().getFaculty() != null &&
+                        s.getGroup().getFaculty().getUniversity() != null &&
+                        s.getGroup().getFaculty().getUniversity().getId() == uniId)
+                .sorted(java.util.Comparator.comparingInt(Student::getCourse))
+                .toList();
+    }
+    public List<Student> findAllByUniversityIdAndCourse(int uniId, int course) {
+        return repository.findAll().stream()
+                .filter(s -> s.getGroup() != null &&
+                        s.getGroup().getFaculty() != null &&
+                        s.getGroup().getFaculty().getUniversity() != null &&
+                        s.getGroup().getFaculty().getUniversity().getId() == uniId &&
+                        s.getCourse() == course)
+                .toList();
+    }
+
+    public List<Student> findAllByDepartmentIdSortedByName(int departmentId) {
+        java.text.Collator collator = java.text.Collator.getInstance(new java.util.Locale("uk", "UA"));
+
+        return repository.findAll().stream()
+                .filter(s -> s.getGroup() != null &&
+                        s.getGroup().getDepartment() != null &&
+                        s.getGroup().getDepartment().getId() == departmentId)
+                .sorted((s1, s2) -> collator.compare(s1.getName(), s2.getName()))
+                .toList();
     }
 }

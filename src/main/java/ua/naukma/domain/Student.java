@@ -30,16 +30,10 @@ public class Student extends Person implements Serializable {
     public String getRecordBookNumber() { return recordBookNumber; }
 
     public void setStatus(StudentStatus status) {
-        if (status == null) {
-            throw new IllegalArgumentException("Student status cannot be null.");
-        }
         this.status = status;
     }
 
     public void setStudyForm(StudyForm studyForm) {
-        if (studyForm == null) {
-            throw new IllegalArgumentException("Study form cannot be null.");
-        }
         this.studyForm = studyForm;
     }
 

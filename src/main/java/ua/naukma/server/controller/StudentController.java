@@ -104,7 +104,27 @@ public class StudentController implements RequestHandler {
                     yield execute(() -> studentService.sortByIds(), request.getType());
                 }
             }
-
+            case GET_DEPT_STUDENTS_BY_NAME -> {
+                int departmentId = (int) request.getData();
+                yield execute(
+                        () -> studentService.findAllByDepartmentIdSortedByName(departmentId),
+                        request.getType()
+                );
+            }
+            case GET_UNI_STUDENTS -> {
+                int uniId = (int) request.getData();
+                yield execute(
+                        () -> studentService.findAllByUniversityId(uniId),
+                        request.getType()
+                );
+            }
+            case GET_UNI_STUDENTS_BY_COURSE -> {
+                int uniId = (int) request.getData();
+                yield execute(
+                        () -> studentService.findAllByUniversityIdSortedByCourse(uniId),
+                        request.getType()
+                );
+            }
             case SORT_BY_ALPHABETIC_NAME ->  {
                 Object data = request.getData();
                 if (data != null) {

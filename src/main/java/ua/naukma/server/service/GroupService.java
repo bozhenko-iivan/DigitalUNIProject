@@ -28,4 +28,11 @@ public class GroupService extends EntityService<Group, Integer> {
     public int getGroupCount(int facultyId) {
         return findAllByFacultyId(facultyId).size();
     }
+
+    public Group findByName(String name) {
+        return repository.findAll().stream()
+                .filter(g -> g.getName().equalsIgnoreCase(name.trim()))
+                .findFirst()
+                .orElseThrow(() -> new EntityNotFoundException("Group with name " + name + " not found."));
+    }
 }

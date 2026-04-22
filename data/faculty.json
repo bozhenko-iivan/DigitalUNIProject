@@ -134,5 +134,18 @@
       "city": "Kyiv",
       "address": "Contractova, 2M"
     }
+  },
+  {
+    "id": 1234568,
+    "name": "faculty of zdorovya",
+    "shortName": "doz",
+    "email": "zdorovya@ukma.edu.ua",
+    "university": {
+      "id": 1234567,
+      "fullName": "NaUKMA",
+      "shortName": "KMA",
+      "city": "Kyiv",
+      "address": "Contractova, 2M"
+    }
   }
 ]

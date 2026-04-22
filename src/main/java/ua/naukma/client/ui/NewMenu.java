@@ -138,6 +138,15 @@ public class NewMenu {
             System.out.println("\uD83D\uDEAA 9. Log out");
         }
 
+        if (level == MenuLevel.UNI) {
+            System.out.println("8. Find group by name");
+            System.out.println("9. Show all uni students");
+            System.out.println("10.Show all students sorted by course");
+            System.out.println("11 Find student by course");
+            System.out.println("12. Find teacher by PIB");
+            System.out.println("13. Find student by PIB");
+        }
+
         if (level == MenuLevel.GROUP) {
             System.out.println("\uD83D\uDD0E 8. Find Student by PIB");
             if (loggedUser.hasPermission(Permissions.MANAGE_STRUCTURE)) {
@@ -157,6 +166,9 @@ public class NewMenu {
                 System.out.println("✏️ 12. Edit Department Info");
             }
             System.out.println("ℹ\uFE0F 13. Show department info");
+            System.out.println("14. Show dept students by course");
+            System.out.println("15. Show dept students by PIB");
+            System.out.println("16. Find Students by specific Course");
         }
 
         if (level == MenuLevel.STUDENT) {

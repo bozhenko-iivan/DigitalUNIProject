@@ -50,14 +50,17 @@ public class AcademicInfoVerificator {
         String s = scanner.nextLine().trim();
         while (true) {
             try {
-                return switch (s) {
-                    case "Бюджет", "1" -> StudyForm.BUDGET;
-                    case "Контракт", "2" -> StudyForm.CONTRACT;
-                    default -> null;
-                };
+                switch (s) {
+                    case "Бюджет", "1": return StudyForm.BUDGET;
+                    case "Контракт", "2": return StudyForm.CONTRACT;
+                    default: {
+                        System.out.println("Invalid input. Please enter a number.");
+                        s = scanner.nextLine().trim();
+                    }
+                }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please a valid input.");
-                scanner.next();
+                scanner.nextLine();
             }
         }
     }
@@ -68,15 +71,18 @@ public class AcademicInfoVerificator {
         String s = scanner.nextLine().trim();
         while (true) {
             try {
-                return switch (s) {
-                    case "Навчається", "1" -> StudentStatus.STUDYING;
-                    case "АкадемВідпустка", "2" -> StudentStatus.ACADEMIC_LEAVE;
-                    case "Вибув", "3" -> StudentStatus.EXPELLED;
-                    default -> null;
-                };
+                switch (s) {
+                    case "Навчається", "1": return StudentStatus.STUDYING;
+                    case "АкадемВідпустка", "2": return StudentStatus.ACADEMIC_LEAVE;
+                    case "Вибув", "3": return StudentStatus.EXPELLED;
+                    default: {
+                        System.out.println("Invalid input. Please enter a number.");
+                        s = scanner.nextLine().trim();
+                    }
+                }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please a valid input.");
-                scanner.next();
+                scanner.nextLine();
             }
         }
     }
@@ -88,19 +94,22 @@ public class AcademicInfoVerificator {
         while (true) {
             try {
                 int teacherPosition = scanner.nextInt();
-                return switch (teacherPosition) {
-                    case 1 -> TeacherPosition.ASSISTANT;
-                    case 2 -> TeacherPosition.LECTURER;
-                    case 3 -> TeacherPosition.SENIOR_LECTURER;
-                    case 4 -> TeacherPosition.DOCENT;
-                    case 5 -> TeacherPosition.PROFESSOR;
-                    case 6 -> TeacherPosition.HEAD_OF_DEPARTMENT;
-                    case 7 -> TeacherPosition.DEAN;
-                    default -> null;
+                switch (teacherPosition) {
+                    case 1: return TeacherPosition.ASSISTANT;
+                    case 2: return TeacherPosition.LECTURER;
+                    case 3: return TeacherPosition.SENIOR_LECTURER;
+                    case 4: return TeacherPosition.DOCENT;
+                    case 5: return TeacherPosition.PROFESSOR;
+                    case 6: return TeacherPosition.HEAD_OF_DEPARTMENT;
+                    case 7: return TeacherPosition.DEAN;
+                    default: {
+                        System.out.println("Invalid input. Please enter a number.");
+                        teacherPosition = scanner.nextInt();
+                    }
                 };
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please a valid input.");
-                scanner.next();
+                scanner.nextLine();
             }
         }
     }
@@ -112,13 +121,16 @@ public class AcademicInfoVerificator {
         while (true) {
             try {
                 int teacherDegree = scanner.nextInt();
-                return switch (teacherDegree) {
-                    case 1 -> TeacherDegree.NONE;
-                    case 2 -> TeacherDegree.MASTER;
-                    case 3 -> TeacherDegree.POSTGRADUATE;
-                    case 4 -> TeacherDegree.PHD;
-                    case 5 -> TeacherDegree.DOCTOR_OF_SCIENCES;
-                    default -> null;
+                switch (teacherDegree) {
+                    case 1: return TeacherDegree.NONE;
+                    case 2: return TeacherDegree.MASTER;
+                    case 3: return TeacherDegree.POSTGRADUATE;
+                    case 4: return TeacherDegree.PHD;
+                    case 5: return TeacherDegree.DOCTOR_OF_SCIENCES;
+                    default: {
+                        System.out.println("Invalid input. Please enter a number.");
+                        teacherDegree = scanner.nextInt();
+                    }
                 };
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please a valid input.");
@@ -134,12 +146,15 @@ public class AcademicInfoVerificator {
             System.out.println(Arrays.toString(TeacherRank.values()));
             try {
                 int teacherRank = scanner.nextInt();
-                return switch (teacherRank) {
-                    case 1 -> TeacherRank.NONE;
-                    case 2 -> TeacherRank.DOCENT;
-                    case 3 -> TeacherRank.PROFESSOR;
-                    case 4 -> TeacherRank.SENIOR_RESEARCHER;
-                    default -> null;
+                switch (teacherRank) {
+                    case 1: return TeacherRank.NONE;
+                    case 2: return TeacherRank.DOCENT;
+                    case 3: return TeacherRank.PROFESSOR;
+                    case 4: return TeacherRank.SENIOR_RESEARCHER;
+                    default: {
+                        System.out.println("Invalid input. Please enter a number.");
+                        teacherRank = scanner.nextInt();
+                    }
                 };
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please a valid input.");

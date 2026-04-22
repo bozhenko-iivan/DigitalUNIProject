@@ -72,7 +72,7 @@ public class EntityService <T extends Serializable & GetId & GetName, Number> im
     public List<T> sortByIds() {
         return findAll().stream()
                 .sorted(java.util.Comparator.comparing(GetId::getId))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -81,7 +81,7 @@ public class EntityService <T extends Serializable & GetId & GetName, Number> im
 
         return findAll().stream()
                 .sorted((e1, e2) -> ukrainianCollator.compare(e1.getName(), e2.getName()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private int generateNextId() {

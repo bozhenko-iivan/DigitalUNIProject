@@ -81,16 +81,16 @@ public class GroupHandler extends BasicHandler {
     private void remove_student() {
         requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
             int studentId = IdVerificator.ask_id();
-            Response findStudentResponse = sendRequest(Request.RequestType.FIND_STUDENT_BY_ID, studentId, false);
+            Response findStudentResponse = sendRequest(Request.RequestType.FIND_STUDENT_BY_ID, studentId, false, MenuLevel.STUDENT);
             Student s = (Student) findStudentResponse.getPayload();
             if(isChild.test(s))
-                sendRequest(Request.RequestType.REMOVE, studentId, false);
+                sendRequest(Request.RequestType.REMOVE_STUDENT, studentId, false);
         });
     }
 
     private void find_student() {
         int studentId = IdVerificator.ask_id();
-        Response findStudentRes = sendRequest(Request.RequestType.FIND_STUDENT_BY_ID, studentId, false);
+        Response findStudentRes = sendRequest(Request.RequestType.FIND_STUDENT_BY_ID, studentId, false, MenuLevel.STUDENT);
 
         if (findStudentRes != null && findStudentRes.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             Student student = (Student) findStudentRes.getPayload();

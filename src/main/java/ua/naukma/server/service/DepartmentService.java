@@ -28,7 +28,7 @@ public class DepartmentService extends EntityService<Department, Integer> {
     public List<Department> findAllByFacultyId(int facultyId) {
         return repository.findAll().stream()
                 .filter(d -> d.getFaculty().getId() == facultyId)
-                .collect(Collectors.toList());
+                .toList();
     }
     public int getAllDepartmentsCount(int facultyId) {
         return (int) repository.findAll().stream().filter(d -> d.getFaculty() != null

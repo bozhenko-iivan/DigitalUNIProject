@@ -19,7 +19,7 @@ public class TeacherService extends EntityService<Teacher, Integer> {
     public List<Teacher> findAllByDepartmentId(int departmentId) {
         return repository.findAll().stream()
                 .filter(t -> t.getDepartment() != null && t.getDepartment().getId() == departmentId)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public int getAllTeachersCount(int departmentId) {
@@ -28,10 +28,10 @@ public class TeacherService extends EntityService<Teacher, Integer> {
 
     public List<Teacher> findByPIB(String lastName, String firstName, String middleName) {
         return repository.findAll().stream()
-                .filter(t -> t.getLastName().equalsIgnoreCase(lastName) &&
-                        t.getFirstName().equalsIgnoreCase(firstName) &&
-                        t.getMiddleName().equalsIgnoreCase(middleName))
-                .collect(Collectors.toList());
+                .filter(t -> t.getLastName() != null && t.getLastName().equalsIgnoreCase(lastName) &&
+                        t.getFirstName() != null && t.getFirstName().equalsIgnoreCase(firstName) &&
+                        t.getMiddleName() != null && t.getMiddleName().equalsIgnoreCase(middleName))
+                .toList();
     }
 
     public Teacher updateContacts(int teacherId, String newPhone, String newEmail) {
@@ -56,7 +56,7 @@ public class TeacherService extends EntityService<Teacher, Integer> {
         java.text.Collator ukrainianCollator = java.text.Collator.getInstance(new java.util.Locale("uk", "UA"));
         return findAllByDepartmentId(departmentId).stream()
                 .sorted((t1, t2) -> ukrainianCollator.compare(t1.getName(), t2.getName()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<Teacher> findAllByFacultyIdSortedByName(int facultyId) {
@@ -66,6 +66,6 @@ public class TeacherService extends EntityService<Teacher, Integer> {
                         && t.getDepartment().getFaculty() != null
                         && t.getDepartment().getFaculty().getId() == facultyId)
                 .sorted((t1, t2) -> ukrainianCollator.compare(t1.getName(), t2.getName()))
-                .collect(Collectors.toList());
+                .toList();
     }
 }

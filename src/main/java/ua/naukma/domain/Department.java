@@ -37,16 +37,10 @@ public class Department implements Serializable, GetId, GetName {
     }
 
     private void setName(String name) {
-        if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("Invalid department name.");
-        }
         this.name = name;
     }
 
     private void setFaculty(Faculty faculty) {
-        if (faculty == null) {
-            throw new IllegalArgumentException("Faculty cannot be null.");
-        }
         this.faculty = faculty;
     }
 
@@ -55,16 +49,10 @@ public class Department implements Serializable, GetId, GetName {
     }
 
     public void setLocation(String location) {
-        if (location == null || location.isBlank()) {
-            throw new IllegalArgumentException("Invalid location.");
-        }
         this.location = location;
     }
 
     public void setEmail(String email) {
-        if (email == null || !email.contains("@") || email.isBlank()) {
-            throw new IllegalArgumentException("Email cannot be empty and must contain '@'.");
-        }
         this.email = email;
     }
 

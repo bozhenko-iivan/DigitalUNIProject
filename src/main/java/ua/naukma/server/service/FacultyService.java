@@ -25,7 +25,7 @@ public class FacultyService extends EntityService<Faculty, Integer> {
     public List<Faculty> findAllByUniId(int uniId) throws EntityNotFoundException {
         return repository.findAll().stream()
                 .filter(f -> f.getUniversity().getId() == uniId)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public int getAllFacultiesCount(int uniId) throws EntityNotFoundException {

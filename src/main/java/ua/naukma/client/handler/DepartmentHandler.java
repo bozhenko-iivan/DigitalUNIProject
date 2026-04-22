@@ -22,6 +22,7 @@ public class DepartmentHandler extends BasicHandler {
     public DepartmentHandler(MenuContext context, ObjectOutputStream oos, ObjectInputStream ois) {
         super(context, oos, ois);
     }
+
     @Override
     public void handle() {
         System.out.print("⏩ Enter your choice: ");
@@ -40,9 +41,13 @@ public class DepartmentHandler extends BasicHandler {
             case 11 -> update_teacher_academic();
             case 12 -> edit_department();
             case 13 -> show_department_info();
+            case 14 -> show_dept_students();
+            case 15 -> show_dept_students_by_name();
+            case 16 -> find_dept_students_by_specific_course();
             default -> System.out.println("Invalid choice");
         }
     }
+
     private void go_higher() {
         menuContext.setCurrent_level(MenuLevel.DEPS);
         menuContext.setCurrent_department(null);
@@ -91,10 +96,11 @@ public class DepartmentHandler extends BasicHandler {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-        } else     {
+        } else {
             System.out.println("Access Denied: You cannot add teacher.");
         }
     }
+
     private void set_head() {
         if (menuContext.getCurrent_user().hasPermission(Permissions.MANAGE_STRUCTURE)) {
             try {
@@ -130,11 +136,11 @@ public class DepartmentHandler extends BasicHandler {
             int teacherId = IdVerificator.ask_id();
             Response r = sendRequest(Request.RequestType.FIND, teacherId, false);
             Teacher t = (Teacher) r.getPayload();
-            if(t.getDepartment() != null && t.getDepartment().getId() == menuContext.getCurrent_department().getId()){
-                r =  sendRequest(Request.RequestType.REMOVE, teacherId, false);
-                if(r.getResponseStatus() == Response.ResponseStatus.SUCCESS){
+            if (t.getDepartment() != null && t.getDepartment().getId() == menuContext.getCurrent_department().getId()) {
+                r = sendRequest(Request.RequestType.REMOVE, teacherId, false);
+                if (r.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
                     System.out.println("Teacher removed.");
-                }else{
+                } else {
                     System.out.println("No teacher found.");
                 }
             }
@@ -142,6 +148,7 @@ public class DepartmentHandler extends BasicHandler {
             System.out.println("Access Denied: You cannot remove teacher.");
         }
     }
+
     private void find_teacher() {
 
         int teacherId = IdVerificator.ask_id();
@@ -166,7 +173,7 @@ public class DepartmentHandler extends BasicHandler {
 
             Response response = (Response) ois.readObject();
 
-            if  (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
                 System.out.println("All teachers found");
                 List<Teacher> list = (List<Teacher>) response.getPayload();
                 list = list.stream().filter(isChild).toList();
@@ -277,5 +284,85 @@ public class DepartmentHandler extends BasicHandler {
             }
         });
     }
-    private final Predicate<Teacher> isChild = t -> t.getDepartment() != null && t.getDepartment().getId() == menuContext.getCurrent_department().getId();
+
+    private void show_dept_students() {
+        int deptId = menuContext.getCurrent_department().getId();
+        Response res = sendRequest(Request.RequestType.GET_DEPT_STUDENTS, deptId, false, MenuLevel.DEPARTAMENT);
+
+        if (res != null && res.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            @SuppressWarnings("unchecked")
+            List<Student> students = (List<Student>) res.getPayload();
+            if (students.isEmpty()) {
+                System.out.println("No students found in this department.");
+                return;
+            }
+            System.out.println("Students of " + menuContext.getCurrent_department().getName() + ":");
+            students.forEach(s -> System.out.printf("Course %d | %-30s | Group: %s%n",
+                    s.getCourse(), s.getName(), s.getGroup().getName()));
+        }
+    }
+
+    private void show_dept_students_by_name() {
+        int deptId = menuContext.getCurrent_department().getId();
+        Response res = sendRequest(Request.RequestType.GET_DEPT_STUDENTS_BY_NAME, deptId, false, MenuLevel.STUDENT);
+
+        if (res != null && res.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            @SuppressWarnings("unchecked")
+            List<Student> students = (List<Student>) res.getPayload();
+
+            if (students.isEmpty()) {
+                System.out.println("No students found in this department.");
+                return;
+            }
+
+            System.out.println("🎓 Students of " + menuContext.getCurrent_department().getName() + " (Sorted by Name):");
+            students.forEach(s -> System.out.printf("Course %d | %-40s | Group: %s%n",
+                    s.getCourse(), s.getName(), s.getGroup().getName()));
+        }
+    }
+
+    private void find_dept_students_by_specific_course() {
+        int course = AcademicInfoVerificator.ask_course();
+
+        System.out.print("Sort by alphabet? (y/n): ");
+        String sortChoice = new java.util.Scanner(System.in).nextLine().trim().toLowerCase();
+
+        Response res = sendRequest(Request.RequestType.FIND_STUDENTS_BY_COURSE, course, false, MenuLevel.STUDENT);
+        if (res != null && res.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            @SuppressWarnings("unchecked")
+            List<Student> list = (List<Student>) res.getPayload();
+
+            if (list.isEmpty()) {
+                System.out.println("No students found on this course.");
+                return;
+            }
+
+            list = new java.util.ArrayList<>(list.stream().filter(isStudentChild).toList());
+            if (list.isEmpty()) {
+                System.out.println("No students found on course " + course + " in this department.");
+                return;
+            }
+
+            if (sortChoice.equals("y")) {
+                java.text.Collator collator = java.text.Collator.getInstance(new java.util.Locale("uk", "UA"));
+                list.sort((s1, s2) -> collator.compare(s1.getName(), s2.getName()));
+                System.out.println("Students of Course " + course + " (Sorted by Name):");
+            } else {
+                System.out.println("Students of Course " + course + " (Unsorted):");
+            }
+
+            list.forEach(s -> System.out.printf("Course %d | %-35s | Group: %s%n",
+                    s.getCourse(), s.getName(), s.getGroup().getName()));
+        }
+    }
+
+    private final Predicate<Teacher> isChild = t ->
+            t.getDepartment() != null &&
+                    t.getDepartment().getId() == menuContext.getCurrent_department().getId();
+
+
+    private final Predicate<Student> isStudentChild = s ->
+            s.getGroup() != null &&
+                    s.getGroup().getDepartment() != null &&
+                    s.getGroup().getDepartment().getId() == menuContext.getCurrent_department().getId();
 }

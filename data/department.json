@@ -1,57 +1,5 @@
 [
   {
-    "id": 1234567,
-    "name": "department of informatics",
-    "faculty": {
-      "id": 1234567,
-      "name": "Fi",
-      "shortName": "fi",
-      "email": "fi@gmail.com",
-      "university": {
-        "id": 1234567,
-        "fullName": "NaUKMA",
-        "shortName": "KMA",
-        "city": "Kyiv",
-        "address": "Contractova, 2M"
-      }
-    },
-    "head": {
-      "position": "HEAD_OF_DEPARTMENT",
-      "degree": "PHD",
-      "rank": "DOCENT",
-      "hiringDate": "01.09.2015",
-      "load": 1.0,
-      "department": {
-        "id": 1234567,
-        "name": "department of informatics",
-        "faculty": {
-          "id": 1234567,
-          "name": "Faculty of Informatics",
-          "shortName": "fi",
-          "email": "fin@ukma.edu.ua",
-          "university": {
-            "id": 1234567,
-            "fullName": "NaUKMA",
-            "shortName": "KMA",
-            "city": "Kyiv",
-            "address": "Skovorody str, 2"
-          }
-        },
-        "location": "Room, 315",
-        "email": "gor@ukma.edu.ua"
-      },
-      "id": 1000001,
-      "firstName": "Семен",
-      "lastName": "Гороховський",
-      "middleName": "Самуїлович",
-      "birthDate": "12.05.1975",
-      "email": "gor@ukma.edu.ua",
-      "phoneNumber": "+380444636985"
-    },
-    "location": "Contractova, 1",
-    "email": "depFi@gmail.com"
-  },
-  {
     "id": 1234568,
     "name": "department of private law",
     "faculty": {
@@ -239,5 +187,145 @@
     },
     "location": "Contractova, 21b",
     "email": "findep@ukma.edu.ua"
+  },
+  {
+    "id": 1234567,
+    "name": "department of informatics",
+    "faculty": {
+      "id": 1234567,
+      "name": "Fi",
+      "shortName": "fi",
+      "email": "fi@gmail.com",
+      "university": {
+        "id": 1234567,
+        "fullName": "NaUKMA",
+        "shortName": "KMA",
+        "city": "Kyiv",
+        "address": "Contractova, 2M"
+      }
+    },
+    "head": {
+      "position": "HEAD_OF_DEPARTMENT",
+      "degree": "PHD",
+      "rank": "DOCENT",
+      "hiringDate": "01.09.2015",
+      "load": 1.0,
+      "department": {
+        "id": 1234567,
+        "name": "department of informatics",
+        "faculty": {
+          "id": 1234567,
+          "name": "Faculty of Informatics",
+          "shortName": "fi",
+          "email": "fin@ukma.edu.ua",
+          "university": {
+            "id": 1234567,
+            "fullName": "NaUKMA",
+            "shortName": "KMA",
+            "city": "Kyiv",
+            "address": "Skovorody str, 2"
+          }
+        },
+        "location": "Room, 315",
+        "email": "gor@ukma.edu.ua"
+      },
+      "id": 1000001,
+      "firstName": "Семен",
+      "lastName": "Гороховський",
+      "middleName": "Самуїлович",
+      "birthDate": "12.05.1975",
+      "email": "gor@ukma.edu.ua",
+      "phoneNumber": "+380444636985"
+    },
+    "location": "Contractova, 31b",
+    "email": "depsofinfo@gmail.com"
+  },
+  {
+    "id": 1234570,
+    "name": "department of matematyka",
+    "faculty": {
+      "id": 1234567,
+      "name": "Fi",
+      "shortName": "fi",
+      "dean": {
+        "position": "PROFESSOR",
+        "degree": "DOCTOR_OF_SCIENCES",
+        "rank": "PROFESSOR",
+        "hiringDate": "22.10.1993",
+        "load": 1.5,
+        "department": {
+          "id": 1234567,
+          "name": "department of informatics"
+        },
+        "id": 1000002,
+        "firstName": "Микола",
+        "lastName": "Глибовець",
+        "middleName": "Миколайович",
+        "birthDate": "23.01.1959",
+        "email": "hlybovets.m@ukma.edu.ua",
+        "phoneNumber": "+380971234567"
+      },
+      "email": "fi@gmail.com",
+      "university": {
+        "id": 1234567,
+        "fullName": "NaUKMA",
+        "shortName": "KMA",
+        "city": "Kyiv",
+        "address": "Contractova, 2M"
+      }
+    },
+    "head": {
+      "position": "LECTURER",
+      "degree": "POSTGRADUATE",
+      "rank": "NONE",
+      "hiringDate": "06.02.2024",
+      "load": 2.0,
+      "department": {
+        "id": 1234570,
+        "name": "department of matematyka",
+        "faculty": {
+          "id": 1234567,
+          "name": "Fi",
+          "shortName": "fi",
+          "dean": {
+            "position": "PROFESSOR",
+            "degree": "DOCTOR_OF_SCIENCES",
+            "rank": "PROFESSOR",
+            "hiringDate": "22.10.1993",
+            "load": 1.5,
+            "department": {
+              "id": 1234567,
+              "name": "department of informatics"
+            },
+            "id": 1000002,
+            "firstName": "Микола",
+            "lastName": "Глибовець",
+            "middleName": "Миколайович",
+            "birthDate": "23.01.1959",
+            "email": "hlybovets.m@ukma.edu.ua",
+            "phoneNumber": "+380971234567"
+          },
+          "email": "fi@gmail.com",
+          "university": {
+            "id": 1234567,
+            "fullName": "NaUKMA",
+            "shortName": "KMA",
+            "city": "Kyiv",
+            "address": "Contractova, 2M"
+          }
+        },
+        "location": "Contractova, 2b",
+        "email": "mathde@gmail.com"
+      },
+      "id": 1000044,
+      "firstName": "Андрій",
+      "lastName": "Макарець",
+      "middleName": "Станіславович",
+      "birthDate": "01.02.1995",
+      "email": "makarets.a@gmail.com",
+      "phoneNumber": "+380672314345"
+    },
+    "location": "Contractova, 2b",
+    "email": "mathde@gmail.com"
   }
 ]

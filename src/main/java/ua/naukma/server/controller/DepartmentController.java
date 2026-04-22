@@ -8,7 +8,9 @@ import ua.naukma.network.dto.UpdateTeacherAcademicDTO;
 import ua.naukma.network.dto.UpdateTeacherContactsDTO;
 import ua.naukma.server.annotation.CommandRoute;
 import ua.naukma.server.service.DepartmentService;
+import ua.naukma.server.service.StudentService;
 import ua.naukma.server.service.TeacherService;
+import ua.naukma.server.service.UserService;
 
 import java.util.List;
 
@@ -28,10 +30,12 @@ import java.util.List;
 public class DepartmentController implements RequestHandler {
     private final DepartmentService departmentService;
     private final TeacherService teacherService;
+    private final StudentService studentService;
 
-    public DepartmentController(DepartmentService departmentService, TeacherService teacherService) {
+    public DepartmentController(DepartmentService departmentService, StudentService studentService,TeacherService teacherService) {
         this.departmentService = departmentService;
         this.teacherService = teacherService;
+        this.studentService = studentService;
     }
 
     @Override
@@ -70,6 +74,13 @@ public class DepartmentController implements RequestHandler {
                 yield execute(
                         () -> departmentService.findById(departmentId),
                         request.getType());
+            }
+            case GET_DEPT_STUDENTS -> {
+                int departmentId = (int) request.getData();
+                yield execute(
+                        () -> studentService.findAllByDepartmentId(departmentId),
+                        request.getType()
+                );
             }
             case GET_ALL -> {
                 int departmentId = (int) request.getData();

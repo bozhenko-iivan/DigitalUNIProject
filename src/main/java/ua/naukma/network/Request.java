@@ -62,7 +62,15 @@ public class Request implements Serializable {
 
         SHOW_DEPARTMENT_INFO,
 
+        GET_UNI_STUDENTS_BY_COURSE,
+
+        FIND_UNI_STUDENTS_BY_COURSE,
+        GET_DEPT_STUDENTS_BY_NAME,
+
         FIND_DEP,
+        GET_UNI_STUDENTS,
+        GET_DEPT_STUDENTS,
+        FIND_GROUP_BY_NAME,
 
         @Secured(Permissions.MANAGE_STRUCTURE)
         SET_DEAN,

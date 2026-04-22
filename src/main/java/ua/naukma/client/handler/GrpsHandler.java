@@ -5,6 +5,7 @@ import ua.naukma.client.ui.MenuLevel;
 import ua.naukma.client.utils.AcademicInfoVerificator;
 import ua.naukma.client.utils.FacilityNameVerificator;
 import ua.naukma.client.utils.IdVerificator;
+import ua.naukma.domain.Department;
 import ua.naukma.domain.Faculty;
 import ua.naukma.domain.Group;
 import ua.naukma.domain.University;
@@ -42,19 +43,24 @@ public class GrpsHandler extends BasicHandler{
     }
     private void add_group() {
         requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
-//            int groupToAddId = IdVerificator.ask_id();
-//
-//            if (isIdAlreadyTaken(groupToAddId, Request.RequestType.FIND)) {
-//                System.out.println("This ID is already taken by another group in the system. Please choose a UNIQUE ID.");
-//                return;
-//            }
-
             String groupName = FacilityNameVerificator.ask_group_name();
             Faculty faculty = menuContext.getCurrent_faculty();
             int admissionYear = AcademicInfoVerificator.ask_admission_year();
             int course = AcademicInfoVerificator.ask_course();
 
-            Group group = new Group(0, groupName, faculty, course, admissionYear);
+            System.out.println("Please enter the ID of the Department for this group:");
+            int deptId = IdVerificator.ask_id();
+
+            Response deptRes = sendRequest(Request.RequestType.FIND_DEP, deptId, false, MenuLevel.DEPARTAMENT);
+
+            if (deptRes == null || deptRes.getResponseStatus() != Response.ResponseStatus.SUCCESS) {
+                System.out.println("Department with ID " + deptId + " not found. Group creation cancelled.");
+                return;
+            }
+
+            Department department = (Department) deptRes.getPayload();
+
+            Group group = new Group(0, groupName, faculty, department, course, admissionYear);
 
             sendRequest(Request.RequestType.ADD, group, true);
         });

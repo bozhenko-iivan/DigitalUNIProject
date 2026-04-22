@@ -1422,5 +1422,56 @@
     "birthDate": "22.02.1990",
     "email": "bezuglova@ukma.edu.ua",
     "phoneNumber": "+380972341234"
+  },
+  {
+    "position": "LECTURER",
+    "degree": "POSTGRADUATE",
+    "rank": "NONE",
+    "hiringDate": "06.02.2024",
+    "load": 2.0,
+    "department": {
+      "id": 1234570,
+      "name": "department of matematyka",
+      "faculty": {
+        "id": 1234567,
+        "name": "Fi",
+        "shortName": "fi",
+        "dean": {
+          "position": "PROFESSOR",
+          "degree": "DOCTOR_OF_SCIENCES",
+          "rank": "PROFESSOR",
+          "hiringDate": "22.10.1993",
+          "load": 1.5,
+          "department": {
+            "id": 1234567,
+            "name": "department of informatics"
+          },
+          "id": 1000002,
+          "firstName": "Микола",
+          "lastName": "Глибовець",
+          "middleName": "Миколайович",
+          "birthDate": "23.01.1959",
+          "email": "hlybovets.m@ukma.edu.ua",
+          "phoneNumber": "+380971234567"
+        },
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      },
+      "location": "Contractova, 2b",
+      "email": "mathde@gmail.com"
+    },
+    "id": 1000044,
+    "firstName": "Андрій",
+    "lastName": "Макарець",
+    "middleName": "Станіславович",
+    "birthDate": "01.02.1995",
+    "email": "makarets.a@gmail.com",
+    "phoneNumber": "+380672314345"
   }
 ]

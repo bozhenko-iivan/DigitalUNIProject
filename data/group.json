@@ -34,12 +34,108 @@
         "city": "Kyiv",
         "address": "Contractova, 2M"
       }
+    },
+    "department": {
+      "id": 1234567,
+      "name": "department of informatics"
+    }
+  },
+  {
+    "id": 1234568,
+    "name": "ECON-1",
+    "course": 1,
+    "admissionYear": 2025,
+    "faculty": {
+      "id": 1000002,
+      "name": "faculty of economics",
+      "shortName": "fen",
+      "email": "fen@gmail.com",
+      "university": {
+        "id": 1234567,
+        "fullName": "NaUKMA",
+        "shortName": "KMA",
+        "city": "Kyiv",
+        "address": "Contractova, 2M"
+      }
+    },
+    "department": {
+      "id": 1000001,
+      "name": "department of finances"
+    }
+  },
+  {
+    "id": 1234570,
+    "name": "LAW-1",
+    "course": 1,
+    "admissionYear": 2025,
+    "faculty": {
+      "id": 1000003,
+      "name": "faculty of law",
+      "shortName": "KMAlaw",
+      "email": "kmalaw@gmail.com",
+      "university": {
+        "id": 1234567,
+        "fullName": "NaUKMA",
+        "shortName": "KMA",
+        "city": "Kyiv",
+        "address": "Contractova, 2M"
+      }
+    },
+    "department": {
+      "id": 1234568,
+      "name": "department of private law"
+    }
+  },
+  {
+    "id": 1234571,
+    "name": "LAW-2",
+    "course": 1,
+    "admissionYear": 2025,
+    "faculty": {
+      "id": 1000003,
+      "name": "faculty of law",
+      "shortName": "KMAlaw",
+      "email": "kmalaw@gmail.com",
+      "university": {
+        "id": 1234567,
+        "fullName": "NaUKMA",
+        "shortName": "KMA",
+        "city": "Kyiv",
+        "address": "Contractova, 2M"
+      }
+    },
+    "department": {
+      "id": 1234569,
+      "name": "department of international law"
+    }
+  },
+  {
+    "id": 1234569,
+    "name": "ECON-2",
+    "course": 3,
+    "admissionYear": 2024,
+    "faculty": {
+      "id": 1000002,
+      "name": "faculty of economics",
+      "shortName": "fen",
+      "email": "fen@gmail.com",
+      "university": {
+        "id": 1234567,
+        "fullName": "NaUKMA",
+        "shortName": "KMA",
+        "city": "Kyiv",
+        "address": "Contractova, 2M"
+      }
+    },
+    "department": {
+      "id": 1000001,
+      "name": "department of finances"
     }
   },
   {
     "id": 1000001,
     "name": "IPZ-2",
-    "course": 1,
+    "course": 2,
     "admissionYear": 2025,
     "faculty": {
       "id": 1234567,
@@ -71,18 +167,40 @@
         "city": "Kyiv",
         "address": "Contractova, 2M"
       }
+    },
+    "department": {
+      "id": 1234567,
+      "name": "department of informatics"
     }
   },
   {
-    "id": 1234568,
-    "name": "ECON-1",
-    "course": 1,
+    "id": 1234572,
+    "name": "IPZ-3",
+    "course": 6,
     "admissionYear": 2025,
     "faculty": {
-      "id": 1000002,
-      "name": "faculty of economics",
-      "shortName": "fen",
-      "email": "fen@gmail.com",
+      "id": 1234567,
+      "name": "Fi",
+      "shortName": "fi",
+      "dean": {
+        "position": "PROFESSOR",
+        "degree": "DOCTOR_OF_SCIENCES",
+        "rank": "PROFESSOR",
+        "hiringDate": "22.10.1993",
+        "load": 1.5,
+        "department": {
+          "id": 1234567,
+          "name": "department of informatics"
+        },
+        "id": 1000002,
+        "firstName": "Микола",
+        "lastName": "Глибовець",
+        "middleName": "Миколайович",
+        "birthDate": "23.01.1959",
+        "email": "hlybovets.m@ukma.edu.ua",
+        "phoneNumber": "+380971234567"
+      },
+      "email": "fi@gmail.com",
       "university": {
         "id": 1234567,
         "fullName": "NaUKMA",
@@ -90,63 +208,43 @@
         "city": "Kyiv",
         "address": "Contractova, 2M"
       }
-    }
-  },
-  {
-    "id": 1234570,
-    "name": "LAW-1",
-    "course": 1,
-    "admissionYear": 2025,
-    "faculty": {
-      "id": 1000003,
-      "name": "faculty of law",
-      "shortName": "KMAlaw",
-      "email": "kmalaw@gmail.com",
-      "university": {
+    },
+    "department": {
+      "id": 1234570,
+      "name": "department of matematyka",
+      "faculty": {
         "id": 1234567,
-        "fullName": "NaUKMA",
-        "shortName": "KMA",
-        "city": "Kyiv",
-        "address": "Contractova, 2M"
-      }
-    }
-  },
-  {
-    "id": 1234571,
-    "name": "LAW-2",
-    "course": 1,
-    "admissionYear": 2025,
-    "faculty": {
-      "id": 1000003,
-      "name": "faculty of law",
-      "shortName": "KMAlaw",
-      "email": "kmalaw@gmail.com",
-      "university": {
-        "id": 1234567,
-        "fullName": "NaUKMA",
-        "shortName": "KMA",
-        "city": "Kyiv",
-        "address": "Contractova, 2M"
-      }
-    }
-  },
-  {
-    "id": 1234569,
-    "name": "ECON-2",
-    "course": 3,
-    "admissionYear": 2024,
-    "faculty": {
-      "id": 1000002,
-      "name": "faculty of economics",
-      "shortName": "fen",
-      "email": "fen@gmail.com",
-      "university": {
-        "id": 1234567,
-        "fullName": "NaUKMA",
-        "shortName": "KMA",
-        "city": "Kyiv",
-        "address": "Contractova, 2M"
-      }
+        "name": "Fi",
+        "shortName": "fi",
+        "dean": {
+          "position": "PROFESSOR",
+          "degree": "DOCTOR_OF_SCIENCES",
+          "rank": "PROFESSOR",
+          "hiringDate": "22.10.1993",
+          "load": 1.5,
+          "department": {
+            "id": 1234567,
+            "name": "department of informatics"
+          },
+          "id": 1000002,
+          "firstName": "Микола",
+          "lastName": "Глибовець",
+          "middleName": "Миколайович",
+          "birthDate": "23.01.1959",
+          "email": "hlybovets.m@ukma.edu.ua",
+          "phoneNumber": "+380971234567"
+        },
+        "email": "fi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      },
+      "location": "Contractova, 2b",
+      "email": "mathde@gmail.com"
     }
   }
 ]

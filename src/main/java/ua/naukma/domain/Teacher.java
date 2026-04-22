@@ -37,33 +37,18 @@ public class Teacher extends Person implements Serializable {
     public Department getDepartment() {return department;}
 
     public void setPosition(TeacherPosition position) {
-        if (position == null) {
-            throw new NullPointerException("Position is null");
-        }
         this.position = position;
     }
     public void setDegree(TeacherDegree degree) {
-        if (degree == null) {
-            throw new NullPointerException("Degree is null");
-        }
         this.degree = degree;
     }
     public void setRank(TeacherRank rank) {
-        if (rank == null) {
-            throw new NullPointerException("Rank is null");
-        }
         this.rank = rank;
     }
     private void setHiringDate(LocalDate hiringDate) {
-        if (hiringDate == null || hiringDate.isAfter(LocalDate.now())) {
-            throw new IncorrectDataException("Hiring Date is invalid.");
-        }
         this.hiringDate = hiringDate;
     }
     public void setLoad(double load) {
-        if (load < 0) {
-            throw new IncorrectDataException("Load cannot be negative.");
-        }
         this.load = load;
     }
 
