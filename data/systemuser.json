@@ -16,5 +16,11 @@
     "login": "manager",
     "password": "Man!1234",
     "role": "MANAGER"
+  },
+  {
+    "id": 2281338,
+    "login": "user",
+    "password": "Usr!1234",
+    "role": "USER"
   }
 ]

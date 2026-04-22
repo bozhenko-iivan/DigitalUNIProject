@@ -44,7 +44,7 @@ class DigitalUniTests {
         testUniversity = new University(1234567, "NaUKMA", "KMA", "Kyiv", "address, 2");
         testFaculty = new Faculty(1236567, "FFi", "ffi", null ,"ffi@gmail.com", testUniversity);
         testDepartment = new Department(1111111, "TestDept", testFaculty, null, "TestLoc", "test@ukma.edu.ua");
-        testGroup = new Group(1234567, "IPZ-2025", testFaculty, 1, 2024);
+        testGroup = new Group(1234567, "IPZ-2025", testFaculty, testDepartment,1, 2024);
 
         studentService = new StudentService(studentRepository, gradeRepository, groupRepository, Student.class);
         teacherService = new TeacherService(teacherRepository, Teacher.class);
@@ -58,7 +58,7 @@ class DigitalUniTests {
     @Test
     void testInvalidAdmissionYearThrowsException() {
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
-                new Group(1234567, "IPZ-2025", testFaculty, 1, 1990)
+                new Group(1234567, "IPZ-2025", testFaculty, testDepartment,1, 1990)
         );
         assertEquals("Invalid admission year.", ex.getMessage());
     }
@@ -67,7 +67,7 @@ class DigitalUniTests {
     @Test
     void testInvalidCourseNumberThrowsException() {
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
-                new Group(1234567, "IPZ-2025", testFaculty, 7, 2024)
+                new Group(1234567, "IPZ-2025", testFaculty, testDepartment,7, 2024)
         );
         assertEquals("Invalid course.", ex.getMessage());
     }

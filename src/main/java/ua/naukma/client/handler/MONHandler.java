@@ -87,7 +87,7 @@ public class MONHandler extends BasicHandler{
                 });
     }
     private void log_out(){
-        Response logoutResponse = sendRequest(Request.RequestType.LOGOUT, null, false);
+        Response logoutResponse = sendRequest(Request.RequestType.LOGOUT, null, false, MenuLevel.ADMIN_PANEL);
         if (logoutResponse != null && logoutResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             menuContext.setCurrent_level(MenuLevel.LOGIN);
         }
