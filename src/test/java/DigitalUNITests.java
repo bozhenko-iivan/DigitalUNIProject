@@ -51,7 +51,7 @@ class DigitalUniTests {
 
         testStudent = new Student(1234456, "Максим", "Ткаченко", "Ігорович",
                 LocalDate.of(2005, 10, 10), "max@ukma.edu.ua", "+380981231234",
-                "11112222", 1, testGroup, 2024, StudyForm.BUDGET, StudentStatus.STUDYING);
+                "11112222", testGroup, StudyForm.BUDGET, StudentStatus.STUDYING);
     }
 
     // 1. Перевірка валідації некоректного року вступу
@@ -219,7 +219,7 @@ class DigitalUniTests {
         EntityController<Student, StudentService> controller = new EntityController<>(studentService);
         Student newStudent = new Student(7654321, "Олег", "Петров", "Іванович",
                 LocalDate.of(2004, 5, 5), "oleg@ukma.edu.ua", "+380501234567",
-                "22223333", 2, testGroup, 2023, StudyForm.CONTRACT, StudentStatus.STUDYING);
+                "22223333",  testGroup, StudyForm.CONTRACT, StudentStatus.STUDYING);
 
         Request req = new Request(Request.RequestType.ADD, newStudent);
         controller.process(req);
