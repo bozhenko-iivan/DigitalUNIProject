@@ -70,7 +70,14 @@ public class Department implements Serializable, GetId, GetName {
 
     @Override
     public String toString() {
-        return "Department of " + name + " [" + faculty.getShortName() + "]";
+        String facultyName = (faculty != null) ? faculty.getShortName() : "Unknown Faculty";
+        String headName = (head != null) ? head.getLastName() + " " + head.getFirstName() : "No head";
+
+        return "Department: " + name + " (ID: " + id + ")" +
+                "\nLocation: " + location +
+                "\nEmail: " + email +
+                "\nFaculty: " + facultyName +
+                "\nHead: " + headName;
     }
 
     public String findDepartment() {

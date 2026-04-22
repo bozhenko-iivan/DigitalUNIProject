@@ -3971,5 +3971,1245 @@
     "birthDate": "15.03.2007",
     "email": "yurchenko.m@gmail.com",
     "phoneNumber": "+380992220002"
+  },
+  {
+    "recordBookNumber": "22223333",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "CONTRACT",
+    "status": "STUDYING",
+    "id": 1000127,
+    "firstName": "Олег",
+    "lastName": "Петров",
+    "middleName": "Іванович",
+    "birthDate": "05.05.2004",
+    "email": "oleg@ukma.edu.ua",
+    "phoneNumber": "+380501234567"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "ACADEMIC_LEAVE",
+    "id": 1000128,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000129,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000130,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "CONTRACT",
+    "status": "STUDYING",
+    "id": 1000131,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000132,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000133,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "new@ukma.edu.ua",
+    "phoneNumber": "+380999999999"
+  },
+  {
+    "recordBookNumber": "22223333",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "CONTRACT",
+    "status": "STUDYING",
+    "id": 1000134,
+    "firstName": "Олег",
+    "lastName": "Петров",
+    "middleName": "Іванович",
+    "birthDate": "05.05.2004",
+    "email": "oleg@ukma.edu.ua",
+    "phoneNumber": "+380501234567"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "ACADEMIC_LEAVE",
+    "id": 1000135,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000136,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000137,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "CONTRACT",
+    "status": "STUDYING",
+    "id": 1000138,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000139,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000140,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "new@ukma.edu.ua",
+    "phoneNumber": "+380999999999"
+  },
+  {
+    "recordBookNumber": "22223333",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "CONTRACT",
+    "status": "STUDYING",
+    "id": 1000141,
+    "firstName": "Олег",
+    "lastName": "Петров",
+    "middleName": "Іванович",
+    "birthDate": "05.05.2004",
+    "email": "oleg@ukma.edu.ua",
+    "phoneNumber": "+380501234567"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "ACADEMIC_LEAVE",
+    "id": 1000142,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000143,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000144,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "CONTRACT",
+    "status": "STUDYING",
+    "id": 1000145,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000146,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000147,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "new@ukma.edu.ua",
+    "phoneNumber": "+380999999999"
+  },
+  {
+    "recordBookNumber": "22223333",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "CONTRACT",
+    "status": "STUDYING",
+    "id": 1000148,
+    "firstName": "Олег",
+    "lastName": "Петров",
+    "middleName": "Іванович",
+    "birthDate": "05.05.2004",
+    "email": "oleg@ukma.edu.ua",
+    "phoneNumber": "+380501234567"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "ACADEMIC_LEAVE",
+    "id": 1000149,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000150,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000151,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "CONTRACT",
+    "status": "STUDYING",
+    "id": 1000152,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000153,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000154,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "new@ukma.edu.ua",
+    "phoneNumber": "+380999999999"
+  },
+  {
+    "recordBookNumber": "22223333",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "CONTRACT",
+    "status": "STUDYING",
+    "id": 1000155,
+    "firstName": "Олег",
+    "lastName": "Петров",
+    "middleName": "Іванович",
+    "birthDate": "05.05.2004",
+    "email": "oleg@ukma.edu.ua",
+    "phoneNumber": "+380501234567"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "ACADEMIC_LEAVE",
+    "id": 1000156,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000157,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000158,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "CONTRACT",
+    "status": "STUDYING",
+    "id": 1000159,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000160,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000161,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "new@ukma.edu.ua",
+    "phoneNumber": "+380999999999"
+  },
+  {
+    "recordBookNumber": "22223333",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "CONTRACT",
+    "status": "STUDYING",
+    "id": 1000162,
+    "firstName": "Олег",
+    "lastName": "Петров",
+    "middleName": "Іванович",
+    "birthDate": "05.05.2004",
+    "email": "oleg@ukma.edu.ua",
+    "phoneNumber": "+380501234567"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "ACADEMIC_LEAVE",
+    "id": 1000163,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "CONTRACT",
+    "status": "STUDYING",
+    "id": 1000164,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000165,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "max@ukma.edu.ua",
+    "phoneNumber": "+380981231234"
+  },
+  {
+    "recordBookNumber": "11112222",
+    "group": {
+      "id": 1234567,
+      "name": "IPZ-2025",
+      "course": 1,
+      "admissionYear": 2024,
+      "faculty": {
+        "id": 1236567,
+        "name": "FFi",
+        "shortName": "ffi",
+        "email": "ffi@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "address, 2"
+        }
+      }
+    },
+    "studyForm": "BUDGET",
+    "status": "STUDYING",
+    "id": 1000166,
+    "firstName": "Максим",
+    "lastName": "Ткаченко",
+    "middleName": "Ігорович",
+    "birthDate": "10.10.2005",
+    "email": "new@ukma.edu.ua",
+    "phoneNumber": "+380999999999"
   }
 ]

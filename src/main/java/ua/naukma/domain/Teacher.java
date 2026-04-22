@@ -69,13 +69,6 @@ public class Teacher extends Person implements Serializable {
 
     @Override
     public String toString() {
-        return "Teacher{" +
-                "position=" + position +
-                ", degree=" + degree +
-                ", rank=" + rank +
-                ", hiringDate=" + hiringDate +
-                ", load=" + load +
-                ", department=" + department +
-                '}';
+        return "Teacher " + super.toString() + " [" + degree + "]";
     }
 }
