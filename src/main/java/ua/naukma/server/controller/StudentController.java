@@ -6,6 +6,7 @@ import ua.naukma.network.Response;
 import ua.naukma.network.dto.*;
 import ua.naukma.server.annotation.CommandRoute;
 import ua.naukma.server.service.GradeService;
+import ua.naukma.server.service.GroupService;
 import ua.naukma.server.service.StudentService;
 
 import java.util.List;
@@ -33,10 +34,12 @@ import static ua.naukma.network.Request.RequestType.TRANSFER_GROUP;
 public class StudentController implements RequestHandler {
     private final StudentService studentService;
     private final GradeService gradeService;
+    private final GroupService groupService;
 
-    public StudentController(StudentService studentService, GradeService gradeService) {
+    public StudentController(StudentService studentService, GradeService gradeService, GroupService groupService) {
         this.studentService = studentService;
         this.gradeService = gradeService;
+        this.groupService = groupService;
     }
 
     @Override
@@ -114,9 +117,9 @@ public class StudentController implements RequestHandler {
                 int studentId = (int) request.getData();
                 yield execute(() -> studentService.calculateAverageScore(studentId), request.getType());
             }
-            case CHANGE_COURSE -> {
-                int[] data = (int[]) request.getData();
-                yield execute(() -> studentService.changeCourse(data[0], data[1]), request.getType());
+            case UPGRADE_GROUP_COURSE -> {
+                int groupId = (int) request.getData();
+                yield execute(() -> studentService.upgradeGroupCourse(groupId), request.getType());
             }
             case TRANSFER_GROUP -> {
                 TransferDTO dto = (TransferDTO) request.getData();

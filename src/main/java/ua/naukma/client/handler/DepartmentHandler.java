@@ -39,6 +39,7 @@ public class DepartmentHandler extends BasicHandler {
             case 10 -> update_teacher_contacts();
             case 11 -> update_teacher_academic();
             case 12 -> edit_department();
+            case 13 -> show_department_info();
             default -> System.out.println("Invalid choice");
         }
     }
@@ -46,15 +47,24 @@ public class DepartmentHandler extends BasicHandler {
         menuContext.setCurrent_level(MenuLevel.DEPS);
         menuContext.setCurrent_department(null);
     }
+
+    private void show_department_info() {
+        Response showDepartmentInfo = sendRequest(Request.RequestType.FIND, menuContext.getCurrent_department().getId(), false);
+        if (showDepartmentInfo.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+            Faculty faculty = (Faculty) showDepartmentInfo.getPayload();
+            System.out.println(faculty.toString());
+        }
+    }
+
     private void add_teacher() {
         if (menuContext.getCurrent_user().hasPermission(Permissions.MANAGE_STRUCTURE)) {
             try {
-                int teacherId = IdVerificator.ask_id();
-
-                if (isIdAlreadyTaken(teacherId, Request.RequestType.FIND)) {
-                    System.out.println("This id is already taken. Please try choose another id");
-                    return;
-                }
+//                int teacherId = IdVerificator.ask_id();
+//
+//                if (isIdAlreadyTaken(teacherId, Request.RequestType.FIND)) {
+//                    System.out.println("This ID is already taken by another teacher in the system. Please choose a UNIQUE ID.");
+//                    return;
+//                }
 
                 boolean alphabet = PersonInfoVerificator.ask_alphabet();
                 String firstName = PersonInfoVerificator.ask_name("first name", alphabet);
@@ -69,7 +79,7 @@ public class DepartmentHandler extends BasicHandler {
                 LocalDate hiringDate = AcademicInfoVerificator.ask_hiring_date(dob);
                 double load = AcademicInfoVerificator.ask_load();
 
-                Teacher teacher = new Teacher(teacherId, firstName, lastName, middleName, dob,
+                Teacher teacher = new Teacher(0, firstName, lastName, middleName, dob,
                         email, phoneNumber, position, degree, rank, hiringDate, load, menuContext.getCurrent_department());
 
                 Request addRequest = new Request(Request.RequestType.ADD, teacher, menuContext.getCurrent_level());
@@ -139,13 +149,14 @@ public class DepartmentHandler extends BasicHandler {
         Response response = sendRequest(Request.RequestType.FIND, teacherId, false);
         if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             Teacher t = (Teacher) response.getPayload();
-            if (t.getDepartment() != null && t.getDepartment().getId() == menuContext.getCurrent_department().getId()) {
+            if (isChild.test(t)) {
                 System.out.println(t);
             }
         } else {
             System.out.println("No teacher found.");
         }
     }
+
     private void show_all_teachers() {
         try {
             Request showAllTeachersRequest = new Request(Request.RequestType.GET_ALL, menuContext.getCurrent_department().getId(),
@@ -174,7 +185,7 @@ public class DepartmentHandler extends BasicHandler {
             @SuppressWarnings("unchecked")
             List<Teacher> teachers = (List<Teacher>) sortByIdResponse.getPayload();
             teachers = teachers.stream().filter(isChild).toList();
-            teachers.forEach(teacher -> System.out.printf("%-25s | ID: %d%n", teacher.getName(), teacher.getId()));
+            teachers.forEach(teacher -> System.out.printf("%-35s | ID: %d%n", teacher.getName(), teacher.getId()));
         }
     }
 
@@ -185,7 +196,7 @@ public class DepartmentHandler extends BasicHandler {
             @SuppressWarnings("unchecked")
             List<Teacher> teachers = (List<Teacher>) res.getPayload();
             teachers = teachers.stream().filter(isChild).toList();
-            teachers.forEach(teacher -> System.out.printf("%-20s | ID: %d%n", teacher.getName(), teacher.getId()));
+            teachers.forEach(teacher -> System.out.printf("%-35s | ID: %d%n", teacher.getName(), teacher.getId()));
         }
     }
 

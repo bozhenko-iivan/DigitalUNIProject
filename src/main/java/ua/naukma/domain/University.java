@@ -7,7 +7,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 public class University implements Serializable, GetId, GetName {
-    private final int id;
+    private int id;
     private String fullName;
     private String shortName;
     private String city;
@@ -23,6 +23,10 @@ public class University implements Serializable, GetId, GetName {
         this.shortName = shortName;
         this.city = city;
         this.address = address;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

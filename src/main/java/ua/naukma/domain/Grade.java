@@ -36,7 +36,7 @@ public class Grade implements Serializable, GetId, GetName {
         return subjectName;
     }
 
-    public void setGradeId(int gradeId) {
+    public void setId(int gradeId) {
         this.gradeId = gradeId;
     }
 

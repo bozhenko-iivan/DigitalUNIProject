@@ -39,7 +39,7 @@ public class SystemUser implements Serializable, GetId, GetName {
         return id;
     }
 
-    private void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 

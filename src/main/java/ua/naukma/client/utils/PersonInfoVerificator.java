@@ -94,8 +94,10 @@ public class PersonInfoVerificator {
         }
         else{
             for (char c : s.toCharArray()) {
-                if ((c < 'А' || c > 'Я') && (c < 'а' || c > 'я')&&
-                        ( c != 'ї'&& c != 'Ї'&& c != 'І'&& c != 'і')) {
+                if ((c < 'А' || c > 'Я') && (c < 'а' || c > 'я') &&
+                        (c != 'ї' && c != 'Ї' && c != 'І' && c != 'і' &&
+                                c != 'Є' && c != 'є' && c != 'Ґ' && c != 'ґ' &&
+                                c != '\'' && c != '`')) {
                     isalpha = false;
                     break;
                 }

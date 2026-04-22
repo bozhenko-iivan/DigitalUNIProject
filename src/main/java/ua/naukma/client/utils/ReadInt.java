@@ -6,16 +6,12 @@ import java.util.Scanner;
 public class ReadInt {
     public static int readInt(){
         Scanner scanner = InitScanner.try_init_scanner();
-        for(;;) {
-            int choice;
+        while (true) {
             try {
-                choice = scanner.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Enter an integer.");
-                scanner.next();
-                continue;
+                return Integer.parseInt(scanner.nextLine().trim());
+            } catch (NumberFormatException e) {
+                System.out.print("Invalid input. Please enter a number: ");
             }
-            return choice;
         }
     }
 }

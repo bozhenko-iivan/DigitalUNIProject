@@ -42,18 +42,18 @@ public class AdminPanelHandler extends BasicHandler {
     private void add_user() {
         if (menuContext.getCurrent_user().hasPermission(Permissions.MANAGE_USERS)) {
             try {
-                int userId = IdVerificator.ask_id();
-
-                if (isIdAlreadyTaken(userId, Request.RequestType.FIND_USER_BY_ID)) {
-                    System.out.println("This id is already taken. Please try choose another id");
-                    return;
-                }
+//                int userId = IdVerificator.ask_id();
+//
+//                if (isIdAlreadyTaken(userId, Request.RequestType.FIND_USER_BY_ID)) {
+//                    System.out.println("This id is already taken. Please try choose another id");
+//                    return;
+//                }
 
                 String login = SystemUserVerificator.askLogin();
                 String password = SystemUserVerificator.askPassword();
                 SystemUserRoles role = SystemUserVerificator.askRole();
 
-                SystemUser user = new SystemUser(userId, login, password, role);
+                SystemUser user = new SystemUser(0, login, password, role);
 
                 Request addRequest = new Request(Request.RequestType.ADD_USER, user, menuContext.getCurrent_level());
                 oos.writeObject(addRequest);

@@ -127,12 +127,12 @@ public class StudentService extends EntityService<Student, Integer> {
                 .collect(Collectors.toList());
     }
 
-    public Student changeCourse(int studentID, int newCourse) {
-        Student student = findById(studentID);
-        student.setCourse(newCourse);
-        repository.save(student);
-        return student;
-    }
+//    public Student changeCourse(int studentID, int newCourse) {
+//        Student student = findById(studentID);
+//        student.setCourse(newCourse);
+//        repository.save(student);
+//        return student;
+//    }
 
     public Student transferGroup(int studentId, int newGroupId) {
         Student student = findById(studentId);
@@ -163,5 +163,26 @@ public class StudentService extends EntityService<Student, Integer> {
                 .filter(s -> s.getGroup() != null && s.getGroup().getFaculty() != null && s.getGroup().getFaculty().getId() == facultyId)
                 .sorted(java.util.Comparator.comparingInt(Student::getCourse))
                 .collect(Collectors.toList());
+    }
+
+    public Group upgradeGroupCourse(int groupId) {
+        Group group = groupRepository.findById(groupId)
+                .orElseThrow(() -> new EntityNotFoundException("Group not found"));
+
+        int nextCourse = group.getCourse() + 1;
+        if (nextCourse > 6) {
+            throw new IllegalArgumentException("Maximum course is 6");
+        }
+
+        group.setCourse(nextCourse);
+        groupRepository.save(group);
+
+        List<Student> students = findAllByGroupId(groupId);
+        for (Student s : students) {
+            s.setGroup(group);
+            repository.save(s);
+        }
+
+        return group;
     }
 }

@@ -19,5 +19,12 @@
     "shortName": "KPI",
     "city": "Kyiv",
     "address": "Beresteiskyi Ave, 37"
+  },
+  {
+    "id": 1234568,
+    "fullName": "nakukma",
+    "shortName": "kukma",
+    "city": "kyiv",
+    "address": "kyiv,1"
   }
 ]

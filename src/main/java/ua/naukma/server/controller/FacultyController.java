@@ -3,6 +3,7 @@ package ua.naukma.server.controller;
 import ua.naukma.domain.Faculty;
 import ua.naukma.network.Request;
 import ua.naukma.network.Response;
+import ua.naukma.network.dto.UpdateFacultyDTO;
 import ua.naukma.server.annotation.CommandRoute;
 import ua.naukma.server.service.FacultyService;
 import ua.naukma.server.service.TeacherService;
@@ -16,7 +17,7 @@ import java.util.List;
         Request.RequestType.FIND,
         Request.RequestType.GET_ALL,
         Request.RequestType.SORT_BY_ID,
-        Request.RequestType.SORT_BY_ALPHABETIC_NAME
+        Request.RequestType.SORT_BY_ALPHABETIC_NAME,
 })
 public class FacultyController implements RequestHandler {
     private final FacultyService facultyService;
@@ -73,6 +74,13 @@ public class FacultyController implements RequestHandler {
             case  SORT_BY_ALPHABETIC_NAME ->  {
                 yield execute(
                         facultyService::sortByName,
+                        request.getType()
+                );
+            }
+            case UPDATE_FACULTY -> {
+                UpdateFacultyDTO dto = (UpdateFacultyDTO) request.getData();
+                yield execute(
+                        () -> facultyService.updateContacts(dto.facultyId(), dto.newEmail()),
                         request.getType()
                 );
             }

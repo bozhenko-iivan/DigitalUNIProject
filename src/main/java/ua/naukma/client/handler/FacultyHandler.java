@@ -17,6 +17,7 @@ import ua.naukma.security.Permissions;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -86,7 +87,7 @@ public class FacultyHandler extends BasicHandler {
     }
 
     private void show_fac_info() {
-        Response showFacultyInfo = sendRequest(Request.RequestType.FIND, menuContext.getCurrent_faculty().getId(), false);
+        Response showFacultyInfo = sendRequest(Request.RequestType.FIND, menuContext.getCurrent_faculty().getId(), false, menuContext.getCurrent_level());
         if (showFacultyInfo.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             Faculty faculty = (Faculty) showFacultyInfo.getPayload();
             System.out.println(faculty.toString());
@@ -98,7 +99,7 @@ public class FacultyHandler extends BasicHandler {
             int facId = menuContext.getCurrent_faculty().getId();
             String newEmail = EmailVerificator.ask_email();
             UpdateFacultyDTO dto = new UpdateFacultyDTO(facId, newEmail);
-            Response res = sendRequest(Request.RequestType.UPDATE_FACULTY, dto, false);
+            Response res = sendRequest(Request.RequestType.UPDATE_FACULTY, dto, false, menuContext.getCurrent_level());
             if (res != null && res.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
                 System.out.println("Faculty info updated!");
                 menuContext.setCurrent_faculty((Faculty) res.getPayload());
@@ -134,7 +135,7 @@ public class FacultyHandler extends BasicHandler {
                 System.out.println("No students found on this course.");
                 return;
             }
-            list = list.stream().filter(isChild).toList();
+            list = new ArrayList<>(list.stream().filter(isChild).toList());
             if(list.isEmpty()) {
                 System.out.println("No students found on this course.");
                 return;
@@ -147,7 +148,7 @@ public class FacultyHandler extends BasicHandler {
                 System.out.println("Students of Course " + course + " (Unsorted)");
             }
 
-            list.forEach(s -> System.out.printf("Course %d | %-25s | Group: %s%n",
+            list.forEach(s -> System.out.printf("Course %d | %-35s | Group: %s%n",
                     s.getCourse(), s.getName(), s.getGroup().getName()));
         }
     }
@@ -162,7 +163,7 @@ public class FacultyHandler extends BasicHandler {
             list = list.stream().filter(isTeacherChild).toList();
             System.out.println("Teachers of Faculty");
             if (list.isEmpty()) System.out.println("No teachers found.");
-            list.forEach(t -> System.out.printf("%-25s | Dept: %s%n", t.getName(), t.getDepartment().getName()));
+            list.forEach(t -> System.out.printf("%-35s | Dept: %s%n", t.getName(), t.getDepartment().getName()));
         }
     }
 
@@ -175,7 +176,7 @@ public class FacultyHandler extends BasicHandler {
                 System.out.println("No students found.");
                 return;
             }
-            list.forEach(s -> System.out.printf("Course %d | %-25s | Group: %s%n",
+            list.forEach(s -> System.out.printf("Course %d | %-35s | Group: %s%n",
                     s.getCourse(), s.getName(), s.getGroup().getName()));
         } else {
             System.out.println("Failed to load students list.");

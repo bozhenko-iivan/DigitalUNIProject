@@ -40,18 +40,18 @@ public class UniHandler extends BasicHandler {
     }
     private void add_faculty() {
         requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
-            int facultyId = IdVerificator.ask_id();
-
-            if (isIdAlreadyTaken(facultyId, Request.RequestType.FIND)) {
-                System.out.println("This id is already taken. Please try choose another id");
-                return;
-            }
+//            int facultyId = IdVerificator.ask_id();
+//
+//            if (isIdAlreadyTaken(facultyId, Request.RequestType.FIND)) {
+//                System.out.println("This ID is already taken by another faculty in the system. Please choose a UNIQUE ID.");
+//                return;
+//            }
 
             String facultyFullName = FacilityNameVerificator.ask_facility_name();
             String facultyShortName = FacilityNameVerificator.ask_short_name();
             String facultyEmail = EmailVerificator.ask_email();
 
-            Faculty facultyToAdd = new Faculty(facultyId, facultyFullName, facultyShortName, null, facultyEmail, menuContext.getCurrent_university());
+            Faculty facultyToAdd = new Faculty(0, facultyFullName, facultyShortName, null, facultyEmail, menuContext.getCurrent_university());
 
             sendRequest(Request.RequestType.ADD, facultyToAdd, false);
         });

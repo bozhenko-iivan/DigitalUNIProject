@@ -41,8 +41,8 @@ public class StudentHandler extends BasicHandler {
             }
             case 8 -> show_transcript();
             case 9 -> calculate_avg();
-            case 10 -> change_course();
-            case 11 -> transfer_group();
+//            case 10 -> change_course();
+            case 10 -> transfer_group();
             default -> System.out.println("Invalid choice.");
         }
     }
@@ -153,13 +153,23 @@ public class StudentHandler extends BasicHandler {
         System.out.print("Enter new group ID to transfer into: ");
         int newGroupId = readInt();
         TransferDTO payload = new TransferDTO(studentId, newGroupId);
-        Response response = sendRequest(Request.RequestType.TRANSFER_GROUP, payload, false);
+        Response response = sendRequest(Request.RequestType.TRANSFER_GROUP, payload, true);
 
         if (response != null && response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             Student updatedStudent = (Student) response.getPayload();
+            System.out.println("Student has been successfully transferred to group: " + updatedStudent.getGroup().getName());
+
             menuContext.setCurrent_student(updatedStudent);
             menuContext.setCurrent_group(updatedStudent.getGroup());
-            System.out.println("Student has been successfully transferred to group: " + updatedStudent.getGroup().getName());
+
+            if (updatedStudent.getGroup().getFaculty() != null) {
+                menuContext.setCurrent_faculty(updatedStudent.getGroup().getFaculty());
+                if (updatedStudent.getGroup().getFaculty().getUniversity() != null) {
+                    menuContext.setCurrent_university(updatedStudent.getGroup().getFaculty().getUniversity());
+                }
+            } else {
+                System.out.println(response != null ? response.getMsg() : "Transfer failed.");
+            }
         }
     }
 }

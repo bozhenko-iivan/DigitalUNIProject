@@ -104,7 +104,7 @@ public class ServerMain {
         UniversityService uniService = new UniversityService(uniRepo, University.class);
         UserService userService = new UserService(userRepository, SystemUser.class);
         FacultyService facultyService = new FacultyService(facultyRepository, teacherRepository, Faculty.class);
-        GroupService groupService = new GroupService(groupRepository, Group.class);
+        GroupService groupService = new GroupService(groupRepository, studentRepository,Group.class);
         StudentService studentService = new StudentService(studentRepository, gradeRepository, groupRepository,Student.class);
         TeacherService teacherService = new TeacherService(teacherRepository, Teacher.class);
         DepartmentService departmentService = new DepartmentService(departmentRepository, teacherRepository, Department.class);
@@ -116,10 +116,10 @@ public class ServerMain {
         router.put(MenuLevel.UNI, new FacultyController(facultyService, teacherService));
         router.put(MenuLevel.FAC, new FacultyController(facultyService, teacherService));
         router.put(MenuLevel.GRPS, new EntityController<>(groupService));
-        router.put(MenuLevel.GROUP, new StudentController(studentService, gradeService));
+        router.put(MenuLevel.GROUP, new StudentController(studentService, gradeService, groupService));
         router.put(MenuLevel.DEPS, new EntityController<>(departmentService));
         router.put(MenuLevel.DEPARTAMENT, new DepartmentController(departmentService, teacherService));
-        router.put(MenuLevel.STUDENT, new StudentController(studentService, gradeService));
+        router.put(MenuLevel.STUDENT, new StudentController(studentService, gradeService, groupService));
         userService.initUser();
         return router;
     }

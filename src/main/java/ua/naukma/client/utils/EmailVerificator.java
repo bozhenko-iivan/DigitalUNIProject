@@ -15,7 +15,7 @@ public class EmailVerificator {
             String email;
             System.out.print("Enter email: ");
             email = scanner.nextLine();
-            if (email.matches("^[a-zA-Z0-9.-]+@(gmail\\.com|ukr\\.net)$")) {
+            if (email.matches("^[a-zA-Z0-9.-]+@(gmail\\.com|ukr\\.net|ukma\\.edu\\.ua)$")) {
                 return email;
             } else {
                 System.out.println(error_message);

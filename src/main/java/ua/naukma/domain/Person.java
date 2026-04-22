@@ -28,7 +28,7 @@ public abstract class Person implements Serializable, GetId, GetName {
 
     @Override
     public String getName() {
-        return lastName + " " + firstName;
+        return lastName + " " + firstName + " " + middleName;
     }
     public String getFirstName() {return firstName;}
     public String getLastName() {return lastName;}

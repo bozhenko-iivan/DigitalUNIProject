@@ -44,19 +44,20 @@ public class DepsHandler extends BasicHandler {
     }
     private void add_dep() {
         requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
-            int departmentId = IdVerificator.ask_id();
-
-            if (isIdAlreadyTaken(departmentId, Request.RequestType.FIND)) {
-                System.out.println("This id is already taken. Please try choose another id");
-                return;
-            }
+//            int departmentId = IdVerificator.ask_id();
+//
+//            if (isIdAlreadyTaken(departmentId, Request.RequestType.FIND)) {
+//                System.out.println("This ID is already taken by another department in the system. Please choose a UNIQUE ID.");
+//                return;
+//            }
 
             String departmentName = FacilityNameVerificator.ask_facility_name();
             String email = EmailVerificator.ask_email();
             String location = UniversityVerificator.ask_address();
             //Teacher head =
 
-            Department dep = new Department(departmentId, departmentName, menuContext.getCurrent_faculty(),
+            Department dep = new Department(0
+                    , departmentName, menuContext.getCurrent_faculty(),
                     null, location, email);
 
             sendRequest(Request.RequestType.ADD, dep, false);
@@ -67,7 +68,7 @@ public class DepsHandler extends BasicHandler {
                 int departmentId = IdVerificator.ask_id();
                 Response response = sendRequest(Request.RequestType.FIND, departmentId, false);
                 Department f = (Department) response.getPayload();
-                if(f.getFaculty() != null && f.getFaculty().getId() == menuContext.getCurrent_faculty().getId()) {
+                if(isChild.test(f)) {
                     response = sendRequest(Request.RequestType.REMOVE, departmentId, false);
                     if (response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
                         System.out.println("Department removed");

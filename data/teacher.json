@@ -1040,5 +1040,335 @@
         }
       }
     }
+  },
+  {
+    "id": 1000032,
+    "firstName": "Володимир",
+    "lastName": "Венгер",
+    "middleName": "Миколайович",
+    "position": "DEAN",
+    "degree": "PHD",
+    "rank": "DOCENT",
+    "birthDate": "10.05.1978",
+    "hiringDate": "01.09.2010",
+    "load": 1.0,
+    "email": "venger.v@ukma.edu.ua",
+    "phoneNumber": "+380444256001",
+    "department": {
+      "id": 1234569,
+      "name": "department of international law",
+      "location": "Contractova, 14b",
+      "email": "intlawdep@gmail.com",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
+      }
+    }
+  },
+  {
+    "id": 1000033,
+    "firstName": "Ірина",
+    "lastName": "Гетьман",
+    "middleName": "Сергіївна",
+    "position": "ASSISTANT",
+    "degree": "MASTER",
+    "rank": "NONE",
+    "birthDate": "15.08.1985",
+    "hiringDate": "01.09.2015",
+    "load": 1.0,
+    "email": "hetman.i@ukma.edu.ua",
+    "phoneNumber": "+380444256002",
+    "department": {
+      "id": 1234568,
+      "name": "department of private law",
+      "location": "Contractova, 11a",
+      "email": "prlawdep@gmail.com",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
+      }
+    }
+  },
+  {
+    "id": 1000034,
+    "firstName": "Вікторія",
+    "lastName": "Заболотна",
+    "middleName": "Іванівна",
+    "position": "ASSISTANT",
+    "degree": "MASTER",
+    "rank": "NONE",
+    "birthDate": "22.11.1990",
+    "hiringDate": "01.09.2018",
+    "load": 1.0,
+    "email": "zabolotna.v@ukma.edu.ua",
+    "phoneNumber": "+380444256003",
+    "department": {
+      "id": 1234569,
+      "name": "department of international law",
+      "location": "Contractova, 14b",
+      "email": "intlawdep@gmail.com",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
+      }
+    }
+  },
+  {
+    "id": 1000035,
+    "firstName": "Наталія",
+    "lastName": "Макосій",
+    "middleName": "Михайлівна",
+    "position": "ASSISTANT",
+    "degree": "MASTER",
+    "rank": "NONE",
+    "birthDate": "05.03.1982",
+    "hiringDate": "01.09.2012",
+    "load": 1.0,
+    "email": "makosiy.n@ukma.edu.ua",
+    "phoneNumber": "+380444256004",
+    "department": {
+      "id": 1234568,
+      "name": "department of private law",
+      "location": "Contractova, 11a",
+      "email": "prlawdep@gmail.com",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
+      }
+    }
+  },
+  {
+    "id": 1000036,
+    "firstName": "Тамара",
+    "lastName": "Мокрицька",
+    "middleName": "Василівна",
+    "position": "ASSISTANT",
+    "degree": "MASTER",
+    "rank": "NONE",
+    "birthDate": "18.07.1988",
+    "hiringDate": "01.09.2016",
+    "load": 1.0,
+    "email": "mokrytska.t@ukma.edu.ua",
+    "phoneNumber": "+380444256005",
+    "department": {
+      "id": 1234568,
+      "name": "department of private law",
+      "location": "Contractova, 11a",
+      "email": "prlawdep@gmail.com",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
+      }
+    }
+  },
+  {
+    "id": 1000037,
+    "firstName": "Катерина",
+    "lastName": "Омельченко",
+    "middleName": "Вікторівна",
+    "position": "ASSISTANT",
+    "degree": "MASTER",
+    "rank": "NONE",
+    "birthDate": "30.01.1992",
+    "hiringDate": "01.09.2019",
+    "load": 1.0,
+    "email": "omelchenko.k@ukma.edu.ua",
+    "phoneNumber": "+380444256006",
+    "department": {
+      "id": 1234569,
+      "name": "department of international law",
+      "location": "Contractova, 14b",
+      "email": "intlawdep@gmail.com",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
+      }
+    }
+  },
+  {
+    "id": 1000038,
+    "firstName": "Валентина",
+    "lastName": "Ткаченко",
+    "middleName": "Миколаївна",
+    "position": "ASSISTANT",
+    "degree": "MASTER",
+    "rank": "NONE",
+    "birthDate": "12.10.1984",
+    "hiringDate": "01.09.2014",
+    "load": 1.0,
+    "email": "tkachenko.v@ukma.edu.ua",
+    "phoneNumber": "+380444256007",
+    "department": {
+      "id": 1234569,
+      "name": "department of international law",
+      "location": "Contractova, 14b",
+      "email": "intlawdep@gmail.com",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
+      }
+    }
+  },
+  {
+    "id": 1000039,
+    "firstName": "Тетяна",
+    "lastName": "Федосєєва",
+    "middleName": "Романівна",
+    "position": "DOCENT",
+    "degree": "PHD",
+    "rank": "DOCENT",
+    "birthDate": "25.04.1980",
+    "hiringDate": "01.09.2008",
+    "load": 1.0,
+    "email": "fedoseyeva.t@ukma.edu.ua",
+    "phoneNumber": "+380444256008",
+    "department": {
+      "id": 1234568,
+      "name": "department of private law",
+      "location": "Contractova, 11a",
+      "email": "prlawdep@gmail.com",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
+      }
+    }
+  },
+  {
+    "id": 1000040,
+    "firstName": "Іван",
+    "lastName": "Яцкевич",
+    "middleName": "Іванович",
+    "position": "HEAD_OF_DEPARTMENT",
+    "degree": "PHD",
+    "rank": "DOCENT",
+    "birthDate": "08.09.1975",
+    "hiringDate": "01.09.2005",
+    "load": 1.0,
+    "email": "yatskevych.i@ukma.edu.ua",
+    "phoneNumber": "+380444256009",
+    "department": {
+      "id": 1234568,
+      "name": "department of private law",
+      "location": "Contractova, 11a",
+      "email": "prlawdep@gmail.com",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
+      }
+    }
+  },
+  {
+    "id": 1000041,
+    "firstName": "Олесь",
+    "lastName": "Євтєєв",
+    "middleName": "Анатолійович",
+    "position": "ASSISTANT",
+    "degree": "MASTER",
+    "rank": "NONE",
+    "birthDate": "14.12.1993",
+    "hiringDate": "01.09.2020",
+    "load": 1.0,
+    "email": "yevteev.o@ukma.edu.ua",
+    "phoneNumber": "+380444256010",
+    "department": {
+      "id": 1234569,
+      "name": "department of international law",
+      "location": "Contractova, 14b",
+      "email": "intlawdep@gmail.com",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
+      }
+    }
+  },
+  {
+    "id": 1000042,
+    "firstName": "Юлія",
+    "lastName": "Ісаєнко",
+    "middleName": "Вікторівна",
+    "position": "ASSISTANT",
+    "degree": "MASTER",
+    "rank": "NONE",
+    "birthDate": "21.06.1995",
+    "hiringDate": "01.09.2021",
+    "load": 1.0,
+    "email": "isayenko.y@ukma.edu.ua",
+    "phoneNumber": "+380444256011",
+    "department": {
+      "id": 1234569,
+      "name": "department of international law",
+      "location": "Contractova, 14b",
+      "email": "intlawdep@gmail.com",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
+      }
+    }
+  },
+  {
+    "id": 1000043,
+    "firstName": "Дмитро",
+    "lastName": "Коваль",
+    "middleName": "Олександрович",
+    "position": "HEAD_OF_DEPARTMENT",
+    "degree": "PHD",
+    "rank": "DOCENT",
+    "birthDate": "15.05.1980",
+    "hiringDate": "01.09.2010",
+    "load": 1.0,
+    "email": "koval.d@ukma.edu.ua",
+    "phoneNumber": "+380444256012",
+    "department": {
+      "id": 1234569,
+      "name": "department of international law",
+      "location": "Contractova, 14b",
+      "email": "intlawdep@gmail.com",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      }
+    }
   }
 ]

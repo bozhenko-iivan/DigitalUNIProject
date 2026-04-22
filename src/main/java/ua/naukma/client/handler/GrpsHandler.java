@@ -42,21 +42,21 @@ public class GrpsHandler extends BasicHandler{
     }
     private void add_group() {
         requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
-            int groupToAddId = IdVerificator.ask_id();
-
-            if (isIdAlreadyTaken(groupToAddId, Request.RequestType.FIND)) {
-                System.out.println("This id is already taken. Please try choose another id");
-                return;
-            }
+//            int groupToAddId = IdVerificator.ask_id();
+//
+//            if (isIdAlreadyTaken(groupToAddId, Request.RequestType.FIND)) {
+//                System.out.println("This ID is already taken by another group in the system. Please choose a UNIQUE ID.");
+//                return;
+//            }
 
             String groupName = FacilityNameVerificator.ask_group_name();
             Faculty faculty = menuContext.getCurrent_faculty();
             int admissionYear = AcademicInfoVerificator.ask_admission_year();
             int course = AcademicInfoVerificator.ask_course();
 
-            Group group = new Group(groupToAddId, groupName, faculty, course, admissionYear);
+            Group group = new Group(0, groupName, faculty, course, admissionYear);
 
-            sendRequest(Request.RequestType.ADD, group, false);
+            sendRequest(Request.RequestType.ADD, group, true);
         });
     }
     private void remove_group() {
@@ -64,8 +64,12 @@ public class GrpsHandler extends BasicHandler{
             int groupToRemoveId = IdVerificator.ask_id();
             Response findGroupRes = sendRequest(Request.RequestType.FIND, groupToRemoveId, false);
             Group g = (Group) findGroupRes.getPayload();
-            if(g.getFaculty() != null && g.getFaculty().getId() == menuContext.getCurrent_faculty().getId())
-                 sendRequest(Request.RequestType.REMOVE, groupToRemoveId, false);
+
+            if (isChild.test(g)) {
+                sendRequest(Request.RequestType.REMOVE, groupToRemoveId, false);
+            } else {
+                System.out.println("You can only remove groups from the current faculty.");
+            }
         });
     }
     private void find_group() {
@@ -73,7 +77,7 @@ public class GrpsHandler extends BasicHandler{
         Response findGroupRes = sendRequest(Request.RequestType.FIND, groupId, false);
         Group g = (Group) findGroupRes.getPayload();
         if (findGroupRes.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
-            if (g.getFaculty() != null && g.getFaculty().getId() == menuContext.getCurrent_faculty().getId()) {
+            if (isChild.test(g)) {
                 menuContext.setCurrent_group((Group) findGroupRes.getPayload());
                 menuContext.setCurrent_level(MenuLevel.GROUP);
             }

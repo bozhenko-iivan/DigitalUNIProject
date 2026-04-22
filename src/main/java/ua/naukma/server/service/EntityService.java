@@ -1,6 +1,8 @@
 package ua.naukma.server.service;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ua.naukma.exception.DuplicateEntityException;
 import ua.naukma.exception.EntityNotFoundException;
 import ua.naukma.server.repository.GetId;
@@ -17,7 +19,8 @@ import java.util.stream.Collectors;
 
 
 public class EntityService <T extends Serializable & GetId & GetName, Number> implements Service<T, Integer> {
-    private final Repository<T, Integer> repository;
+    private static final Logger log = LoggerFactory.getLogger(EntityService.class);
+    protected final Repository<T, Integer> repository;
     private final Class<T> clazz;
     public EntityService(Repository<T, Integer> repository, Class<T> clazz) {
         this.clazz = clazz;
@@ -33,9 +36,11 @@ public class EntityService <T extends Serializable & GetId & GetName, Number> im
     }
     @Override
     public void add(T e) throws DuplicateEntityException {
-        Integer id = e.getId();
-        if (repository.findById(id).isPresent()) {
-            throw new DuplicateEntityException( getClassName() +" with id " + e.getId() + " already exists.");
+        int newUniqueId = generateNextId();
+        try {
+            e.getClass().getMethod("setId", int.class).invoke(e, newUniqueId);
+        } catch (Exception ex) {
+            EntityService.log.error("Could not automatically set ID for " + getClassName() + ". Make sure it has a setId(int) method.");
         }
         repository.save(e);
     }
@@ -77,5 +82,12 @@ public class EntityService <T extends Serializable & GetId & GetName, Number> im
         return findAll().stream()
                 .sorted((e1, e2) -> ukrainianCollator.compare(e1.getName(), e2.getName()))
                 .collect(Collectors.toList());
+    }
+
+    private int generateNextId() {
+        return repository.findAll().stream()
+                .mapToInt(GetId::getId)
+                .max()
+                .orElse(1000000) + 1;
     }
 }

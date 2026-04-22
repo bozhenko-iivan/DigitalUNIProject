@@ -57,10 +57,7 @@ public class Faculty implements Serializable, GetId, GetName {
         this.shortName = shortName;
     }
 
-    private void setId(int id) {
-        if  (id <= 0) {
-            throw new IncorrectDataException("id cannot be 0 or negative.");
-        }
+    public void setId(int id) {
         this.id = id;
     }
 

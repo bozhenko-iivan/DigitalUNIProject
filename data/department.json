@@ -135,5 +135,109 @@
     },
     "location": "Contractova, 69m",
     "email": "findep@gmail.com"
+  },
+  {
+    "id": 1234568,
+    "name": "department of private law",
+    "faculty": {
+      "id": 1000003,
+      "name": "faculty of law",
+      "shortName": "KMAlaw",
+      "email": "kmalaw@gmail.com",
+      "university": {
+        "id": 1234567,
+        "fullName": "NaUKMA",
+        "shortName": "KMA",
+        "city": "Kyiv",
+        "address": "Contractova, 2M"
+      }
+    },
+    "head": {
+      "position": "HEAD_OF_DEPARTMENT",
+      "degree": "PHD",
+      "rank": "DOCENT",
+      "hiringDate": "01.09.2005",
+      "load": 1.0,
+      "department": {
+        "id": 1234568,
+        "name": "department of private law",
+        "faculty": {
+          "id": 1000003,
+          "name": "faculty of law",
+          "shortName": "KMAlaw",
+          "email": "kmalaw@gmail.com",
+          "university": {
+            "id": 1234567,
+            "fullName": "NaUKMA",
+            "shortName": "KMA",
+            "city": "Kyiv",
+            "address": "Contractova, 2M"
+          }
+        },
+        "location": "Contractova, 11a",
+        "email": "prlawdep@gmail.com"
+      },
+      "id": 1000040,
+      "firstName": "Іван",
+      "lastName": "Яцкевич",
+      "middleName": "Іванович",
+      "birthDate": "08.09.1975",
+      "email": "yatskevych.i@ukma.edu.ua",
+      "phoneNumber": "+380444256009"
+    },
+    "location": "Contractova, 11a",
+    "email": "prlawdep@gmail.com"
+  },
+  {
+    "id": 1234569,
+    "name": "department of international law",
+    "faculty": {
+      "id": 1000003,
+      "name": "faculty of law",
+      "shortName": "KMAlaw",
+      "email": "kmalaw@gmail.com",
+      "university": {
+        "id": 1234567,
+        "fullName": "NaUKMA",
+        "shortName": "KMA",
+        "city": "Kyiv",
+        "address": "Contractova, 2M"
+      }
+    },
+    "head": {
+      "position": "HEAD_OF_DEPARTMENT",
+      "degree": "PHD",
+      "rank": "DOCENT",
+      "hiringDate": "01.09.2010",
+      "load": 1.0,
+      "department": {
+        "id": 1234569,
+        "name": "department of international law",
+        "faculty": {
+          "id": 1000003,
+          "name": "faculty of law",
+          "shortName": "KMAlaw",
+          "email": "kmalaw@gmail.com",
+          "university": {
+            "id": 1234567,
+            "fullName": "NaUKMA",
+            "shortName": "KMA",
+            "city": "Kyiv",
+            "address": "Contractova, 2M"
+          }
+        },
+        "location": "Contractova, 14b",
+        "email": "intlawdep@gmail.com"
+      },
+      "id": 1000043,
+      "firstName": "Дмитро",
+      "lastName": "Коваль",
+      "middleName": "Олександрович",
+      "birthDate": "15.05.1980",
+      "email": "koval.d@ukma.edu.ua",
+      "phoneNumber": "+380444256012"
+    },
+    "location": "Contractova, 14b",
+    "email": "intlawdep@gmail.com"
   }
 ]

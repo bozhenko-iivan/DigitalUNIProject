@@ -35,7 +35,7 @@ public class Group implements Serializable, GetId, GetName {
         this.admissionYear = admissionYear;
     }
 
-    private void setCourse(int course) {
+    public void setCourse(int course) {
         if (course < 1 || course > 6) {
             throw new IllegalArgumentException("Invalid course.");
         }
@@ -56,10 +56,7 @@ public class Group implements Serializable, GetId, GetName {
         this.name = name;
     }
 
-    private void setId(int id) {
-        if (String.valueOf(id).length() != 7 || id <= 0) {
-            throw new IllegalArgumentException("Invalid id.");
-        }
+    public void setId(int id) {
         this.id = id;
     }
 

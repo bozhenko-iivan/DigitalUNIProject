@@ -58,6 +58,8 @@ public class Request implements Serializable {
         GET_FAC_TEACHERS_BY_NAME,
         UPDATE_DEPARTMENT,
 
+        UPGRADE_GROUP_COURSE,
+
         @Secured(Permissions.MANAGE_STRUCTURE)
         SET_DEAN,
 

@@ -31,9 +31,55 @@
     }
   },
   {
+    "id": 1234560,
+    "name": "Faculty of Nature",
+    "shortName": "FON",
+    "email": "FON@gmail.com",
+    "university": {
+      "id": 1234566,
+      "fullName": "KNU",
+      "shortName": "KNU",
+      "city": "Kyiv",
+      "address": "Kyv, 1"
+    }
+  },
+  {
     "id": 1000003,
     "name": "faculty of law",
     "shortName": "KMAlaw",
+    "dean": {
+      "position": "DEAN",
+      "degree": "PHD",
+      "rank": "DOCENT",
+      "hiringDate": "01.09.2010",
+      "load": 1.0,
+      "department": {
+        "id": 1234569,
+        "name": "department of international law",
+        "faculty": {
+          "id": 1000003,
+          "name": "faculty of law",
+          "shortName": "KMAlaw",
+          "email": "kmalaw@gmail.com",
+          "university": {
+            "id": 1234567,
+            "fullName": "NaUKMA",
+            "shortName": "KMA",
+            "city": "Kyiv",
+            "address": "Contractova, 2M"
+          }
+        },
+        "location": "Contractova, 14b",
+        "email": "intlawdep@gmail.com"
+      },
+      "id": 1000032,
+      "firstName": "Володимир",
+      "lastName": "Венгер",
+      "middleName": "Миколайович",
+      "birthDate": "10.05.1978",
+      "email": "venger.v@ukma.edu.ua",
+      "phoneNumber": "+380444256001"
+    },
     "email": "kmalaw@gmail.com",
     "university": {
       "id": 1234567,
@@ -80,26 +126,13 @@
       "email": "hlushchenko.s@ukma.edu.ua",
       "phoneNumber": "+380444256042"
     },
-    "email": "fen@gmail.com",
+    "email": "fen@ukma.edu.ua",
     "university": {
       "id": 1234567,
       "fullName": "NaUKMA",
       "shortName": "KMA",
       "city": "Kyiv",
       "address": "Contractova, 2M"
-    }
-  },
-  {
-    "id": 1234560,
-    "name": "Faculty of Nature",
-    "shortName": "FON",
-    "email": "FON@gmail.com",
-    "university": {
-      "id": 1234566,
-      "fullName": "KNU",
-      "shortName": "KNU",
-      "city": "Kyiv",
-      "address": "Kyv, 1"
     }
   }
 ]

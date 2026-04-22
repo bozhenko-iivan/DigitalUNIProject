@@ -140,6 +140,9 @@ public class NewMenu {
 
         if (level == MenuLevel.GROUP) {
             System.out.println("\uD83D\uDD0E 8. Find Student by PIB");
+            if (loggedUser.hasPermission(Permissions.MANAGE_STRUCTURE)) {
+                System.out.println("🎓 9. Move group to next course");
+            }
         }
 
         if (level == MenuLevel.DEPARTAMENT) {
@@ -164,8 +167,8 @@ public class NewMenu {
             System.out.println("⛔ 7. Delete student's grade");
             System.out.println("\uD83D\uDCCB 8. Show student's transcript");
             System.out.println("\uD83D\uDCAF 9. Show student's GPA");
-            System.out.println("🔄 10. Change course");
-            System.out.println("🚪 11. Transfer to another group");
+//            System.out.println("🔄 10. Change course");
+            System.out.println("🚪 10. Transfer to another group");
         }
 
         System.out.println("===================================");

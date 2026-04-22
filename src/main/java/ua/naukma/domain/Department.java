@@ -32,10 +32,7 @@ public class Department implements Serializable, GetId, GetName {
     public String getLocation() { return location; }
     public String getEmail() { return email; }
 
-    private void setId(int id) {
-        if (id <= 0) {
-            throw new IllegalArgumentException("ID must be positive.");
-        }
+    public void setId(int id) {
         this.id = id;
     }
 

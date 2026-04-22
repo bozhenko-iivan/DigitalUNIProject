@@ -33,7 +33,8 @@ public class GroupHandler extends BasicHandler {
             case 5 -> show_all_students();
             case 6 -> sort_by_id();
             case 7 -> sort_by_name();
-            case 8 -> find_student_by_pib(); // ДОДАНО ПОШУК ПО ПІБ
+            case 8 -> find_student_by_pib();
+            case 9 -> upgrade_course();
             default -> System.out.println("Invalid choice");
         }
     }
@@ -45,12 +46,12 @@ public class GroupHandler extends BasicHandler {
 
     private void add_student() {
         requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
-            int studentId =  IdVerificator.ask_id();
-
-            if (isIdAlreadyTaken(studentId, Request.RequestType.FIND)) {
-                System.out.println("This id is already taken. Please try choose another id");
-                return;
-            }
+//            int studentId =  IdVerificator.ask_id();
+//
+//            if (isIdAlreadyTaken(studentId, Request.RequestType.FIND)) {
+//                System.out.println("This ID is already taken by another student in the system. Please choose a UNIQUE ID.");
+//                return;
+//            }
 
             boolean alphabet = PersonInfoVerificator.ask_alphabet();
             String firstName = PersonInfoVerificator.ask_name("first name", alphabet);
@@ -62,11 +63,16 @@ public class GroupHandler extends BasicHandler {
             StudyForm studyForm = AcademicInfoVerificator.ask_study_form();
             StudentStatus status = AcademicInfoVerificator.ask_student_status();
 
-            String recordBookNumber = "Б-" + (studentId % LocalDate.now().getYear()) + "-" + (int)(Math.random() * 999);
+            String recordBookNumber = "Б-" + LocalDate.now().getYear() + "-" + (int)(Math.random() * 9999);
 
-            Student student = new Student(studentId, firstName, lastName, middleName,dob,
-                    email, phoneNumber, recordBookNumber
-                    ,menuContext.getCurrent_group().getCourse(), menuContext.getCurrent_group(),menuContext.getCurrent_group().getAdmissionYear(), studyForm, status);
+//            Student student = new Student(0, firstName, lastName, middleName,dob,
+//                    email, phoneNumber, recordBookNumber
+//                    ,menuContext.getCurrent_group().getCourse(), menuContext.getCurrent_group(),menuContext.getCurrent_group().getAdmissionYear(), studyForm, status);
+
+            Student student = new Student(0, firstName, lastName, middleName, dob,
+                    email, phoneNumber, recordBookNumber,
+                    menuContext.getCurrent_group(),
+                    studyForm, status);
 
             sendRequest(Request.RequestType.ADD_STUDENT, student, false);
         });
@@ -77,7 +83,7 @@ public class GroupHandler extends BasicHandler {
             int studentId = IdVerificator.ask_id();
             Response findStudentResponse = sendRequest(Request.RequestType.FIND_STUDENT_BY_ID, studentId, false);
             Student s = (Student) findStudentResponse.getPayload();
-            if(s.getGroup() != null && s.getGroup().getId() == menuContext.getCurrent_group().getId())
+            if(isChild.test(s))
                 sendRequest(Request.RequestType.REMOVE, studentId, false);
         });
     }
@@ -148,7 +154,7 @@ public class GroupHandler extends BasicHandler {
         if (sortByIdResponse != null && sortByIdResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             @SuppressWarnings("unchecked")
             List<Student> students = (List<Student>) sortByIdResponse.getPayload();
-            students.forEach(student -> System.out.printf("%-25s | ID: %d%n", student.getName(), student.getId()));
+            students.forEach(student -> System.out.printf("%-35s | ID: %d%n", student.getName(), student.getId()));
         }
     }
 
@@ -158,8 +164,27 @@ public class GroupHandler extends BasicHandler {
         if (sortByNameResponse != null && sortByNameResponse.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
             @SuppressWarnings("unchecked")
             List<Student> students = (List<Student>) sortByNameResponse.getPayload();
-            students.forEach(student -> System.out.printf("%-15s%n", student.getName()));
+            students.forEach(student -> System.out.printf("%-35s%n", student.getName()));
         }
+    }
+    private void upgrade_course() {
+        requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
+            int groupId = menuContext.getCurrent_group().getId();
+
+            System.out.print("Are you sure you want to move this group and ALL its students to the next course? (y/n): ");
+            String confirmation = new java.util.Scanner(System.in).nextLine().trim().toLowerCase();
+
+            if (confirmation.equals("y")) {
+                Response response = sendRequest(Request.RequestType.UPGRADE_GROUP_COURSE, groupId, false);
+
+                if (response != null && response.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
+                    System.out.println("Group and all its students successfully moved to the next course!");
+                    menuContext.setCurrent_group((Group) response.getPayload());
+                }
+            } else {
+                System.out.println("Operation cancelled.");
+            }
+        });
     }
     private final Predicate<Student> isChild = s -> s.getGroup() != null && s.getGroup().getId() == menuContext.getCurrent_group().getId();
 }
