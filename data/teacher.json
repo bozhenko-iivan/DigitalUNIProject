@@ -1,22 +1,46 @@
 [
   {
+    "position": "HEAD_OF_DEPARTMENT",
+    "degree": "PHD",
+    "rank": "DOCENT",
+    "hiringDate": "01.09.2015",
+    "load": 1.0,
+    "department": {
+      "id": 1234567,
+      "name": "department of informatics",
+      "faculty": {
+        "id": 1234567,
+        "name": "Faculty of Informatics",
+        "shortName": "fi",
+        "email": "fin@ukma.edu.ua",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Skovorody str. 2"
+        }
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000001,
     "firstName": "Семен",
     "lastName": "Гороховський",
     "middleName": "Самуїлович",
-    "position": "HEAD_OF_DEPARTMENT",
-    "degree": "PHD",
-    "rank": "DOCENT",
     "birthDate": "12.05.1975",
-    "hiringDate": "01.09.2015",
-    "load": 1.0,
     "email": "gor@ukma.edu.ua",
-    "phoneNumber": "+380444636985",
+    "phoneNumber": "+380444636985"
+  },
+  {
+    "position": "PROFESSOR",
+    "degree": "DOCTOR_OF_SCIENCES",
+    "rank": "PROFESSOR",
+    "hiringDate": "22.10.1993",
+    "load": 1.5,
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -29,27 +53,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000002,
     "firstName": "Микола",
     "lastName": "Глибовець",
     "middleName": "Миколайович",
+    "birthDate": "23.01.1959",
+    "email": "hlybovets.m@ukma.edu.ua",
+    "phoneNumber": "+380971234567"
+  },
+  {
     "position": "PROFESSOR",
     "degree": "DOCTOR_OF_SCIENCES",
     "rank": "PROFESSOR",
-    "birthDate": "23.01.1959",
-    "hiringDate": "22.10.1993",
-    "load": 1.5,
-    "email": "hlybovets.m@ukma.edu.ua",
-    "phoneNumber": "+380971234567",
+    "hiringDate": "01.09.2005",
+    "load": 1.0,
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -62,27 +86,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000003,
     "firstName": "Володимир",
     "lastName": "Заславський",
     "middleName": "Анатолійович",
-    "position": "PROFESSOR",
-    "degree": "DOCTOR_OF_SCIENCES",
-    "rank": "PROFESSOR",
     "birthDate": "15.08.1965",
-    "hiringDate": "01.09.2005",
-    "load": 1.0,
     "email": "zaslavskyi.v@ukma.edu.ua",
-    "phoneNumber": "+380679876543",
+    "phoneNumber": "+380679876543"
+  },
+  {
+    "position": "DOCENT",
+    "degree": "PHD",
+    "rank": "DOCENT",
+    "hiringDate": "01.09.2010",
+    "load": 1.0,
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -95,27 +119,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000004,
     "firstName": "Наталія",
     "lastName": "Гулаєва",
     "middleName": "Михайлівна",
-    "position": "DOCENT",
-    "degree": "PHD",
-    "rank": "DOCENT",
     "birthDate": "20.03.1978",
-    "hiringDate": "01.09.2010",
-    "load": 1.0,
     "email": "hulaieva.n@ukma.edu.ua",
-    "phoneNumber": "+380931112233",
+    "phoneNumber": "+380931112233"
+  },
+  {
+    "position": "PROFESSOR",
+    "degree": "DOCTOR_OF_SCIENCES",
+    "rank": "SENIOR_RESEARCHER",
+    "hiringDate": "01.09.2018",
+    "load": 1.0,
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -128,27 +152,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000005,
     "firstName": "Олексій",
     "lastName": "Ігнатенко",
     "middleName": "Петрович",
-    "position": "PROFESSOR",
-    "degree": "DOCTOR_OF_SCIENCES",
-    "rank": "SENIOR_RESEARCHER",
     "birthDate": "10.11.1980",
-    "hiringDate": "01.09.2018",
-    "load": 1.0,
     "email": "ihnatenko.o@ukma.edu.ua",
-    "phoneNumber": "+380501112233",
+    "phoneNumber": "+380501112233"
+  },
+  {
+    "position": "DOCENT",
+    "degree": "PHD",
+    "rank": "DOCENT",
+    "hiringDate": "01.09.2003",
+    "load": 1.0,
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -161,27 +185,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000006,
     "firstName": "Тетяна",
     "lastName": "Ковалюк",
     "middleName": "Володимирівна",
+    "birthDate": "14.04.1970",
+    "email": "kovaliuk.t@ukma.edu.ua",
+    "phoneNumber": "+380631112233"
+  },
+  {
     "position": "DOCENT",
     "degree": "PHD",
     "rank": "DOCENT",
-    "birthDate": "14.04.1970",
-    "hiringDate": "01.09.2003",
+    "hiringDate": "01.09.2012",
     "load": 1.0,
-    "email": "kovaliuk.t@ukma.edu.ua",
-    "phoneNumber": "+380631112233",
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -194,27 +218,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000007,
     "firstName": "Олександр",
     "lastName": "Жежерун",
     "middleName": "Петрович",
+    "birthDate": "22.06.1974",
+    "email": "zhezherun.o@ukma.edu.ua",
+    "phoneNumber": "+380981112233"
+  },
+  {
     "position": "DOCENT",
     "degree": "PHD",
     "rank": "DOCENT",
-    "birthDate": "22.06.1974",
-    "hiringDate": "01.09.2012",
+    "hiringDate": "08.10.1993",
     "load": 1.0,
-    "email": "zhezherun.o@ukma.edu.ua",
-    "phoneNumber": "+380981112233",
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -227,27 +251,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000008,
     "firstName": "Володимир",
     "lastName": "Проценко",
     "middleName": "Семенович",
+    "birthDate": "05.12.1955",
+    "email": "protsenko.v@ukma.edu.ua",
+    "phoneNumber": "+380441112233"
+  },
+  {
     "position": "DOCENT",
     "degree": "PHD",
     "rank": "DOCENT",
-    "birthDate": "05.12.1955",
-    "hiringDate": "08.10.1993",
+    "hiringDate": "01.09.2008",
     "load": 1.0,
-    "email": "protsenko.v@ukma.edu.ua",
-    "phoneNumber": "+380441112233",
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -260,27 +284,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000009,
     "firstName": "Алла",
     "lastName": "Нагірна",
     "middleName": "Миколаївна",
+    "birthDate": "18.09.1976",
+    "email": "nahirna.a@ukma.edu.ua",
+    "phoneNumber": "+380671112233"
+  },
+  {
     "position": "DOCENT",
     "degree": "PHD",
     "rank": "DOCENT",
-    "birthDate": "18.09.1976",
-    "hiringDate": "01.09.2008",
+    "hiringDate": "01.09.2000",
     "load": 1.0,
-    "email": "nahirna.a@ukma.edu.ua",
-    "phoneNumber": "+380671112233",
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -293,27 +317,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000010,
     "firstName": "Олександр",
     "lastName": "Тригуб",
     "middleName": "Семенович",
+    "birthDate": "30.01.1968",
+    "email": "tryhub.o@ukma.edu.ua",
+    "phoneNumber": "+380661112233"
+  },
+  {
     "position": "DOCENT",
     "degree": "PHD",
     "rank": "DOCENT",
-    "birthDate": "30.01.1968",
     "hiringDate": "01.09.2000",
     "load": 1.0,
-    "email": "tryhub.o@ukma.edu.ua",
-    "phoneNumber": "+380661112233",
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -326,27 +350,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000011,
     "firstName": "Володимир",
     "lastName": "Ляшко",
     "middleName": "Іванович",
+    "birthDate": "12.02.1969",
+    "email": "liashko.v@ukma.edu.ua",
+    "phoneNumber": "+380501112244"
+  },
+  {
     "position": "DOCENT",
     "degree": "PHD",
     "rank": "DOCENT",
-    "birthDate": "12.02.1969",
-    "hiringDate": "01.09.2000",
+    "hiringDate": "01.09.2014",
     "load": 1.0,
-    "email": "liashko.v@ukma.edu.ua",
-    "phoneNumber": "+380501112244",
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -359,27 +383,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000012,
     "firstName": "Олексій",
     "lastName": "Ткаченко",
     "middleName": "Миколайович",
-    "position": "DOCENT",
-    "degree": "PHD",
-    "rank": "DOCENT",
     "birthDate": "01.07.1977",
-    "hiringDate": "01.09.2014",
-    "load": 1.0,
     "email": "tkachenko.o@ukma.edu.ua",
-    "phoneNumber": "+380971112255",
+    "phoneNumber": "+380971112255"
+  },
+  {
+    "position": "SENIOR_LECTURER",
+    "degree": "NONE",
+    "rank": "NONE",
+    "hiringDate": "01.09.2010",
+    "load": 1.0,
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -392,27 +416,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000013,
     "firstName": "Оксана",
     "lastName": "Кирієнко",
     "middleName": "Валентинівна",
-    "position": "SENIOR_LECTURER",
-    "degree": "NONE",
-    "rank": "NONE",
     "birthDate": "15.05.1982",
-    "hiringDate": "01.09.2010",
-    "load": 1.0,
     "email": "kyriienko.o@ukma.edu.ua",
-    "phoneNumber": "+380631112266",
+    "phoneNumber": "+380631112266"
+  },
+  {
+    "position": "SENIOR_LECTURER",
+    "degree": "PHD",
+    "rank": "NONE",
+    "hiringDate": "01.09.2016",
+    "load": 1.0,
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -425,27 +449,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000014,
     "firstName": "Марина",
     "lastName": "Шабінська",
     "middleName": "Олегівна",
+    "birthDate": "28.08.1985",
+    "email": "shabinska.m@ukma.edu.ua",
+    "phoneNumber": "+380951112277"
+  },
+  {
     "position": "SENIOR_LECTURER",
     "degree": "PHD",
     "rank": "NONE",
-    "birthDate": "28.08.1985",
-    "hiringDate": "01.09.2016",
+    "hiringDate": "01.09.2015",
     "load": 1.0,
-    "email": "shabinska.m@ukma.edu.ua",
-    "phoneNumber": "+380951112277",
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -458,27 +482,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000015,
     "firstName": "Олена",
     "lastName": "Бучко",
     "middleName": "Андріївна",
+    "birthDate": "19.03.1983",
+    "email": "buchko.o@ukma.edu.ua",
+    "phoneNumber": "+380671112288"
+  },
+  {
     "position": "SENIOR_LECTURER",
     "degree": "PHD",
     "rank": "NONE",
-    "birthDate": "19.03.1983",
-    "hiringDate": "01.09.2015",
+    "hiringDate": "01.09.2012",
     "load": 1.0,
-    "email": "buchko.o@ukma.edu.ua",
-    "phoneNumber": "+380671112288",
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -491,27 +515,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000016,
     "firstName": "Юрій",
     "lastName": "Ющенко",
     "middleName": "Олексійович",
-    "position": "SENIOR_LECTURER",
-    "degree": "PHD",
-    "rank": "NONE",
     "birthDate": "04.11.1979",
-    "hiringDate": "01.09.2012",
-    "load": 1.0,
     "email": "yushchenko.yu@ukma.edu.ua",
-    "phoneNumber": "+380931112299",
+    "phoneNumber": "+380931112299"
+  },
+  {
+    "position": "ASSISTANT",
+    "degree": "MASTER",
+    "rank": "NONE",
+    "hiringDate": "01.09.2020",
+    "load": 1.0,
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -524,27 +548,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000017,
     "firstName": "Ярослав",
     "lastName": "Вознюк",
     "middleName": "Іванович",
-    "position": "ASSISTANT",
-    "degree": "MASTER",
-    "rank": "NONE",
     "birthDate": "22.01.1990",
-    "hiringDate": "01.09.2020",
-    "load": 1.0,
     "email": "vozniuk.ya@ukma.edu.ua",
-    "phoneNumber": "+380980001122",
+    "phoneNumber": "+380980001122"
+  },
+  {
+    "position": "SENIOR_LECTURER",
+    "degree": "PHD",
+    "rank": "NONE",
+    "hiringDate": "01.09.2017",
+    "load": 1.0,
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -557,27 +581,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000018,
     "firstName": "Євген",
     "lastName": "Невмержицький",
     "middleName": "Іванович",
-    "position": "SENIOR_LECTURER",
-    "degree": "PHD",
-    "rank": "NONE",
     "birthDate": "11.09.1975",
-    "hiringDate": "01.09.2017",
-    "load": 1.0,
     "email": "nevmerzhytskyi.ye@ukma.edu.ua",
-    "phoneNumber": "+380500001133",
+    "phoneNumber": "+380500001133"
+  },
+  {
+    "position": "ASSISTANT",
+    "degree": "POSTGRADUATE",
+    "rank": "NONE",
+    "hiringDate": "01.09.2022",
+    "load": 0.5,
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -590,27 +614,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000019,
     "firstName": "Антон",
     "lastName": "Шабінський",
     "middleName": "Сергійович",
-    "position": "ASSISTANT",
-    "degree": "POSTGRADUATE",
-    "rank": "NONE",
     "birthDate": "14.07.1994",
-    "hiringDate": "01.09.2022",
-    "load": 0.5,
     "email": "shabinskyi.a@ukma.edu.ua",
-    "phoneNumber": "+380630001144",
+    "phoneNumber": "+380630001144"
+  },
+  {
+    "position": "ASSISTANT",
+    "degree": "MASTER",
+    "rank": "NONE",
+    "hiringDate": "01.09.2023",
+    "load": 0.5,
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -623,27 +647,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000020,
     "firstName": "Соломія",
     "lastName": "Яремко",
     "middleName": "Андріївна",
+    "birthDate": "30.05.1996",
+    "email": "yaremko.s@ukma.edu.ua",
+    "phoneNumber": "+380950001155"
+  },
+  {
     "position": "ASSISTANT",
     "degree": "MASTER",
     "rank": "NONE",
-    "birthDate": "30.05.1996",
     "hiringDate": "01.09.2023",
     "load": 0.5,
-    "email": "yaremko.s@ukma.edu.ua",
-    "phoneNumber": "+380950001155",
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -656,27 +680,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000021,
     "firstName": "Олександр",
     "lastName": "Франків",
     "middleName": "Олександрович",
+    "birthDate": "12.12.1995",
+    "email": "frankiv.o@ukma.edu.ua",
+    "phoneNumber": "+380670001166"
+  },
+  {
     "position": "ASSISTANT",
     "degree": "MASTER",
     "rank": "NONE",
-    "birthDate": "12.12.1995",
-    "hiringDate": "01.09.2023",
+    "hiringDate": "01.09.2022",
     "load": 0.5,
-    "email": "frankiv.o@ukma.edu.ua",
-    "phoneNumber": "+380670001166",
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -689,27 +713,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000022,
     "firstName": "Трохим",
     "lastName": "Бабич",
     "middleName": "Анатолійович",
+    "birthDate": "15.08.1993",
+    "email": "babych.t@ukma.edu.ua",
+    "phoneNumber": "+380930001177"
+  },
+  {
     "position": "ASSISTANT",
     "degree": "MASTER",
     "rank": "NONE",
-    "birthDate": "15.08.1993",
     "hiringDate": "01.09.2022",
     "load": 0.5,
-    "email": "babych.t@ukma.edu.ua",
-    "phoneNumber": "+380930001177",
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -722,27 +746,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000023,
     "firstName": "Оксана",
     "lastName": "Вознюк",
     "middleName": "Миколаївна",
+    "birthDate": "02.04.1992",
+    "email": "vozniuk.o@ukma.edu.ua",
+    "phoneNumber": "+380660001188"
+  },
+  {
     "position": "ASSISTANT",
     "degree": "MASTER",
     "rank": "NONE",
-    "birthDate": "02.04.1992",
-    "hiringDate": "01.09.2022",
+    "hiringDate": "01.09.2021",
     "load": 0.5,
-    "email": "vozniuk.o@ukma.edu.ua",
-    "phoneNumber": "+380660001188",
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -755,27 +779,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000024,
     "firstName": "Олена",
     "lastName": "Кравченко",
     "middleName": "Володимирівна",
+    "birthDate": "21.10.1988",
+    "email": "kravchenko.o.v@ukma.edu.ua",
+    "phoneNumber": "+380970001199"
+  },
+  {
     "position": "ASSISTANT",
     "degree": "MASTER",
     "rank": "NONE",
-    "birthDate": "21.10.1988",
-    "hiringDate": "01.09.2021",
+    "hiringDate": "01.09.2022",
     "load": 0.5,
-    "email": "kravchenko.o.v@ukma.edu.ua",
-    "phoneNumber": "+380970001199",
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -788,27 +812,27 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000025,
     "firstName": "Володимир",
     "lastName": "Яблонський",
     "middleName": "",
+    "birthDate": "09.09.1991",
+    "email": "yablonskyi.v@ukma.edu.ua",
+    "phoneNumber": "+380930002200"
+  },
+  {
     "position": "ASSISTANT",
     "degree": "MASTER",
     "rank": "NONE",
-    "birthDate": "09.09.1991",
-    "hiringDate": "01.09.2022",
+    "hiringDate": "01.09.2024",
     "load": 0.5,
-    "email": "yablonskyi.v@ukma.edu.ua",
-    "phoneNumber": "+380930002200",
     "department": {
       "id": 1234567,
       "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
       "faculty": {
         "id": 1234567,
         "name": "Faculty of Informatics",
@@ -821,79 +845,65 @@
           "city": "Kyiv",
           "address": "Skovorody str. 2"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "1 корпус, кім. 315",
+      "email": "gor@ukma.edu.ua"
+    },
     "id": 1000026,
     "firstName": "Кирило",
     "lastName": "Салата",
     "middleName": "Володимирович",
-    "position": "ASSISTANT",
-    "degree": "MASTER",
-    "rank": "NONE",
     "birthDate": "14.01.1997",
-    "hiringDate": "01.09.2024",
-    "load": 0.5,
     "email": "salata.k@ukma.edu.ua",
-    "phoneNumber": "+380630002211",
+    "phoneNumber": "+380630002211"
+  },
+  {
+    "load": 0.0,
+    "id": 1000001,
+    "email": "financesdep@gmail.com"
+  },
+  {
+    "position": "DEAN",
+    "degree": "PHD",
+    "rank": "DOCENT",
+    "hiringDate": "01.09.2010",
+    "load": 1.0,
     "department": {
-      "id": 1234567,
-      "name": "department of informatics",
-      "location": "1 корпус, кім. 315",
-      "email": "gor@ukma.edu.ua",
+      "id": 1000001,
+      "name": "department of finances",
       "faculty": {
-        "id": 1234567,
-        "name": "Faculty of Informatics",
-        "shortName": "fi",
-        "email": "fin@ukma.edu.ua",
+        "id": 1000002,
+        "name": "faculty of economics",
+        "shortName": "fen",
+        "email": "fen@gmail.com",
         "university": {
           "id": 1234567,
           "fullName": "NaUKMA",
           "shortName": "KMA",
           "city": "Kyiv",
-          "address": "Skovorody str. 2"
+          "address": "Contractova, 2M"
         }
-      }
-    }
-  },
-  {
-    "id": 1000001,
-    "name": "department of finances",
-    "faculty": {
-      "id": 1000002,
-      "name": "faculty of economics",
-      "shortName": "fen",
-      "email": "fen@gmail.com",
-      "university": {
-        "id": 1234567,
-        "fullName": "NaUKMA",
-        "shortName": "KMA",
-        "city": "Kyiv",
-        "address": "Contractova, 2M"
-      }
+      },
+      "location": "Contractova, 67m",
+      "email": "financesdep@gmail.com"
     },
-    "location": "Contractova, 67m",
-    "email": "financesdep@gmail.com"
-  },
-  {
     "id": 1000027,
     "firstName": "Світлана",
     "lastName": "Глущенко",
     "middleName": "Василівна",
-    "position": "DEAN",
+    "birthDate": "15.06.1975",
+    "email": "hlushchenko.s@ukma.edu.ua",
+    "phoneNumber": "+380444256042"
+  },
+  {
+    "position": "DOCENT",
     "degree": "PHD",
     "rank": "DOCENT",
-    "birthDate": "15.06.1975",
-    "hiringDate": "01.09.2010",
+    "hiringDate": "01.09.2012",
     "load": 1.0,
-    "email": "hlushchenko.s@ukma.edu.ua",
-    "phoneNumber": "+380444256042",
     "department": {
       "id": 1000001,
       "name": "department of finances",
-      "location": "Contractova, 67m",
-      "email": "financesdep@gmail.com",
       "faculty": {
         "id": 1000002,
         "name": "faculty of economics",
@@ -906,27 +916,27 @@
           "city": "Kyiv",
           "address": "Contractova, 2M"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "Contractova, 67m",
+      "email": "financesdep@gmail.com"
+    },
     "id": 1000028,
     "firstName": "Олена",
     "lastName": "Бугрова",
     "middleName": "Олександрівна",
-    "position": "DOCENT",
-    "degree": "PHD",
-    "rank": "DOCENT",
     "birthDate": "20.08.1980",
-    "hiringDate": "01.09.2012",
-    "load": 1.0,
     "email": "buhrova.o@ukma.edu.ua",
-    "phoneNumber": "+380444256042",
+    "phoneNumber": "+380444256042"
+  },
+  {
+    "position": "ASSISTANT",
+    "degree": "MASTER",
+    "rank": "NONE",
+    "hiringDate": "01.09.2015",
+    "load": 1.0,
     "department": {
       "id": 1000001,
       "name": "department of finances",
-      "location": "Contractova, 67m",
-      "email": "financesdep@gmail.com",
       "faculty": {
         "id": 1000002,
         "name": "faculty of economics",
@@ -939,27 +949,27 @@
           "city": "Kyiv",
           "address": "Contractova, 2M"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "Contractova, 67m",
+      "email": "financesdep@gmail.com"
+    },
     "id": 1000029,
     "firstName": "Зоя",
     "lastName": "Клокун",
     "middleName": "Сергіївна",
+    "birthDate": "12.04.1985",
+    "email": "klokun.z@ukma.edu.ua",
+    "phoneNumber": "+380444257737"
+  },
+  {
     "position": "ASSISTANT",
     "degree": "MASTER",
     "rank": "NONE",
-    "birthDate": "12.04.1985",
-    "hiringDate": "01.09.2015",
+    "hiringDate": "01.09.2017",
     "load": 1.0,
-    "email": "klokun.z@ukma.edu.ua",
-    "phoneNumber": "+380444257737",
     "department": {
       "id": 1000001,
       "name": "department of finances",
-      "location": "Contractova, 67m",
-      "email": "financesdep@gmail.com",
       "faculty": {
         "id": 1000002,
         "name": "faculty of economics",
@@ -972,65 +982,32 @@
           "city": "Kyiv",
           "address": "Contractova, 2M"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "Contractova, 67m",
+      "email": "financesdep@gmail.com"
+    },
     "id": 1000030,
     "firstName": "Наталя",
     "lastName": "Писанка",
     "middleName": "Сергіївна",
-    "position": "ASSISTANT",
-    "degree": "MASTER",
-    "rank": "NONE",
     "birthDate": "05.11.1988",
-    "hiringDate": "01.09.2017",
-    "load": 1.0,
     "email": "pysanka.n@ukma.edu.ua",
-    "phoneNumber": "+380444257737",
-    "department": {
-      "id": 1000001,
-      "name": "department of finances",
-      "location": "Contractova, 67m",
-      "email": "financesdep@gmail.com",
-      "faculty": {
-        "id": 1000002,
-        "name": "faculty of economics",
-        "shortName": "fen",
-        "email": "fen@gmail.com",
-        "university": {
-          "id": 1234567,
-          "fullName": "NaUKMA",
-          "shortName": "KMA",
-          "city": "Kyiv",
-          "address": "Contractova, 2M"
-        }
-      }
-    }
+    "phoneNumber": "+380444257737"
   },
   {
-    "id": 1000031,
-    "firstName": "Тетяна",
-    "lastName": "Безуглова",
-    "middleName": "Геннадіївна",
-    "position": "ASSISTANT",
-    "degree": "MASTER",
-    "rank": "NONE",
-    "birthDate": "22.02.1990",
-    "hiringDate": "01.09.2018",
+    "position": "DEAN",
+    "degree": "PHD",
+    "rank": "DOCENT",
+    "hiringDate": "01.09.2010",
     "load": 1.0,
-    "email": "bezuhlova.t@ukma.edu.ua",
-    "phoneNumber": "+380444257737",
     "department": {
-      "id": 1000001,
-      "name": "department of finances",
-      "location": "Contractova, 67m",
-      "email": "financesdep@gmail.com",
+      "id": 1234569,
+      "name": "department of international law",
       "faculty": {
-        "id": 1000002,
-        "name": "faculty of economics",
-        "shortName": "fen",
-        "email": "fen@gmail.com",
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
         "university": {
           "id": 1234567,
           "fullName": "NaUKMA",
@@ -1038,324 +1015,27 @@
           "city": "Kyiv",
           "address": "Contractova, 2M"
         }
-      }
-    }
-  },
-  {
+      },
+      "location": "Contractova, 14b",
+      "email": "intlawdep@gmail.com"
+    },
     "id": 1000032,
     "firstName": "Володимир",
     "lastName": "Венгер",
     "middleName": "Миколайович",
-    "position": "DEAN",
-    "degree": "PHD",
-    "rank": "DOCENT",
     "birthDate": "10.05.1978",
-    "hiringDate": "01.09.2010",
-    "load": 1.0,
     "email": "venger.v@ukma.edu.ua",
-    "phoneNumber": "+380444256001",
-    "department": {
-      "id": 1234569,
-      "name": "department of international law",
-      "location": "Contractova, 14b",
-      "email": "intlawdep@gmail.com",
-      "faculty": {
-        "id": 1000003,
-        "name": "faculty of law",
-        "shortName": "KMAlaw",
-        "email": "kmalaw@gmail.com",
-        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
-      }
-    }
+    "phoneNumber": "+380444256001"
   },
   {
-    "id": 1000033,
-    "firstName": "Ірина",
-    "lastName": "Гетьман",
-    "middleName": "Сергіївна",
     "position": "ASSISTANT",
     "degree": "MASTER",
     "rank": "NONE",
-    "birthDate": "15.08.1985",
     "hiringDate": "01.09.2015",
     "load": 1.0,
-    "email": "hetman.i@ukma.edu.ua",
-    "phoneNumber": "+380444256002",
     "department": {
       "id": 1234568,
       "name": "department of private law",
-      "location": "Contractova, 11a",
-      "email": "prlawdep@gmail.com",
-      "faculty": {
-        "id": 1000003,
-        "name": "faculty of law",
-        "shortName": "KMAlaw",
-        "email": "kmalaw@gmail.com",
-        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
-      }
-    }
-  },
-  {
-    "id": 1000034,
-    "firstName": "Вікторія",
-    "lastName": "Заболотна",
-    "middleName": "Іванівна",
-    "position": "ASSISTANT",
-    "degree": "MASTER",
-    "rank": "NONE",
-    "birthDate": "22.11.1990",
-    "hiringDate": "01.09.2018",
-    "load": 1.0,
-    "email": "zabolotna.v@ukma.edu.ua",
-    "phoneNumber": "+380444256003",
-    "department": {
-      "id": 1234569,
-      "name": "department of international law",
-      "location": "Contractova, 14b",
-      "email": "intlawdep@gmail.com",
-      "faculty": {
-        "id": 1000003,
-        "name": "faculty of law",
-        "shortName": "KMAlaw",
-        "email": "kmalaw@gmail.com",
-        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
-      }
-    }
-  },
-  {
-    "id": 1000035,
-    "firstName": "Наталія",
-    "lastName": "Макосій",
-    "middleName": "Михайлівна",
-    "position": "ASSISTANT",
-    "degree": "MASTER",
-    "rank": "NONE",
-    "birthDate": "05.03.1982",
-    "hiringDate": "01.09.2012",
-    "load": 1.0,
-    "email": "makosiy.n@ukma.edu.ua",
-    "phoneNumber": "+380444256004",
-    "department": {
-      "id": 1234568,
-      "name": "department of private law",
-      "location": "Contractova, 11a",
-      "email": "prlawdep@gmail.com",
-      "faculty": {
-        "id": 1000003,
-        "name": "faculty of law",
-        "shortName": "KMAlaw",
-        "email": "kmalaw@gmail.com",
-        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
-      }
-    }
-  },
-  {
-    "id": 1000036,
-    "firstName": "Тамара",
-    "lastName": "Мокрицька",
-    "middleName": "Василівна",
-    "position": "ASSISTANT",
-    "degree": "MASTER",
-    "rank": "NONE",
-    "birthDate": "18.07.1988",
-    "hiringDate": "01.09.2016",
-    "load": 1.0,
-    "email": "mokrytska.t@ukma.edu.ua",
-    "phoneNumber": "+380444256005",
-    "department": {
-      "id": 1234568,
-      "name": "department of private law",
-      "location": "Contractova, 11a",
-      "email": "prlawdep@gmail.com",
-      "faculty": {
-        "id": 1000003,
-        "name": "faculty of law",
-        "shortName": "KMAlaw",
-        "email": "kmalaw@gmail.com",
-        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
-      }
-    }
-  },
-  {
-    "id": 1000037,
-    "firstName": "Катерина",
-    "lastName": "Омельченко",
-    "middleName": "Вікторівна",
-    "position": "ASSISTANT",
-    "degree": "MASTER",
-    "rank": "NONE",
-    "birthDate": "30.01.1992",
-    "hiringDate": "01.09.2019",
-    "load": 1.0,
-    "email": "omelchenko.k@ukma.edu.ua",
-    "phoneNumber": "+380444256006",
-    "department": {
-      "id": 1234569,
-      "name": "department of international law",
-      "location": "Contractova, 14b",
-      "email": "intlawdep@gmail.com",
-      "faculty": {
-        "id": 1000003,
-        "name": "faculty of law",
-        "shortName": "KMAlaw",
-        "email": "kmalaw@gmail.com",
-        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
-      }
-    }
-  },
-  {
-    "id": 1000038,
-    "firstName": "Валентина",
-    "lastName": "Ткаченко",
-    "middleName": "Миколаївна",
-    "position": "ASSISTANT",
-    "degree": "MASTER",
-    "rank": "NONE",
-    "birthDate": "12.10.1984",
-    "hiringDate": "01.09.2014",
-    "load": 1.0,
-    "email": "tkachenko.v@ukma.edu.ua",
-    "phoneNumber": "+380444256007",
-    "department": {
-      "id": 1234569,
-      "name": "department of international law",
-      "location": "Contractova, 14b",
-      "email": "intlawdep@gmail.com",
-      "faculty": {
-        "id": 1000003,
-        "name": "faculty of law",
-        "shortName": "KMAlaw",
-        "email": "kmalaw@gmail.com",
-        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
-      }
-    }
-  },
-  {
-    "id": 1000039,
-    "firstName": "Тетяна",
-    "lastName": "Федосєєва",
-    "middleName": "Романівна",
-    "position": "DOCENT",
-    "degree": "PHD",
-    "rank": "DOCENT",
-    "birthDate": "25.04.1980",
-    "hiringDate": "01.09.2008",
-    "load": 1.0,
-    "email": "fedoseyeva.t@ukma.edu.ua",
-    "phoneNumber": "+380444256008",
-    "department": {
-      "id": 1234568,
-      "name": "department of private law",
-      "location": "Contractova, 11a",
-      "email": "prlawdep@gmail.com",
-      "faculty": {
-        "id": 1000003,
-        "name": "faculty of law",
-        "shortName": "KMAlaw",
-        "email": "kmalaw@gmail.com",
-        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
-      }
-    }
-  },
-  {
-    "id": 1000040,
-    "firstName": "Іван",
-    "lastName": "Яцкевич",
-    "middleName": "Іванович",
-    "position": "HEAD_OF_DEPARTMENT",
-    "degree": "PHD",
-    "rank": "DOCENT",
-    "birthDate": "08.09.1975",
-    "hiringDate": "01.09.2005",
-    "load": 1.0,
-    "email": "yatskevych.i@ukma.edu.ua",
-    "phoneNumber": "+380444256009",
-    "department": {
-      "id": 1234568,
-      "name": "department of private law",
-      "location": "Contractova, 11a",
-      "email": "prlawdep@gmail.com",
-      "faculty": {
-        "id": 1000003,
-        "name": "faculty of law",
-        "shortName": "KMAlaw",
-        "email": "kmalaw@gmail.com",
-        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
-      }
-    }
-  },
-  {
-    "id": 1000041,
-    "firstName": "Олесь",
-    "lastName": "Євтєєв",
-    "middleName": "Анатолійович",
-    "position": "ASSISTANT",
-    "degree": "MASTER",
-    "rank": "NONE",
-    "birthDate": "14.12.1993",
-    "hiringDate": "01.09.2020",
-    "load": 1.0,
-    "email": "yevteev.o@ukma.edu.ua",
-    "phoneNumber": "+380444256010",
-    "department": {
-      "id": 1234569,
-      "name": "department of international law",
-      "location": "Contractova, 14b",
-      "email": "intlawdep@gmail.com",
-      "faculty": {
-        "id": 1000003,
-        "name": "faculty of law",
-        "shortName": "KMAlaw",
-        "email": "kmalaw@gmail.com",
-        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
-      }
-    }
-  },
-  {
-    "id": 1000042,
-    "firstName": "Юлія",
-    "lastName": "Ісаєнко",
-    "middleName": "Вікторівна",
-    "position": "ASSISTANT",
-    "degree": "MASTER",
-    "rank": "NONE",
-    "birthDate": "21.06.1995",
-    "hiringDate": "01.09.2021",
-    "load": 1.0,
-    "email": "isayenko.y@ukma.edu.ua",
-    "phoneNumber": "+380444256011",
-    "department": {
-      "id": 1234569,
-      "name": "department of international law",
-      "location": "Contractova, 14b",
-      "email": "intlawdep@gmail.com",
-      "faculty": {
-        "id": 1000003,
-        "name": "faculty of law",
-        "shortName": "KMAlaw",
-        "email": "kmalaw@gmail.com",
-        "university": { "id": 1234567, "fullName": "NaUKMA", "shortName": "KMA", "city": "Kyiv", "address": "Contractova, 2M" }
-      }
-    }
-  },
-  {
-    "id": 1000043,
-    "firstName": "Дмитро",
-    "lastName": "Коваль",
-    "middleName": "Олександрович",
-    "position": "HEAD_OF_DEPARTMENT",
-    "degree": "PHD",
-    "rank": "DOCENT",
-    "birthDate": "15.05.1980",
-    "hiringDate": "01.09.2010",
-    "load": 1.0,
-    "email": "koval.d@ukma.edu.ua",
-    "phoneNumber": "+380444256012",
-    "department": {
-      "id": 1234569,
-      "name": "department of international law",
-      "location": "Contractova, 14b",
-      "email": "intlawdep@gmail.com",
       "faculty": {
         "id": 1000003,
         "name": "faculty of law",
@@ -1368,7 +1048,379 @@
           "city": "Kyiv",
           "address": "Contractova, 2M"
         }
-      }
-    }
+      },
+      "location": "Contractova, 11a",
+      "email": "prlawdep@gmail.com"
+    },
+    "id": 1000033,
+    "firstName": "Ірина",
+    "lastName": "Гетьман",
+    "middleName": "Сергіївна",
+    "birthDate": "15.08.1985",
+    "email": "hetman.i@ukma.edu.ua",
+    "phoneNumber": "+380444256002"
+  },
+  {
+    "position": "ASSISTANT",
+    "degree": "MASTER",
+    "rank": "NONE",
+    "hiringDate": "01.09.2018",
+    "load": 1.0,
+    "department": {
+      "id": 1234569,
+      "name": "department of international law",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      },
+      "location": "Contractova, 14b",
+      "email": "intlawdep@gmail.com"
+    },
+    "id": 1000034,
+    "firstName": "Вікторія",
+    "lastName": "Заболотна",
+    "middleName": "Іванівна",
+    "birthDate": "22.11.1990",
+    "email": "zabolotna.v@ukma.edu.ua",
+    "phoneNumber": "+380444256003"
+  },
+  {
+    "position": "ASSISTANT",
+    "degree": "MASTER",
+    "rank": "NONE",
+    "hiringDate": "01.09.2012",
+    "load": 1.0,
+    "department": {
+      "id": 1234568,
+      "name": "department of private law",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      },
+      "location": "Contractova, 11a",
+      "email": "prlawdep@gmail.com"
+    },
+    "id": 1000035,
+    "firstName": "Наталія",
+    "lastName": "Макосій",
+    "middleName": "Михайлівна",
+    "birthDate": "05.03.1982",
+    "email": "makosiy.n@ukma.edu.ua",
+    "phoneNumber": "+380444256004"
+  },
+  {
+    "position": "ASSISTANT",
+    "degree": "MASTER",
+    "rank": "NONE",
+    "hiringDate": "01.09.2016",
+    "load": 1.0,
+    "department": {
+      "id": 1234568,
+      "name": "department of private law",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      },
+      "location": "Contractova, 11a",
+      "email": "prlawdep@gmail.com"
+    },
+    "id": 1000036,
+    "firstName": "Тамара",
+    "lastName": "Мокрицька",
+    "middleName": "Василівна",
+    "birthDate": "18.07.1988",
+    "email": "mokrytska.t@ukma.edu.ua",
+    "phoneNumber": "+380444256005"
+  },
+  {
+    "position": "ASSISTANT",
+    "degree": "MASTER",
+    "rank": "NONE",
+    "hiringDate": "01.09.2019",
+    "load": 1.0,
+    "department": {
+      "id": 1234569,
+      "name": "department of international law",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      },
+      "location": "Contractova, 14b",
+      "email": "intlawdep@gmail.com"
+    },
+    "id": 1000037,
+    "firstName": "Катерина",
+    "lastName": "Омельченко",
+    "middleName": "Вікторівна",
+    "birthDate": "30.01.1992",
+    "email": "omelchenko.k@ukma.edu.ua",
+    "phoneNumber": "+380444256006"
+  },
+  {
+    "position": "ASSISTANT",
+    "degree": "MASTER",
+    "rank": "NONE",
+    "hiringDate": "01.09.2014",
+    "load": 1.0,
+    "department": {
+      "id": 1234569,
+      "name": "department of international law",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      },
+      "location": "Contractova, 14b",
+      "email": "intlawdep@gmail.com"
+    },
+    "id": 1000038,
+    "firstName": "Валентина",
+    "lastName": "Ткаченко",
+    "middleName": "Миколаївна",
+    "birthDate": "12.10.1984",
+    "email": "tkachenko.v@ukma.edu.ua",
+    "phoneNumber": "+380444256007"
+  },
+  {
+    "position": "DOCENT",
+    "degree": "PHD",
+    "rank": "DOCENT",
+    "hiringDate": "01.09.2008",
+    "load": 1.0,
+    "department": {
+      "id": 1234568,
+      "name": "department of private law",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      },
+      "location": "Contractova, 11a",
+      "email": "prlawdep@gmail.com"
+    },
+    "id": 1000039,
+    "firstName": "Тетяна",
+    "lastName": "Федосєєва",
+    "middleName": "Романівна",
+    "birthDate": "25.04.1980",
+    "email": "fedoseyeva.t@ukma.edu.ua",
+    "phoneNumber": "+380444256008"
+  },
+  {
+    "position": "HEAD_OF_DEPARTMENT",
+    "degree": "PHD",
+    "rank": "DOCENT",
+    "hiringDate": "01.09.2005",
+    "load": 1.0,
+    "department": {
+      "id": 1234568,
+      "name": "department of private law",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      },
+      "location": "Contractova, 11a",
+      "email": "prlawdep@gmail.com"
+    },
+    "id": 1000040,
+    "firstName": "Іван",
+    "lastName": "Яцкевич",
+    "middleName": "Іванович",
+    "birthDate": "08.09.1975",
+    "email": "yatskevych.i@ukma.edu.ua",
+    "phoneNumber": "+380444256009"
+  },
+  {
+    "position": "ASSISTANT",
+    "degree": "MASTER",
+    "rank": "NONE",
+    "hiringDate": "01.09.2020",
+    "load": 1.0,
+    "department": {
+      "id": 1234569,
+      "name": "department of international law",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      },
+      "location": "Contractova, 14b",
+      "email": "intlawdep@gmail.com"
+    },
+    "id": 1000041,
+    "firstName": "Олесь",
+    "lastName": "Євтєєв",
+    "middleName": "Анатолійович",
+    "birthDate": "14.12.1993",
+    "email": "yevteev.o@ukma.edu.ua",
+    "phoneNumber": "+380444256010"
+  },
+  {
+    "position": "ASSISTANT",
+    "degree": "MASTER",
+    "rank": "NONE",
+    "hiringDate": "01.09.2021",
+    "load": 1.0,
+    "department": {
+      "id": 1234569,
+      "name": "department of international law",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      },
+      "location": "Contractova, 14b",
+      "email": "intlawdep@gmail.com"
+    },
+    "id": 1000042,
+    "firstName": "Юлія",
+    "lastName": "Ісаєнко",
+    "middleName": "Вікторівна",
+    "birthDate": "21.06.1995",
+    "email": "isayenko.y@ukma.edu.ua",
+    "phoneNumber": "+380444256011"
+  },
+  {
+    "position": "HEAD_OF_DEPARTMENT",
+    "degree": "PHD",
+    "rank": "DOCENT",
+    "hiringDate": "01.09.2010",
+    "load": 1.0,
+    "department": {
+      "id": 1234569,
+      "name": "department of international law",
+      "faculty": {
+        "id": 1000003,
+        "name": "faculty of law",
+        "shortName": "KMAlaw",
+        "email": "kmalaw@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      },
+      "location": "Contractova, 14b",
+      "email": "intlawdep@gmail.com"
+    },
+    "id": 1000043,
+    "firstName": "Дмитро",
+    "lastName": "Коваль",
+    "middleName": "Олександрович",
+    "birthDate": "15.05.1980",
+    "email": "koval.d@ukma.edu.ua",
+    "phoneNumber": "+380444256012"
+  },
+  {
+    "position": "LECTURER",
+    "degree": "MASTER",
+    "rank": "PROFESSOR",
+    "hiringDate": "01.09.2018",
+    "load": 4.0,
+    "department": {
+      "id": 1000001,
+      "name": "department of finances",
+      "faculty": {
+        "id": 1000002,
+        "name": "faculty of economics",
+        "shortName": "fen",
+        "email": "fen@gmail.com",
+        "university": {
+          "id": 1234567,
+          "fullName": "NaUKMA",
+          "shortName": "KMA",
+          "city": "Kyiv",
+          "address": "Contractova, 2M"
+        }
+      },
+      "location": "Contractova, 67m",
+      "email": "financesdep@gmail.com"
+    },
+    "id": 1000031,
+    "firstName": "Тетяна",
+    "lastName": "Безуглова",
+    "middleName": "Геннадіївна",
+    "birthDate": "22.02.1990",
+    "email": "bezuglova@ukma.edu.ua",
+    "phoneNumber": "+380972341234"
   }
 ]

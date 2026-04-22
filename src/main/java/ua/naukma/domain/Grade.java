@@ -42,6 +42,11 @@ public class Grade implements Serializable, GetId, GetName {
 
     @Override
     public String toString() {
-        return "Grade " + score;
+        return "Grade{" +
+                "gradeId=" + gradeId +
+                ", score=" + score +
+                ", studentId=" + studentId +
+                ", subjectName=" + subjectName +
+                '}';
     }
 }

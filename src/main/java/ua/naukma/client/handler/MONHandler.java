@@ -41,12 +41,12 @@ public class MONHandler extends BasicHandler{
     }
     private void add_uni(){
         requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
-//            int university_id = IdVerificator.ask_id();
-//
-//            if (isIdAlreadyTaken(university_id, Request.RequestType.FIND)) {
-//                System.out.println("Id is already taken");
-//                return;
-//            }
+            int university_id = IdVerificator.ask_id();
+
+            if (isIdAlreadyTaken(university_id, Request.RequestType.FIND)) {
+                System.out.println("Id is already taken");
+                return;
+            }
 
             String fullName = UniversityVerificator.ask_full_name("fullName");
             String shortName = UniversityVerificator.ask_short_name("shortName");

@@ -224,6 +224,11 @@ public class DepartmentHandler extends BasicHandler {
         requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
             int teacherId = IdVerificator.ask_id();
 
+            if (!isIdAlreadyTaken(teacherId, Request.RequestType.FIND)) {
+                System.out.println("Teacher with such id does not exist.");
+                return;
+            }
+
             String phoneNumber = PhoneNumberVerificator.ask_phonenum();
             String email = EmailVerificator.ask_email();
 
@@ -239,6 +244,12 @@ public class DepartmentHandler extends BasicHandler {
     private void update_teacher_academic() {
         requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
             int teacherId = IdVerificator.ask_id();
+
+            if (!isIdAlreadyTaken(teacherId, Request.RequestType.FIND)) {
+                System.out.println("Teacher with such id does not exist.");
+                return;
+            }
+
             TeacherPosition pos = AcademicInfoVerificator.ask_teacher_position();
             TeacherDegree deg = AcademicInfoVerificator.ask_teacher_degree();
             TeacherRank rank = AcademicInfoVerificator.ask_teacher_rank();

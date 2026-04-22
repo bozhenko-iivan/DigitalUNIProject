@@ -33047,3 +33047,163 @@ Faculty's email: fen@ukma.edu.ua
 2026-04-22 14:21:59.459 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find dep: 
 2026-04-22 14:21:59.459 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      Department of department of finances [fen]
 2026-04-22 14:21:59.459 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:26:42.133 [main] INFO  ua.naukma.server.ServerMain - Starting server on port 8080
+2026-04-22 14:26:42.817 [main] INFO  ua.naukma.server.ServerMain - Starting server on port 8080
+2026-04-22 14:26:42.839 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Client IP: 127.0.0.1
+2026-04-22 14:26:46.294 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:26:46.294 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-22 14:26:46.295 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: LOGIN 
+2026-04-22 14:26:46.295 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  User: admin
+ID: -1
+Role: NOT ASSIGNED
+2026-04-22 14:26:46.296 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:26:46.301 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-22 14:26:46.301 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 login: 
+2026-04-22 14:26:46.301 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      User: admin
+ID: 1111111
+Role: ADMIN
+Current rights: [|READ|MANAGE_USERS|MANAGE_STRUCTURE|MANAGE_STUDENTS|ADDITION_UNIVERSITY|DELETION_UNIVERSITY|]
+2026-04-22 14:26:46.303 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:26:46.307 [main] INFO  ua.naukma.client.ClientMain - Logged in as admin
+2026-04-22 14:26:55.058 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:26:55.058 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-22 14:26:55.058 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-22 14:26:55.058 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234567
+2026-04-22 14:26:55.058 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:26:55.064 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-22 14:26:55.065 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-22 14:26:55.065 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      NaUKMA (Kyiv)
+2026-04-22 14:26:55.065 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:26:57.855 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:26:57.855 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-22 14:26:57.856 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-22 14:26:57.856 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1000002
+2026-04-22 14:26:57.856 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:26:57.876 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-22 14:26:57.877 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-22 14:26:57.877 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      Faculty's ID: 1000002
+Faculty's fullname: faculty of economics
+ShortName: fen
+Faculty's email: fen@ukma.edu.ua
+2026-04-22 14:26:57.879 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:27:02.662 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:27:02.663 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-22 14:27:02.663 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-22 14:27:02.663 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1000001
+2026-04-22 14:27:02.663 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:27:02.670 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-22 14:27:02.670 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-22 14:27:02.670 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      Department of department of finances [fen]
+2026-04-22 14:27:02.670 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:27:08.828 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:27:08.829 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-22 14:27:08.829 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-22 14:27:08.829 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234512
+2026-04-22 14:27:08.829 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:27:08.845 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     FAILURE
+2026-04-22 14:27:08.845 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+teacher with id 1234512 doesn't exist.
+2026-04-22 14:27:08.845 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      null
+2026-04-22 14:27:08.845 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:27:36.908 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:27:36.911 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-22 14:27:36.911 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: SORT_BY_ID 
+2026-04-22 14:27:36.911 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  null
+2026-04-22 14:27:36.912 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:27:36.945 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-22 14:27:36.946 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 sort by id: 
+2026-04-22 14:27:36.946 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      [Teacher 1000001: Гороховський Семен [PHD], Teacher 1000001: null null [null], Teacher 1000002: Глибовець Микола [DOCTOR_OF_SCIENCES], Teacher 1000003: Заславський Володимир [DOCTOR_OF_SCIENCES], Teacher 1000004: Гулаєва Наталія [PHD], Teacher 1000005: Ігнатенко Олексій [DOCTOR_OF_SCIENCES], Teacher 1000006: Ковалюк Тетяна [PHD], Teacher 1000007: Жежерун Олександр [PHD], Teacher 1000008: Проценко Володимир [PHD], Teacher 1000009: Нагірна Алла [PHD], Teacher 1000010: Тригуб Олександр [PHD], Teacher 1000011: Ляшко Володимир [PHD], Teacher 1000012: Ткаченко Олексій [PHD], Teacher 1000013: Кирієнко Оксана [NONE], Teacher 1000014: Шабінська Марина [PHD], Teacher 1000015: Бучко Олена [PHD], Teacher 1000016: Ющенко Юрій [PHD], Teacher 1000017: Вознюк Ярослав [MASTER], Teacher 1000018: Невмержицький Євген [PHD], Teacher 1000019: Шабінський Антон [POSTGRADUATE], Teacher 1000020: Яремко Соломія [MASTER], Teacher 1000021: Франків Олександр [MASTER], Teacher 1000022: Бабич Трохим [MASTER], Teacher 1000023: Вознюк Оксана [MASTER], Teacher 1000024: Кравченко Олена [MASTER], Teacher 1000025: Яблонський Володимир [MASTER], Teacher 1000026: Салата Кирило [MASTER], Teacher 1000027: Глущенко Світлана [PHD], Teacher 1000028: Бугрова Олена [PHD], Teacher 1000029: Клокун Зоя [MASTER], Teacher 1000030: Писанка Наталя [MASTER], Teacher 1000031: Безуглова Тетяна [MASTER], Teacher 1000032: Венгер Володимир [PHD], Teacher 1000033: Гетьман Ірина [MASTER], Teacher 1000034: Заболотна Вікторія [MASTER], Teacher 1000035: Макосій Наталія [MASTER], Teacher 1000036: Мокрицька Тамара [MASTER], Teacher 1000037: Омельченко Катерина [MASTER], Teacher 1000038: Ткаченко Валентина [MASTER], Teacher 1000039: Федосєєва Тетяна [PHD], Teacher 1000040: Яцкевич Іван [PHD], Teacher 1000041: Євтєєв Олесь [MASTER], Teacher 1000042: Ісаєнко Юлія [MASTER], Teacher 1000043: Коваль Дмитро [PHD]]
+2026-04-22 14:27:36.947 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:27:46.824 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:27:46.826 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-22 14:27:46.826 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-22 14:27:46.826 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1000031
+2026-04-22 14:27:46.826 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:27:46.831 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-22 14:27:46.831 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-22 14:27:46.831 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      Teacher 1000031: Безуглова Тетяна [MASTER]
+2026-04-22 14:27:46.832 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:28:21.507 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:28:21.508 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-22 14:28:21.508 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: UPDATE_TEACHER_CONTACTS 
+2026-04-22 14:28:21.508 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  UpdateTeacherContactsDTO[teacherId=1000031, phoneNumber=+380972341234, email=bezuglova@ukma.edu.ua]
+2026-04-22 14:28:21.515 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:28:21.563 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-22 14:28:21.563 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 update teacher contacts: 
+2026-04-22 14:28:21.563 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      Teacher 1000031: Безуглова Тетяна [MASTER]
+2026-04-22 14:28:21.563 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:28:31.877 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:28:31.879 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-22 14:28:31.879 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-22 14:28:31.879 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1000031
+2026-04-22 14:28:31.879 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:28:31.883 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-22 14:28:31.885 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-22 14:28:31.885 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      Teacher 1000031: Безуглова Тетяна [MASTER]
+2026-04-22 14:28:31.886 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:29:39.911 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:29:39.913 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-22 14:29:39.913 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-22 14:29:39.913 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1000031
+2026-04-22 14:29:39.913 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:29:39.919 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-22 14:29:39.920 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-22 14:29:39.920 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      Teacher 1000031: Безуглова Тетяна [MASTER]
+2026-04-22 14:29:39.920 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:29:55.397 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:29:55.397 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-22 14:29:55.398 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: UPDATE_TEACHER_ACADEMIC 
+2026-04-22 14:29:55.398 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  UpdateTeacherAcademicDTO[teacherId=1000031, position=LECTURER, degree=MASTER, rank=PROFESSOR, load=4.0]
+2026-04-22 14:29:55.402 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:29:55.409 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-22 14:29:55.409 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 update teacher academic: 
+2026-04-22 14:29:55.409 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      Teacher 1000031: Безуглова Тетяна [MASTER]
+2026-04-22 14:29:55.409 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:30:17.939 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:30:17.941 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-22 14:30:17.941 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-22 14:30:17.941 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1000031
+2026-04-22 14:30:17.941 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:30:17.945 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-22 14:30:17.945 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-22 14:30:17.945 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      Teacher 1000031: Безуглова Тетяна [MASTER]
+2026-04-22 14:30:17.946 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:31:25.112 [main] INFO  ua.naukma.server.ServerMain - Starting server on port 8080
+2026-04-22 14:31:26.226 [main] INFO  ua.naukma.server.ServerMain - Starting server on port 8080
+2026-04-22 14:31:26.260 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Client IP: 127.0.0.1
+2026-04-22 14:31:30.648 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:31:30.648 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-22 14:31:30.648 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: LOGIN 
+2026-04-22 14:31:30.648 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  User: admin
+ID: -1
+Role: NOT ASSIGNED
+2026-04-22 14:31:30.649 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:31:30.652 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-22 14:31:30.652 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 login: 
+2026-04-22 14:31:30.652 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      User: admin
+ID: 1111111
+Role: ADMIN
+Current rights: [|READ|MANAGE_USERS|MANAGE_STRUCTURE|MANAGE_STUDENTS|ADDITION_UNIVERSITY|DELETION_UNIVERSITY|]
+2026-04-22 14:31:30.653 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:31:30.657 [main] INFO  ua.naukma.client.ClientMain - Logged in as admin
+2026-04-22 14:33:38.605 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:33:38.607 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-22 14:33:38.607 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-22 14:33:38.607 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1234567
+2026-04-22 14:33:38.607 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:33:38.614 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-22 14:33:38.614 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-22 14:33:38.614 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      NaUKMA (Kyiv)
+2026-04-22 14:33:38.615 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:33:45.603 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:33:45.604 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - New request received from: 127.0.0.1 
+2026-04-22 14:33:45.604 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Request type: FIND 
+2026-04-22 14:33:45.604 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data attached:  1000002
+2026-04-22 14:33:45.604 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
+2026-04-22 14:33:45.627 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Response status:     SUCCESS
+2026-04-22 14:33:45.627 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Msg:                 find: 
+2026-04-22 14:33:45.627 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - Data sent back:      Faculty's ID: 1000002
+Faculty's fullname: faculty of economics
+ShortName: fen
+Faculty's email: fen@ukma.edu.ua
+2026-04-22 14:33:45.629 [pool-1-thread-1] INFO  ua.naukma.server.ServerMain - ==========================================
