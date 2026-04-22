@@ -65,6 +65,12 @@ public class DepartmentController implements RequestHandler {
                         request.getType()
                 );
             }
+            case FIND_DEP -> {
+                int departmentId = (int) request.getData();
+                yield execute(
+                        () -> departmentService.findById(departmentId),
+                        request.getType());
+            }
             case GET_ALL -> {
                 int departmentId = (int) request.getData();
                 yield execute(

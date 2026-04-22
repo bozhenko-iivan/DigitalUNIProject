@@ -49,10 +49,10 @@ public class DepartmentHandler extends BasicHandler {
     }
 
     private void show_department_info() {
-        Response showDepartmentInfo = sendRequest(Request.RequestType.FIND, menuContext.getCurrent_department().getId(), false);
+        Response showDepartmentInfo = sendRequest(Request.RequestType.FIND_DEP, menuContext.getCurrent_department().getId(), false);
         if (showDepartmentInfo.getResponseStatus() == Response.ResponseStatus.SUCCESS) {
-            Faculty faculty = (Faculty) showDepartmentInfo.getPayload();
-            System.out.println(faculty.toString());
+            Department dep = (Department) showDepartmentInfo.getPayload();
+            System.out.println(dep.findDepartment());
         }
     }
 
@@ -254,7 +254,6 @@ public class DepartmentHandler extends BasicHandler {
         requirePermission(Permissions.MANAGE_STRUCTURE, () -> {
             int deptId = menuContext.getCurrent_department().getId();
 
-            System.out.print("Enter new location: ");
             String newLocation = UniversityVerificator.ask_address();
             String newEmail = EmailVerificator.ask_email();
 

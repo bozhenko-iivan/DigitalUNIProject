@@ -156,6 +156,7 @@ public class NewMenu {
                 System.out.println("\uD83C\uDF93 11. Update teacher's academic info");
                 System.out.println("✏️ 12. Edit Department Info");
             }
+            System.out.println("ℹ\uFE0F 13. Show department info");
         }
 
         if (level == MenuLevel.STUDENT) {

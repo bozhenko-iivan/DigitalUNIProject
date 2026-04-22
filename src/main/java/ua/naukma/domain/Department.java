@@ -72,4 +72,9 @@ public class Department implements Serializable, GetId, GetName {
     public String toString() {
         return "Department of " + name + " [" + faculty.getShortName() + "]";
     }
+
+    public String findDepartment() {
+        return "Deps's ID: " + getId() + "\nFaculty's fullname: " + getName()
+                + "\nDeps's email: " + getEmail() + "\nLocation: " + getLocation();
+    }
 }

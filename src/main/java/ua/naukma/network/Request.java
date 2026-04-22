@@ -60,6 +60,10 @@ public class Request implements Serializable {
 
         UPGRADE_GROUP_COURSE,
 
+        SHOW_DEPARTMENT_INFO,
+
+        FIND_DEP,
+
         @Secured(Permissions.MANAGE_STRUCTURE)
         SET_DEAN,
 
